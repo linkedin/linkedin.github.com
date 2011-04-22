@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>glu script &mdash; glu v2.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="glu v2.2.0 documentation" href="index.html" />
+    <link rel="next" title="Orchestration engine" href="orchestration-engine.html" />
+    <link rel="prev" title="Agent" href="agent.html" />
+ 
+<link rel="stylesheet" href="_static/glu.css" type="text/css" />
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="contents.html">
+            <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
+          </a></p>
+        <h1><a href="contents.html">glu v2.2.0 documentation</a></h1>
+        <div class="rel">
+          <a href="agent.html" title="Agent"
+             accesskey="P">previous</a> |
+          <a href="orchestration-engine.html" title="Orchestration engine"
+             accesskey="N">next</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+<div class="content-wrapper">
+<div class="content">
+<div class="document">
+  
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="script-logo-glu-script">
+<h1><img alt="script logo" class="header-logo" src="_images/script-logo-86.png" /> glu script<a class="headerlink" href="#script-logo-glu-script" title="Permalink to this headline">¶</a></h1>
+<p>A glu script is a set of instructions backed by a state machine that the agent knows how to run. In general, and by default, a glu script represents the set of instructions which defines the lifecycle of what it means to <tt class="docutils literal"><span class="pre">install</span></tt>, <tt class="docutils literal"><span class="pre">configure</span></tt>, <tt class="docutils literal"><span class="pre">start</span></tt>, <tt class="docutils literal"><span class="pre">stop</span></tt>, <tt class="docutils literal"><span class="pre">unconfigure</span></tt> and <tt class="docutils literal"><span class="pre">uninstall</span></tt> an application.</p>
+<div class="section" id="groovy-class">
+<h2>Groovy Class<a class="headerlink" href="#groovy-class" title="Permalink to this headline">¶</a></h2>
+<img alt="MyGluScript.groovy" class="align-center" src="_images/MyGluScript.png" />
+<p>A glu script is a groovy class which contains a set of closures where the name of each <a class="reference internal" href="glossary.html#term-closure"><em class="xref std std-term">closure</em></a> matches the name of the actions defined in the state machine. This example shows the default closure names. The script can also store state in attributes (like <tt class="docutils literal"><span class="pre">port</span></tt> and <tt class="docutils literal"><span class="pre">pid</span></tt> in this example).</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The code of each closure can be any arbitrary groovy/java code but remember that the agent offers <a class="reference internal" href="agent.html#agent-capabitites"><em>some capabilities</em></a> to help you in writing more concise code.</p>
+</div>
+</div>
+<div class="section" id="state-machine">
+<h2>State machine<a class="headerlink" href="#state-machine" title="Permalink to this headline">¶</a></h2>
+<p>Each glu script is backed by a state machine which is an instance of <tt class="docutils literal"><span class="pre">org.linkedin.groovy.util.state.StateMachine</span></tt> (<a class="reference external" href="https://github.com/linkedin/linkedin-utils/blob/master/org.linkedin.util-groovy/src/main/groovy/org/linkedin/groovy/util/state/StateMachine.groovy">StateMachine api</a>). The default state machine is the following:</p>
+<a class="reference internal image-reference" href="_images/state_machine_diagram.png"><img alt="State Machine diagram" class="align-center" src="_images/state_machine_diagram.png" style="width: 680.0px; height: 181.05px;" /></a>
+<p>This is how the default state machine is defined.</p>
+<a class="reference internal image-reference" href="_images/state_machine.png"><img alt="State Machine Definition" class="align-center" src="_images/state_machine.png" style="width: 683.9px; height: 105.7px;" /></a>
+<p>You can define your own state machine by defining a static attribute called <tt class="docutils literal"><span class="pre">stateMachine</span></tt></p>
+<p>This is how the <tt class="docutils literal"><span class="pre">AutoUpgradeScript</span></tt> (<a class="reference external" href="https://github.com/linkedin/glu/blob/master/agent/org.linkedin.glu.agent-impl/src/main/groovy/org/linkedin/glu/agent/impl/script/AutoUpgradeScript.groovy">AutoUpgradeScript source</a>) glu script defines different states and actions:</p>
+<div class="highlight-text"><div class="highlight"><pre> class AutoUpgradeScript {
+   def static stateMachine =
+   [
+       NONE: [ [to: &#39;installed&#39;, action: &#39;install&#39;] ],
+       installed: [ [to: &#39;NONE&#39;, action: &#39;uninstall&#39;], [to: &#39;prepared&#39;, action: &#39;prepare&#39;] ],
+       prepared: [ [to: &#39;upgraded&#39;, action: &#39;commit&#39;], [to: &#39;installed&#39;, action: &#39;rollback&#39;] ],
+       upgraded: [ [to: &#39;NONE&#39;, action: &#39;uninstall&#39;] ]
+   ]
+   ...
+}
+</pre></div>
+</div>
+<p>The minimum (usefull) state machine that you can define could look like:</p>
+<div class="highlight-text"><div class="highlight"><pre>def static stateMachine =
+[
+    NONE: [ [to: &#39;running&#39;, action: &#39;start&#39;] ],
+    running: [ [to: &#39;NONE&#39;, action: &#39;stop&#39;] ]
+]
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If an action is empty you don&#8217;t even have to define its equivalent action but you still need to call all prior actions to satisfy the state machine.</p>
+</div>
+</div>
+<div class="section" id="an-example-of-glu-script">
+<h2>An example of glu script<a class="headerlink" href="#an-example-of-glu-script" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/glu_script_example.png"><img alt="glu script example" class="align-center" src="_images/glu_script_example.png" style="width: 680.0px; height: 493.85px;" /></a>
+</div>
+<div class="section" id="real-life-example">
+<h2>Real life example<a class="headerlink" href="#real-life-example" title="Permalink to this headline">¶</a></h2>
+<p>You can find a real life example of a glu script called <a class="reference external" href="https://github.com/linkedin/glu/blob/master/scripts/org.linkedin.glu.script-jetty/src/main/groovy/JettyGluScript.groovy">JettyGluScript</a> which shows how to deploy a webapp container (jetty), install web applications in it and monitor it.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+</div>
+<div class="sidebar">
+  <div class="sidebar-entry">
+    <h3>Table Of Contents</h3>
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">What is glu?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">A taste of glu (tutorial)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agent.html"> Agent</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href=""> glu script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#groovy-class">Groovy Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#state-machine">State machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#an-example-of-glu-script">An example of glu script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#real-life-example">Real life example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="orchestration-engine.html"> Orchestration engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="static-model.html"> Static Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filtering.html"> Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console.html"> Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="production-setup.html">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev-setup.html">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RELEASE.html">Latest changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents.html">All content</a></li>
+</ul>
+
+  </div>
+<div class="sidebar-entry">
+  <h3>Quick Links</h3>
+  <ul class="quick-links">
+    <li><a href="https://github.com/linkedin/glu/downloads">Download</a>
+    <li><a href="tutorial.html">Tutorial</a>
+    <li><a href="http://www.github.com/linkedin/glu">Source Code</a>
+    <li><a href="http://glu.977617.n3.nabble.com/">Forum / Questions / Help</a>
+    <li><a href="https://github.com/linkedin/glu/issues">Issues / Tasks</a>
+    <li><a href="RELEASE.html">Latest Changes</a>
+  </ul>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+</div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="agent.html" title="Agent"
+             >previous</a> |
+          <a href="orchestration-engine.html" title="Orchestration engine"
+             >next</a> |
+          <a href="genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer">
+        &copy; Copyright 2011, Yan Pujante.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

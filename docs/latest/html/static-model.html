@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Static Model &mdash; glu v2.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="glu v2.2.0 documentation" href="index.html" />
+    <link rel="next" title="Filtering" href="filtering.html" />
+    <link rel="prev" title="Orchestration engine" href="orchestration-engine.html" />
+ 
+<link rel="stylesheet" href="_static/glu.css" type="text/css" />
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="contents.html">
+            <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
+          </a></p>
+        <h1><a href="contents.html">glu v2.2.0 documentation</a></h1>
+        <div class="rel">
+          <a href="orchestration-engine.html" title="Orchestration engine"
+             accesskey="P">previous</a> |
+          <a href="filtering.html" title="Filtering"
+             accesskey="N">next</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+<div class="content-wrapper">
+<div class="content">
+<div class="document">
+  
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="static-model-logo-static-model">
+<span id="static-model"></span><h1><img alt="static model" class="header-logo" src="_images/static-model-logo-86.png" /> Static Model<a class="headerlink" href="#static-model-logo-static-model" title="Permalink to this headline">¶</a></h1>
+<p>The static model describes what applications need to run, on which host and what it means to deploy and run an application. It is represented by a json document.</p>
+<div class="section" id="structure-of-the-model">
+<h2>Structure of the model<a class="headerlink" href="#structure-of-the-model" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Empty Model</p>
+<p>This is a totally valid model. It is simply empty: if you load this model in the orchestration engine, it means that you want your system to be empty which will trigger undeploying everything.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is equivalent to running the <tt class="docutils literal"><span class="pre">undeploy</span></tt> command for everything (<tt class="docutils literal"><span class="pre">-a</span></tt> option) with the difference that the orchestration engine will detect a delta after running <tt class="docutils literal"><span class="pre">undeploy</span></tt> on a non empty system.</p>
+</div>
+</div>
+<p>The most basic structure of the model is the following:</p>
+<div class="highlight-text"><div class="highlight"><pre>{
+  &quot;fabric&quot;: &quot;glu-dev-1&quot;,
+  &quot;metadata&quot;: {}
+  &quot;agentTags&quot;: {},
+  &quot;entries&quot;: [],
+}
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The model is internally represented by the <a class="reference external" href="https://github.com/linkedin/glu/blob/master/provisioner/org.linkedin.glu.provisioner-core/src/main/groovy/org/linkedin/glu/provisioner/core/model/SystemModel.groovy">SystemModel</a> (groovy) class.</p>
+</div>
+<div class="section" id="fabric">
+<h3><tt class="docutils literal"><span class="pre">fabric</span></tt><a class="headerlink" href="#fabric" title="Permalink to this headline">¶</a></h3>
+<p>The fabric section is required and specifies which <a class="reference internal" href="glossary.html#term-fabric"><em class="xref std std-term">fabric</em></a> this model is for. It is a simple string.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">if you have more than 1 fabric, you need to have 1 model for each one of them</p>
+</div>
+</div>
+<div class="section" id="metadata">
+<h3><tt class="docutils literal"><span class="pre">metadata</span></tt><a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h3>
+<p>This section is of type <a class="reference internal" href="glossary.html#term-metadata"><em class="xref std std-term">metadata</em></a> and can contain any kind of information you want to store alongside your model. One way to think about it is <cite>structured comments</cite>. The console can be configured to display and/or use some of this information (TODO: add link).</p>
+</div>
+<div class="section" id="agenttags">
+<h3><tt class="docutils literal"><span class="pre">agentTags</span></tt><a class="headerlink" href="#agenttags" title="Permalink to this headline">¶</a></h3>
+<p>This section contains <a class="reference internal" href="#static-model-tagging"><em>tags</em></a> that you want to assign to each entries that are deployed on this agent.</p>
+<p>It is represented as map where:</p>
+<ul class="simple">
+<li>the key is the name of an agent</li>
+<li>the value is an array of tags (a tag is a string)</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>&quot;agentTags&quot;: {
+  &quot;agent-1&quot;: [&quot;small-instance&quot;, &quot;osx&quot;],
+  &quot;agent-2&quot;: [&quot;large-instance&quot;, &quot;linux&quot;]
+},
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last"><tt class="docutils literal"><span class="pre">agentTags</span></tt> are no more than a shortcut to assign the same set of tags to all entries assigned to the agent (see <a class="reference internal" href="#static-model-entry-tags"><em>tags</em></a>)</p>
+</div>
+</div>
+<div class="section" id="entries">
+<h3><tt class="docutils literal"><span class="pre">entries</span></tt><a class="headerlink" href="#entries" title="Permalink to this headline">¶</a></h3>
+<p>This section is an array of entries. An entry describes where a particular instance of an application need to be deployed, and how to deploy it. An entry is represented like this in json:</p>
+<div class="highlight-text"><div class="highlight"><pre>{
+  &quot;agent&quot;: &quot;node01.prod&quot;,
+  &quot;mountPoint&quot;: &quot;/search/i001&quot;,
+
+  &quot;script&quot;: &quot;http://repository.prod/scripts/webapp-deploy-1.0.0.groovy&quot;,
+  &quot;initParameters&quot;: {},
+  &quot;metadata&quot;: {},
+  &quot;tags&quot;: []
+}
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">An entry is internally represented by the <a class="reference external" href="https://github.com/linkedin/glu/blob/master/provisioner/org.linkedin.glu.provisioner-core/src/main/groovy/org/linkedin/glu/provisioner/core/model/SystemEntry.groovy">SystemEntry</a> (groovy class).</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If you check <a class="reference internal" href="agent.html#agent-glu-script-engine"><em>glu Script Engine</em></a>, you will be able to understand better why an entry is defined this way:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">agent</span></tt> represents which agent to talk to</li>
+<li><tt class="docutils literal"><span class="pre">mountPoint</span></tt>, <tt class="docutils literal"><span class="pre">script</span></tt> and <tt class="docutils literal"><span class="pre">initParameters</span></tt> are the parameters provided to the <tt class="docutils literal"><span class="pre">installScript</span></tt> api</li>
+</ul>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="docutils literal"><span class="pre">tags</span></tt> are only used in the console</p>
+</div>
+</div>
+<div class="section" id="agent">
+<h4><tt class="docutils literal"><span class="pre">agent</span></tt><a class="headerlink" href="#agent" title="Permalink to this headline">¶</a></h4>
+<p>This section describe on which agent the application needs to be installed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This has to be the name of the agent as defined by <a class="reference internal" href="agent.html#agent-fabric-and-name"><em>Fabric &amp; Agent name</em></a>. In most cases the name of the agent is the hostname, but since it is configurable, it may be different. This is so that it is possible to start more than one agent on a single node (which is very useful for development purposes).</p>
+</div>
+</div>
+<div class="section" id="mountpoint">
+<h4><tt class="docutils literal"><span class="pre">mountPoint</span></tt><a class="headerlink" href="#mountpoint" title="Permalink to this headline">¶</a></h4>
+<p>The <a class="reference internal" href="glossary.html#term-mount-point"><em class="xref std std-term">mount point</em></a> represents a unique key on the agent. You can reuse the same value for a different agent.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">This value is predominently displayed in the console so in general it is better to give it a very meaningful value. For example <tt class="docutils literal"><span class="pre">/search/i001</span></tt> describes the fact that it is the <em>search</em> application, instance <em>001</em>. You are of course free to use whichever convention you would like.</p>
+</div>
+</div>
+<div class="section" id="script">
+<h4><tt class="docutils literal"><span class="pre">script</span></tt><a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h4>
+<p>This section should be a URI pointing to the <a class="reference internal" href="glu-script.html"><em>glu script</em></a> that will be used to deploy the application.</p>
+</div>
+<div class="section" id="initparameters">
+<h4><tt class="docutils literal"><span class="pre">initParameters</span></tt><a class="headerlink" href="#initparameters" title="Permalink to this headline">¶</a></h4>
+<p>This section describes the initialization parameters that are going to be provided to the <em>script</em>. It is of type <a class="reference internal" href="glossary.html#term-metadata"><em class="xref std std-term">metadata</em></a> and can contain whatever values you want to provide to the script. Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>&quot;initParameters&quot;: {
+   &quot;container&quot;: {
+     &quot;skeleton&quot;: &quot;http://repository.prod/tgzs/jetty-7.2.2.v20101205.tgz&quot;,
+     &quot;config&quot;: &quot;http://repository.prod/configs/search-container-config-2.1.0.json&quot;,
+     &quot;port&quot;: 8080,
+   },
+   &quot;webapp&quot;: {
+     &quot;war&quot;: &quot;http://repository.prod/wars/search-2.1.0.war&quot;,
+     &quot;contextPath&quot;: &quot;/&quot;,
+     &quot;config&quot;: &quot;http://repository.prod/configs/search-config-2.1.0.json&quot;
+   }
+}
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The values you use in this section are used to compute the <a class="reference internal" href="glossary.html#term-delta"><em class="xref std std-term">delta</em></a>! This is how the orchestration engine determines that an application needs to be upgraded (because the version has changed)!</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h4><tt class="docutils literal"><span class="pre">metadata</span></tt><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>This section is of type <a class="reference internal" href="glossary.html#term-metadata"><em class="xref std std-term">metadata</em></a> and can contain any kind of information you want to store alongside this entry. The model itself also has a <tt class="docutils literal"><span class="pre">metadata</span></tt> section but this one is specific to the entry and each entry can have its own. The console can be configured to display and filter on <tt class="docutils literal"><span class="pre">metadata</span></tt> (TODO add link).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">unlike the <tt class="docutils literal"><span class="pre">initParameters</span></tt> section, <tt class="docutils literal"><span class="pre">metadata</span></tt> is <strong>not</strong> used to compute the delta.</p>
+</div>
+</div>
+<div class="section" id="tags">
+<span id="static-model-entry-tags"></span><h4><tt class="docutils literal"><span class="pre">tags</span></tt><a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h4>
+<p>This section is an array of tags. The console can be configured to display and filter on <tt class="docutils literal"><span class="pre">tags</span></tt>. See <a class="reference internal" href="#static-model-tagging"><em>Tagging</em></a> for more information.</p>
+</div>
+</div>
+</div>
+<div class="section" id="tagging">
+<span id="static-model-tagging"></span><h2>Tagging<a class="headerlink" href="#tagging" title="Permalink to this headline">¶</a></h2>
+<p>The static model has 2 ways of defining tags:</p>
+<ol class="arabic simple">
+<li>through <tt class="docutils literal"><span class="pre">agentTags</span></tt> for the entire model</li>
+<li>through <tt class="docutils literal"><span class="pre">tags</span></tt> for a particular entry</li>
+</ol>
+<div class="section" id="what-is-a-tag">
+<h3>What is a tag?<a class="headerlink" href="#what-is-a-tag" title="Permalink to this headline">¶</a></h3>
+<p>A tag is a simple piece of information (a simple string) that can be associated to an entity. You may be familiar with the concept under a different name: <em>label</em>. There are lots of system using this concept. For example, <em>gmail</em> allows you to associate any number of labels to an email (thus simulating folders but more powerfull because the email can be in more than one folder!).</p>
+<p>Example of tags: <tt class="docutils literal"><span class="pre">frontend</span></tt>, <tt class="docutils literal"><span class="pre">backend</span></tt>, <tt class="docutils literal"><span class="pre">linux</span></tt>, <tt class="docutils literal"><span class="pre">cluster-search-1</span></tt>, <tt class="docutils literal"><span class="pre">cluster-seach-2</span></tt>, ...</p>
+</div>
+<div class="section" id="why-would-you-use-tags">
+<h3>Why would you use tags?<a class="headerlink" href="#why-would-you-use-tags" title="Permalink to this headline">¶</a></h3>
+<p>As you saw in the previous sections, the system model is a rather flat structure: a simple array of entries. It was actually designed this way on purpose because glu does not want to impose how you want to model your system. For example, for some, a <em>cluster</em> means something, for others it means something different.</p>
+<p>Tags allow you to add meaning to the model that glu does not know about (and does not have to) (for glu <em>cluster</em> means nothing :). Tags are then used in very powerful ways:</p>
+<ul class="simple">
+<li>display: the console displays tags (you can actually configure the color (TODO add link))</li>
+<li>filtering: there is an entire section about <a class="reference internal" href="filtering.html"><em>filtering</em></a> and how it works but quickly speaking it allows you to constraint glu on what to do. For example, you can tell glu to <a class="reference internal" href="glossary.html#term-bounce"><em class="xref std std-term">bounce</em></a> all applications that are part of the first search cluster running on linux nodes.</li>
+</ul>
+</div>
+<div class="section" id="what-about-metadata">
+<h3>What about <tt class="docutils literal"><span class="pre">metadata</span></tt>?<a class="headerlink" href="#what-about-metadata" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">metadata</span></tt> are very similar to <tt class="docutils literal"><span class="pre">tags</span></tt> with the only difference that <tt class="docutils literal"><span class="pre">metadata</span></tt> are structured. The console can also display <tt class="docutils literal"><span class="pre">metadata</span></tt> (albeit not like tags), and use it for filtering. In general, <tt class="docutils literal"><span class="pre">metadata</span></tt> is more heavyweight than <tt class="docutils literal"><span class="pre">tags</span></tt> so if you have a choice, you should use <tt class="docutils literal"><span class="pre">tags</span></tt>.</p>
+<img alt="tags and metadata" class="align-center" src="_images/static-model-tags-metadata.png" />
+<p>Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>// Expressing the same information
+
+// using metadata
+{
+  &quot;metadata&quot;: {
+    &quot;cluster&quot;: &quot;search-1&quot;,
+    &quot;application&quot;: {
+      &quot;kind&quot;: &quot;webapp&quot;
+    }
+  }
+}
+
+// using tags
+{
+  &quot;tags&quot;: [&quot;cluster-search-1&quot;, &quot;webapp&quot;]
+}
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As you can see in the <a class="reference internal" href="filtering.html"><em>filtering</em></a> section, expressing filters with tags is simpler and can result in faster results.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+</div>
+<div class="sidebar">
+  <div class="sidebar-entry">
+    <h3>Table Of Contents</h3>
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">What is glu?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">A taste of glu (tutorial)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agent.html"> Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glu-script.html"> glu script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orchestration-engine.html"> Orchestration engine</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href=""> Static Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#structure-of-the-model">Structure of the model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fabric"><tt class="docutils literal"><span class="pre">fabric</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metadata"><tt class="docutils literal"><span class="pre">metadata</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#agenttags"><tt class="docutils literal"><span class="pre">agentTags</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entries"><tt class="docutils literal"><span class="pre">entries</span></tt></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#agent"><tt class="docutils literal"><span class="pre">agent</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mountpoint"><tt class="docutils literal"><span class="pre">mountPoint</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#script"><tt class="docutils literal"><span class="pre">script</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initparameters"><tt class="docutils literal"><span class="pre">initParameters</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">metadata</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tags"><tt class="docutils literal"><span class="pre">tags</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tagging">Tagging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-a-tag">What is a tag?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-would-you-use-tags">Why would you use tags?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-about-metadata">What about <tt class="docutils literal"><span class="pre">metadata</span></tt>?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="filtering.html"> Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console.html"> Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="production-setup.html">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev-setup.html">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RELEASE.html">Latest changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents.html">All content</a></li>
+</ul>
+
+  </div>
+<div class="sidebar-entry">
+  <h3>Quick Links</h3>
+  <ul class="quick-links">
+    <li><a href="https://github.com/linkedin/glu/downloads">Download</a>
+    <li><a href="tutorial.html">Tutorial</a>
+    <li><a href="http://www.github.com/linkedin/glu">Source Code</a>
+    <li><a href="http://glu.977617.n3.nabble.com/">Forum / Questions / Help</a>
+    <li><a href="https://github.com/linkedin/glu/issues">Issues / Tasks</a>
+    <li><a href="RELEASE.html">Latest Changes</a>
+  </ul>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+</div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="orchestration-engine.html" title="Orchestration engine"
+             >previous</a> |
+          <a href="filtering.html" title="Filtering"
+             >next</a> |
+          <a href="genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer">
+        &copy; Copyright 2011, Yan Pujante.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

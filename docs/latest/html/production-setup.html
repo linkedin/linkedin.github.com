@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Production Setup &mdash; glu v2.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="glu v2.2.0 documentation" href="index.html" />
+    <link rel="next" title="Development Setup" href="dev-setup.html" />
+    <link rel="prev" title="Console" href="console.html" />
+ 
+<link rel="stylesheet" href="_static/glu.css" type="text/css" />
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="contents.html">
+            <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
+          </a></p>
+        <h1><a href="contents.html">glu v2.2.0 documentation</a></h1>
+        <div class="rel">
+          <a href="console.html" title="Console"
+             accesskey="P">previous</a> |
+          <a href="dev-setup.html" title="Development Setup"
+             accesskey="N">next</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+<div class="content-wrapper">
+<div class="content">
+<div class="document">
+  
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="production-setup">
+<h1>Production Setup<a class="headerlink" href="#production-setup" title="Permalink to this headline">¶</a></h1>
+<p>This document describes how to setup glu for production.</p>
+<div class="section" id="step-1-download">
+<h2>Step 1: Download<a class="headerlink" href="#step-1-download" title="Permalink to this headline">¶</a></h2>
+<p>Download the binary called <tt class="docutils literal"><span class="pre">org.linkedin.glu.packaging-all-&lt;version&gt;.tgz</span></tt> from the <a class="reference external" href="https://github.com/linkedin/glu/downloads">downloads</a> section on github.</p>
+<p>Untar/Unzip in a location of your choice:</p>
+<div class="highlight-text"><div class="highlight"><pre>agent-cli/
+agent-server/
+bin/
+console-cli/
+console-server/
+org.linkedin.zookeeper-server-1.2.2/
+setup/
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">This documentation is available under <tt class="docutils literal"><span class="pre">console-server/glu/docs/html/index.html</span></tt></p>
+</div>
+</div>
+<div class="section" id="step-2-setup-zookeeper">
+<span id="production-setup-zookeeper"></span><h2>Step 2: Setup ZooKeeper<a class="headerlink" href="#step-2-setup-zookeeper" title="Permalink to this headline">¶</a></h2>
+<p>In a production environment you need to install ZooKeeper in a more robust setup. The recommended way is to install ZooKeeper on 3 different nodes as a replicated group of servers (the number 3 is coming directly from discussions with the ZooKeeper authors). You may want to check the <a class="reference external" href="http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html#sc_RunningReplicatedZooKeeper">Running Replicated ZooKeeper</a> section on the Apache ZooKeeper documentation web site.</p>
+<p>You have 2 options there:</p>
+<ol class="arabic">
+<li><p class="first">You can download and install ZooKeeper directly from the <a class="reference external" href="http://zookeeper.apache.org/">Apache ZooKeeper</a> website (there is nothing specific in glu: it uses plain vanilla ZooKeeper)</p>
+</li>
+<li><p class="first">You can install the one bundled in the tar file you downloaded: <tt class="docutils literal"><span class="pre">org.linkedin.zookeeper-server-&lt;version&gt;/</span></tt> and configure it properly according to the instructions from the <a class="reference external" href="http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html#sc_RunningReplicatedZooKeeper">ZooKeeper</a> web site:</p>
+<ul>
+<li><p class="first">each server must have a file <tt class="docutils literal"><span class="pre">org.linkedin.zookeeper-server-&lt;version&gt;/data/myid</span></tt></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">the content is different for each server!</p>
+</div>
+</li>
+<li><p class="first">the file <tt class="docutils literal"><span class="pre">org.linkedin.zookeeper-server-&lt;version&gt;/conf/zoo.cfg</span></tt> must be changed to add the <tt class="docutils literal"><span class="pre">server.X</span></tt> section</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">this file is the same for each server</p>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="step-3-generate-your-own-set-of-keys">
+<span id="production-keys"></span><h2>Step 3: Generate your own set of keys<a class="headerlink" href="#step-3-generate-your-own-set-of-keys" title="Permalink to this headline">¶</a></h2>
+<p>The security in glu relies on the fact that the glu <a class="reference internal" href="agent.html"><em>agent</em></a> exposes a REST api over a secure https connection configured in client authentication mode.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>it is possible to configure the agent (and the console) to not use this security level (see <a class="reference internal" href="agent.html#agent-configuration"><em>Agent boot sequence and configuration</em></a>, in particular the property called <tt class="docutils literal"><span class="pre">glu.agent.sslEnabled</span></tt>)</p>
+<div class="last admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">it is <strong>not</strong> recommended to disable security for a production setup</p>
+</div>
+</div>
+<p>At this moment there is no automated ways to generate the keys and you need to follow the manual steps (TODO: provide a more automated way)</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The tar file you downloaded comes with a set of keys. It is not safe to use them for production as they are obviously readily available.</p>
+</div>
+<div class="section" id="generate-keystore-for-the-agent">
+<h3>Generate keystore for the agent<a class="headerlink" href="#generate-keystore-for-the-agent" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">we don&#8217;t care about this one but it is required for SSL</p>
+</div>
+<p>You use the <tt class="docutils literal"><span class="pre">keytool</span></tt> utility (bundled with java):</p>
+<div class="highlight-text"><div class="highlight"><pre>keytool -genkey -alias agent -keystore agent.keystore -keyalg RSA -keysize 2048 -validity 2000
+
+Enter keystore password:  XXXXXXX
+Re-enter new password: XXXXXXX
+What is your first and last name?
+  [Unknown]:  localhost
+What is the name of your organizational unit?
+  [Unknown]:  Dev
+What is the name of your organization?
+  [Unknown]:  LinkedIn
+What is the name of your City or Locality?
+  [Unknown]:  Mountain View
+What is the name of your State or Province?
+  [Unknown]:  CA
+What is the two-letter country code for this unit?
+  [Unknown]:  US
+Is CN=localhost, OU=Dev, O=LinkedIn, L=Mountain View, ST=CA, C=US correct?
+  [no]:  yes
+
+Enter key password for &lt;agent&gt;
+        (RETURN if same as keystore password): YYYYYYY
+Re-enter new password: YYYYYYY
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>there are 2 passwords:</p>
+<ol class="last arabic simple">
+<li>the password for the keystore (<tt class="docutils literal"><span class="pre">XXXXXXX</span></tt>) (<tt class="docutils literal"><span class="pre">glu.agent.keystorePassword</span></tt> in the agent configuration)</li>
+<li>the password for the key in the keystore (<tt class="docutils literal"><span class="pre">YYYYYYY</span></tt>) (<tt class="docutils literal"><span class="pre">glu.agent.keyPassword</span></tt> in the agent configuration)</li>
+</ol>
+</div>
+</div>
+<div class="section" id="export-the-rsa-certificate">
+<h3>Export the RSA certificate<a class="headerlink" href="#export-the-rsa-certificate" title="Permalink to this headline">¶</a></h3>
+<p>You use the <tt class="docutils literal"><span class="pre">keytool</span></tt> utility (bundled with java):</p>
+<div class="highlight-text"><div class="highlight"><pre>keytool -export -keystore agent.keystore -alias agent -file /tmp/test.cert
+
+Enter keystore password:  XXXXXXX
+Certificate stored in file &lt;/tmp/test.cert&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="import-the-rsa-certificate-in-the-trustore">
+<h3>Import the RSA certificate in the trustore<a class="headerlink" href="#import-the-rsa-certificate-in-the-trustore" title="Permalink to this headline">¶</a></h3>
+<p>You use the <tt class="docutils literal"><span class="pre">keytool</span></tt> utility (bundled with java):</p>
+<div class="highlight-text"><div class="highlight"><pre>keytool -import -alias agent -keystore agent.truststore -file /tmp/test.cert
+
+Enter keystore password:  AAAAAAA
+Re-enter new password: AAAAAAA
+Owner: CN=localhost, OU=Dev, O=LinkedIn, L=Mountain View, ST=CA, C=US
+Issuer: CN=localhost, OU=Dev, O=LinkedIn, L=Mountain View, ST=CA, C=US
+Serial number: 4a98415a
+Valid from: Fri Aug 28 13:43:06 PDT 2009 until: Wed Feb 18 12:43:06 PST 2015
+Certificate fingerprints:
+         MD5:  EC:68:E1:DA:CF:74:FC:9B:F3:5A:31:CF:8A:C8:18:EB
+         SHA1: A5:A9:5B:D1:68:9C:F6:E4:34:95:54:A6:B1:4A:5B:E8:2C:96:9F:1F
+         Signature algorithm name: SHA1withRSA
+         Version: 3
+Trust this certificate? [no]:  yes
+Certificate was added to keystore
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">this trustore will be used in the console and the password (<tt class="docutils literal"><span class="pre">AAAAAAA</span></tt>) will be assigned to <tt class="docutils literal"><span class="pre">console.truststorePassword</span></tt></p>
+</div>
+</div>
+<div class="section" id="generate-keystore-for-the-console">
+<h3>Generate keystore for the console<a class="headerlink" href="#generate-keystore-for-the-console" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">this keystore is very important and must remain protected: <tt class="docutils literal"><span class="pre">ZZZZZZZ</span></tt> must be strong!</p>
+</div>
+<p>You use the <tt class="docutils literal"><span class="pre">keytool</span></tt> utility (bundled with java):</p>
+<div class="highlight-text"><div class="highlight"><pre>keytool -genkey -alias console -keystore console.keystore -keyalg RSA -keysize 2048 -validity 2000
+
+Enter keystore password:  WWWWWWW
+Re-enter new password: WWWWWWW
+What is your first and last name?
+  [Unknown]:  Console
+What is the name of your organizational unit?
+  [Unknown]:  Dev
+What is the name of your organization?
+  [Unknown]:  LinkedIn
+What is the name of your City or Locality?
+  [Unknown]:  Mountain View
+What is the name of your State or Province?
+  [Unknown]:  CA
+What is the two-letter country code for this unit?
+  [Unknown]:  US
+Is CN=Console, OU=Dev, O=LinkedIn, L=Mountain View, ST=CA, C=US correct?
+  [no]:  yes
+Enter key password for &lt;console&gt;
+        (RETURN if same as keystore password):  ZZZZZZZ
+Re-enter new password: ZZZZZZZ
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>there are 2 passwords:</p>
+<ol class="last arabic simple">
+<li>the password for the keystore (<tt class="docutils literal"><span class="pre">WWWWWWW</span></tt>) (<tt class="docutils literal"><span class="pre">console.keystorePassword</span></tt> in the console configuration)</li>
+<li>the password for the key in the keystore (<tt class="docutils literal"><span class="pre">ZZZZZZZ</span></tt>) (<tt class="docutils literal"><span class="pre">console.keyPassword</span></tt> in the console configuration)</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Export the RSA certificate<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>You use the <tt class="docutils literal"><span class="pre">keytool</span></tt> utility (bundled with java):</p>
+<div class="highlight-text"><div class="highlight"><pre>keytool -export -keystore console.keystore -alias console -file /tmp/test.cert
+
+Enter keystore password:  WWWWWWW
+Certificate stored in file &lt;/tmp/test.cert&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Import the RSA certificate in the trustore<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>You use the <tt class="docutils literal"><span class="pre">keytool</span></tt> utility (bundled with java):</p>
+<div class="highlight-text"><div class="highlight"><pre>keytool -import -alias console -keystore console.truststore -file /tmp/test.cert
+
+Enter keystore password:  BBBBBBB
+Re-enter new password: BBBBBBB
+Owner: CN=Console, OU=Dev, O=LinkedIn, L=Mountain View, ST=CA, C=US
+Issuer: CN=Console, OU=Dev, O=LinkedIn, L=Mountain View, ST=CA, C=US
+Serial number: 4a89a060
+Valid from: Mon Aug 17 11:24:32 PDT 2009 until: Sun Nov 15 10:24:32 PST 2009
+Certificate fingerprints:
+         MD5:  0B:B1:1A:E4:83:13:26:FF:90:8E:7A:15:78:AF:3B:27
+         SHA1: 87:12:E6:F3:A6:11:04:14:0F:C3:A0:96:B6:D5:20:83:28:CA:0E:E6
+         Signature algorithm name: SHA1withRSA
+         Version: 3
+Trust this certificate? [no]:  yes
+Certificate was added to keystore
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">this trustore will be used in the agent and the password (<tt class="docutils literal"><span class="pre">BBBBBBB</span></tt>) will be assigned to <tt class="docutils literal"><span class="pre">glu.agent.truststorePassword</span></tt></p>
+</div>
+</div>
+</div>
+<div class="section" id="step-4-encrypt-passwords-and-compute-checksums">
+<span id="production-setup-passwords"></span><h2>Step 4: Encrypt passwords and compute checksums<a class="headerlink" href="#step-4-encrypt-passwords-and-compute-checksums" title="Permalink to this headline">¶</a></h2>
+<p>To encrypt the passwords you use a little utility bundled with glu:</p>
+<div class="highlight-text"><div class="highlight"><pre>./agent-cli/bin/password.sh
+
+[Password to encrypt:] AAAAAAA
+[Encrypting key:] gluos2way
+mmAikmAikm
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">there is no feedback on purpose (the password is not printed on the output)</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the encrypting key is always the same and is <tt class="docutils literal"><span class="pre">gluos2way</span></tt>. At this time, the only way to change it is to override the <a class="reference external" href="https://github.com/linkedin/glu/blob/master/agent/org.linkedin.glu.agent-server-impl/src/main/groovy/org/linkedin/glu/agent/server/AgentMain.groovy">AgentMain.groovy</a> class and override the <tt class="docutils literal"><span class="pre">getTwoWayCodec()</span></tt> method and provide your own main class during agent boot (<tt class="docutils literal"><span class="pre">MAIN_CLASS</span></tt>). See <a class="reference internal" href="agent.html#agent-configuration"><em>Agent boot sequence and configuration</em></a> for more details on how to configure the agent.</p>
+</div>
+<p>To generate the checksum you use the same utility but you provide the file you want to compute the checksum for as an argument:</p>
+<div class="highlight-text"><div class="highlight"><pre>./agent-cli/bin/password.sh $PWD/agent.keystore
+
+[SHA1 password:] gluos1way1
+[Encrypting key:] gluos2way
+zGt96nK2xNepHqx0OtefQf6m-3K
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">there is a <a class="reference external" href="https://github.com/linkedin/glu/issues/45">bug</a> at this time that requires to provide the absolute path</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the 2 values <tt class="docutils literal"><span class="pre">gluos1way1</span></tt> and <tt class="docutils literal"><span class="pre">gluos2way</span></tt> are defined in the code and the only way to change them at this point in time is to follow the steps about overriding the <tt class="docutils literal"><span class="pre">AgentMain</span></tt> class</p>
+</div>
+<div class="section" id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<p>At the end of this step, it may be a little confusing so let&#8217;s recap what you should have:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="17%" />
+<col width="17%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">File</th>
+<th class="head">Consumer</th>
+<th class="head">Default storage</th>
+<th class="head">Configuration properties</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">agent.keystore</span></tt></td>
+<td>Agent</td>
+<td>ZooKeeper</td>
+<td><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">glu.agent.keystorePath</span></tt> (where is the file
+located)</li>
+<li><tt class="docutils literal"><span class="pre">glu.agent.keystoreChecksum</span></tt> (computed)</li>
+<li><tt class="docutils literal"><span class="pre">glu.agent.keystorePassword</span></tt> (<tt class="docutils literal"><span class="pre">XXXXXXX</span></tt>
+encrypted)</li>
+<li><tt class="docutils literal"><span class="pre">glu.agent.keyPassword</span></tt> (<tt class="docutils literal"><span class="pre">ZZZZZZZ</span></tt> encrypted)</li>
+</ul>
+</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">agent.truststore</span></tt></td>
+<td>All clients of the
+agent (console and
+agent cli)</td>
+<td>locally to the
+client</td>
+<td><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">console.truststorePath</span></tt> (where is the file
+located)</li>
+<li><tt class="docutils literal"><span class="pre">console.truststorePassword</span></tt> (<tt class="docutils literal"><span class="pre">AAAAAAA</span></tt>
+encrypted)</li>
+</ul>
+</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">console.keystore</span></tt></td>
+<td>Console</td>
+<td>local to the console</td>
+<td><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">console.keystorePath</span></tt> (where is the file located)</li>
+<li><tt class="docutils literal"><span class="pre">console.keystorePassword</span></tt> (<tt class="docutils literal"><span class="pre">WWWWWWW</span></tt> encrypted)</li>
+<li><tt class="docutils literal"><span class="pre">console.keyPassword</span></tt> (<tt class="docutils literal"><span class="pre">ZZZZZZZ</span></tt> encrypted)</li>
+</ul>
+</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">console.truststore</span></tt></td>
+<td>Agent</td>
+<td>ZooKeeper</td>
+<td><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">glu.agent.truststorePath</span></tt> (where is the file
+located)</li>
+<li><tt class="docutils literal"><span class="pre">glu.agent.truststoreChecksum</span></tt> (computed)</li>
+<li><tt class="docutils literal"><span class="pre">glu.agent.truststorePassword</span></tt> (<tt class="docutils literal"><span class="pre">BBBBBBB</span></tt>
+encrypted)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="step-5-prepare-zookeeper">
+<span id="production-setup-prepare-zookeeper"></span><h2>Step 5: Prepare ZooKeeper<a class="headerlink" href="#step-5-prepare-zookeeper" title="Permalink to this headline">¶</a></h2>
+<p>By now you should have ZooKeeper up and running (if you have followed <a class="reference internal" href="#production-setup-zookeeper"><em>Step 2: Setup ZooKeeper</em></a>).</p>
+<ol class="arabic simple">
+<li>Copy <tt class="docutils literal"><span class="pre">agent.keystore</span></tt> and <tt class="docutils literal"><span class="pre">console.trustore</span></tt> into <tt class="docutils literal"><span class="pre">setup/zookeeper-config</span></tt></li>
+<li>Edit <tt class="docutils literal"><span class="pre">setup/zookeeper-config/config.properties</span></tt> to put your own values for the passwords and checksums (see <a class="reference internal" href="#production-setup-passwords"><em>Step 4: Encrypt passwords and compute checksums</em></a>)
+.. note:: you can also add/modify most of the configuration properties for the agent (see <a class="reference internal" href="agent.html#agent-configuration"><em>Agent boot sequence and configuration</em></a>).</li>
+</ol>
+<p>Use the tool provided to create a <a class="reference internal" href="glossary.html#term-fabric"><em class="xref std std-term">fabric</em></a>, load the keys in ZooKeeper as well as the agent configuration:</p>
+<div class="highlight-text"><div class="highlight"><pre>./bin/setup-zookeeper.sh -z &lt;zkConnectionString&gt; -f &lt;fabricName&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the <tt class="docutils literal"><span class="pre">zkConnectionString</span></tt> is of the form hostname:port (ex: <tt class="docutils literal"><span class="pre">zk01.acme.com:2181</span></tt>)</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">if you want to create more than one fabric, you can reuse the same tool</p>
+</div>
+</div>
+<div class="section" id="step-6-install-the-agent">
+<span id="production-setup-agent"></span><h2>Step 6: Install the agent<a class="headerlink" href="#step-6-install-the-agent" title="Permalink to this headline">¶</a></h2>
+<p>You can now install the agent on each host you will want to do deployment. The agent is contained in the folder called <tt class="docutils literal"><span class="pre">agent-server</span></tt>. Check the <a class="reference internal" href="agent.html#agent-configuration"><em>Agent boot sequence and configuration</em></a> for details on how to configure the agent. What is important is to provide the following configuration to the agent:</p>
+<ul class="simple">
+<li>the fabric (as set in <a class="reference internal" href="#production-setup-prepare-zookeeper"><em>Step 5: Prepare ZooKeeper</em></a>)</li>
+<li>the ZooKeeper connection string (which, if you have followed the recommendations in <a class="reference internal" href="#production-setup-zookeeper"><em>Step 2: Setup ZooKeeper</em></a>, will contain a semi-colon separated list of servers (example: <tt class="docutils literal"><span class="pre">zk01.acme.com:2181;zk02.acme.com:2181;zk03.acme.com:2181</span></tt>))</li>
+<li>the agent name (unless the default is fine)</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Once the agent is installed, you can use the <a class="reference internal" href="agent.html#agent-auto-upgrade"><em>auto upgrade</em></a> capability built into the agent</p>
+</div>
+</div>
+<div class="section" id="step-7-start-the-agents">
+<h2>Step 7: Start the agents<a class="headerlink" href="#step-7-start-the-agents" title="Permalink to this headline">¶</a></h2>
+<p>After installing the agents you can start them.</p>
+<p>There is a way to test at this point that everything is working fine by using the agent cli. In order to do that:</p>
+<ol class="arabic simple">
+<li>Copy <tt class="docutils literal"><span class="pre">agent.truststore</span></tt> and <tt class="docutils literal"><span class="pre">console.keystore</span></tt> into <tt class="docutils literal"><span class="pre">agent-cli/conf/keys</span></tt></li>
+<li>Edit <tt class="docutils literal"><span class="pre">agent-cli/conf/clientConfig.properties</span></tt> to put your own values for the passwords (see <a class="reference internal" href="#production-setup-passwords"><em>Step 4: Encrypt passwords and compute checksums</em></a>)</li>
+</ol>
+<p>You can then issue the following command:</p>
+<div class="highlight-text"><div class="highlight"><pre>./bin/agent-cli.sh -s https://&lt;agent&gt;:12906
+[/]
+</pre></div>
+</div>
+<p>If the keys, passwords and everything is fine, you will get <tt class="docutils literal"><span class="pre">[/]</span></tt> which is a list of all the mount points currently installed on the agent (all agents have a root <a class="reference internal" href="glossary.html#term-mount-point"><em class="xref std std-term">mount point</em></a>).</p>
+</div>
+<div class="section" id="step-8-install-the-console">
+<span id="production-setup-console"></span><h2>Step 8: Install the console<a class="headerlink" href="#step-8-install-the-console" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="option-1-install-the-war-file">
+<h3>Option 1: Install the war file<a class="headerlink" href="#option-1-install-the-war-file" title="Permalink to this headline">¶</a></h3>
+<p>The console is packaged as a regular webapp (war file) and can simply be dropped in any servlet container (tested with tomcat). In order to run, the console requires a configuration file. See <a class="reference internal" href="console.html#console-configuration"><em>Configuration file</em></a>. The war file is available under <tt class="docutils literal"><span class="pre">console-server/glu/repository/wars/org.linkedin.glu.console-webapp-&lt;version&gt;.war</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">do not forget to copy your own version of <tt class="docutils literal"><span class="pre">agent.truststore</span></tt> and <tt class="docutils literal"><span class="pre">console.keystore</span></tt> and to put your own passwords in the config file.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">there is an example of configuration file under <tt class="docutils literal"><span class="pre">console-server/conf/glu-console-webapp.groovy</span></tt></p>
+</div>
+</div>
+<div class="section" id="option-2-use-the-server">
+<h3>Option 2: Use the server<a class="headerlink" href="#option-2-use-the-server" title="Permalink to this headline">¶</a></h3>
+<p>The console is also packaged as a server (using jetty) (<tt class="docutils literal"><span class="pre">console-server/</span></tt>) and comes with a default configuration file (under <tt class="docutils literal"><span class="pre">console-server/conf/glu-console-webapp.groovy</span></tt>)</p>
+<ol class="arabic simple">
+<li>Copy <tt class="docutils literal"><span class="pre">agent.truststore</span></tt> and <tt class="docutils literal"><span class="pre">console.keystore</span></tt> into <tt class="docutils literal"><span class="pre">console-server/keys</span></tt></li>
+<li>Edit <tt class="docutils literal"><span class="pre">conf/glu-console-webapp.groovy</span></tt> to put your own values for the passwords (see <a class="reference internal" href="#production-setup-passwords"><em>Step 4: Encrypt passwords and compute checksums</em></a>)</li>
+</ol>
+<p>In order to start the console simply issue:</p>
+<div class="highlight-text"><div class="highlight"><pre>./bin/consolectl.sh start
+</pre></div>
+</div>
+<p>The console will output a log file called <tt class="docutils literal"><span class="pre">console.log</span></tt> under <tt class="docutils literal"><span class="pre">jetty-distribution-&lt;version&gt;/logs</span></tt></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Since the console has a login screen asking for user credentials, it is <strong>strongly</strong> recommended to run the console under https</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Option 2 is currently <strong>not</strong> configured to run under https, so is <strong>not</strong> recommended for production use (this will be addressed in an upcoming release)</p>
+</div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The first time you start the console, it will create an administrator user (<tt class="docutils literal"><span class="pre">admin</span></tt>/<tt class="docutils literal"><span class="pre">admin</span></tt>). It is <strong>strongly</strong> recommended to change the password immediately.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If you use this option, the documentation is automatically available when you start the server, under <tt class="docutils literal"><span class="pre">http://&lt;consolehost&gt;:8080/glu/docs/html/index.html</span></tt></p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+</div>
+<div class="sidebar">
+  <div class="sidebar-entry">
+    <h3>Table Of Contents</h3>
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">What is glu?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">A taste of glu (tutorial)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agent.html"> Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glu-script.html"> glu script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orchestration-engine.html"> Orchestration engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="static-model.html"> Static Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filtering.html"> Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="console.html"> Console</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Production Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-download">Step 1: Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-setup-zookeeper">Step 2: Setup ZooKeeper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-generate-your-own-set-of-keys">Step 3: Generate your own set of keys</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generate-keystore-for-the-agent">Generate keystore for the agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#export-the-rsa-certificate">Export the RSA certificate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-the-rsa-certificate-in-the-trustore">Import the RSA certificate in the trustore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-keystore-for-the-console">Generate keystore for the console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Export the RSA certificate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Import the RSA certificate in the trustore</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-encrypt-passwords-and-compute-checksums">Step 4: Encrypt passwords and compute checksums</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-prepare-zookeeper">Step 5: Prepare ZooKeeper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-install-the-agent">Step 6: Install the agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-7-start-the-agents">Step 7: Start the agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-8-install-the-console">Step 8: Install the console</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#option-1-install-the-war-file">Option 1: Install the war file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#option-2-use-the-server">Option 2: Use the server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev-setup.html">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RELEASE.html">Latest changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents.html">All content</a></li>
+</ul>
+
+  </div>
+<div class="sidebar-entry">
+  <h3>Quick Links</h3>
+  <ul class="quick-links">
+    <li><a href="https://github.com/linkedin/glu/downloads">Download</a>
+    <li><a href="tutorial.html">Tutorial</a>
+    <li><a href="http://www.github.com/linkedin/glu">Source Code</a>
+    <li><a href="http://glu.977617.n3.nabble.com/">Forum / Questions / Help</a>
+    <li><a href="https://github.com/linkedin/glu/issues">Issues / Tasks</a>
+    <li><a href="RELEASE.html">Latest Changes</a>
+  </ul>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+</div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="console.html" title="Console"
+             >previous</a> |
+          <a href="dev-setup.html" title="Development Setup"
+             >next</a> |
+          <a href="genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer">
+        &copy; Copyright 2011, Yan Pujante.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Console &mdash; glu v2.2.0 documentation</title>
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="glu v2.2.0 documentation" href="index.html" />
+    <link rel="next" title="Production Setup" href="production-setup.html" />
+    <link rel="prev" title="Filtering" href="filtering.html" />
+ 
+<link rel="stylesheet" href="_static/glu.css" type="text/css" />
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="contents.html">
+            <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
+          </a></p>
+        <h1><a href="contents.html">glu v2.2.0 documentation</a></h1>
+        <div class="rel">
+          <a href="filtering.html" title="Filtering"
+             accesskey="P">previous</a> |
+          <a href="production-setup.html" title="Production Setup"
+             accesskey="N">next</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+<div class="content-wrapper">
+<div class="content">
+<div class="document">
+  
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="console-logo-console">
+<h1><img alt="console logo" class="header-logo" src="_images/console-logo-86.png" /> Console<a class="headerlink" href="#console-logo-console" title="Permalink to this headline">¶</a></h1>
+<p>The glu console is a web application that offers a graphical presentation on top of the <a class="reference internal" href="orchestration-engine.html"><em>orchestration engine</em></a>.</p>
+<div class="section" id="console-in-action">
+<h2>Console in action<a class="headerlink" href="#console-in-action" title="Permalink to this headline">¶</a></h2>
+<p>The best way to get a feel of what the console looks like and what can be achieved, take a look at the <a class="reference internal" href="tutorial.html"><em>tutorial</em></a>.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Check the section <a class="reference internal" href="production-setup.html#production-setup-console"><em>Step 8: Install the console</em></a> for details about how to install the console.</p>
+</div>
+<div class="section" id="configuration-file">
+<span id="console-configuration"></span><h2>Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>When the console boots it reads a configuration file. There are 3 ways to provide this configuration file to the console:</p>
+<ol class="arabic simple">
+<li>store it under <tt class="docutils literal"><span class="pre">$HOME/.org.linkedin.glu/glu-console-webapp.groovy</span></tt></li>
+<li>store it under <tt class="docutils literal"><span class="pre">conf/glu-console-webapp.groovy</span></tt> (relative to wherever the VM <tt class="docutils literal"><span class="pre">user.dir</span></tt> is set to)</li>
+<li>pass a system property <tt class="docutils literal"><span class="pre">-Dorg.linkedin.glu.console.config.location=/fullpath/to/file</span></tt></li>
+</ol>
+<p>Through this file, the console allows you to configure several areas including some aspects of the UI.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">if you modify the configuration file, you need to stop and restart the console for the changes to take effect</p>
+</div>
+<div class="section" id="console-agent-connection">
+<h3>Console &lt;-&gt; Agent Connection<a class="headerlink" href="#console-agent-connection" title="Permalink to this headline">¶</a></h3>
+<p>The console (orchestration engine) talks to all the agents using a REST api over https (or http if you do disable security).</p>
+<p>The following section allows you to configure how the console talks to the agent:</p>
+<div class="highlight-text"><div class="highlight"><pre>console.sslEnabled=true
+
+def keysDir = System.properties[&#39;org.linkedin.glu.console.keys.dir&#39;] ?:
+              &quot;${System.properties[&#39;user.dir&#39;]}/keys&quot;
+
+console.keystorePath=&quot;${keysDir}/console.keystore&quot;
+console.keystorePassword = &quot;nacEn92x8-1&quot;
+console.keyPassword = &quot;nWVxpMg6Tkv&quot;
+
+console.secretkeystorePath=&quot;${keysDir}/console.secretkeystore&quot;
+
+console.truststorePath=&quot;${keysDir}/agent.truststore&quot;
+console.truststorePassword = &quot;nacEn92x8-1&quot;
+</pre></div>
+</div>
+<p>TODO: add link to key management.</p>
+<p>If you do not want a secure connection between the console and the agent, this is how you would configure it:</p>
+<div class="highlight-text"><div class="highlight"><pre>console.sslEnabled=false
+
+// the following entries *must* be present (but can be left empty)
+console.keystorePath=&quot;&quot;
+console.keystorePassword = &quot;&quot;
+console.keyPassword = &quot;&quot;
+console.secretkeystorePath=&quot;&quot;
+console.truststorePath=&quot;&quot;
+console.truststorePassword = &quot;&quot;
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Disabling the secure connection means that the agents will happily serve any request irrelevant of where it is coming from, which could be a serious security hole.</p>
+</div>
+</div>
+<div class="section" id="restricting-file-access-on-an-agent">
+<h3>Restricting file access on an agent<a class="headerlink" href="#restricting-file-access-on-an-agent" title="Permalink to this headline">¶</a></h3>
+<p>The console offers the ability to show any file on a remote agent which may not always be desirable. There is a way to limit what can be viewed for users which are not <tt class="docutils literal"><span class="pre">ADMIN</span></tt> (see <a class="reference internal" href="#console-user-management"><em>User management</em></a> for an explanation of roles):</p>
+<div class="highlight-text"><div class="highlight"><pre>// path to the root of the unrestricted location (empty means no restriction)
+console.authorizationService.unrestrictedLocation = &quot;/export/content/glu&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="database">
+<h3>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h3>
+<p>The console uses a database to store some of its data (like the audit log, user information, etc...). At this moment in time, the console uses <a class="reference external" href="http://hsqldb.org/">HSQLDB</a> for its database. You may want to change the location of the database folder by providing a <tt class="docutils literal"><span class="pre">org.linkedin.glu.console.dataSource.url</span></tt> system property (<tt class="docutils literal"><span class="pre">-Dorg.linkedin.glu.console.dataSource.url=/path/to/database/root</span></tt> when starting the webapp container) or directly modifying the following section in the configuration file:</p>
+<div class="highlight-text"><div class="highlight"><pre>def dataSourceUrl =
+  System.properties[&#39;org.linkedin.glu.console.dataSource.url&#39;] ?:
+  &quot;jdbc:hsqldb:file:${System.properties[&#39;user.dir&#39;]}/database/prod;shutdown=true&quot;
+
+// specify the database connection string
+dataSource.dbCreate = &quot;update&quot;
+dataSource.url = dataSourceUrl
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Coming Soon: ability to change the database provider entirely.</p>
+</div>
+</div>
+<div class="section" id="logging">
+<h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
+<p>The log4j section allows you to configure where and how the console logs its output. It is a DSL and you can view more details on how to configure it directly on the <a class="reference external" href="http://grails.org/doc/1.3.x/guide/3.%20Configuration.html#3.1.2%20Logging">grails web site</a>:</p>
+<div class="highlight-text"><div class="highlight"><pre>log4j = {
+    appenders {
+      file name:&#39;file&#39;,
+      file:&#39;logs/console.log&#39;,
+      layout:pattern(conversionPattern: &#39;%d{yyyy/MM/dd HH:mm:ss.SSS} %p [%c{1}] %m%n&#39;)
+    }
+
+    root {
+      info &#39;file&#39;
+      additivity = false
+    }
+
+    error  &#39;org.codehaus.groovy.grails.web.servlet&#39;,  //  controllers
+               &#39;org.codehaus.groovy.grails.web.pages&#39;, //  GSP
+               &#39;org.codehaus.groovy.grails.web.sitemesh&#39;, //  layouts
+               &#39;org.codehaus.groovy.grails.web.mapping.filter&#39;, // URL mapping
+               &#39;org.codehaus.groovy.grails.web.mapping&#39;, // URL mapping
+               &#39;org.codehaus.groovy.grails.commons&#39;, // core / classloading
+               &#39;org.codehaus.groovy.grails.plugins&#39;, // plugins
+               &#39;org.codehaus.groovy.grails.orm.hibernate&#39;, // hibernate integration
+               &#39;org.springframework&#39;,
+               &#39;org.hibernate&#39;
+
+    info &#39;grails&#39;,
+         &#39;org.linkedin&#39;
+
+    //debug &#39;com.linkedin.glu.agent.tracker&#39;, &#39;com.linkedin.glu.zookeeper.client&#39;
+
+    //trace &#39;org.hibernate.SQL&#39;, &#39;org.hibernate.type&#39;
+
+    warn   &#39;org.mortbay.log&#39;, &#39;org.restlet.Component.LogService&#39;, &#39;org.restlet&#39;
+}
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This has nothing to do with the audit log!</p>
+</div>
+</div>
+<div class="section" id="ldap">
+<span id="console-configuration-ldap"></span><h3>LDAP<a class="headerlink" href="#ldap" title="Permalink to this headline">¶</a></h3>
+<p>You can configure LDAP for handling user management in the console. See <a class="reference internal" href="#console-user-management"><em>User management</em></a> for details. Here is the relevant section in the configuration file:</p>
+<div class="highlight-text"><div class="highlight"><pre>// This section is optional if you do not want to use ldap
+ldap.server.url=&quot;ldaps://ldap.acme.com:3269&quot;
+ldap.search.base=&quot;dc=acme,dc=com&quot;
+ldap.search.user=&quot;cn=glu,ou=glu,dc=acme,dc=com&quot;
+ldap.search.pass=&quot;helloworld&quot;
+ldap.username.attribute=&quot;sAMAccountName&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="ui-configuration">
+<h3>UI configuration<a class="headerlink" href="#ui-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The UI is configured in the <tt class="docutils literal"><span class="pre">console.defaults</span></tt> section of the configuration file. It is a simple map:</p>
+<div class="highlight-text"><div class="highlight"><pre>console.defaults =
+[
+  ... configuration goes here ...
+]
+</pre></div>
+</div>
+<div class="section" id="dashboard">
+<h4>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this headline">¶</a></h4>
+<p>The dashboard can be configured with the following section:</p>
+<div class="highlight-text"><div class="highlight"><pre>dashboard:
+[
+    mountPoint: [checked: true, name: &#39;mountPoint&#39;, groupBy: true, linkFilter: true],
+    agent: [checked: true, name: &#39;agent&#39;, groupBy: true],
+    &#39;tag&#39;: [checked: false, name: &#39;tag&#39;, groupBy: true, linkFilter: true],
+    &#39;tags&#39;: [checked: true, name: &#39;tags&#39;, linkFilter: true],
+    &#39;metadata.container.name&#39;: [checked: true, name: &#39;container&#39;, groupBy: true, linkFilter: true],
+    &#39;metadata.version&#39;: [checked: true, name: &#39;version&#39;, groupBy: true],
+    &#39;metadata.product&#39;: [checked: true, name: &#39;product&#39;, groupBy: true, linkFilter: true],
+    &#39;metadata.cluster&#39;: [checked: true, name: &#39;cluster&#39;, groupBy: true, linkFilter: true],
+    &#39;initParameters.skeleton&#39;: [checked: false, name: &#39;skeleton&#39;, groupBy: true],
+    script: [checked: false, name: &#39;script&#39;, groupBy: true],
+    &#39;metadata.modifiedTime&#39;: [checked: false, name: &#39;Last Modified&#39;, groupBy: false],
+    status: [checked: true, name: &#39;status&#39;, groupBy: true]
+]
+</pre></div>
+</div>
+<p>This configuration results in the following output (the window has been made smaller to fit all the options on a readable screenshot):</p>
+<img alt="Dashboard configuration" class="align-center" src="_images/configuration-dashboard.png" />
+<p><tt class="docutils literal"><span class="pre">dashboard</span></tt> is a map with the following convention:</p>
+<ul>
+<li><p class="first">the key represent the <a class="reference internal" href="glossary.html#term-dotted-notation"><em class="xref std std-term">dotted notation</em></a> of an entry (see: <a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for more details and examples on the dotted notation)</p>
+</li>
+<li><p class="first">the value is another map with the following conventions:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="95%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">key</p>
+</th>
+<th class="head"><p class="first last">value</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last"><tt class="docutils literal"><span class="pre">name</span></tt></p>
+</td>
+<td><p class="first last">the display name of the column as well as <em>Group By</em> or <em>Show/Hide</em> section</p>
+</td>
+</tr>
+<tr><td><p class="first last"><tt class="docutils literal"><span class="pre">checked</span></tt></p>
+</td>
+<td><p class="first last"><tt class="docutils literal"><span class="pre">true</span></tt> or <tt class="docutils literal"><span class="pre">false</span></tt>: whether the checkbox next to the name should be checked by default or in other words if the column should be shown or hidden by default</p>
+</td>
+</tr>
+<tr><td><p class="first last"><tt class="docutils literal"><span class="pre">groupBy</span></tt></p>
+</td>
+<td><p class="first last"><tt class="docutils literal"><span class="pre">true</span></tt> or <tt class="docutils literal"><span class="pre">false</span></tt>: in which section does this option appears (<em>Group By</em> section or <em>Show/Hide</em> section). Some values do not make too much sense to allow them to do a <em>group by</em> on them (like the <tt class="docutils literal"><span class="pre">Last</span> <span class="pre">Modified</span></tt> which is (under the cover) a timestamp</p>
+</td>
+</tr>
+<tr><td><p class="first last"><tt class="docutils literal"><span class="pre">linkFilter</span></tt></p>
+</td>
+<td><p class="first last"><tt class="docutils literal"><span class="pre">true</span></tt> or <tt class="docutils literal"><span class="pre">false</span></tt>: if you want to allow the values in the table to be links to a filter (see <a class="reference internal" href="filtering.html"><em> Filtering</em></a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This section will be enhanced in the future to allow even more configuration as well as how to <em>group</em> values.</p>
+</div>
+</div>
+<div class="section" id="tags">
+<h4>Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h4>
+<p>You can specify the colors of each tag (foreground and background):</p>
+<div class="highlight-text"><div class="highlight"><pre>tags:
+[
+  &#39;__default__&#39;: [background: &#39;#005a87&#39;, color: &#39;#ffffff&#39;],
+  &#39;webapp&#39;: [background: &#39;#ec7000&#39;, color: &#39;#fff0e1&#39;],
+  &#39;frontend&#39;: [background: &#39;#006633&#39;, color: &#39;#f1f5ec&#39;],
+  &#39;backend&#39;: [background: &#39;#5229a3&#39;, color: &#39;#e0d5f9&#39;],
+],
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the <tt class="docutils literal"><span class="pre">__default__</span></tt> entry is optional and specify the color of the tags that are not specifically defined</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the color value (ex: <tt class="docutils literal"><span class="pre">#005a87</span></tt>) ends up being used in css so you can use whatever is legal in css (ex: <tt class="docutils literal"><span class="pre">red</span></tt>)</p>
+</div>
+</div>
+<div class="section" id="system">
+<h4>System<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h4>
+<p>The system page displays a summary and the columns are configurable in the following section:</p>
+<div class="highlight-text"><div class="highlight"><pre>system:
+[
+   agent: [name: &#39;agent&#39;],
+  &#39;tags.webapp&#39;: [name: &#39;webapp&#39;],
+   &#39;metadata.container.name&#39;: [name: &#39;container&#39;],
+   &#39;metadata.product&#39;: [name: &#39;product&#39;],
+   &#39;metadata.version&#39;: [name: &#39;version&#39;],
+   &#39;metadata.cluster&#39;: [name: &#39;cluster&#39;]
+]
+</pre></div>
+</div>
+<p>This configuration results in the following output:</p>
+<img alt="System configuration" class="align-center" src="_images/configuration-system-600.png" />
+<p><tt class="docutils literal"><span class="pre">system</span></tt> is a map with the following convention:</p>
+<ul class="simple">
+<li>the key represent the <a class="reference internal" href="glossary.html#term-dotted-notation"><em class="xref std std-term">dotted notation</em></a> of an entry (see: <a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for more details and examples on the dotted notation)</li>
+<li>the value is a map with (currently) one entry only: <tt class="docutils literal"><span class="pre">name</span></tt> which represents the (display) name of the column</li>
+</ul>
+</div>
+<div class="section" id="model">
+<h4>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h4>
+<p>This entry allows you to configure what appears on the top right of the console (right after the fabric name) thus allowing you to tailor the display even further: it allows you to set a temporary <a class="reference internal" href="glossary.html#term-filter"><em class="xref std std-term">filter</em></a> on all views. In the following example we <em>model</em> the concept of products (also known as lines), this is why this entry is called <tt class="docutils literal"><span class="pre">model</span></tt>:</p>
+<div class="highlight-text"><div class="highlight"><pre>model:
+[
+    [
+        name: &#39;product&#39;,
+        header: [&#39;version&#39;]
+    ]
+]
+</pre></div>
+</div>
+<p>This configuration results in the following output:</p>
+<img alt="Model configuration" class="align-center" src="_images/configuration-model.png" />
+<p>The format of this entry is an array of maps (so you can have more than one and they will be delimited by a <tt class="docutils literal"><span class="pre">|</span></tt>) where each map consists of:</p>
+<ul>
+<li><p class="first">a <tt class="docutils literal"><span class="pre">name</span></tt> entry referring to the metadata section of the model (<strong>not</strong> of an entry). This should be a map with the given name and the following convention:</p>
+<ul class="simple">
+<li>the key is the value of the filter</li>
+<li>the value is another map with the following convention:<ul>
+<li><tt class="docutils literal"><span class="pre">name</span></tt> is the display name of the value (in this example they are the same!)</li>
+<li>other entries that are used in the <tt class="docutils literal"><span class="pre">header</span></tt> section (see below)</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the <tt class="docutils literal"><span class="pre">name</span></tt> value also maps to the metadata dotted notation for the filter (in this example it will be <tt class="docutils literal"><span class="pre">metadata.product</span></tt>)</p>
+</div>
+</li>
+<li><p class="first">a <tt class="docutils literal"><span class="pre">header</span></tt> entry which is an array for extra information referring to entries in the metadata (see above)</p>
+</li>
+</ul>
+<p>Example of system which produces the previous screen:</p>
+<div class="highlight-text"><div class="highlight"><pre>&quot;metadata&quot;: {
+  &quot;product&quot;: { &lt;================ value as defined in the model section (name: &#39;product&#39;)
+    &quot;product1&quot;: { &lt;============= first entry (value for the filter!)
+      &quot;name&quot;: &quot;product1&quot;, &lt;===== display name of the value
+      &quot;version&quot;: &quot;1.0.0&quot;  &lt;===== extra info as defined in the model section (header: [&#39;version&#39;])
+    },
+    &quot;product2&quot;: { &lt;============= second entry (value for the filter!)
+      &quot;name&quot;: &quot;product2&quot;, &lt;===== display name of the value
+      &quot;version&quot;: &quot;2.0.0&quot;  &lt;===== extra info as defined in the model section (header: [&#39;version&#39;])
+    }
+  }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="header">
+<h4>Header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h4>
+<p>This entry is very similar to the previous one (<tt class="docutils literal"><span class="pre">model</span></tt>) and allows you to add more information to the header in the console:</p>
+<div class="highlight-text"><div class="highlight"><pre>header:
+[
+    metadata: [&#39;drMode&#39;]
+]
+</pre></div>
+</div>
+<p>This entry simply contains a <tt class="docutils literal"><span class="pre">metadata</span></tt> section which is an array of keys in the <a class="reference internal" href="glossary.html#term-metadata"><em class="xref std std-term">metadata</em></a> of the system (<strong>not</strong> of an entry).</p>
+<p>Example of system:</p>
+<div class="highlight-text"><div class="highlight"><pre> &quot;metadata&quot;: {
+   &quot;product&quot;: {...},
+   &quot;drMode&quot;: &quot;primary&quot;
+}
+</pre></div>
+</div>
+<p>The previous system and <tt class="docutils literal"><span class="pre">header</span></tt> configuration produce the following output:</p>
+<img alt="Header configuration" class="align-center" src="_images/configuration-header.png" />
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Since every fabric has its own model, hence its own <tt class="docutils literal"><span class="pre">metadata</span></tt> section, this feature is a convenient way to display fabric specific information. In this example we can display which fabric represents the primary data center versus which one represents the secondary data center.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="first-bootstrap">
+<h2>First bootstrap<a class="headerlink" href="#first-bootstrap" title="Permalink to this headline">¶</a></h2>
+<p>The very first time the console is started, it will create an admin user. Log in as this user:</p>
+<div class="highlight-text"><div class="highlight"><pre>username: admin
+password: admin
+</pre></div>
+</div>
+<p>Then click on the <tt class="docutils literal"><span class="pre">'admin'</span></tt> tab (not the one called <tt class="docutils literal"><span class="pre">'Admin'</span></tt>) and click <tt class="docutils literal"><span class="pre">'Manage</span> <span class="pre">your</span> <span class="pre">credentials'</span></tt>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">It is strongly recommended you immediately change the admin password!</p>
+</div>
+</div>
+<div class="section" id="user-management">
+<span id="console-user-management"></span><h2>User management<a class="headerlink" href="#user-management" title="Permalink to this headline">¶</a></h2>
+<p>There are 2 ways to manage users.</p>
+<div class="section" id="id1">
+<h3>LDAP<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>If you define an ldap section in the configuration file (see <a class="reference internal" href="#console-configuration-ldap"><em>configuration section</em></a> for details), then the console will automatically allow any user who has the correct ldap credentials to login. If the user has never logged in before, a new account will be automatically created and the user will have the role <tt class="docutils literal"><span class="pre">USER</span></tt> which gives him read access mostly (and limited access to log files). This allows any user to login to the console without any administrator intervention.</p>
+</div>
+<div class="section" id="manual-user-management">
+<h3>Manual user management<a class="headerlink" href="#manual-user-management" title="Permalink to this headline">¶</a></h3>
+<p>Whether you use LDAP or not you can always use this method. If you don&#8217;t use LDAP then it is your only choice. On the <tt class="docutils literal"><span class="pre">Admin</span></tt> tab, you can create a new user by giving it a user name and a password. You can also assign roles to a user:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Role</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">USER</span></tt></td>
+<td>mostly read access (limited access to some log files (cannot go anywhere
+on the filesystem))</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">RELEASE</span></tt></td>
+<td>most of the traditional release actions (like starting and stopping
+entries…)</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">ADMIN</span></tt></td>
+<td>administrative role (create user, assign roles…)</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">RESTRICTED</span></tt></td>
+<td>if you want to ban a user from the console</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">No matter what the role the user in, actions taken are logged in the audit log that can be viewed from the <tt class="docutils literal"><span class="pre">Admin</span></tt> tab.</p>
+</div>
+</div>
+<div class="section" id="password-management">
+<h3>Password management<a class="headerlink" href="#password-management" title="Permalink to this headline">¶</a></h3>
+<p>Even if you use LDAP, a user can assign himself a console password (useful if the password needs to be stored in scripts for example).</p>
+</div>
+<div class="section" id="console-tabs">
+<h3>Console tabs<a class="headerlink" href="#console-tabs" title="Permalink to this headline">¶</a></h3>
+<p>Documentation coming soon. In the meantime, take a look at the <a class="reference internal" href="tutorial.html"><em>tutorial</em></a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+</div>
+<div class="sidebar">
+  <div class="sidebar-entry">
+    <h3>Table Of Contents</h3>
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">What is glu?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">A taste of glu (tutorial)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agent.html"> Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glu-script.html"> glu script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orchestration-engine.html"> Orchestration engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="static-model.html"> Static Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filtering.html"> Filtering</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href=""> Console</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#console-in-action">Console in action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-file">Configuration file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#console-agent-connection">Console &lt;-&gt; Agent Connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#restricting-file-access-on-an-agent">Restricting file access on an agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#database">Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ldap">LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ui-configuration">UI configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dashboard">Dashboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tags">Tags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#system">System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model">Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#header">Header</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#first-bootstrap">First bootstrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-management">User management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manual-user-management">Manual user management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#password-management">Password management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#console-tabs">Console tabs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="production-setup.html">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev-setup.html">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RELEASE.html">Latest changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents.html">All content</a></li>
+</ul>
+
+  </div>
+<div class="sidebar-entry">
+  <h3>Quick Links</h3>
+  <ul class="quick-links">
+    <li><a href="https://github.com/linkedin/glu/downloads">Download</a>
+    <li><a href="tutorial.html">Tutorial</a>
+    <li><a href="http://www.github.com/linkedin/glu">Source Code</a>
+    <li><a href="http://glu.977617.n3.nabble.com/">Forum / Questions / Help</a>
+    <li><a href="https://github.com/linkedin/glu/issues">Issues / Tasks</a>
+    <li><a href="RELEASE.html">Latest Changes</a>
+  </ul>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+</div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="filtering.html" title="Filtering"
+             >previous</a> |
+          <a href="production-setup.html" title="Production Setup"
+             >next</a> |
+          <a href="genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer">
+        &copy; Copyright 2011, Yan Pujante.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
