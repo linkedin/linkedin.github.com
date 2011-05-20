@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Console &mdash; glu v2.3.0 documentation</title>
+    <title>Console &mdash; glu v2.4.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '2.3.0',
+        VERSION:     '2.4.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,11 +22,25 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v2.3.0 documentation" href="index.html" />
+    <link rel="top" title="glu v2.4.0 documentation" href="index.html" />
     <link rel="next" title="Production Setup" href="production-setup.html" />
     <link rel="prev" title="Filtering" href="filtering.html" />
  
 <link rel="stylesheet" href="_static/glu.css" type="text/css" />
+<script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8362808-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
   </head>
   <body>
@@ -35,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v2.3.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v2.4.0 documentation</a></h1>
         <div class="rel">
           <a href="filtering.html" title="Filtering"
              accesskey="P">previous</a> |
@@ -392,6 +406,32 @@ ldap.username.attribute=&quot;sAMAccountName&quot;
 </div>
 </div>
 </div>
+<div class="section" id="log-files-display">
+<span id="console-script-log-files"></span><h2>Log Files Display<a class="headerlink" href="#log-files-display" title="Permalink to this headline">¶</a></h2>
+<p>When looking at an agent (agents view page), for each entry, there may be a log section determined by the fields declared in the script:</p>
+<img alt="Script log files" class="align-center" src="_images/console-script-log-files.png" />
+<p>In order to see an entry like this you can do the following in your script:</p>
+<ul class="simple">
+<li>declare any field which ends in <tt class="docutils literal"><span class="pre">Log</span></tt> (ex: <tt class="docutils literal"><span class="pre">serverLog</span></tt>)</li>
+<li>declare a field called <tt class="docutils literal"><span class="pre">logsDir</span></tt> (pointing to a folder) which will display the <tt class="docutils literal"><span class="pre">more...</span></tt> link</li>
+<li>declare a field called <tt class="docutils literal"><span class="pre">logs</span></tt> and of type <tt class="docutils literal"><span class="pre">Map</span></tt> where each entry will point to a log file</li>
+</ul>
+<p>Example of glu script:</p>
+<div class="highlight-text"><div class="highlight"><pre>class GluScriptWithLogs
+{
+  def logsDir
+  def serverLog
+  def logs = [:]
+
+  def install = {
+    logsDir = shell.toResource(&quot;${mountPoint}/logs&quot;)
+    serverLog = logsDir.&quot;server.log&quot; // using field with name ending in Log
+    logs.gc = logsDir.&quot;gc.log&quot; // using logs map
+  }
+}
+</pre></div>
+</div>
+</div>
 <div class="section" id="first-bootstrap">
 <h2>First bootstrap<a class="headerlink" href="#first-bootstrap" title="Permalink to this headline">¶</a></h2>
 <p>The very first time the console is started, it will create an admin user. Log in as this user:</p>
@@ -493,6 +533,7 @@ entries…)</td>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#log-files-display">Log Files Display</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#first-bootstrap">First bootstrap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-management">User management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">LDAP</a></li>
@@ -518,13 +559,48 @@ entries…)</td>
     <li><a href="tutorial.html">Tutorial</a>
     <li><a href="http://www.github.com/linkedin/glu">Source Code</a>
     <li><a href="http://glu.977617.n3.nabble.com/">Forum / Questions / Help</a>
+    <li><a href="http://twitter.com/glutweets">Twitter</a>
     <li><a href="https://github.com/linkedin/glu/issues">Issues / Tasks</a>
     <li><a href="RELEASE.html">Latest Changes</a>
   </ul>
 </div>
+  <div class="sidebar-entry">
+    <h3>Twitter</h3>
+    <script type="text/javascript">
+      new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 'auto',
+                        height: 300,
+                        theme: {
+                          shell: {
+                            background: '#dddddd',
+                            color: '#000000'
+                          },
+                          tweets: {
+                            background: '#ffffff',
+                            color: '#000000',
+                            links: '#ce5c00'
+                          }
+                        },
+                        features: {
+                          scrollbar: false,
+                          loop: false,
+                          live: false,
+                          hashtags: true,
+                          timestamp: true,
+                          avatars: true,
+                          behavior: 'all'
+                        }
+                      }).render().setUser('glutweets').start();
+    </script>
+  </div>
 </div>
 <div class="clearer"></div>
 </div>
+
 </div>
 
     <div class="footer-wrapper">
