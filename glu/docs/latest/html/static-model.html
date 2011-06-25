@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Static Model &mdash; glu v2.4.1 documentation</title>
+    <title>Static Model &mdash; glu v3.0.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '2.4.1',
+        VERSION:     '3.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v2.4.1 documentation" href="index.html" />
+    <link rel="top" title="glu v3.0.0 documentation" href="index.html" />
     <link rel="next" title="Filtering" href="filtering.html" />
     <link rel="prev" title="Orchestration engine" href="orchestration-engine.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v2.4.1 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.0.0 documentation</a></h1>
         <div class="rel">
           <a href="orchestration-engine.html" title="Orchestration engine"
              accesskey="P">previous</a> |
@@ -88,7 +88,7 @@
   &quot;fabric&quot;: &quot;glu-dev-1&quot;,
   &quot;metadata&quot;: {}
   &quot;agentTags&quot;: {},
-  &quot;entries&quot;: [],
+  &quot;entries&quot;: []
 }
 </pre></div>
 </div>
@@ -96,8 +96,34 @@
 <p class="first admonition-title">Note</p>
 <p class="last">The model is internally represented by the <a class="reference external" href="https://github.com/linkedin/glu/blob/master/provisioner/org.linkedin.glu.provisioner-core/src/main/groovy/org/linkedin/glu/provisioner/core/model/SystemModel.groovy">SystemModel</a> (groovy) class.</p>
 </div>
+<p>Table of possible values:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="83%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Required</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><a class="reference internal" href="#static-model-agenttags"><em>agentTags</em></a></td>
+<td>No</td>
+</tr>
+<tr><td><a class="reference internal" href="#static-model-entries"><em>entries</em></a></td>
+<td>No</td>
+</tr>
+<tr><td><a class="reference internal" href="#static-model-fabric"><em>fabric</em></a></td>
+<td>Yes</td>
+</tr>
+<tr><td><a class="reference internal" href="#static-model-metadata"><em>metadata</em></a></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="fabric">
-<h3><tt class="docutils literal"><span class="pre">fabric</span></tt><a class="headerlink" href="#fabric" title="Permalink to this headline">¶</a></h3>
+<span id="static-model-fabric"></span><h3><tt class="docutils literal"><span class="pre">fabric</span></tt><a class="headerlink" href="#fabric" title="Permalink to this headline">¶</a></h3>
 <p>The fabric section is required and specifies which <a class="reference internal" href="glossary.html#term-fabric"><em class="xref std std-term">fabric</em></a> this model is for. It is a simple string.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -105,11 +131,11 @@
 </div>
 </div>
 <div class="section" id="metadata">
-<h3><tt class="docutils literal"><span class="pre">metadata</span></tt><a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h3>
+<span id="static-model-metadata"></span><h3><tt class="docutils literal"><span class="pre">metadata</span></tt><a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h3>
 <p>This section is of type <a class="reference internal" href="glossary.html#term-metadata"><em class="xref std std-term">metadata</em></a> and can contain any kind of information you want to store alongside your model. One way to think about it is <cite>structured comments</cite>. The console can be configured to display and/or use some of this information (TODO: add link).</p>
 </div>
 <div class="section" id="agenttags">
-<h3><tt class="docutils literal"><span class="pre">agentTags</span></tt><a class="headerlink" href="#agenttags" title="Permalink to this headline">¶</a></h3>
+<span id="static-model-agenttags"></span><h3><tt class="docutils literal"><span class="pre">agentTags</span></tt><a class="headerlink" href="#agenttags" title="Permalink to this headline">¶</a></h3>
 <p>This section contains <a class="reference internal" href="#static-model-tagging"><em>tags</em></a> that you want to assign to each entries that are deployed on this agent.</p>
 <p>It is represented as map where:</p>
 <ul class="simple">
@@ -125,11 +151,11 @@
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last"><tt class="docutils literal"><span class="pre">agentTags</span></tt> are no more than a shortcut to assign the same set of tags to all entries assigned to the agent (see <a class="reference internal" href="#static-model-entry-tags"><em>tags</em></a>)</p>
+<p class="last"><tt class="docutils literal"><span class="pre">agentTags</span></tt> are no more than a shortcut to assign the same set of tags to all entries assigned to the agent (see <a class="reference internal" href="#static-model-entries-tags"><em>tags</em></a>)</p>
 </div>
 </div>
 <div class="section" id="entries">
-<h3><tt class="docutils literal"><span class="pre">entries</span></tt><a class="headerlink" href="#entries" title="Permalink to this headline">¶</a></h3>
+<span id="static-model-entries"></span><h3><tt class="docutils literal"><span class="pre">entries</span></tt><a class="headerlink" href="#entries" title="Permalink to this headline">¶</a></h3>
 <p>This section is an array of entries. An entry describes where a particular instance of an application need to be deployed, and how to deploy it. An entry is represented like this in json:</p>
 <div class="highlight-text"><div class="highlight"><pre>{
   &quot;agent&quot;: &quot;node01.prod&quot;,
@@ -137,6 +163,8 @@
 
   &quot;script&quot;: &quot;http://repository.prod/scripts/webapp-deploy-1.0.0.groovy&quot;,
   &quot;initParameters&quot;: {},
+  &quot;entryState&quot;: &quot;running&quot;,
+  &quot;parent&quot;: &quot;/&quot;,
   &quot;metadata&quot;: {},
   &quot;tags&quot;: []
 }
@@ -151,15 +179,53 @@
 <p>If you check <a class="reference internal" href="agent.html#agent-glu-script-engine"><em>glu Script Engine</em></a>, you will be able to understand better why an entry is defined this way:</p>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">agent</span></tt> represents which agent to talk to</li>
-<li><tt class="docutils literal"><span class="pre">mountPoint</span></tt>, <tt class="docutils literal"><span class="pre">script</span></tt> and <tt class="docutils literal"><span class="pre">initParameters</span></tt> are the parameters provided to the <tt class="docutils literal"><span class="pre">installScript</span></tt> api</li>
+<li><tt class="docutils literal"><span class="pre">mountPoint</span></tt>, <tt class="docutils literal"><span class="pre">script</span></tt>, <tt class="docutils literal"><span class="pre">parent</span></tt> and <tt class="docutils literal"><span class="pre">initParameters</span></tt> are the parameters provided to the <tt class="docutils literal"><span class="pre">installScript</span></tt> api</li>
 </ul>
 <div class="last admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last"><tt class="docutils literal"><span class="pre">tags</span></tt> are only used in the console</p>
 </div>
 </div>
+<p>Table of possible values:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="83%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Required</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><a class="reference internal" href="#static-model-entries-agent"><em>agent</em></a></td>
+<td>Yes</td>
+</tr>
+<tr><td><a class="reference internal" href="#static-model-entries-entrystate"><em>entryState</em></a></td>
+<td>No</td>
+</tr>
+<tr><td><a class="reference internal" href="#static-model-entries-initparameters"><em>initParameters</em></a></td>
+<td>No</td>
+</tr>
+<tr><td><a class="reference internal" href="#static-model-entries-metadata"><em>metadata</em></a></td>
+<td>No</td>
+</tr>
+<tr><td><a class="reference internal" href="#static-model-entries-mountpoint"><em>mountPoint</em></a></td>
+<td>Yes</td>
+</tr>
+<tr><td><a class="reference internal" href="#static-model-entries-parent"><em>parent</em></a></td>
+<td>No</td>
+</tr>
+<tr><td><a class="reference internal" href="#static-model-entries-script"><em>script</em></a></td>
+<td>Yes</td>
+</tr>
+<tr><td><a class="reference internal" href="#static-model-entries-tags"><em>tags</em></a></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="agent">
-<h4><tt class="docutils literal"><span class="pre">agent</span></tt><a class="headerlink" href="#agent" title="Permalink to this headline">¶</a></h4>
+<span id="static-model-entries-agent"></span><h4><tt class="docutils literal"><span class="pre">agent</span></tt><a class="headerlink" href="#agent" title="Permalink to this headline">¶</a></h4>
 <p>This section describe on which agent the application needs to be installed.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -167,7 +233,7 @@
 </div>
 </div>
 <div class="section" id="mountpoint">
-<h4><tt class="docutils literal"><span class="pre">mountPoint</span></tt><a class="headerlink" href="#mountpoint" title="Permalink to this headline">¶</a></h4>
+<span id="static-model-entries-mountpoint"></span><h4><tt class="docutils literal"><span class="pre">mountPoint</span></tt><a class="headerlink" href="#mountpoint" title="Permalink to this headline">¶</a></h4>
 <p>The <a class="reference internal" href="glossary.html#term-mount-point"><em class="xref std std-term">mount point</em></a> represents a unique key on the agent. You can reuse the same value for a different agent.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
@@ -175,17 +241,17 @@
 </div>
 </div>
 <div class="section" id="script">
-<h4><tt class="docutils literal"><span class="pre">script</span></tt><a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h4>
+<span id="static-model-entries-script"></span><h4><tt class="docutils literal"><span class="pre">script</span></tt><a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h4>
 <p>This section should be a URI pointing to the <a class="reference internal" href="glu-script.html"><em>glu script</em></a> that will be used to deploy the application.</p>
 </div>
 <div class="section" id="initparameters">
-<h4><tt class="docutils literal"><span class="pre">initParameters</span></tt><a class="headerlink" href="#initparameters" title="Permalink to this headline">¶</a></h4>
+<span id="static-model-entries-initparameters"></span><h4><tt class="docutils literal"><span class="pre">initParameters</span></tt><a class="headerlink" href="#initparameters" title="Permalink to this headline">¶</a></h4>
 <p>This section describes the initialization parameters that are going to be provided to the <em>script</em>. It is of type <a class="reference internal" href="glossary.html#term-metadata"><em class="xref std std-term">metadata</em></a> and can contain whatever values you want to provide to the script. Example:</p>
 <div class="highlight-text"><div class="highlight"><pre>&quot;initParameters&quot;: {
    &quot;container&quot;: {
      &quot;skeleton&quot;: &quot;http://repository.prod/tgzs/jetty-7.2.2.v20101205.tgz&quot;,
      &quot;config&quot;: &quot;http://repository.prod/configs/search-container-config-2.1.0.json&quot;,
-     &quot;port&quot;: 8080,
+     &quot;port&quot;: 8080
    },
    &quot;webapp&quot;: {
      &quot;war&quot;: &quot;http://repository.prod/wars/search-2.1.0.war&quot;,
@@ -200,8 +266,67 @@
 <p class="last">The values you use in this section are used to compute the <a class="reference internal" href="glossary.html#term-delta"><em class="xref std std-term">delta</em></a>! This is how the orchestration engine determines that an application needs to be upgraded (because the version has changed)!</p>
 </div>
 </div>
-<div class="section" id="id1">
-<h4><tt class="docutils literal"><span class="pre">metadata</span></tt><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="parent">
+<span id="static-model-entries-parent"></span><h4><tt class="docutils literal"><span class="pre">parent</span></tt><a class="headerlink" href="#parent" title="Permalink to this headline">¶</a></h4>
+<div class="sidebar">
+<p class="first sidebar-title">Usage</p>
+<p class="last">The typical usage of the parent/child relationship feature is to define a tight relationship between 2 entries deployed on the same node.</p>
+</div>
+<p>This section is optional and will default to <tt class="docutils literal"><span class="pre">/</span></tt> if not provided. The value must be pointing to another <tt class="docutils literal"><span class="pre">mountPoint</span></tt> on the <strong>same</strong> agent. You use it for defining a parent/child relationship between 2 entries.</p>
+<p>In the tutorial (and in the example above), we have 1 entry defining a webapp container and its webapp(s). When defined this way, it means that whenever you take an action on the entry (<tt class="docutils literal"><span class="pre">deploy</span></tt>, <tt class="docutils literal"><span class="pre">bounce</span></tt>, etc...) it affects the entire container and webapps. It may or may not be the desired effect. By using the parent/child relationship you can decouple the actions while still maintaining the fact that it does not make sense to deploy a webapp without its container! Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>&quot;entries&quot;: [
+  {
+    &quot;agent&quot;: &quot;agent-1&quot;,
+    &quot;mountPoint&quot;: &quot;/container&quot;,
+    &quot;script&quot;: &quot;http://repository.prod/scripts/webapp-container-1.0.0.groovy&quot;,
+    &quot;initParameters&quot;: {
+      &quot;skeleton&quot;: &quot;http://repository.prod/tgzs/jetty-7.2.2.v20101205.tgz&quot;,
+      &quot;config&quot;: &quot;http://repository.prod/configs/search-container-config-2.1.0.json&quot;,
+      &quot;port&quot;: 8080
+    }
+  },
+  {
+    &quot;agent&quot;: &quot;agent-1&quot;,
+    &quot;mountPoint&quot;: &quot;/webapp1&quot;,
+    &quot;parent&quot;: &quot;/container&quot;,
+    &quot;script&quot;: &quot;http://repository.prod/scripts/webapp-1.0.0.groovy&quot;,
+    &quot;initParameters&quot;: {
+      &quot;war&quot;: &quot;http://repository.prod/wars/search-2.1.0.war&quot;,
+      &quot;contextPath&quot;: &quot;/&quot;,
+      &quot;config&quot;: &quot;http://repository.prod/configs/search-config-2.1.0.json&quot;
+    }
+  }
+],
+</pre></div>
+</div>
+<p>In this example, you can see how the 2 entries are defined, the second one defining a <tt class="docutils literal"><span class="pre">parent</span></tt> section pointing to the other entry. By defining it this way, the child (or children) can be independently upgraded without ever restarting the container (which may be very useful if your container hosts multiple webapps).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You are not limited to one child! You can have as many as you want.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Another example of the parent/child relationship usage would be an OSGi container (parent) and its bundles (children).</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Make sure to read the parent script requirements in the &#8220;<a class="reference internal" href="glu-script.html#glu-script-parent-script"><em>Parent Script</em></a>&#8221; section.</p>
+</div>
+</div>
+<div class="section" id="entrystate">
+<span id="static-model-entries-entrystate"></span><h4><tt class="docutils literal"><span class="pre">entryState</span></tt><a class="headerlink" href="#entrystate" title="Permalink to this headline">¶</a></h4>
+<div class="sidebar">
+<p class="first sidebar-title">Usage</p>
+<p class="last">The typical usage of not using the default value for <tt class="docutils literal"><span class="pre">entryState</span></tt> is to define an entry that should be deployed but not started in which case the value would be <tt class="docutils literal"><span class="pre">stopped</span></tt>. For example you want to deploy a webapp (meaning having all the bits downloaded and installed on the node) but not start it yet.</p>
+</div>
+<p>This section defines in which state (of the <a class="reference internal" href="glu-script.html#glu-script-state-machine"><em>state machine</em></a>) it should be deployed at. By default, it is set to <tt class="docutils literal"><span class="pre">running</span></tt> (this field is optional and most of the time you don&#8217;t need to enter a value). Other valid states for the (standard) state machines are <tt class="docutils literal"><span class="pre">installed</span></tt> and <tt class="docutils literal"><span class="pre">stopped</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you use <tt class="docutils literal"><span class="pre">entryState</span></tt> and <tt class="docutils literal"><span class="pre">parent</span></tt> the actual state may defer from what you express as the children needs to be taken into account for the computation of the actual <em>desired</em> state.</p>
+</div>
+</div>
+<div class="section" id="static-model-entries-metadata">
+<span id="id1"></span><h4><tt class="docutils literal"><span class="pre">metadata</span></tt><a class="headerlink" href="#static-model-entries-metadata" title="Permalink to this headline">¶</a></h4>
 <p>This section is of type <a class="reference internal" href="glossary.html#term-metadata"><em class="xref std std-term">metadata</em></a> and can contain any kind of information you want to store alongside this entry. The model itself also has a <tt class="docutils literal"><span class="pre">metadata</span></tt> section but this one is specific to the entry and each entry can have its own. The console can be configured to display and filter on <tt class="docutils literal"><span class="pre">metadata</span></tt> (TODO add link).</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -209,7 +334,7 @@
 </div>
 </div>
 <div class="section" id="tags">
-<span id="static-model-entry-tags"></span><h4><tt class="docutils literal"><span class="pre">tags</span></tt><a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h4>
+<span id="static-model-entries-tags"></span><h4><tt class="docutils literal"><span class="pre">tags</span></tt><a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h4>
 <p>This section is an array of tags. The console can be configured to display and filter on <tt class="docutils literal"><span class="pre">tags</span></tt>. See <a class="reference internal" href="#static-model-tagging"><em>Tagging</em></a> for more information.</p>
 </div>
 </div>
@@ -290,7 +415,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#mountpoint"><tt class="docutils literal"><span class="pre">mountPoint</span></tt></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#script"><tt class="docutils literal"><span class="pre">script</span></tt></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#initparameters"><tt class="docutils literal"><span class="pre">initParameters</span></tt></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">metadata</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parent"><tt class="docutils literal"><span class="pre">parent</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#entrystate"><tt class="docutils literal"><span class="pre">entryState</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#static-model-entries-metadata"><tt class="docutils literal"><span class="pre">metadata</span></tt></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tags"><tt class="docutils literal"><span class="pre">tags</span></tt></a></li>
 </ul>
 </li>

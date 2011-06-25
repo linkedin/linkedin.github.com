@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>A taste of glu (tutorial) &mdash; glu v2.4.1 documentation</title>
+    <title>A taste of glu (tutorial) &mdash; glu v3.0.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '2.4.1',
+        VERSION:     '3.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v2.4.1 documentation" href="index.html" />
+    <link rel="top" title="glu v3.0.0 documentation" href="index.html" />
     <link rel="next" title="Agent" href="agent.html" />
     <link rel="prev" title="What is glu?" href="index.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v2.4.1 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.0.0 documentation</a></h1>
         <div class="rel">
           <a href="index.html" title="What is glu?"
              accesskey="P">previous</a> |
@@ -268,7 +268,7 @@ Zk Timeout       : 30s
 </li>
 <li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'System'</span></tt> tab.</p>
 </li>
-<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Current'</span></tt> subtab. You should see a drop down below <tt class="docutils literal"><span class="pre">&quot;Deploy:</span> <span class="pre">Fabric</span> <span class="pre">[glu-dev-1]&quot;</span></tt> which says <tt class="docutils literal"><span class="pre">'Choose</span> <span class="pre">Plan'</span></tt>. Select the one that has <tt class="docutils literal"><span class="pre">PARALLEL</span></tt> in the name. It should immediately shows you the list of actions (and their ordering) that are going to be accomplished to &#8216;fix&#8217; the delta.</p>
+<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Current'</span></tt> subtab. You should see a drop down below <tt class="docutils literal"><span class="pre">&quot;Fabric</span> <span class="pre">[glu-dev-1]</span> <span class="pre">(delta)&quot;</span></tt> which says <tt class="docutils literal"><span class="pre">'Choose</span> <span class="pre">Plan'</span></tt>. Select the one called <tt class="docutils literal"><span class="pre">Deploy</span> <span class="pre">-</span> <span class="pre">Fabric[glu-dev-1]</span> <span class="pre">-</span> <span class="pre">PARALLEL</span> <span class="pre">[*]</span></tt>. It should immediately shows you the list of actions (and their ordering) that are going to be accomplished to &#8216;fix&#8217; the delta.</p>
 </li>
 <li><p class="first">Click <tt class="docutils literal"><span class="pre">'Select</span> <span class="pre">this</span> <span class="pre">plan'</span></tt>.</p>
 </li>
@@ -368,13 +368,13 @@ webapp3: /sample/i003 (port 9002)
 <img alt="Changing the model" class="align-center" src="_images/tutorial-model-change-1.png" />
 </li>
 <li><p class="first">Go back to the <tt class="docutils literal"><span class="pre">Dashboard</span></tt>.</p>
-<p>Note that the second row is now red and the status says <tt class="docutils literal"><span class="pre">'version</span> <span class="pre">MISMATCH'</span></tt>. If you click on the status you can view an explanation of the version mismatch (in this case the context path is different).</p>
-<img alt="Dashboard shows the delta" class="align-center" src="_images/tutorial-dashboard-5-600.png" />
+<p>Note that the second row is now red and the status says <tt class="docutils literal"><span class="pre">'DELTA'</span></tt>. If you click on the status you can view an explanation of the delta (in this case the context path is different).</p>
+<img alt="Dashboard shows the delta" class="align-center" src="_images/tutorial-dashboard-5.png" />
 <p>There is a delta: the system in the console is not matching with what is currently deployed. Hence it is red.</p>
 </li>
 <li><p class="first">Click on <tt class="docutils literal"><span class="pre">'/sample/i002'</span></tt> and you land on a filtered view containing only the mountPoint you clicked on.</p>
 </li>
-<li><p class="first">Choose a plan under <tt class="docutils literal"><span class="pre">'Deploy:</span> <span class="pre">mountPoint</span> <span class="pre">[/sample/i002]'</span></tt>. Note that since there is only 1 entry, choosing <tt class="docutils literal"><span class="pre">SEQUENTIAL</span></tt> or <tt class="docutils literal"><span class="pre">PARALLEL</span></tt> will have the same effect.</p>
+<li><p class="first">Choose the plan named <tt class="docutils literal"><span class="pre">'Deploy:</span> <span class="pre">mountPoint</span> <span class="pre">[/sample/i002]</span> <span class="pre">-</span> <span class="pre">SEQUENTIAL</span> <span class="pre">[*]'</span></tt>. Note that since there is only 1 entry, choosing <tt class="docutils literal"><span class="pre">SEQUENTIAL</span></tt> or <tt class="docutils literal"><span class="pre">PARALLEL</span></tt> will have the same effect.</p>
 <img alt="Dashboard shows the delta" class="align-center" src="_images/tutorial-select-plan-2.png" />
 </li>
 <li><p class="first">Select the plan and execute it: it first stops the jetty server uninstalls it entirely and reinstall and restart the new one.</p>
@@ -478,37 +478,40 @@ webapp3: /sample/i003 (port 9002)
 </div>
 <p>which will display an xml representation of the plan that would be executed if you remove the <tt class="docutils literal"><span class="pre">-n</span></tt> option. You should see the 3 entries in the xml output:</p>
 <div class="highlight-text"><div class="highlight"><pre>&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;plan name=&quot;origin=rest - action=redeploy - filter=all - PARALLEL&quot; savedTime=&quot;1294784608849&quot;&gt;
+&lt;plan fabric=&quot;glu-dev-1&quot; systemId=&quot;deeab8468ddbead277ba86ee2f361ba3a13eefd4&quot; origin=&quot;rest&quot; action=&quot;redeploy&quot; filter=&quot;all&quot; name=&quot;origin=rest - action=redeploy - filter=all - PARALLEL&quot; savedTime=&quot;1308603147004&quot;&gt;
   &lt;parallel origin=&quot;rest&quot; action=&quot;redeploy&quot; filter=&quot;all&quot;&gt;
     &lt;sequential agent=&quot;agent-1&quot; mountPoint=&quot;/sample/i001&quot;&gt;
-      &lt;leaf name=&quot;Stop agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Unconfigure agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Uninstall agent-1:/sample/i001 from agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Uninstall script for installation agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Install script for installation agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Install agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Configure agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Start agent-1:/sample/i001 on agent-1&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [stop] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;stop&quot; toState=&quot;stopped&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [unconfigure] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;unconfigure&quot; toState=&quot;installed&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [uninstall] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;uninstall&quot; toState=&quot;NONE&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Uninstall script for [/sample/i001] on [agent-1]&quot; scriptLifecycle=&quot;uninstallScript&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; initParameters=&quot;{metadata={product=product1, container={name=sample}, cluster=c1, version=1.0.0}, port=9000, skeleton=http://localhost:8080/glu/repository/tgzs/jetty-distribution-7.2.2.v20101205.tar.gz, tags=[frontend, osx, webapp], webapps=[{monitor=/monitor, contextPath=/cp1, war=http://localhost:8080/glu/repository/wars/org.linkedin.glu.samples.sample-webapp-3.0.0.war}, {monitor=/monitor, contextPath=/cp2, war=http://localhost:8080/glu/repository/wars/org.linkedin.glu.samples.sample-webapp-3.0.0.war}]}&quot;
+            mountPoint=&quot;/sample/i001&quot; name=&quot;Install script for [/sample/i001] on [agent-1]&quot; script=&quot;http://localhost:8080/glu/repository/scripts/org.linkedin.glu.script-jetty-3.0.0/JettyGluScript.groovy&quot; scriptLifecycle=&quot;installScript&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [install] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;install&quot; toState=&quot;installed&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [configure] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;configure&quot; toState=&quot;stopped&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [start] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;start&quot; toState=&quot;running&quot; /&gt;
     &lt;/sequential&gt;
     &lt;sequential agent=&quot;agent-1&quot; mountPoint=&quot;/sample/i002&quot;&gt;
-      &lt;leaf name=&quot;Stop agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Unconfigure agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Uninstall agent-1:/sample/i002 from agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Uninstall script for installation agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Install script for installation agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Install agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Configure agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Start agent-1:/sample/i002 on agent-1&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [stop] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;stop&quot; toState=&quot;stopped&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [unconfigure] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;unconfigure&quot; toState=&quot;installed&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [uninstall] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;uninstall&quot; toState=&quot;NONE&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Uninstall script for [/sample/i002] on [agent-1]&quot; scriptLifecycle=&quot;uninstallScript&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; initParameters=&quot;{metadata={product=product1, container={name=sample}, cluster=c1, version=1.0.0}, port=9001, skeleton=http://localhost:8080/glu/repository/tgzs/jetty-distribution-7.2.2.v20101205.tar.gz, tags=[frontend, osx, webapp], webapps=[{monitor=/monitor, contextPath=/cp1, war=http://localhost:8080/glu/repository/wars/org.linkedin.glu.samples.sample-webapp-3.0.0.war}]}&quot;
+            mountPoint=&quot;/sample/i002&quot; name=&quot;Install script for [/sample/i002] on [agent-1]&quot; script=&quot;http://localhost:8080/glu/repository/scripts/org.linkedin.glu.script-jetty-3.0.0/JettyGluScript.groovy&quot; scriptLifecycle=&quot;installScript&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [install] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;install&quot; toState=&quot;installed&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [configure] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;configure&quot; toState=&quot;stopped&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [start] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;start&quot; toState=&quot;running&quot; /&gt;
     &lt;/sequential&gt;
     &lt;sequential agent=&quot;agent-1&quot; mountPoint=&quot;/sample/i003&quot;&gt;
-      &lt;leaf name=&quot;Stop agent-1:/sample/i003 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Unconfigure agent-1:/sample/i003 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Uninstall agent-1:/sample/i003 from agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Uninstall script for installation agent-1:/sample/i003 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Install script for installation agent-1:/sample/i003 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Install agent-1:/sample/i003 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Configure agent-1:/sample/i003 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Start agent-1:/sample/i003 on agent-1&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i003&quot; name=&quot;Run [stop] phase for [/sample/i003] on [agent-1]&quot; scriptAction=&quot;stop&quot; toState=&quot;stopped&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i003&quot; name=&quot;Run [unconfigure] phase for [/sample/i003] on [agent-1]&quot; scriptAction=&quot;unconfigure&quot; toState=&quot;installed&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i003&quot; name=&quot;Run [uninstall] phase for [/sample/i003] on [agent-1]&quot; scriptAction=&quot;uninstall&quot; toState=&quot;NONE&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i003&quot; name=&quot;Uninstall script for [/sample/i003] on [agent-1]&quot; scriptLifecycle=&quot;uninstallScript&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; initParameters=&quot;{metadata={product=product1, container={name=sample}, cluster=c2, version=1.0.0}, port=9002, skeleton=http://localhost:8080/glu/repository/tgzs/jetty-distribution-7.2.2.v20101205.tar.gz, tags=[backend, osx, webapp], webapps=[{monitor=/monitor, contextPath=/cp4, war=http://localhost:8080/glu/repository/wars/org.linkedin.glu.samples.sample-webapp-3.0.0.war}]}&quot;
+            mountPoint=&quot;/sample/i003&quot; name=&quot;Install script for [/sample/i003] on [agent-1]&quot; script=&quot;http://localhost:8080/glu/repository/scripts/org.linkedin.glu.script-jetty-3.0.0/JettyGluScript.groovy&quot; scriptLifecycle=&quot;installScript&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i003&quot; name=&quot;Run [install] phase for [/sample/i003] on [agent-1]&quot; scriptAction=&quot;install&quot; toState=&quot;installed&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i003&quot; name=&quot;Run [configure] phase for [/sample/i003] on [agent-1]&quot; scriptAction=&quot;configure&quot; toState=&quot;stopped&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i003&quot; name=&quot;Run [start] phase for [/sample/i003] on [agent-1]&quot; scriptAction=&quot;start&quot; toState=&quot;running&quot; /&gt;
     &lt;/sequential&gt;
   &lt;/parallel&gt;
 &lt;/plan&gt;
@@ -521,27 +524,29 @@ webapp3: /sample/i003 (port 9002)
 </div>
 <p>You should now see only 2 entries because the first two have been tagged <tt class="docutils literal"><span class="pre">c1</span></tt> for the cluster and the last one is tagged <tt class="docutils literal"><span class="pre">c2</span></tt> and we are applying a filter which selects only the entries in cluster <tt class="docutils literal"><span class="pre">c1</span></tt>:</p>
 <div class="highlight-text"><div class="highlight"><pre>&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;plan name=&quot;origin=rest - action=redeploy - filter=metadata.cluster=&#39;c1&#39; - PARALLEL&quot; savedTime=&quot;1294784656357&quot;&gt;
+&lt;plan fabric=&quot;glu-dev-1&quot; systemId=&quot;deeab8468ddbead277ba86ee2f361ba3a13eefd4&quot; origin=&quot;rest&quot; action=&quot;redeploy&quot; filter=&quot;metadata.cluster=&#39;c1&#39;&quot; name=&quot;origin=rest - action=redeploy - filter=metadata.cluster=&#39;c1&#39; - PARALLEL&quot; savedTime=&quot;1308603240157&quot;&gt;
   &lt;parallel origin=&quot;rest&quot; action=&quot;redeploy&quot; filter=&quot;metadata.cluster=&#39;c1&#39;&quot;&gt;
     &lt;sequential agent=&quot;agent-1&quot; mountPoint=&quot;/sample/i001&quot;&gt;
-      &lt;leaf name=&quot;Stop agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Unconfigure agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Uninstall agent-1:/sample/i001 from agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Uninstall script for installation agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Install script for installation agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Install agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Configure agent-1:/sample/i001 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Start agent-1:/sample/i001 on agent-1&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [stop] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;stop&quot; toState=&quot;stopped&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [unconfigure] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;unconfigure&quot; toState=&quot;installed&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [uninstall] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;uninstall&quot; toState=&quot;NONE&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Uninstall script for [/sample/i001] on [agent-1]&quot; scriptLifecycle=&quot;uninstallScript&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; initParameters=&quot;{metadata={product=product1, container={name=sample}, cluster=c1, version=1.0.0}, port=9000, skeleton=http://localhost:8080/glu/repository/tgzs/jetty-distribution-7.2.2.v20101205.tar.gz, tags=[frontend, osx, webapp], webapps=[{monitor=/monitor, contextPath=/cp1, war=http://localhost:8080/glu/repository/wars/org.linkedin.glu.samples.sample-webapp-3.0.0.war}, {monitor=/monitor, contextPath=/cp2, war=http://localhost:8080/glu/repository/wars/org.linkedin.glu.samples.sample-webapp-3.0.0.war}]}&quot;
+            mountPoint=&quot;/sample/i001&quot; name=&quot;Install script for [/sample/i001] on [agent-1]&quot; script=&quot;http://localhost:8080/glu/repository/scripts/org.linkedin.glu.script-jetty-3.0.0/JettyGluScript.groovy&quot; scriptLifecycle=&quot;installScript&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [install] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;install&quot; toState=&quot;installed&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [configure] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;configure&quot; toState=&quot;stopped&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i001&quot; name=&quot;Run [start] phase for [/sample/i001] on [agent-1]&quot; scriptAction=&quot;start&quot; toState=&quot;running&quot; /&gt;
     &lt;/sequential&gt;
     &lt;sequential agent=&quot;agent-1&quot; mountPoint=&quot;/sample/i002&quot;&gt;
-      &lt;leaf name=&quot;Stop agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Unconfigure agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Uninstall agent-1:/sample/i002 from agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Uninstall script for installation agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Install script for installation agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Install agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Configure agent-1:/sample/i002 on agent-1&quot; /&gt;
-      &lt;leaf name=&quot;Start agent-1:/sample/i002 on agent-1&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [stop] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;stop&quot; toState=&quot;stopped&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [unconfigure] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;unconfigure&quot; toState=&quot;installed&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [uninstall] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;uninstall&quot; toState=&quot;NONE&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Uninstall script for [/sample/i002] on [agent-1]&quot; scriptLifecycle=&quot;uninstallScript&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; initParameters=&quot;{metadata={product=product1, container={name=sample}, cluster=c1, version=1.0.0}, port=9001, skeleton=http://localhost:8080/glu/repository/tgzs/jetty-distribution-7.2.2.v20101205.tar.gz, tags=[frontend, osx, webapp], webapps=[{monitor=/monitor, contextPath=/cp1, war=http://localhost:8080/glu/repository/wars/org.linkedin.glu.samples.sample-webapp-3.0.0.war}]}&quot;
+            mountPoint=&quot;/sample/i002&quot; name=&quot;Install script for [/sample/i002] on [agent-1]&quot; script=&quot;http://localhost:8080/glu/repository/scripts/org.linkedin.glu.script-jetty-3.0.0/JettyGluScript.groovy&quot; scriptLifecycle=&quot;installScript&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [install] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;install&quot; toState=&quot;installed&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [configure] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;configure&quot; toState=&quot;stopped&quot; /&gt;
+      &lt;leaf agent=&quot;agent-1&quot; fabric=&quot;glu-dev-1&quot; mountPoint=&quot;/sample/i002&quot; name=&quot;Run [start] phase for [/sample/i002] on [agent-1]&quot; scriptAction=&quot;start&quot; toState=&quot;running&quot; /&gt;
     &lt;/sequential&gt;
   &lt;/parallel&gt;
 &lt;/plan&gt;

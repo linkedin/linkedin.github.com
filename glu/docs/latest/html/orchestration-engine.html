@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Orchestration engine &mdash; glu v2.4.1 documentation</title>
+    <title>Orchestration engine &mdash; glu v3.0.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '2.4.1',
+        VERSION:     '3.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v2.4.1 documentation" href="index.html" />
+    <link rel="top" title="glu v3.0.0 documentation" href="index.html" />
     <link rel="next" title="Static Model" href="static-model.html" />
     <link rel="prev" title="glu script" href="glu-script.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v2.4.1 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.0.0 documentation</a></h1>
         <div class="rel">
           <a href="glu-script.html" title="glu script"
              accesskey="P">previous</a> |
@@ -366,176 +366,278 @@
 </div>
 <div class="section" id="api">
 <h3>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
-<p>Main URI: <tt class="docutils literal"><span class="pre">/console/rest/v1/&lt;fabric&gt;</span></tt> (all the URIs in the following tables starts with the main URI)</p>
+<p>Main URI: <tt class="docutils literal"><span class="pre">/console/rest/v1/&lt;fabric&gt;</span></tt> (all the URIs in the following table start with the main URI)</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="6%" />
-<col width="23%" />
-<col width="11%" />
-<col width="28%" />
-<col width="32%" />
+<col width="9%" />
+<col width="34%" />
+<col width="27%" />
+<col width="30%" />
 </colgroup>
 <thead valign="bottom">
 <tr><th class="head">Method</th>
 <th class="head">URI</th>
 <th class="head">Description</th>
-<th class="head">Request</th>
-<th class="head">Response</th>
+<th class="head">Details</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plans</span></tt></td>
 <td>List all the plans</td>
-<td>N/A</td>
-<td>TBD</td>
+<td>Coming soon.</td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plans</span></tt></td>
 <td>Create a plan</td>
-<td>view details below for the content of body of the
-<tt class="docutils literal"><span class="pre">POST</span></tt></td>
-<td><ul class="first last simple">
-<li><tt class="docutils literal"><span class="pre">201</span></tt> (<tt class="docutils literal"><span class="pre">CREATED</span></tt>) with <tt class="docutils literal"><span class="pre">Location</span></tt> header to access
-the plan (<tt class="docutils literal"><span class="pre">/plan/</span> <span class="pre">&lt;planId&gt;</span></tt>)</li>
-<li><tt class="docutils literal"><span class="pre">204</span></tt> (<tt class="docutils literal"><span class="pre">NO</span> <span class="pre">CONTENT</span></tt>) when no plan created because
-there is nothing to do</li>
-</ul>
-</td>
+<td><a class="reference internal" href="#goe-rest-api-post-plan"><em>view</em></a></td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;</span></tt></td>
-<td>View the plan (as an
-xml document)</td>
-<td>N/A</td>
-<td><ul class="first last simple">
-<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with an xml representation of the plan</li>
-<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT_FOUND</span></tt>) if no such plan</li>
-</ul>
-</td>
+<td>View the plan (as an xml document)</td>
+<td><a class="reference internal" href="#goe-rest-api-get-plan"><em>view</em></a></td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;/execution</span></tt></td>
 <td>Executes the plan</td>
-<td>N/A</td>
-<td><ul class="first simple">
-<li><tt class="docutils literal"><span class="pre">201</span></tt> (<tt class="docutils literal"><span class="pre">CREATED</span></tt>) with <tt class="docutils literal"><span class="pre">Location</span></tt> header to access
-the plan execution (<tt class="docutils literal"><span class="pre">/plan/</span> <span class="pre">&lt;planId&gt;/</span> <span class="pre">execution/</span>
-<span class="pre">&lt;executionId&gt;</span></tt>).</li>
-</ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">it is a non blocking call and it returns right
-away and you can check the progress thus allowing to
-have a progress bar!</p>
-</div>
-<ul class="last simple">
-<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT_FOUND</span></tt>) if no such plan</li>
-</ul>
-</td>
+<td><a class="reference internal" href="#goe-rest-api-post-plan-execution"><em>view</em></a></td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;/execution/&lt;executionId&gt;</span></tt></td>
-<td>Returns the status
-of the execution</td>
-<td>N/A</td>
-<td><ul class="first last">
-<li><p class="first"><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with <tt class="docutils literal"><span class="pre">X-LinkedIn-GLU-Completion</span></tt> header
-with value:</p>
-<p>a. if plan non completed, percentage completion (ex:
-<tt class="docutils literal"><span class="pre">87</span></tt>)</p>
-<p>b. if completed: <tt class="docutils literal"><span class="pre">100:&lt;completion</span> <span class="pre">status&gt;</span></tt> (ex:
-<tt class="docutils literal"><span class="pre">100:FAILED</span></tt> or <tt class="docutils literal"><span class="pre">100:COMPLETED</span></tt>)</p>
-</li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT_FOUND</span></tt>) if no such execution</p>
-</li>
-</ul>
-</td>
+<td>Returns the status of the
+execution</td>
+<td><a class="reference internal" href="#goe-rest-api-head-plan-execution"><em>view</em></a></td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;/execution/&lt;executionId&gt;</span></tt></td>
-<td>Returns the
-execution as an xml
+<td>Returns the execution as an xml
 document</td>
-<td>N/A</td>
-<td><ul class="first last simple">
-<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with an xml representation of the
-execution (equivalent to the view in the console)</li>
-<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT_FOUND</span></tt>) if no such execution</li>
-</ul>
-</td>
+<td><a class="reference internal" href="#goe-rest-api-get-plan-execution"><em>view</em></a></td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;/execution/&lt;executionId&gt;</span></tt></td>
 <td>Aborts the execution</td>
-<td>N/A</td>
-<td>TBD</td>
+<td><a class="reference internal" href="#goe-rest-api-delete-plan-execution"><em>view</em></a></td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/model/static</span></tt></td>
-<td>Loads the (desired)
-model in the console</td>
-<td><p class="first">Body can be of 2 types depending on the
-<tt class="docutils literal"><span class="pre">Content-Type</span></tt> header:</p>
-<p><tt class="docutils literal"><span class="pre">application/x-www-form-urlencoded</span></tt> then body
-should contain <tt class="docutils literal"><span class="pre">modelUrl=xxx</span></tt> with the url
-pointing to the model (the console will &#8216;download&#8217;
-it)</p>
-<p class="last"><tt class="docutils literal"><span class="pre">text/json</span></tt> then body should be the model itself
-(<a class="reference external" href="https://gist.github.com/755981">example</a>)</p>
-</td>
-<td><ul class="first last simple">
-<li><tt class="docutils literal"><span class="pre">201</span></tt> (<tt class="docutils literal"><span class="pre">CREATED</span></tt>) when loaded successfully</li>
-<li><tt class="docutils literal"><span class="pre">204</span></tt> (<tt class="docutils literal"><span class="pre">NO_CONTENT</span></tt>) if model was loaded successfully
-and is equal to the previous one</li>
-<li><tt class="docutils literal"><span class="pre">400</span></tt> (<tt class="docutils literal"><span class="pre">BAD_REQUEST</span></tt>) if the model is not valid
-(should be a properly json formatted document)</li>
-<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT_FOUND</span></tt>) when error (note error handling
-needs to be revisited)</li>
-</ul>
-</td>
+<td>Loads the (desired) model in the
+console</td>
+<td><a class="reference internal" href="#goe-rest-api-post-model-static"><em>view</em></a></td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/model/static</span></tt></td>
-<td>Retrieves the
-current loaded model
-(aka &#8216;desired&#8217;
-state)</td>
-<td><p class="first">optional request parameters:</p>
-<p><tt class="docutils literal"><span class="pre">prettyPrint=true</span></tt> for human readable output</p>
-<p class="last"><tt class="docutils literal"><span class="pre">systemFilter=...</span></tt> for filtering (see
-<a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for the syntax)</p>
-</td>
-<td><ul class="first last simple">
-<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with a json representation of the model</li>
-</ul>
-</td>
+<td>Retrieves the current loaded model
+(aka &#8216;desired&#8217; state)</td>
+<td><a class="reference internal" href="#goe-rest-api-get-model-static"><em>view</em></a></td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/model/live</span></tt></td>
-<td>Retrieves the
-current live model
-coming from
-ZooKeeper (aka
-current state)</td>
-<td><p class="first">optional request parameters:</p>
-<p><tt class="docutils literal"><span class="pre">prettyPrint=true</span></tt> for human readable output</p>
-<p class="last"><tt class="docutils literal"><span class="pre">systemFilter=...</span></tt> for filtering (see
-<a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for the syntax)</p>
-</td>
-<td><ul class="first simple">
-<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with a json representation of the live
-model</li>
-</ul>
-<div class="last admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">the metadata contains information like
-<tt class="docutils literal"><span class="pre">currentState</span></tt></p>
-</div>
-</td>
+<td>Retrieves the current live model
+coming from ZooKeeper (aka current
+state)</td>
+<td><a class="reference internal" href="#goe-rest-api-get-model-live"><em>view</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">/model/delta</span></tt></td>
+<td>Retrieves the delta between static
+model and live model</td>
+<td><a class="reference internal" href="#goe-rest-api-get-model-delta"><em>view</em></a></td>
 </tr>
 </tbody>
 </table>
+<div class="section" id="create-deployment-plan">
+<span id="goe-rest-api-post-plan"></span><h4>Create deployment plan<a class="headerlink" href="#create-deployment-plan" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Description: Create a plan.</li>
+<li>Request: <tt class="docutils literal"><span class="pre">POST</span> <span class="pre">/plans</span></tt><ul>
+<li>view details <a class="reference internal" href="#goe-rest-api-representing-a-plan"><em>below</em></a> for the content of body of the <tt class="docutils literal"><span class="pre">POST</span></tt></li>
+</ul>
+</li>
+<li>Response:<ul>
+<li><tt class="docutils literal"><span class="pre">201</span></tt> (<tt class="docutils literal"><span class="pre">CREATED</span></tt>) with <tt class="docutils literal"><span class="pre">Location</span></tt> header to access the plan (<tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">204</span></tt> (<tt class="docutils literal"><span class="pre">NO</span> <span class="pre">CONTENT</span></tt>) when no plan created because there is nothing to do</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="view-a-deployment-plan">
+<span id="goe-rest-api-get-plan"></span><h4>View a deployment plan<a class="headerlink" href="#view-a-deployment-plan" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Description: View the plan (as an xml document)</li>
+<li>Request: <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/plan</span></tt><ul>
+<li>N/A</li>
+</ul>
+</li>
+<li>Response:<ul>
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with an xml representation of the plan</li>
+<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT_FOUND</span></tt>) if no such plan</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="execute-a-deployment-plan">
+<span id="goe-rest-api-post-plan-execution"></span><h4>Execute a deployment plan<a class="headerlink" href="#execute-a-deployment-plan" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Execute the plan.</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">POST</span> <span class="pre">/plan/&lt;planId&gt;/execution</span></tt></p>
+<ul class="simple">
+<li>N/A</li>
+</ul>
+</li>
+<li><p class="first">Response:</p>
+<ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">201</span></tt> (<tt class="docutils literal"><span class="pre">CREATED</span></tt>) with <tt class="docutils literal"><span class="pre">Location</span></tt> header to access the plan execution (<tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;/</span> <span class="pre">execution/&lt;executionId&gt;</span></tt>).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">it is a non blocking call and it returns right away and you can check the progress thus allowing to have a progress bar!</p>
+</div>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT_FOUND</span></tt>) if no such plan</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="check-status-of-plan-execution">
+<span id="goe-rest-api-head-plan-execution"></span><h4>Check status of plan execution<a class="headerlink" href="#check-status-of-plan-execution" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Description: Return the status of the execution.</li>
+<li>Request: <tt class="docutils literal"><span class="pre">HEAD</span> <span class="pre">/plan/&lt;planId&gt;/</span> <span class="pre">execution/&lt;executionId&gt;</span></tt><ul>
+<li>N/A</li>
+</ul>
+</li>
+<li>Response:<ul>
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with <tt class="docutils literal"><span class="pre">X-LinkedIn-GLU-Completion</span></tt> header with value:<ol class="loweralpha">
+<li>if plan non completed, percentage completion (ex: <tt class="docutils literal"><span class="pre">87</span></tt>)</li>
+<li>if completed: <tt class="docutils literal"><span class="pre">100:&lt;completion</span> <span class="pre">status&gt;</span></tt> (ex: <tt class="docutils literal"><span class="pre">100:FAILED</span></tt> or <tt class="docutils literal"><span class="pre">100:COMPLETED</span></tt>)</li>
+</ol>
+</li>
+<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT_FOUND</span></tt>) if no such execution</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="view-execution-plan">
+<span id="goe-rest-api-get-plan-execution"></span><h4>View execution plan<a class="headerlink" href="#view-execution-plan" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Description: Return the execution as an xml document.</li>
+<li>Request: <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/plan/&lt;planId&gt;/</span> <span class="pre">execution/&lt;executionId&gt;</span></tt><ul>
+<li>N/A</li>
+</ul>
+</li>
+<li>Response:<ul>
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with an xml representation of the execution (equivalent to the view in the console)</li>
+<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT_FOUND</span></tt>) if no such execution</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="abort-execution-plan">
+<span id="goe-rest-api-delete-plan-execution"></span><h4>Abort execution plan<a class="headerlink" href="#abort-execution-plan" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Description: Abort the execution.</li>
+<li>Request: <tt class="docutils literal"><span class="pre">DELETE</span> <span class="pre">/plan/&lt;planId&gt;/</span> <span class="pre">execution/&lt;executionId&gt;</span></tt><ul>
+<li>N/A</li>
+</ul>
+</li>
+<li>Response:<ul>
+<li>TBD</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="load-static-model">
+<span id="goe-rest-api-post-model-static"></span><h4>Load static model<a class="headerlink" href="#load-static-model" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Load the (desired) model in the console.</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">POST</span> <span class="pre">/model/static</span></tt></p>
+<p>Body can be of 2 types depending on the <tt class="docutils literal"><span class="pre">Content-Type</span></tt> header:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">application/x-www-form-urlencoded</span></tt> then body should contain <tt class="docutils literal"><span class="pre">modelUrl=xxx</span></tt> with the url pointing to the model (the console will &#8216;download&#8217; it)</li>
+<li><tt class="docutils literal"><span class="pre">text/json</span></tt> then body should be the model itself (<a class="reference external" href="https://gist.github.com/755981">example</a>)</li>
+</ol>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">201</span></tt> (<tt class="docutils literal"><span class="pre">CREATED</span></tt>) when loaded successfully</li>
+<li><tt class="docutils literal"><span class="pre">204</span></tt> (<tt class="docutils literal"><span class="pre">NO_CONTENT</span></tt>) if model was loaded successfully and is equal to the previous one</li>
+<li><tt class="docutils literal"><span class="pre">400</span></tt> (<tt class="docutils literal"><span class="pre">BAD_REQUEST</span></tt>) if the model is not valid (should be a properly json formatted document)</li>
+<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT_FOUND</span></tt>) when error (note error handling needs to be revisited)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="view-static-model">
+<span id="goe-rest-api-get-model-static"></span><h4>View static model<a class="headerlink" href="#view-static-model" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Retrieve the current loaded model (aka <em>expected</em> state).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">this is what you loaded using <tt class="docutils literal"><span class="pre">POST</span> <span class="pre">/model/static</span></tt></p>
+</div>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/model/static</span></tt></p>
+<p>optional request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">prettyPrint=true</span></tt> for human readable output</li>
+<li><tt class="docutils literal"><span class="pre">systemFilter=...</span></tt> for filtering (see <a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for the syntax)</li>
+</ul>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with a json representation of the model</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="view-live-model">
+<span id="goe-rest-api-get-model-live"></span><h4>View live model<a class="headerlink" href="#view-live-model" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Retrieve the current live model coming from ZooKeeper (aka <em>current</em> state).</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/model/live</span></tt></p>
+<p>optional request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">prettyPrint=true</span></tt> for human readable output</li>
+<li><tt class="docutils literal"><span class="pre">systemFilter=...</span></tt> for filtering (see <a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for the syntax)</li>
+</ul>
+</li>
+<li><p class="first">Response:</p>
+<ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with a json representation of the live model</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the metadata contains information like <tt class="docutils literal"><span class="pre">currentState</span></tt></p>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="view-delta">
+<span id="goe-rest-api-get-model-delta"></span><h4>View delta<a class="headerlink" href="#view-delta" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Retrieve the delta (similar to what can be seen on the dashboard) which is the difference between the static and live model (expected vs current)</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/model/delta</span></tt></p>
+<p>optional request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">prettyPrint=true</span></tt> for human readable output</li>
+<li><tt class="docutils literal"><span class="pre">systemFilter=...</span></tt> for filtering (see <a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for the syntax)</li>
+<li><tt class="docutils literal"><span class="pre">errorsOnly=true</span></tt> filter to show only errors</li>
+<li><tt class="docutils literal"><span class="pre">flatten=true</span></tt> flatten the output (similar to dashboard view)</li>
+</ul>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with a json representation of the delta</li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="api-examples">
 <h3>API Examples<a class="headerlink" href="#api-examples" title="Permalink to this headline">¶</a></h3>
@@ -546,7 +648,7 @@ model</li>
 </div>
 </div>
 <div class="section" id="representing-a-plan">
-<h2>Representing a plan<a class="headerlink" href="#representing-a-plan" title="Permalink to this headline">¶</a></h2>
+<span id="goe-rest-api-representing-a-plan"></span><h2>Representing a plan<a class="headerlink" href="#representing-a-plan" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="query-string-based">
 <h3>Query String based<a class="headerlink" href="#query-string-based" title="Permalink to this headline">¶</a></h3>
 <p>The <tt class="docutils literal"><span class="pre">POST</span></tt> you issue must be of Content-Type <tt class="docutils literal"><span class="pre">application/x-www-form-urlencoded</span></tt></p>
@@ -807,7 +909,19 @@ don&#8217;t filter at all.</td>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#rest-api">REST api</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#security-authorization">Security / Authorization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#api">API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-deployment-plan">Create deployment plan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#view-a-deployment-plan">View a deployment plan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#execute-a-deployment-plan">Execute a deployment plan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-status-of-plan-execution">Check status of plan execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#view-execution-plan">View execution plan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#abort-execution-plan">Abort execution plan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#load-static-model">Load static model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#view-static-model">View static model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#view-live-model">View live model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#view-delta">View delta</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#api-examples">API Examples</a></li>
 </ul>
 </li>

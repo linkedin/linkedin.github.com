@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Agent &mdash; glu v2.4.1 documentation</title>
+    <title>Agent &mdash; glu v3.0.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '2.4.1',
+        VERSION:     '3.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v2.4.1 documentation" href="index.html" />
+    <link rel="top" title="glu v3.0.0 documentation" href="index.html" />
     <link rel="next" title="glu script" href="glu-script.html" />
     <link rel="prev" title="A taste of glu (tutorial)" href="tutorial.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v2.4.1 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.0.0 documentation</a></h1>
         <div class="rel">
           <a href="tutorial.html" title="A taste of glu (tutorial)"
              accesskey="P">previous</a> |
@@ -250,7 +250,7 @@ Command Line (shortcut):</p>
 <p class="last">Implicitely (at runtime), all glu scripts implement the <a class="reference external" href="https://github.com/linkedin/glu/blob/master/agent/org.linkedin.glu.agent-impl/src/main/groovy/org/linkedin/glu/agent/impl/GluScript.groovy">GluScript</a> interface.</p>
 </div>
 <div class="section" id="log">
-<h4><tt class="docutils literal"><span class="pre">log</span></tt><a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h4>
+<span id="agent-capabilities-log"></span><h4><tt class="docutils literal"><span class="pre">log</span></tt><a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h4>
 <p>The <tt class="docutils literal"><span class="pre">log</span></tt> property allows you to log any information in the agent log file. It is an instance of <tt class="docutils literal"><span class="pre">org.slf4j.Logger</span></tt>:</p>
 <div class="highlight-text"><div class="highlight"><pre>def configure = {
   log.info &quot;this is a message logged with info level&quot;
@@ -261,7 +261,7 @@ Command Line (shortcut):</p>
 </div>
 </div>
 <div class="section" id="params">
-<h4><tt class="docutils literal"><span class="pre">params</span></tt><a class="headerlink" href="#params" title="Permalink to this headline">¶</a></h4>
+<span id="agent-capabilities-params"></span><h4><tt class="docutils literal"><span class="pre">params</span></tt><a class="headerlink" href="#params" title="Permalink to this headline">¶</a></h4>
 <p>Every glu script action has access to the <tt class="docutils literal"><span class="pre">initParameters</span></tt> provided at installation time through the <tt class="docutils literal"><span class="pre">params</span></tt> property:</p>
 <div class="highlight-text"><div class="highlight"><pre>def configure = {
   log.info &quot;initParameters = ${params}&quot;
@@ -270,7 +270,7 @@ Command Line (shortcut):</p>
 </div>
 </div>
 <div class="section" id="mountpoint">
-<h4><tt class="docutils literal"><span class="pre">mountPoint</span></tt><a class="headerlink" href="#mountpoint" title="Permalink to this headline">¶</a></h4>
+<span id="agent-capabilities-mountpoint"></span><h4><tt class="docutils literal"><span class="pre">mountPoint</span></tt><a class="headerlink" href="#mountpoint" title="Permalink to this headline">¶</a></h4>
 <p>The <tt class="docutils literal"><span class="pre">mountPoint</span></tt> on which the script was installed. In general, this property is used to install the application in a unique location (since the mountPoint is unique):</p>
 <div class="highlight-text"><div class="highlight"><pre>def install = {
   log.info &quot;mountPoint = ${mountPoint}&quot;
@@ -280,8 +280,16 @@ Command Line (shortcut):</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="parent">
+<span id="agent-capabilities-parent"></span><h4><tt class="docutils literal"><span class="pre">parent</span></tt><a class="headerlink" href="#parent" title="Permalink to this headline">¶</a></h4>
+<p>This property contains the <tt class="docutils literal"><span class="pre">GluScript</span></tt> of the parent (for root this value is <tt class="docutils literal"><span class="pre">null</span></tt>). This property is to be used by a child when it wants to invoke methods on its parent.</p>
+</div>
+<div class="section" id="children">
+<span id="agent-capabilities-children"></span><h4><tt class="docutils literal"><span class="pre">children</span></tt><a class="headerlink" href="#children" title="Permalink to this headline">¶</a></h4>
+<p>This property contains a collection of <tt class="docutils literal"><span class="pre">GluScript</span></tt> of the children of this script. This property is to be used by a parent when it wants to invoke methods on its children.</p>
+</div>
 <div class="section" id="statemanager">
-<h4><tt class="docutils literal"><span class="pre">stateManager</span></tt><a class="headerlink" href="#statemanager" title="Permalink to this headline">¶</a></h4>
+<span id="agent-capabilities-statemanager"></span><h4><tt class="docutils literal"><span class="pre">stateManager</span></tt><a class="headerlink" href="#statemanager" title="Permalink to this headline">¶</a></h4>
 <p>An instance of <tt class="docutils literal"><span class="pre">org.linkedin.glu.agent.api.StateManager</span></tt> (<a class="reference external" href="https://github.com/linkedin/glu/blob/master/agent/org.linkedin.glu.agent-api/src/main/groovy/org/linkedin/glu/agent/api/StateManager.groovy">StateManager api</a>) which allows to access the state:</p>
 <div class="highlight-text"><div class="highlight"><pre>def install = {
   log.info &quot;current state is ${stateManager.state}&quot;
@@ -290,7 +298,7 @@ Command Line (shortcut):</p>
 </div>
 </div>
 <div class="section" id="state">
-<h4><tt class="docutils literal"><span class="pre">state</span></tt><a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h4>
+<span id="agent-capabilities-state"></span><h4><tt class="docutils literal"><span class="pre">state</span></tt><a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h4>
 <p>Shortcut to <tt class="docutils literal"><span class="pre">stateManager.state</span></tt>:</p>
 <div class="highlight-text"><div class="highlight"><pre>def install = {
   log.info &quot;current state is ${state}&quot;
@@ -299,7 +307,7 @@ Command Line (shortcut):</p>
 </div>
 </div>
 <div class="section" id="shell">
-<h4><tt class="docutils literal"><span class="pre">shell</span></tt><a class="headerlink" href="#shell" title="Permalink to this headline">¶</a></h4>
+<span id="agent-capabilities-shell"></span><h4><tt class="docutils literal"><span class="pre">shell</span></tt><a class="headerlink" href="#shell" title="Permalink to this headline">¶</a></h4>
 <p>An instance of <tt class="docutils literal"><span class="pre">org.linkedin.glu.agent.api.Shell</span></tt> (<a class="reference external" href="https://github.com/linkedin/glu/blob/master/agent/org.linkedin.glu.agent-api/src/main/groovy/org/linkedin/glu/agent/api/Shell.groovy">Shell api</a>) which gives access to a lot of shell like capabilities</p>
 <ul>
 <li><p class="first">file system (see <tt class="docutils literal"><span class="pre">org.linkedin.groovy.util.io.fs.FileSystem</span></tt> (<a class="reference external" href="https://github.com/linkedin/linkedin-utils/blob/master/org.linkedin.util-groovy/src/main/groovy/org/linkedin/groovy/util/io/fs/FileSystem.groovy">FileSystem api</a>) like <tt class="docutils literal"><span class="pre">ls</span></tt>, <tt class="docutils literal"><span class="pre">cp</span></tt>, <tt class="docutils literal"><span class="pre">mv</span></tt>, <tt class="docutils literal"><span class="pre">rm</span></tt>, <tt class="docutils literal"><span class="pre">tail</span></tt>...</p>
@@ -322,7 +330,7 @@ Command Line (shortcut):</p>
 </ul>
 </div>
 <div class="section" id="shell-env">
-<h4><tt class="docutils literal"><span class="pre">shell.env</span></tt><a class="headerlink" href="#shell-env" title="Permalink to this headline">¶</a></h4>
+<span id="agent-capabilities-shell-env"></span><h4><tt class="docutils literal"><span class="pre">shell.env</span></tt><a class="headerlink" href="#shell-env" title="Permalink to this headline">¶</a></h4>
 <p><tt class="docutils literal"><span class="pre">shell.env</span></tt> is a map which allows you to access all the configuration properties used when the agent booted including the ones stored in zookeeper. This allows for example to configure fabric dependent behavior. If you store the property:</p>
 <div class="highlight-text"><div class="highlight"><pre>my.company.binary.repo.url=http://mybinaryrepo:9000/root
 </pre></div>
@@ -333,7 +341,7 @@ Command Line (shortcut):</p>
 </div>
 </div>
 <div class="section" id="timers">
-<h4><tt class="docutils literal"><span class="pre">timers</span></tt><a class="headerlink" href="#timers" title="Permalink to this headline">¶</a></h4>
+<span id="agent-capabilities-timers"></span><h4><tt class="docutils literal"><span class="pre">timers</span></tt><a class="headerlink" href="#timers" title="Permalink to this headline">¶</a></h4>
 <p>An instance of <tt class="docutils literal"><span class="pre">org.linkedin.glu.agent.api.Timers</span></tt> (<a class="reference external" href="https://github.com/linkedin/glu/blob/master/agent/org.linkedin.glu.agent-api/src/main/groovy/org/linkedin/glu/agent/api/Timers.groovy">Timers api</a>) which allows you to set/remove a <a class="reference internal" href="glossary.html#term-timer"><em class="xref std std-term">timer</em></a> (for monitoring for example):</p>
 <div class="highlight-text"><div class="highlight"><pre>def timer1 = {
   log.info &quot;hello world&quot;
@@ -1005,6 +1013,8 @@ console</td>
 <li class="toctree-l4"><a class="reference internal" href="#log"><tt class="docutils literal"><span class="pre">log</span></tt></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#params"><tt class="docutils literal"><span class="pre">params</span></tt></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mountpoint"><tt class="docutils literal"><span class="pre">mountPoint</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parent"><tt class="docutils literal"><span class="pre">parent</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#children"><tt class="docutils literal"><span class="pre">children</span></tt></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#statemanager"><tt class="docutils literal"><span class="pre">stateManager</span></tt></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#state"><tt class="docutils literal"><span class="pre">state</span></tt></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#shell"><tt class="docutils literal"><span class="pre">shell</span></tt></a></li>

@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>glu script &mdash; glu v2.4.1 documentation</title>
+    <title>glu script &mdash; glu v3.0.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '2.4.1',
+        VERSION:     '3.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v2.4.1 documentation" href="index.html" />
+    <link rel="top" title="glu v3.0.0 documentation" href="index.html" />
     <link rel="next" title="Orchestration engine" href="orchestration-engine.html" />
     <link rel="prev" title="Agent" href="agent.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v2.4.1 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.0.0 documentation</a></h1>
         <div class="rel">
           <a href="agent.html" title="Agent"
              accesskey="P">previous</a> |
@@ -83,7 +83,7 @@
 </div>
 </div>
 <div class="section" id="state-machine">
-<h2>State machine<a class="headerlink" href="#state-machine" title="Permalink to this headline">¶</a></h2>
+<span id="glu-script-state-machine"></span><h2>State machine<a class="headerlink" href="#state-machine" title="Permalink to this headline">¶</a></h2>
 <p>Each glu script is backed by a state machine which is an instance of <tt class="docutils literal"><span class="pre">org.linkedin.groovy.util.state.StateMachine</span></tt> (<a class="reference external" href="https://github.com/linkedin/linkedin-utils/blob/master/org.linkedin.util-groovy/src/main/groovy/org/linkedin/groovy/util/state/StateMachine.groovy">StateMachine api</a>). The default state machine is the following:</p>
 <a class="reference internal image-reference" href="_images/state_machine_diagram.png"><img alt="State Machine diagram" class="align-center" src="_images/state_machine_diagram.png" style="width: 680.0px; height: 181.05px;" /></a>
 <p>This is how the default state machine is defined.</p>
@@ -121,6 +121,102 @@
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">Implicitely (at runtime), all glu scripts implement the <a class="reference external" href="https://github.com/linkedin/glu/blob/master/agent/org.linkedin.glu.agent-impl/src/main/groovy/org/linkedin/glu/agent/impl/GluScript.groovy">GluScript</a> interface.</p>
+</div>
+<p>Table of all the properties usable from a <tt class="docutils literal"><span class="pre">GluScript</span></tt>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Usage</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><a class="reference internal" href="agent.html#agent-capabilities-children"><em>children</em></a></td>
+<td>Access to the children of this glu script</td>
+</tr>
+<tr><td><a class="reference internal" href="agent.html#agent-capabilities-log"><em>log</em></a></td>
+<td>Write log messages in agent log file</td>
+</tr>
+<tr><td><a class="reference internal" href="agent.html#agent-capabilities-mountpoint"><em>mountPoint</em></a></td>
+<td>The mountPoint on which this script was <em>mounted</em></td>
+</tr>
+<tr><td><a class="reference internal" href="agent.html#agent-capabilities-params"><em>params</em></a></td>
+<td>Access to the model <a class="reference internal" href="static-model.html#static-model-entries-initparameters"><em>initParameters</em></a> section</td>
+</tr>
+<tr><td><a class="reference internal" href="agent.html#agent-capabilities-parent"><em>parent</em></a></td>
+<td>Access to the parent glu script</td>
+</tr>
+<tr><td><a class="reference internal" href="agent.html#agent-capabilities-shell"><em>shell</em></a></td>
+<td>Access to all shell like capabilities (mv, ls, etc...)</td>
+</tr>
+<tr><td><a class="reference internal" href="agent.html#agent-capabilities-shell-env"><em>shell.env</em></a></td>
+<td>Access to environment variables set at agent boot time</td>
+</tr>
+<tr><td><a class="reference internal" href="agent.html#agent-capabilities-statemanager"><em>stateManager</em></a></td>
+<td>Manage/Query the state</td>
+</tr>
+<tr><td><a class="reference internal" href="agent.html#agent-capabilities-state"><em>state</em></a></td>
+<td>Shortcut to current state</td>
+</tr>
+<tr><td><a class="reference internal" href="agent.html#agent-capabilities-timers"><em>timers</em></a></td>
+<td>Schedule/Cancel timers</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="parent-script">
+<span id="glu-script-parent-script"></span><h2>Parent Script<a class="headerlink" href="#parent-script" title="Permalink to this headline">¶</a></h2>
+<p>When you define the parent glu script (for use in the <a class="reference internal" href="static-model.html#static-model-entries-parent"><em>static model</em></a>), you <strong>must</strong> add the following closure to the glu script:</p>
+<div class="highlight-text"><div class="highlight"><pre>def createChild = { args -&gt;
+  return args.script
+}
+</pre></div>
+</div>
+<p>This closure takes a map with 3 arguments:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">mountPoint</span></tt>: the mountPoint on which the child script will be mounted</li>
+<li><tt class="docutils literal"><span class="pre">script</span></tt>: the raw child script just after it has been instantiated</li>
+<li><tt class="docutils literal"><span class="pre">initParameters</span></tt>: the init parameters that will be provided to the child</li>
+</ul>
+<p>This closure <strong>must</strong> return the actual script to use. In its simplest form, the closure does nothing besides returning the script itself untouched.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>This closure allows you to customize the child including returning a completely different one!
+For example:</p>
+<div class="last highlight-text"><div class="highlight"><pre>class JettyParentGluScript
+{
+  def deployHotDir
+
+  def install = {
+    deployHotDir = ... // compute hot dir
+  }
+
+  def createChild = { args -&gt;
+    args.script.deployHotDir = deployHotDir // &#39;inject&#39; deployHotDir in child
+    return args.script
+  }
+}
+</pre></div>
+</div>
+</div>
+<p>In addition to this required closure, you <em>may</em> define 3 others to do custom work:</p>
+<div class="highlight-text"><div class="highlight"><pre>def onChildAdded = { args -&gt; // child
+  // note that the child you are getting here is different from the script you got in createChild
+  // in createChild you get literally the instance of the class of the script
+  // in onChildAdded you get an instance of GluScript which is the wrapped script
+}
+
+// symmetric of onChildAdded
+def onChildRemoved = { args -&gt; // child
+}
+
+// symmetric of createChild
+def destroyChild = { args -&gt; // mountPoint, script
+}
+</pre></div>
 </div>
 </div>
 <div class="section" id="conventions">
@@ -160,6 +256,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#groovy-class">Groovy Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#state-machine">State machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#capabilities">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parent-script">Parent Script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#logs">Logs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fields">Fields</a></li>
