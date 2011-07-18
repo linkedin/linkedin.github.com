@@ -73,6 +73,14 @@
   <div class="section" id="production-setup">
 <h1>Production Setup<a class="headerlink" href="#production-setup" title="Permalink to this headline">¶</a></h1>
 <p>This document describes how to setup glu for production.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>Currently glu requires a UNIX like platform (tested on Mac OS X and Solaris) and Java 1.6.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Due to a <a class="reference external" href="https://github.com/linkedin/glu/issues/74">bug with OpenJDK</a> glu currently requires the Sun Java VM.</p>
+</div>
+</div>
 <div class="section" id="step-1-download">
 <h2>Step 1: Download<a class="headerlink" href="#step-1-download" title="Permalink to this headline">¶</a></h2>
 <p>Download the binary called <tt class="docutils literal"><span class="pre">org.linkedin.glu.packaging-all-&lt;version&gt;.tgz</span></tt> from the <a class="reference external" href="https://github.com/linkedin/glu/downloads">downloads</a> section on github.</p>
@@ -496,6 +504,7 @@ encrypted)</li>
 <li class="toctree-l1"><a class="reference internal" href="filtering.html"> Filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="console.html"> Console</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Production Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-1-download">Step 1: Download</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-2-setup-zookeeper">Step 2: Setup ZooKeeper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-3-generate-your-own-set-of-keys">Step 3: Generate your own set of keys</a><ul>
