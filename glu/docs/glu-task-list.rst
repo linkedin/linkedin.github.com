@@ -38,7 +38,8 @@ glu-ad-hoc -t osx -c "uptime"
 
 4. Allow for easier development of glu scripts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Currently to develop/debug a glu script, you need at least an agent to be up and then use the agent-cli to talk to this agent. It would be easier to have 1 cli that would simply instantiate the agent, runs the command and stop the agent (or we could imagine to start it in interactive mode with a prompt to enter commands directly).
+Currently to develop/debug a glu script, you need at least an agent to be up and then use the agent-cli to talk to this agent. It would be easier to have 1 cli that would simply instantiate the agent, runs the command and stop the agent (or we could imagine to start it in interactive mode with a prompt to enter commands directly). This would include the possibility of easily writing unit tests for glu scripts (captured with ticket: https://github.com/linkedin/glu/issues/80)
+
 
 II. Improvements to the orchestration engine/console
 ----------------------------------------------------

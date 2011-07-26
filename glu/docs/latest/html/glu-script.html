@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>glu script &mdash; glu v3.0.0 documentation</title>
+    <title>glu script &mdash; glu v3.1.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '3.0.0',
+        VERSION:     '3.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v3.0.0 documentation" href="index.html" />
+    <link rel="top" title="glu v3.1.0 documentation" href="index.html" />
     <link rel="next" title="Orchestration engine" href="orchestration-engine.html" />
     <link rel="prev" title="Agent" href="agent.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v3.0.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.1.0 documentation</a></h1>
         <div class="rel">
           <a href="agent.html" title="Agent"
              accesskey="P">previous</a> |
@@ -238,6 +238,55 @@ def destroyChild = { args -&gt; // mountPoint, script
 <h2>Real life example<a class="headerlink" href="#real-life-example" title="Permalink to this headline">¶</a></h2>
 <p>You can find a real life example of a glu script called <a class="reference external" href="https://github.com/linkedin/glu/blob/master/scripts/org.linkedin.glu.script-jetty/src/main/groovy/JettyGluScript.groovy">JettyGluScript</a> which shows how to deploy a webapp container (jetty), install web applications in it and monitor it.</p>
 </div>
+<div class="section" id="developing-and-unit-testing-a-glu-script">
+<h2>Developing and unit testing a glu script<a class="headerlink" href="#developing-and-unit-testing-a-glu-script" title="Permalink to this headline">¶</a></h2>
+<p>The glu script test framework allows you to develop and unit test your glu script without having to worry about setting up all the components. To write a unit test for a glu script, you can simply inherit from the <a class="reference external" href="https://github.com/linkedin/glu/blob/master/utils/org.linkedin.glu.scripts-test-fwk/src/main/groovy/org/linkedin/glu/scripts/testFwk/GluScriptBaseTest.groovy">GluScriptBaseTest</a>, setup a couple of parameters and run the convenient methods provided by the framework:</p>
+<div class="highlight-text"><div class="highlight"><pre>class TestMyGluScript extends GluScriptBaseTest
+{
+  public void setUp() {
+    super.setUp()
+    initParameters = [ p1: &#39;v1&#39; ]
+  }
+
+  // this method is not required if you follow the conventions
+  public String getScriptClass() {
+    return MyGluScript.getClass().getName()
+  }
+
+  public void testHappyPath() {
+    deploy()
+    undeploy()
+  }
+}
+</pre></div>
+</div>
+<p>In order to compile the script and the unit test, you need the following dependencies (make sure you use the appropriate versions which may differ from this example!):</p>
+<div class="highlight-text"><div class="highlight"><pre>// gradle format
+dependencies {
+  compile &quot;org.linkedin:org.linkedin.util-groovy:1.7.0&quot;
+  compile &quot;org.linkedin:org.linkedin.glu.agent-api:3.1.0&quot;
+  groovy  &quot;org.codehaus.groovy:groovy:1.7.5&quot;
+
+  testCompile &quot;org.linkedin:org.linkedin.glu.scripts-test-fwk:3.1.0&quot;
+  testCompile &quot;junit:junit:4.4&quot;
+}
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can use maven or any other dependency management system as long you include the proper dependencies.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>For more information and examples, you can check the following:</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://github.com/linkedin/glu/blob/master/utils/org.linkedin.glu.scripts-test-fwk/src/main/groovy/org/linkedin/glu/scripts/testFwk/GluScriptBaseTest.groovy">GluScriptBaseTest</a> to check what the framework has to offer (javadoc is fairly comprehensive)</li>
+<li><a class="reference external" href="https://github.com/linkedin/glu/blob/master/scripts/org.linkedin.glu.script-jetty/src/test/groovy/test/script/jetty/TestJettyGluScript.groovy">TestJettyGluScript</a> for a real life example of unit testing a glu script</li>
+<li><a class="reference external" href="https://github.com/linkedin/glu-scripts-contrib">glu-scripts-contrib</a> is the project that contains glu script contributed by the community as well as a sample</li>
+<li><a class="reference external" href="https://github.com/linkedin/glu-scripts-contrib/tree/master/scripts/org.linkedin.glu-scripts-contrib.sample">sample</a> is a sample glu script and unit test with comprehensive documentation demonstrating several features about writing and unit testing a glu script</li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -264,6 +313,7 @@ def destroyChild = { args -&gt; // mountPoint, script
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#an-example-of-glu-script">An example of glu script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#real-life-example">Real life example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#developing-and-unit-testing-a-glu-script">Developing and unit testing a glu script</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="orchestration-engine.html"> Orchestration engine</a></li>
