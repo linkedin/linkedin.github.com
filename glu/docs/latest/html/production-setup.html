@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Production Setup &mdash; glu v3.2.0 documentation</title>
+    <title>Production Setup &mdash; glu v3.3.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '3.2.0',
+        VERSION:     '3.3.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v3.2.0 documentation" href="index.html" />
+    <link rel="top" title="glu v3.3.0 documentation" href="index.html" />
     <link rel="next" title="Development Setup" href="dev-setup.html" />
     <link rel="prev" title="Console" href="console.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v3.2.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.3.0 documentation</a></h1>
         <div class="rel">
           <a href="console.html" title="Console"
              accesskey="P">previous</a> |
@@ -442,6 +442,10 @@ encrypted)</li>
 </div>
 <div class="section" id="step-8-install-the-console">
 <span id="production-setup-console"></span><h2>Step 8: Install the console<a class="headerlink" href="#step-8-install-the-console" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The default configuration uses HSQLDB for the database. In a production setup, it is <strong>not</strong> recommended to use HSQLDB. Check the section <a class="reference internal" href="console.html#console-configuration-database-mysql"><em>Example for a different database: MySql</em></a> for details on how to configure a different database.</p>
+</div>
 <div class="section" id="option-1-install-the-war-file">
 <h3>Option 1: Install the war file<a class="headerlink" href="#option-1-install-the-war-file" title="Permalink to this headline">¶</a></h3>
 <p>The console is packaged as a regular webapp (war file) and can simply be dropped in any servlet container (tested with tomcat). In order to run, the console requires a configuration file. See <a class="reference internal" href="console.html#console-configuration"><em>Configuration file</em></a>. The war file is available under <tt class="docutils literal"><span class="pre">console-server/glu/repository/wars/org.linkedin.glu.console-webapp-&lt;version&gt;.war</span></tt>.</p>

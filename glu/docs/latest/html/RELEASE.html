@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Latest changes &mdash; glu v3.2.0 documentation</title>
+    <title>Latest changes &mdash; glu v3.3.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '3.2.0',
+        VERSION:     '3.3.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v3.2.0 documentation" href="index.html" />
+    <link rel="top" title="glu v3.3.0 documentation" href="index.html" />
     <link rel="next" title="Glossary" href="glossary.html" />
     <link rel="prev" title="Development Setup" href="dev-setup.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v3.2.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.3.0 documentation</a></h1>
         <div class="rel">
           <a href="dev-setup.html" title="Development Setup"
              accesskey="P">previous</a> |
@@ -73,7 +73,32 @@
   <div class="section" id="latest-changes">
 <h1>Latest changes<a class="headerlink" href="#latest-changes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>3.2.0 (2011/07/31)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>3.3.0 (2011/09/16)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>This release features the following:</p>
+<ul class="simple">
+<li>Performance tuning (minimizing GC) based on LinkedIn feedback</li>
+<li>UI change: text area for modifying the model can be (optionally) made non editable (see <a class="reference internal" href="console.html#console-configuration-non-editable-model"><em>documentation</em></a>)</li>
+<li>UI change: selecting the current system/model is done through a radio group selection under the <tt class="docutils literal"><span class="pre">System</span></tt> tab</li>
+<li>UI change: selecting a plan is no longer a drop down selection (this was discussed in the <a class="reference external" href="http://glu.977617.n3.nabble.com/RFC-Selecting-a-plan-proposal-td3333742.html">forum</a>)</li>
+<li>UI change: on the dashboard, there is now a different color for <tt class="docutils literal"><span class="pre">DELTA</span></tt> vs <tt class="docutils literal"><span class="pre">ERROR</span></tt></li>
+<li>UI customization: added powerful ability to provide your own custom stylesheet (see <a class="reference internal" href="console.html#console-configuration-custom-css"><em>documentation</em></a>) allowing you to easily tweak the rendering (colors, layout, etc...)</li>
+<li>Added documentation example on how to use a <a class="reference internal" href="console.html#console-configuration-database-mysql"><em>different database</em></a> with glu (MySql in this example)</li>
+</ul>
+<p>List of tickets:</p>
+<ul class="simple">
+<li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/76">glu-76</a>: <cite>Allow database configuration for the console</cite></li>
+<li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/77">glu-77</a>: <cite>Do not fetch full json model on System page</cite></li>
+<li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/78">glu-78</a>: <cite>Make System Text Area optionally read only</cite></li>
+<li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/79">glu-79</a>: <cite>keeping completed plans in unarchived state causes memory pressure</cite></li>
+<li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/89">glu-89</a>: <cite>make delta distinct from error in console</cite></li>
+<li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/93">glu-93</a>: <cite>Issue #89: make delta distinct from error in console</cite> (thanks Richard)</li>
+<li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/94">glu-94</a>: <cite>fix typo in hello-world sample</cite> (thanks Vincent)</li>
+<li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/96">glu-96</a>: <cite>Make plan selection easier</cite></li>
+</ul>
+<p>Thanks to Richard and Vincent for the contributions to this release.</p>
+</div>
+<div class="section" id="id2">
+<h2>3.2.0 (2011/07/31)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>Enhanced REST API by exposing more functionalities (agent upgrade, deployments, plans). Note that the REST call <tt class="docutils literal"><span class="pre">HEAD</span> <span class="pre">/plan/&lt;planId&gt;/execution/&lt;executionId&gt;</span></tt> now returns a header called <tt class="docutils literal"><span class="pre">X-glu-completion</span></tt> (the old one <tt class="docutils literal"><span class="pre">X-LinkedIn-GLU-completion</span></tt> is still returned for backward compatibility).</p>
 <ul class="simple">
 <li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/66">glu-66</a>: <cite>implement rest call GET /plans</cite></li>
@@ -82,16 +107,16 @@
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/83">glu-83</a>: <cite>NPE at http://glu/console/plan/deployments/XXX</cite></li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h2>3.1.0 (2011/07/26)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>3.1.0 (2011/07/26)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>Added unit test framework for glu script and created sibling project <a class="reference external" href="https://github.com/linkedin/glu-scripts-contrib">glu-script-contribs</a></p>
 <ul class="simple">
 <li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/80">glu-80</a>: <cite>Add ability to write unit tests for glu script</cite></li>
 <li>Added <tt class="docutils literal"><span class="pre">Shell.httpPost</span></tt> method</li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h2>3.0.0 (2011/06/25)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>3.0.0 (2011/06/25)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="what-is-new-in-3-0-0">
 <h3>What is new in 3.0.0 ?<a class="headerlink" href="#what-is-new-in-3-0-0" title="Permalink to this headline">¶</a></h3>
 <p>3.0.0 adds the following features:</p>
@@ -119,21 +144,21 @@ which should provide some performance improvements over groovy).</li>
 </ul>
 </div>
 </div>
-<div class="section" id="id4">
-<h2>2.4.2 (2011/05/27)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>2.4.2 (2011/05/27)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/64">glu-64</a>: <cite>Concurrent deployment of ivy artifacts causes wrong artifact to be downloaded</cite></li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h2>2.4.1 (2011/05/24)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>2.4.1 (2011/05/24)<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/61">glu-61</a>: <cite>ClassCastException when error is a String</cite></li>
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/62">glu-62</a>: <cite>&#8220;View Full Stack Trace&#8221; fails if agent disappears</cite></li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h2>2.4.0 (2011/05/20)<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h2>2.4.0 (2011/05/20)<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Added instrumentation for <a class="reference external" href="https://github.com/linkedin/glu/issues/18">glu-18</a>: <cite>Grails Runtime Exception (500) when viewing a deployment status</cite></li>
 <li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/42">glu-42</a>: <cite>Support &#8216;transient&#8217; declaration in glu script</cite> (thanks to Andras!)</li>
@@ -143,8 +168,8 @@ which should provide some performance improvements over groovy).</li>
 <li>Misc.: better handling of logs in the console, improved documentation</li>
 </ul>
 </div>
-<div class="section" id="id8">
-<h2>2.3.0 (2011/05/13)<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h2>2.3.0 (2011/05/13)<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/56">glu-56</a>: <cite>Finalize refactoring (#34)</cite><ul>
 <li>fixed some issues with tagging</li>
@@ -157,28 +182,28 @@ which should provide some performance improvements over groovy).</li>
 </li>
 </ul>
 </div>
-<div class="section" id="id9">
-<h2>2.2.3 (2011/05/05)<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h2>2.2.3 (2011/05/05)<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/52">glu-52</a>: <cite>deadlock on agent shutdown</cite></li>
 </ul>
 </div>
-<div class="section" id="id10">
-<h2>2.2.2 (2011/05/04)<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h2>2.2.2 (2011/05/04)<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/51">glu-51</a>: <cite>agent does not recover properly when safeOverwrite fails</cite></li>
 </ul>
 </div>
-<div class="section" id="id11">
-<h2>2.2.1 (2011/04/30)<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h2>2.2.1 (2011/04/30)<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/49">glu-49</a>: <cite>shell.cat is leaking memory</cite></li>
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/48">glu-48</a>: <cite>use -XX:+PrintGCDateStamps for gc log</cite></li>
 </ul>
 <p>Also tweaked a couple of parameters for the agent (starting VM now 128M).</p>
 </div>
-<div class="section" id="id12">
-<h2>2.2.0 (2011/04/22)<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h2>2.2.0 (2011/04/22)<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/34">glu-34</a>: <cite>Refactor code out of the console</cite></p>
 <p>The business logic layer of the console has been moved to the orchestration engine area so it is now more easily shareable.</p>
@@ -188,22 +213,22 @@ which should provide some performance improvements over groovy).</li>
 </li>
 </ul>
 </div>
-<div class="section" id="id13">
-<h2>2.1.1 (2011/03/04)<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id14">
+<h2>2.1.1 (2011/03/04)<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/31">glu-31</a>: Agent exception when no persistent properties files</li>
 </ul>
 </div>
-<div class="section" id="id14">
-<h2>2.1.0 (2011/03/01)<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id15">
+<h2>2.1.0 (2011/03/01)<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
 <p>This version is highly recommended for glu-27 specifically which may prevent the agent to recover properly. It affects all previous versions of the agent.</p>
 <ul class="simple">
 <li>fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/26">glu-26</a>: agent cli fails when using spaces</li>
 <li>fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/27">glu-27</a>: Unexpected exception can disable the agent</li>
 </ul>
 </div>
-<div class="section" id="id15">
-<h2>2.0.0 (2011/02/14)<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id16">
+<h2>2.0.0 (2011/02/14)<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/22">glu-22</a>: jetty glu script (1.6.0) does not handle restart properly</p>
 </li>
@@ -217,15 +242,15 @@ which should provide some performance improvements over groovy).</li>
 </li>
 </ul>
 </div>
-<div class="section" id="id16">
-<h2>1.7.1 (2011/01/20)<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id17">
+<h2>1.7.1 (2011/01/20)<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>workaround for <a class="reference external" href="https://github.com/linkedin/glu/issues/19">glu-19</a>: New users aren&#8217;t displayed at <tt class="docutils literal"><span class="pre">/console/admin/user/list</span></tt></li>
 <li>fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/20">glu-20</a>: Race condition while upgrading the agent</li>
 </ul>
 </div>
-<div class="section" id="id17">
-<h2>1.7.0 (2011/01/17)<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id18">
+<h2>1.7.0 (2011/01/17)<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/12">glu-12</a>: better packaging</li>
 <li>fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/1">glu-1</a>: Agent name and fabric are not preserved upon restart</li>
@@ -234,8 +259,8 @@ which should provide some performance improvements over groovy).</li>
 <li>Updated Copyright</li>
 </ul>
 </div>
-<div class="section" id="id18">
-<h2>1.6.0 (2011/01/11)<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id19">
+<h2>1.6.0 (2011/01/11)<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>changed the tutorial to deploy jetty and the sample webapps to better demonstrate the capabilities of glu</li>
 <li>added jetty glu script which demonstrates a &#8216;real&#8217; glu script and allows to deploy a webapp container with webapps and monitor them</li>
@@ -246,15 +271,15 @@ which should provide some performance improvements over groovy).</li>
 <li>fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/13">glu-13</a>: missing connection string in setup-zookeeper.sh</li>
 </ul>
 </div>
-<div class="section" id="id20">
-<h2>1.5.1 (2010/12/28)<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id21">
+<h2>1.5.1 (2010/12/28)<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/10">glu-10</a>: missing -s $GLU_ZK_CONNECT_STRING in setup-agent.sh (thanks to Ran)</li>
 <li>fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/11">glu-11</a>: missing glu.agent.port when not using default value</li>
 </ul>
 </div>
-<div class="section" id="id21">
-<h2>1.5.0 (2010/12/24)<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id22">
+<h2>1.5.0 (2010/12/24)<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/8">glu-8</a>: added support for urls with basic authentication (thanks to Ran)</li>
 <li>added console cli (<tt class="docutils literal"><span class="pre">org.linkedin.glu.console-cli</span></tt>) which talks to the REST api of the console</li>
@@ -262,8 +287,8 @@ which should provide some performance improvements over groovy).</li>
 <li>added the glu logo (thanks to Markus for the logos)</li>
 </ul>
 </div>
-<div class="section" id="id22">
-<h2>1.4.0 (2010/12/20)<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id23">
+<h2>1.4.0 (2010/12/20)<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>use of <a class="reference external" href="https://github.com/linkedin/gradle-plugins/tree/REL_1.5.0">gradle-plugins 1.5.0</a> which now uses gradle 0.9</li>
 <li>added packaging for all clis</li>
@@ -274,22 +299,22 @@ which should provide some performance improvements over groovy).</li>
 <li>new tutorial based on pre-built binaries (<tt class="docutils literal"><span class="pre">org.linkedin.glu.packaging-all</span></tt>)</li>
 </ul>
 </div>
-<div class="section" id="id23">
-<h2>1.3.2 (2010/12/07)<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id24">
+<h2>1.3.2 (2010/12/07)<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>use of <a class="reference external" href="https://github.com/linkedin/linkedin-utils/tree/REL_1.2.1">linkedin-utils 1.2.1</a> which fixes the issue of password not being masked properly</li>
 <li>use of <a class="reference external" href="https://github.com/linkedin/linkedin-zookeeper/tree/REL_1.2.1">linkedin-zookeeper 1.2.1</a></li>
 </ul>
 </div>
-<div class="section" id="id24">
-<h2>1.3.1 (2010/12/02)<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id25">
+<h2>1.3.1 (2010/12/02)<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>use of <a class="reference external" href="https://github.com/linkedin/gradle-plugins/tree/REL_1.3.1">gradle-plugins 1.3.1</a></li>
 <li>fixes issue in agent cli (exception when parsing configuration)</li>
 </ul>
 </div>
-<div class="section" id="id25">
-<h2>1.0.0 (2010/11/07)<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id26">
+<h2>1.0.0 (2010/11/07)<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>First release</li>
 </ul>
@@ -316,33 +341,34 @@ which should provide some performance improvements over groovy).</li>
 <li class="toctree-l1"><a class="reference internal" href="production-setup.html">Production Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev-setup.html">Development Setup</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Latest changes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">3.2.0 (2011/07/31)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">3.1.0 (2011/07/26)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">3.0.0 (2011/06/25)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">3.3.0 (2011/09/16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.2.0 (2011/07/31)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3.1.0 (2011/07/26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">3.0.0 (2011/06/25)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-is-new-in-3-0-0">What is new in 3.0.0 ?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#list-of-tickets">List of tickets</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">2.4.2 (2011/05/27)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">2.4.1 (2011/05/24)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">2.4.0 (2011/05/20)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id8">2.3.0 (2011/05/13)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">2.2.3 (2011/05/05)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">2.2.2 (2011/05/04)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id11">2.2.1 (2011/04/30)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">2.2.0 (2011/04/22)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id13">2.1.1 (2011/03/04)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id14">2.1.0 (2011/03/01)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id15">2.0.0 (2011/02/14)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id16">1.7.1 (2011/01/20)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id17">1.7.0 (2011/01/17)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id18">1.6.0 (2011/01/11)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id20">1.5.1 (2010/12/28)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id21">1.5.0 (2010/12/24)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id22">1.4.0 (2010/12/20)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id23">1.3.2 (2010/12/07)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id24">1.3.1 (2010/12/02)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id25">1.0.0 (2010/11/07)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">2.4.2 (2011/05/27)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">2.4.1 (2011/05/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">2.4.0 (2011/05/20)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">2.3.0 (2011/05/13)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">2.2.3 (2011/05/05)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">2.2.2 (2011/05/04)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">2.2.1 (2011/04/30)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">2.2.0 (2011/04/22)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">2.1.1 (2011/03/04)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">2.1.0 (2011/03/01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">2.0.0 (2011/02/14)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">1.7.1 (2011/01/20)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">1.7.0 (2011/01/17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">1.6.0 (2011/01/11)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">1.5.1 (2010/12/28)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">1.5.0 (2010/12/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id23">1.4.0 (2010/12/20)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">1.3.2 (2010/12/07)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">1.3.1 (2010/12/02)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">1.0.0 (2010/11/07)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>

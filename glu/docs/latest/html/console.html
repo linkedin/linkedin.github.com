@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Console &mdash; glu v3.2.0 documentation</title>
+    <title>Console &mdash; glu v3.3.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '3.2.0',
+        VERSION:     '3.3.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v3.2.0 documentation" href="index.html" />
+    <link rel="top" title="glu v3.3.0 documentation" href="index.html" />
     <link rel="next" title="Production Setup" href="production-setup.html" />
     <link rel="prev" title="Filtering" href="filtering.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v3.2.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.3.0 documentation</a></h1>
         <div class="rel">
           <a href="filtering.html" title="Filtering"
              accesskey="P">previous</a> |
@@ -151,9 +151,69 @@ dataSource.dbCreate = &quot;update&quot;
 dataSource.url = dataSourceUrl
 </pre></div>
 </div>
+<div class="section" id="example-for-a-different-database-mysql">
+<span id="console-configuration-database-mysql"></span><h4>Example for a different database: MySql<a class="headerlink" href="#example-for-a-different-database-mysql" title="Permalink to this headline">¶</a></h4>
+<p>Here are the steps to follow in order to use MySql instead of HSQLDB (the steps would be very similar for a different database!)</p>
+<ul>
+<li><p class="first">Download and install MySql on your system (don&#8217;t forget to start it!)</p>
+</li>
+<li><p class="first">Connect to MySql and create the <tt class="docutils literal"><span class="pre">glu</span></tt> user:</p>
+<div class="highlight-text"><div class="highlight"><pre>sudo /usr/local/mysql/bin/mysql
+mysql&gt; create database glu;
+mysql&gt; show databases;
+mysql&gt; create user &#39;glua&#39;@&#39;localhost&#39; identified by &#39;password&#39;;
+mysql&gt; grant all on glu.* to &#39;glua&#39;@&#39;localhost&#39;;
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This values are obviously just example values (they simply need to be plugged in the right place in the configuration file (see below)).</p>
+</div>
+</li>
+<li><p class="first">Download the MySql <a class="reference external" href="http://www.mysql.com/downloads/connector/j/">driver</a></p>
+</li>
+<li><p class="first">Copy the driver (in this example it is called <tt class="docutils literal"><span class="pre">mysql-connector-java-5.1.17-bin.jar</span></tt>) to <tt class="docutils literal"><span class="pre">console-server/jetty-distribution-7.2.2.v20101205/lib/ext</span></tt></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Coming Soon: ability to change the database provider entirely.</p>
+<p class="last">You may need to run <tt class="docutils literal"><span class="pre">./bin/tutorial.sh</span> <span class="pre">setup</span></tt> in order to create the proper folder structure first!</p>
+</div>
+</li>
+<li><p class="first">Edit the glu configuration file (<tt class="docutils literal"><span class="pre">console-server/conf/glu-console-webapp.groovy</span></tt>) to input the proper values:</p>
+<div class="highlight-text"><div class="highlight"><pre>// &#39;glu&#39; is the name of the database created previously
+def dataSourceUrl = &quot;jdbc:mysql://localhost/glu&quot;
+dataSource.dbCreate = &quot;update&quot;
+dataSource.url = dataSourceUrl
+dataSource.logSql=false // set to true for details (+ open trace logging level)
+dataSource.dialect = &quot;org.hibernate.dialect.MySQL5InnoDBDialect&quot;
+dataSource.driverClassName = &quot;com.mysql.jdbc.Driver&quot;
+dataSource.username= &quot;glua&quot; // user created previously
+dataSource.password = &quot;password&quot; // password assigned previously
+</pre></div>
+</div>
+</li>
+<li><p class="first">Start the console</p>
+</li>
+<li><p class="first">You can check that MySql is being used:</p>
+<div class="highlight-text"><div class="highlight"><pre>mysql&gt; use glu;
+mysql&gt; show tables;
++---------------------+
+| Tables_in_glu       |
++---------------------+
+| audit_log           |
+| db_current_system   |
+| db_deployment       |
+| db_system_model     |
+| db_user_credentials |
+| fabric              |
+| role                |
+| user                |
+| user_permissions    |
+| user_role           |
++---------------------+
+</pre></div>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="logging">
@@ -210,6 +270,17 @@ ldap.username.attribute=&quot;sAMAccountName&quot;
 </pre></div>
 </div>
 </div>
+<div class="section" id="tuning">
+<h3>Tuning<a class="headerlink" href="#tuning" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="deployments-auto-archive">
+<h4>Deployments auto-archive<a class="headerlink" href="#deployments-auto-archive" title="Permalink to this headline">¶</a></h4>
+<p>The plans page displays the list of deployments that have happened recently. Since 3.3.0, items in this list are automatically archived after 30 minutes. You can tune this property or simply disable automatic archiving by adding the following property:</p>
+<div class="highlight-text"><div class="highlight"><pre>// set it to &quot;0&quot; if you want to disable auto archiving entirely
+console.deploymentService.autoArchiveTimeout = &quot;30m&quot;
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="ui-configuration">
 <h3>UI configuration<a class="headerlink" href="#ui-configuration" title="Permalink to this headline">¶</a></h3>
 <p>The UI is configured in the <tt class="docutils literal"><span class="pre">console.defaults</span></tt> section of the configuration file. It is a simple map:</p>
@@ -218,6 +289,24 @@ ldap.username.attribute=&quot;sAMAccountName&quot;
   ... configuration goes here ...
 ]
 </pre></div>
+</div>
+<div class="section" id="custom-css">
+<span id="console-configuration-custom-css"></span><h4>Custom Css<a class="headerlink" href="#custom-css" title="Permalink to this headline">¶</a></h4>
+<p>If you want to customize the look and feel of the console and override or tweak any css value, you can provide your own custom css. Possible values are <tt class="docutils literal"><span class="pre">null</span></tt> (or simply non existent), <tt class="docutils literal"><span class="pre">String</span></tt> or <tt class="docutils literal"><span class="pre">URI</span></tt>:</p>
+<div class="highlight-text"><div class="highlight"><pre>// no custom css
+customCss: null
+
+// as a String (using groovy &quot;&quot;&quot; notation makes it convenient)
+customCss: &quot;&quot;&quot;
+  .OK {
+    background: green;
+  }
+&quot;&quot;&quot;
+
+// as a URI (for security reasons should be local!)
+customCss: new URI(&quot;/glu/repository/css/custom.css&quot;)
+</pre></div>
+</div>
 </div>
 <div class="section" id="dashboard">
 <h4>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this headline">¶</a></h4>
@@ -330,6 +419,22 @@ ldap.username.attribute=&quot;sAMAccountName&quot;
 <li>the key represent the <a class="reference internal" href="glossary.html#term-dotted-notation"><em class="xref std std-term">dotted notation</em></a> of an entry (see: <a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for more details and examples on the dotted notation)</li>
 <li>the value is a map with (currently) one entry only: <tt class="docutils literal"><span class="pre">name</span></tt> which represents the (display) name of the column</li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since 3.3.0, it takes effect only when showing a single system: for performance reasons the page which shows the list of systems no longer fetches the system and as such cannot display this information</p>
+</div>
+</div>
+<div class="section" id="non-editable-model">
+<span id="console-configuration-non-editable-model"></span><h4>Non Editable Model<a class="headerlink" href="#non-editable-model" title="Permalink to this headline">¶</a></h4>
+<p>You can enable or disable the fact that a system model is editable or not by changing the following property:</p>
+<div class="highlight-text"><div class="highlight"><pre>disableModelUpdate: false,
+</pre></div>
+</div>
+<p>By default, the model is editable which means that there is a <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Changes</span></tt> button and the text area containing the body is editable. Changing this value to <tt class="docutils literal"><span class="pre">true</span></tt> removes the button and makes the text area non editable anymore.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Even if the model is not editable, it is always possible to <em>load</em> a new one by going to the <tt class="docutils literal"><span class="pre">Model</span></tt> tab. The idea behind this feature is to enforce the fact that the model should be properly versioned outside of glu and changing it should go through a proper flow that is beyond the scope of glu.</p>
+</div>
 </div>
 <div class="section" id="model">
 <h4>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h4>
@@ -520,13 +625,22 @@ entries…)</td>
 <li class="toctree-l2"><a class="reference internal" href="#configuration-file">Configuration file</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#console-agent-connection">Console &lt;-&gt; Agent Connection</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#restricting-file-access-on-an-agent">Restricting file access on an agent</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#database">Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#database">Database</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-for-a-different-database-mysql">Example for a different database: MySql</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ldap">LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tuning">Tuning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#deployments-auto-archive">Deployments auto-archive</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#ui-configuration">UI configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#custom-css">Custom Css</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dashboard">Dashboard</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tags">Tags</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#system">System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#non-editable-model">Non Editable Model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#model">Model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#header">Header</a></li>
 </ul>

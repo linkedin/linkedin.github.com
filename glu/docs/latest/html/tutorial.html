@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>A taste of glu (tutorial) &mdash; glu v3.2.0 documentation</title>
+    <title>A taste of glu (tutorial) &mdash; glu v3.3.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '3.2.0',
+        VERSION:     '3.3.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v3.2.0 documentation" href="index.html" />
+    <link rel="top" title="glu v3.3.0 documentation" href="index.html" />
     <link rel="next" title="Agent" href="agent.html" />
     <link rel="prev" title="What is glu?" href="index.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v3.2.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.3.0 documentation</a></h1>
         <div class="rel">
           <a href="index.html" title="What is glu?"
              accesskey="P">previous</a> |
@@ -280,7 +280,7 @@ Zk Timeout       : 30s
 </li>
 <li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'System'</span></tt> tab.</p>
 </li>
-<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Current'</span></tt> subtab. You should see a drop down below <tt class="docutils literal"><span class="pre">&quot;Fabric</span> <span class="pre">[glu-dev-1]</span> <span class="pre">(delta)&quot;</span></tt> which says <tt class="docutils literal"><span class="pre">'Choose</span> <span class="pre">Plan'</span></tt>. Select the one called <tt class="docutils literal"><span class="pre">Deploy</span> <span class="pre">-</span> <span class="pre">Fabric[glu-dev-1]</span> <span class="pre">-</span> <span class="pre">PARALLEL</span> <span class="pre">[*]</span></tt>. It should immediately shows you the list of actions (and their ordering) that are going to be accomplished to &#8216;fix&#8217; the delta.</p>
+<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Current'</span></tt> subtab. You should see a table at the bottom of the page with <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">plan</span></tt> right next to it. Select the radio group control in the table that says <tt class="docutils literal"><span class="pre">Deploy</span> <span class="pre">PARALLEL</span></tt> (the row should be highlighted in red). It should immediately shows you the list of actions (and their ordering) that are going to be accomplished to &#8216;fix&#8217; the delta.</p>
 </li>
 <li><p class="first">Click <tt class="docutils literal"><span class="pre">'Select</span> <span class="pre">this</span> <span class="pre">plan'</span></tt>.</p>
 </li>
@@ -386,7 +386,7 @@ webapp3: /sample/i003 (port 9002)
 </li>
 <li><p class="first">Click on <tt class="docutils literal"><span class="pre">'/sample/i002'</span></tt> and you land on a filtered view containing only the mountPoint you clicked on.</p>
 </li>
-<li><p class="first">Choose the plan named <tt class="docutils literal"><span class="pre">'Deploy:</span> <span class="pre">mountPoint</span> <span class="pre">[/sample/i002]</span> <span class="pre">-</span> <span class="pre">SEQUENTIAL</span> <span class="pre">[*]'</span></tt>. Note that since there is only 1 entry, choosing <tt class="docutils literal"><span class="pre">SEQUENTIAL</span></tt> or <tt class="docutils literal"><span class="pre">PARALLEL</span></tt> will have the same effect.</p>
+<li><p class="first">Choose <tt class="docutils literal"><span class="pre">'Deploy</span> <span class="pre">/</span> <span class="pre">SEQUENTIAL'</span></tt>. Note that since there is only 1 entry, choosing <tt class="docutils literal"><span class="pre">SEQUENTIAL</span></tt> or <tt class="docutils literal"><span class="pre">PARALLEL</span></tt> will have the same effect.</p>
 <img alt="Dashboard shows the delta" class="align-center" src="_images/tutorial-select-plan-2.png" />
 </li>
 <li><p class="first">Select the plan and execute it: it first stops the jetty server uninstalls it entirely and reinstall and restart the new one.</p>
