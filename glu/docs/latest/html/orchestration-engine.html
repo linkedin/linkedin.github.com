@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Orchestration engine &mdash; glu v3.3.0 documentation</title>
+    <title>Orchestration engine &mdash; glu v3.4.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '3.3.0',
+        VERSION:     '3.4.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v3.3.0 documentation" href="index.html" />
+    <link rel="top" title="glu v3.4.0 documentation" href="index.html" />
     <link rel="next" title="Static Model" href="static-model.html" />
     <link rel="prev" title="glu script" href="glu-script.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v3.3.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.4.0 documentation</a></h1>
         <div class="rel">
           <a href="glu-script.html" title="glu script"
              accesskey="P">previous</a> |
@@ -443,6 +443,21 @@ GET /deployment/archived/&lt;executionId&gt;
 <td>View details about the agent</td>
 <td><a class="reference internal" href="#goe-rest-api-get-agent"><em>view</em></a></td>
 </tr>
+<tr><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">/agent/&lt;agentName&gt;</span></tt></td>
+<td>Remove all knowledge of an agent</td>
+<td><a class="reference internal" href="#goe-rest-api-delete-agent"><em>view</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">PUT</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">/agent/&lt;agentName&gt;/fabric</span></tt></td>
+<td>Sets the fabric for the agent</td>
+<td><a class="reference internal" href="#goe-rest-api-put-agent-fabric"><em>view</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">/agent/&lt;agentName&gt;/fabric</span></tt></td>
+<td>Clears the fabric for the agent</td>
+<td><a class="reference internal" href="#goe-rest-api-delete-agent-fabric"><em>view</em></a></td>
+</tr>
 <tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agents/versions</span></tt></td>
 <td>List all the agents versions</td>
@@ -573,6 +588,35 @@ model and live model</td>
 </tr>
 </tbody>
 </table>
+<p>Any fabric related URI: <tt class="docutils literal"><span class="pre">/console/rest/v1/-</span></tt> (all the URIs in the following table start with this URI)</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="33%" />
+<col width="26%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Method</th>
+<th class="head">URI</th>
+<th class="head">Description</th>
+<th class="head">Details</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">/</span></tt></td>
+<td>Returns the list of fabrics</td>
+<td><a class="reference internal" href="#goe-rest-api-get-fabrics"><em>view</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">/agents</span></tt></td>
+<td>Returns the map of associations
+agent -&gt; fabric</td>
+<td><a class="reference internal" href="#goe-rest-api-get-agents-fabrics"><em>view</em></a></td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="agents-count">
 <span id="goe-rest-api-head-agents"></span><h4>Agents count<a class="headerlink" href="#agents-count" title="Permalink to this headline">¶</a></h4>
 <ul>
@@ -700,6 +744,86 @@ model and live model</td>
    &quot;glu.agent.zkSessionTimeout&quot;: &quot;5s&quot;,
    &quot;glu.agent.zookeeper.root&quot;: &quot;/org/glu&quot;
 }}
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="remove-all-knowledge-of-an-agent">
+<span id="goe-rest-api-delete-agent"></span><h4>Remove all knowledge of an agent<a class="headerlink" href="#remove-all-knowledge-of-an-agent" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: This call should be used in the scenario when you want to <cite>decommission</cite> a node: all data stored in ZooKeeper in regards to this agent will be wiped out.</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">DELETE</span> <span class="pre">/agent/&lt;agentName&gt;</span></tt></p>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) if the agent was succesfully cleaned</li>
+<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT</span> <span class="pre">FOUND</span></tt>) if the agent did not exist in the first place</li>
+<li><tt class="docutils literal"><span class="pre">409</span></tt> (<tt class="docutils literal"><span class="pre">CONFLICT</span></tt>) if the agent is still up and running!</li>
+</ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; -X DELETE &quot;http://localhost:8080/console/rest/v1/glu-dev-1/agent/agent-1&quot;
+&gt; DELETE /console/rest/v1/glu-dev-1/agent/agent-1 HTTP/1.1
+&lt; HTTP/1.1 200 OK
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="assign-a-fabric-to-an-agent">
+<span id="goe-rest-api-put-agent-fabric"></span><h4>Assign a fabric to an agent<a class="headerlink" href="#assign-a-fabric-to-an-agent" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Assigns a fabric to an agent (and optionally configures it)</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">PUT</span> <span class="pre">/agent/&lt;agentName&gt;/fabric</span></tt></p>
+<p>optional request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">host=&lt;ip</span> <span class="pre">or</span> <span class="pre">hostname&gt;</span></tt> for configuring the agent using the ip or the hostname of the agent (this assumes that the configuration port is <tt class="docutils literal"><span class="pre">12907</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">uri=&lt;configuration</span> <span class="pre">uri&gt;</span></tt> for configuring the agent using the given uri (this form allows you to use a different port (ex: <tt class="docutils literal"><span class="pre">http://x.x.x.x:13906/config</span></tt>))</li>
+</ul>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">400</span></tt> (<tt class="docutils literal"><span class="pre">BAD</span> <span class="pre">REQUEST</span></tt>) if missing or unknown fabric</li>
+<li><tt class="docutils literal"><span class="pre">409</span></tt> (<tt class="docutils literal"><span class="pre">CONFLICT</span></tt>) when the configuration phase failed</li>
+</ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; -X PUT &quot;http://localhost:8080/console/rest/v1/glu-dev-1/agent/xeon/fabric?host=127.0.0.1&quot;
+&lt; HTTP/1.1 200 OK
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>&#8220;Configuring&#8221; the agent means that the orchestration engine will issue a REST call to the agent with its own ZooKeeper connect string as configuration. This allows the use case where the agent is started without a ZooKeeper at all, so the agent is simply waiting for somebody to tell it where is his ZooKeeper.
+This is what you see in the agent log:</p>
+<div class="last highlight-text"><div class="highlight"><pre>Waiting for glu.agent.zkConnectString (rest:put:http://xeon.local:12907)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="clears-the-fabric-for-an-agent">
+<span id="goe-rest-api-delete-agent-fabric"></span><h4>Clears the fabric for an agent<a class="headerlink" href="#clears-the-fabric-for-an-agent" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Simply clears the fabric previously associated to an agent</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">DELETE</span> <span class="pre">/agent/&lt;agentName&gt;/fabric</span></tt></p>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) if it worked</li>
+<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT</span> <span class="pre">FOUND</span></tt>) if there was already no fabric</li>
+<li><tt class="docutils literal"><span class="pre">400</span></tt> (<tt class="docutils literal"><span class="pre">BAD</span> <span class="pre">REQUEST</span></tt>) if missing or unknown fabric</li>
+</ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; -X DELETE &quot;http://localhost:8080/console/rest/v1/glu-dev-1/agent/xeon/fabric&quot;
+&lt; HTTP/1.1 200 OK
 </pre></div>
 </div>
 </li>
@@ -1399,6 +1523,78 @@ curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1
 </li>
 </ul>
 </div>
+<div class="section" id="list-all-the-fabrics">
+<span id="goe-rest-api-get-fabrics"></span><h4>List all the fabrics<a class="headerlink" href="#list-all-the-fabrics" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: List all the fabrics</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/</span></tt></p>
+<p>optional request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">prettyPrint=true</span></tt> for human readable output</li>
+</ul>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with:<ul>
+<li>headers: <tt class="docutils literal"><span class="pre">X-glu-count</span></tt> with the number of fabrics</li>
+<li>body: json array of fabric names</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1/-?prettyPrint=true&quot;
+&lt; HTTP/1.1 200 OK
+&lt; X-glu-count: 2
+&lt; Content-Type: text/json
+[
+  &quot;glu-dev-1&quot;,
+  &quot;glu-dev-2&quot;
+]
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="list-all-the-agents-fabrics">
+<span id="goe-rest-api-get-agents-fabrics"></span><h4>List all the agents fabrics<a class="headerlink" href="#list-all-the-agents-fabrics" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Returns the map of association agent -&gt; fabric</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/agents</span></tt></p>
+<p>optional request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">prettyPrint=true</span></tt> for human readable output</li>
+</ul>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with:<ul>
+<li>headers: <tt class="docutils literal"><span class="pre">X-glu-count</span></tt> with the number of entries in the map</li>
+<li>body: json map where the key is agent name and the value is the fabric</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1/-/agents?prettyPrint=true&quot;
+&lt; HTTP/1.1 200 OK
+&lt; X-glu-count: 2
+&lt; Content-Type: text/json
+{
+  &quot;agent-1&quot;: &quot;glu-dev-1&quot;,
+  &quot;xeon.local&quot;: &quot;glu-dev-1&quot;
+}
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This api (<tt class="docutils literal"><span class="pre">/rest/v1/-/agents</span></tt>) which returns a map of association agent -&gt; fabric should not be mistaken with the api <tt class="docutils literal"><span class="pre">/rest/v1/&lt;fabric&gt;/agents</span></tt> which specifies the fabric and list all agents in a given fabric!</p>
+</div>
+</div>
 </div>
 <div class="section" id="api-examples">
 <h3>API Examples<a class="headerlink" href="#api-examples" title="Permalink to this headline">¶</a></h3>
@@ -1675,6 +1871,9 @@ don&#8217;t filter at all.</td>
 <li class="toctree-l4"><a class="reference internal" href="#agents-count">Agents count</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#list-all-the-agents">List all the agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#view-agent-details">View agent details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remove-all-knowledge-of-an-agent">Remove all knowledge of an agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#assign-a-fabric-to-an-agent">Assign a fabric to an agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clears-the-fabric-for-an-agent">Clears the fabric for an agent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#list-all-the-agents-versions">List all the agents versions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#upgrade-the-agents">Upgrade the agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#list-all-the-plans">List all the plans</a></li>
@@ -1698,6 +1897,8 @@ don&#8217;t filter at all.</td>
 <li class="toctree-l4"><a class="reference internal" href="#view-static-model">View static model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#view-live-model">View live model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#view-delta">View delta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-all-the-fabrics">List all the fabrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-all-the-agents-fabrics">List all the agents fabrics</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#api-examples">API Examples</a></li>

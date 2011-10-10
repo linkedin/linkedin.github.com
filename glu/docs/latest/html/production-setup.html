@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Production Setup &mdash; glu v3.3.0 documentation</title>
+    <title>Production Setup &mdash; glu v3.4.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '3.3.0',
+        VERSION:     '3.4.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v3.3.0 documentation" href="index.html" />
+    <link rel="top" title="glu v3.4.0 documentation" href="index.html" />
     <link rel="next" title="Development Setup" href="dev-setup.html" />
     <link rel="prev" title="Console" href="console.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v3.3.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v3.4.0 documentation</a></h1>
         <div class="rel">
           <a href="console.html" title="Console"
              accesskey="P">previous</a> |
@@ -254,6 +254,26 @@ Re-enter new password: ZZZZZZZ
 </ol>
 </div>
 </div>
+<div class="section" id="secret-keystore-for-the-console-optional">
+<h3>Secret keystore for the console (optional)<a class="headerlink" href="#secret-keystore-for-the-console-optional" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Use of secret keystore</p>
+<p class="last">The secret keystore is a keystore that is used to store encrypted passwords that are automatically fed to the glu scripts. Typical usage is for configuration in order not to store plain text passwords.</p>
+</div>
+<p>The secret keystore is originally an empty keystore. The one that comes bundled with the console (called <tt class="docutils literal"><span class="pre">console.secretkeystore</span></tt>) is using the default/dev password.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you generate your own set of keys, you should make sure that the file pointing to by the configuration property <tt class="docutils literal"><span class="pre">console.secretkeystorePath</span></tt> does <strong>not</strong> exist. In other words if you use the console server that comes with glu, make sure to delete the file <tt class="docutils literal"><span class="pre">keys/console.secretkeystore</span></tt>. The console will automatically create the file when it boots with the proper password.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If you do not want to use this feature at all, you can simply change the configuration file
+this way:</p>
+<div class="last highlight-text"><div class="highlight"><pre>console.secretkeystorePath=&quot;/dev/null&quot;
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="id1">
 <h3>Export the RSA certificate<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>You use the <tt class="docutils literal"><span class="pre">keytool</span></tt> utility (bundled with java):</p>
@@ -325,10 +345,10 @@ zGt96nK2xNepHqx0OtefQf6m-3K
 <p>At the end of this step, it may be a little confusing so let&#8217;s recap what you should have:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="19%" />
+<col width="22%" />
 <col width="17%" />
 <col width="17%" />
-<col width="47%" />
+<col width="45%" />
 </colgroup>
 <thead valign="bottom">
 <tr><th class="head">File</th>
@@ -384,6 +404,21 @@ located)</li>
 <li><tt class="docutils literal"><span class="pre">glu.agent.truststoreChecksum</span></tt> (computed)</li>
 <li><tt class="docutils literal"><span class="pre">glu.agent.truststorePassword</span></tt> (<tt class="docutils literal"><span class="pre">BBBBBBB</span></tt>
 encrypted)</li>
+</ul>
+</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">console.secretkeystore</span></tt></td>
+<td>Console</td>
+<td>local to the console
+<strong>but</strong> this file
+should <strong>not</strong> exist
+if you generate your
+own keys (the
+console <strong>will</strong>
+create it)</td>
+<td><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">console.secretkeystorePath</span></tt> (where is the file
+located)</li>
 </ul>
 </td>
 </tr>
@@ -516,6 +551,7 @@ encrypted)</li>
 <li class="toctree-l3"><a class="reference internal" href="#export-the-rsa-certificate">Export the RSA certificate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#import-the-rsa-certificate-in-the-trustore">Import the RSA certificate in the trustore</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generate-keystore-for-the-console">Generate keystore for the console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#secret-keystore-for-the-console-optional">Secret keystore for the console (optional)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Export the RSA certificate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Import the RSA certificate in the trustore</a></li>
 </ul>
