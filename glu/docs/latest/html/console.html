@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Console &mdash; glu v4.0.0-RC1 documentation</title>
+    <title>Console &mdash; glu v4.0.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.0.0-RC1',
+        VERSION:     '4.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.0.0-RC1 documentation" href="index.html" />
+    <link rel="top" title="glu v4.0.0 documentation" href="index.html" />
     <link rel="next" title="Production Setup" href="production-setup.html" />
     <link rel="prev" title="Filtering" href="filtering.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.0.0-RC1 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.0.0 documentation</a></h1>
         <div class="rel">
           <a href="filtering.html" title="Filtering"
              accesskey="P">previous</a> |
@@ -64,16 +64,6 @@
 <div class="content-wrapper">
 <div class="content">
 <div class="document">
-  <div class="documentwrapper">
-    <div class="bodywrapper">
-      <div class="body">
-        <div class="admonition warning" style="margin-bottom: 1em">
-          <p class="first admonition-title">Warning</p>
-          <p class="last" style="font-size: 0.8em">The documentation you are currently looking at is in the process of being updated for all the UI changes that went into 4.0.0 (current RC1). As a result the tutorial and most of the screenshots are not entirely accurate. The documentation is currently referring to glu 3.4.0 which you can download on the <a class="reference external" href="https://github.com/linkedin/glu/downloads">download page</a>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
   
             
       <div class="documentwrapper">
@@ -318,74 +308,9 @@ customCss: new URI(&quot;/glu/repository/css/custom.css&quot;)
 </pre></div>
 </div>
 </div>
-<div class="section" id="dashboard">
-<h4>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this headline">¶</a></h4>
-<p>The dashboard can be configured with the following section:</p>
-<div class="highlight-text"><div class="highlight"><pre>dashboard:
-[
-    mountPoint: [checked: true, name: &#39;mountPoint&#39;, groupBy: true, linkFilter: true],
-    agent: [checked: true, name: &#39;agent&#39;, groupBy: true],
-    &#39;tag&#39;: [checked: false, name: &#39;tag&#39;, groupBy: true, linkFilter: true],
-    &#39;tags&#39;: [checked: true, name: &#39;tags&#39;, linkFilter: true],
-    &#39;metadata.container.name&#39;: [checked: true, name: &#39;container&#39;, groupBy: true, linkFilter: true],
-    &#39;metadata.version&#39;: [checked: true, name: &#39;version&#39;, groupBy: true],
-    &#39;metadata.product&#39;: [checked: true, name: &#39;product&#39;, groupBy: true, linkFilter: true],
-    &#39;metadata.cluster&#39;: [checked: true, name: &#39;cluster&#39;, groupBy: true, linkFilter: true],
-    &#39;initParameters.skeleton&#39;: [checked: false, name: &#39;skeleton&#39;, groupBy: true],
-    script: [checked: false, name: &#39;script&#39;, groupBy: true],
-    &#39;metadata.modifiedTime&#39;: [checked: false, name: &#39;Last Modified&#39;, groupBy: false],
-    status: [checked: true, name: &#39;status&#39;, groupBy: true]
-]
-</pre></div>
-</div>
-<p>This configuration results in the following output (the window has been made smaller to fit all the options on a readable screenshot):</p>
-<img alt="Dashboard configuration" class="align-center" src="_images/configuration-dashboard.png" />
-<p><tt class="docutils literal"><span class="pre">dashboard</span></tt> is a map with the following convention:</p>
-<ul>
-<li><p class="first">the key represent the <a class="reference internal" href="glossary.html#term-dotted-notation"><em class="xref std std-term">dotted notation</em></a> of an entry (see: <a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for more details and examples on the dotted notation)</p>
-</li>
-<li><p class="first">the value is another map with the following conventions:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="5%" />
-<col width="95%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head"><p class="first last">key</p>
-</th>
-<th class="head"><p class="first last">value</p>
-</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td><p class="first last"><tt class="docutils literal"><span class="pre">name</span></tt></p>
-</td>
-<td><p class="first last">the display name of the column as well as <em>Group By</em> or <em>Show/Hide</em> section</p>
-</td>
-</tr>
-<tr><td><p class="first last"><tt class="docutils literal"><span class="pre">checked</span></tt></p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">true</span></tt> or <tt class="docutils literal"><span class="pre">false</span></tt>: whether the checkbox next to the name should be checked by default or in other words if the column should be shown or hidden by default</p>
-</td>
-</tr>
-<tr><td><p class="first last"><tt class="docutils literal"><span class="pre">groupBy</span></tt></p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">true</span></tt> or <tt class="docutils literal"><span class="pre">false</span></tt>: in which section does this option appears (<em>Group By</em> section or <em>Show/Hide</em> section). Some values do not make too much sense to allow them to do a <em>group by</em> on them (like the <tt class="docutils literal"><span class="pre">Last</span> <span class="pre">Modified</span></tt> which is (under the cover) a timestamp</p>
-</td>
-</tr>
-<tr><td><p class="first last"><tt class="docutils literal"><span class="pre">linkFilter</span></tt></p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">true</span></tt> or <tt class="docutils literal"><span class="pre">false</span></tt>: if you want to allow the values in the table to be links to a filter (see <a class="reference internal" href="filtering.html"><em> Filtering</em></a>)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This section will be enhanced in the future to allow even more configuration as well as how to <em>group</em> values.</p>
-</div>
+<div class="section" id="default-dashboard">
+<h4>Default Dashboard<a class="headerlink" href="#default-dashboard" title="Permalink to this headline">¶</a></h4>
+<p>See the <a class="reference internal" href="#console-default-dashboard"><em>section</em></a> on how to configure the <tt class="docutils literal"><span class="pre">dashboard</span></tt> section of the configuration file.</p>
 </div>
 <div class="section" id="tags">
 <h4>Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h4>
@@ -408,10 +333,10 @@ customCss: new URI(&quot;/glu/repository/css/custom.css&quot;)
 <p class="last">the color value (ex: <tt class="docutils literal"><span class="pre">#005a87</span></tt>) ends up being used in css so you can use whatever is legal in css (ex: <tt class="docutils literal"><span class="pre">red</span></tt>)</p>
 </div>
 </div>
-<div class="section" id="system">
-<h4>System<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h4>
-<p>The system page displays a summary and the columns are configurable in the following section:</p>
-<div class="highlight-text"><div class="highlight"><pre>system:
+<div class="section" id="model">
+<h4>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h4>
+<p>The model page displays a summary and the columns are configurable in the following section:</p>
+<div class="highlight-text"><div class="highlight"><pre>model:
 [
    agent: [name: &#39;agent&#39;],
   &#39;tags.webapp&#39;: [name: &#39;webapp&#39;],
@@ -423,15 +348,15 @@ customCss: new URI(&quot;/glu/repository/css/custom.css&quot;)
 </pre></div>
 </div>
 <p>This configuration results in the following output:</p>
-<img alt="System configuration" class="align-center" src="_images/configuration-system-600.png" />
-<p><tt class="docutils literal"><span class="pre">system</span></tt> is a map with the following convention:</p>
+<img alt="Model display configuration" class="align-center" src="_images/configuration-system-600.png" />
+<p><tt class="docutils literal"><span class="pre">model</span></tt> is a map with the following convention:</p>
 <ul class="simple">
 <li>the key represent the <a class="reference internal" href="glossary.html#term-dotted-notation"><em class="xref std std-term">dotted notation</em></a> of an entry (see: <a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for more details and examples on the dotted notation)</li>
 <li>the value is a map with (currently) one entry only: <tt class="docutils literal"><span class="pre">name</span></tt> which represents the (display) name of the column</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Since 3.3.0, it takes effect only when showing a single system: for performance reasons the page which shows the list of systems no longer fetches the system and as such cannot display this information</p>
+<p class="last">Since 3.3.0, it takes effect only when showing a single model: for performance reasons the page which shows the list of models no longer fetches the model and as such cannot display this information</p>
 </div>
 </div>
 <div class="section" id="non-editable-model">
@@ -446,24 +371,25 @@ customCss: new URI(&quot;/glu/repository/css/custom.css&quot;)
 <p class="last">Even if the model is not editable, it is always possible to <em>load</em> a new one by going to the <tt class="docutils literal"><span class="pre">Model</span></tt> tab. The idea behind this feature is to enforce the fact that the model should be properly versioned outside of glu and changing it should go through a proper flow that is beyond the scope of glu.</p>
 </div>
 </div>
-<div class="section" id="model">
-<h4>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h4>
-<p>This entry allows you to configure what appears on the top right of the console (right after the fabric name) thus allowing you to tailor the display even further: it allows you to set a temporary <a class="reference internal" href="glossary.html#term-filter"><em class="xref std std-term">filter</em></a> on all views. In the following example we <em>model</em> the concept of products (also known as lines), this is why this entry is called <tt class="docutils literal"><span class="pre">model</span></tt>:</p>
-<div class="highlight-text"><div class="highlight"><pre>model:
+<div class="section" id="shortcut-filters">
+<h4>Shortcut Filters<a class="headerlink" href="#shortcut-filters" title="Permalink to this headline">¶</a></h4>
+<p>This entry allows you to define a dropdown that will be populated based on the model metadata in order to quickly set a filter. In the screenshot below, clicking on <tt class="docutils literal"><span class="pre">'product2:2.0.0'</span></tt> in the dropdown is equivalent to removing the current filter on <tt class="docutils literal"><span class="pre">product1</span></tt> and adding a new one for <tt class="docutils literal"><span class="pre">product2</span></tt> simplifying going back and forth between globally used concepts (like teams or product lines or zones, etc...):</p>
+<div class="highlight-text"><div class="highlight"><pre>shortcutFilters:
 [
     [
         name: &#39;product&#39;,
+        source: &#39;metadata.product&#39;,
         header: [&#39;version&#39;]
     ]
 ]
 </pre></div>
 </div>
 <p>This configuration results in the following output:</p>
-<img alt="Model configuration" class="align-center" src="_images/configuration-model.png" />
-<p>The format of this entry is an array of maps (so you can have more than one and they will be delimited by a <tt class="docutils literal"><span class="pre">|</span></tt>) where each map consists of:</p>
-<ul>
-<li><p class="first">a <tt class="docutils literal"><span class="pre">name</span></tt> entry referring to the metadata section of the model (<strong>not</strong> of an entry). This should be a map with the given name and the following convention:</p>
+<img alt="Shortcut filters" class="align-center" src="_images/shortcut-filters.png" />
+<p>The format of this entry is an array of maps (so you can have more than one!) where each map consists of:</p>
 <ul class="simple">
+<li>a <tt class="docutils literal"><span class="pre">name</span></tt> entry which will be displayed in the dropdown when no filter entry is selected <tt class="docutils literal"><span class="pre">All</span> <span class="pre">[&lt;name&gt;]</span></tt></li>
+<li>a <tt class="docutils literal"><span class="pre">source</span></tt> which represents a <a class="reference internal" href="glossary.html#term-dotted-notation"><em class="xref std std-term">dotted notation</em></a> of which data to use in the model. The data in the model should have the following structure:<ul>
 <li>the key is the value of the filter</li>
 <li>the value is another map with the following convention:<ul>
 <li><tt class="docutils literal"><span class="pre">name</span></tt> is the display name of the value (in this example they are the same!)</li>
@@ -471,15 +397,10 @@ customCss: new URI(&quot;/glu/repository/css/custom.css&quot;)
 </ul>
 </li>
 </ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">the <tt class="docutils literal"><span class="pre">name</span></tt> value also maps to the metadata dotted notation for the filter (in this example it will be <tt class="docutils literal"><span class="pre">metadata.product</span></tt>)</p>
-</div>
 </li>
-<li><p class="first">a <tt class="docutils literal"><span class="pre">header</span></tt> entry which is an array for extra information referring to entries in the metadata (see above)</p>
-</li>
+<li>a <tt class="docutils literal"><span class="pre">header</span></tt> entry which is an array for extra information referring to entries in the metadata (see above)</li>
 </ul>
-<p>Example of system which produces the previous screen:</p>
+<p>Example of model which produces the previous screen:</p>
 <div class="highlight-text"><div class="highlight"><pre>&quot;metadata&quot;: {
   &quot;product&quot;: { &lt;================ value as defined in the model section (name: &#39;product&#39;)
     &quot;product1&quot;: { &lt;============= first entry (value for the filter!)
@@ -497,27 +418,97 @@ customCss: new URI(&quot;/glu/repository/css/custom.css&quot;)
 </div>
 <div class="section" id="header">
 <h4>Header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h4>
-<p>This entry is very similar to the previous one (<tt class="docutils literal"><span class="pre">model</span></tt>) and allows you to add more information to the header in the console:</p>
+<p>This entry allows you to add more information to the header in the console:</p>
 <div class="highlight-text"><div class="highlight"><pre>header:
 [
     metadata: [&#39;drMode&#39;]
 ]
 </pre></div>
 </div>
-<p>This entry simply contains a <tt class="docutils literal"><span class="pre">metadata</span></tt> section which is an array of keys in the <a class="reference internal" href="glossary.html#term-metadata"><em class="xref std std-term">metadata</em></a> of the system (<strong>not</strong> of an entry).</p>
-<p>Example of system:</p>
+<p>This entry simply contains a <tt class="docutils literal"><span class="pre">metadata</span></tt> section which is an array of keys in the <a class="reference internal" href="glossary.html#term-metadata"><em class="xref std std-term">metadata</em></a> of the model (<strong>not</strong> of an entry).</p>
+<p>Example of model:</p>
 <div class="highlight-text"><div class="highlight"><pre> &quot;metadata&quot;: {
    &quot;product&quot;: {...},
    &quot;drMode&quot;: &quot;primary&quot;
 }
 </pre></div>
 </div>
-<p>The previous system and <tt class="docutils literal"><span class="pre">header</span></tt> configuration produce the following output:</p>
+<p>The previous model and <tt class="docutils literal"><span class="pre">header</span></tt> configuration produce the following output:</p>
 <img alt="Header configuration" class="align-center" src="_images/configuration-header.png" />
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">Since every fabric has its own model, hence its own <tt class="docutils literal"><span class="pre">metadata</span></tt> section, this feature is a convenient way to display fabric specific information. In this example we can display which fabric represents the primary data center versus which one represents the secondary data center.</p>
 </div>
+</div>
+<div class="section" id="dashboard-agent-links">
+<h4>Dashboard Agent Links<a class="headerlink" href="#dashboard-agent-links" title="Permalink to this headline">¶</a></h4>
+<p>By default (new since 4.0.0), a link to an agent name in the dashboard has the same effect as all other links on the dashboard: it adds a filter. In this case it filters the model to see only the entries on this specific agent. The top level <tt class="docutils literal"><span class="pre">'Agents'</span></tt> tab allows you to navigate to the agent view. If you want to turn this off (thus reverting to the behavior prior to 4.0.0) use this entry (<tt class="docutils literal"><span class="pre">dashboard</span></tt> section of the configuration file):</p>
+<div class="highlight-text"><div class="highlight"><pre>dashboardAgentLinksToAgent: true
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dashboard">
+<span id="console-dashboard"></span><h2>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this headline">¶</a></h2>
+<p>The dashboard is the main entry point of the console and is a visual representation of the <a class="reference internal" href="orchestration-engine.html#goe-delta"><em>delta</em></a>.</p>
+<img alt="Console dashboard" class="align-center" src="_images/console-dashboard-600.png" />
+<div class="section" id="customization">
+<span id="console-dashboard-customization"></span><h3>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h3>
+<p>Since 4.0.0, the dashboard can be customized by every user the way they see fit. Every user can also define as many <cite>dashboards</cite> as they want and the dropdown allows to switch between dashboard quickly.</p>
+<img alt="Console dashboard" class="align-center" src="_images/console-dashboard-switch.png" />
+<p>The easier way to create a new dashboard is to add filters and group by columns (by clicking on a column name) and then select <tt class="docutils literal"><span class="pre">'Save</span> <span class="pre">as</span> <span class="pre">new'</span></tt>. The new dashboard can then be further customized by clicking on the <tt class="docutils literal"><span class="pre">'Customize'</span></tt> subtab which shows the definition of the dashboard as a json document:</p>
+<div class="highlight-text"><div class="highlight"><pre>{
+  &quot;columnsDefinition&quot;: [
+    {
+      &quot;groupBy&quot;: &quot;uniqueCountOrUniqueVal&quot;,
+      &quot;linkable&quot;: true,
+      &quot;name&quot;: &quot;cluster&quot;,
+      &quot;orderBy&quot;: &quot;asc&quot;,
+      &quot;source&quot;: &quot;metadata.cluster&quot;,
+      &quot;visible&quot;: true
+    },
+   ... etc ...
+ ],
+  &quot;customFilter&quot;: &quot;metadata.cluster=&#39;c1&#39;&quot;,
+  &quot;errorsOnly&quot;: false,
+  &quot;name&quot;: &quot;c1 cluster&quot;,
+  &quot;summary&quot;: false
+}
+</pre></div>
+</div>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">name</span></tt>: the name of the dashboard (will be displayed in the dropdown)</li>
+<li><tt class="docutils literal"><span class="pre">errorsOnly</span></tt>: to display only rows that are in error</li>
+<li><tt class="docutils literal"><span class="pre">summary</span></tt>: to display a summary view when there are more than one row with the same value (based on the first column). When this value is set to <tt class="docutils literal"><span class="pre">true</span></tt> then the <tt class="docutils literal"><span class="pre">groupBy</span></tt> entry of a column definition kicks in</li>
+<li><tt class="docutils literal"><span class="pre">columnsDefinition</span></tt> is an array which defines each column. The order in the array defines in which order columns will be displayed so it is easy to move columns around by simply moving them in the array. Each column is defined this way:<ul>
+<li><tt class="docutils literal"><span class="pre">name</span></tt>: the name of the column as it appears in the dashboard</li>
+<li><tt class="docutils literal"><span class="pre">source</span></tt>: which data in the model needs to be displayed using the <a class="reference internal" href="glossary.html#term-dotted-notation"><em class="xref std std-term">dotted notation</em></a> (see: <a class="reference internal" href="filtering.html#goe-filter-syntax"><em>Filter syntax</em></a> for more details and examples on the dotted notation)</li>
+<li><tt class="docutils literal"><span class="pre">orderBy</span></tt>: how to sort the column. Possible values are: <tt class="docutils literal"><span class="pre">asc</span> <span class="pre">/</span> <span class="pre">desc</span> <span class="pre">/</span> <span class="pre">null</span></tt> (<tt class="docutils literal"><span class="pre">null</span></tt> means ignore for sorting purposes)</li>
+<li><tt class="docutils literal"><span class="pre">groupBy</span></tt>: how to group rows when using a <tt class="docutils literal"><span class="pre">summary</span></tt> view. Possible values are: <tt class="docutils literal"><span class="pre">uniqueVals</span> <span class="pre">/</span> <span class="pre">uniqueCount</span> <span class="pre">/</span> <span class="pre">uniqueCountOrUniqueVal</span> <span class="pre">/</span> <span class="pre">vals</span> <span class="pre">/</span> <span class="pre">count</span> <span class="pre">/</span> <span class="pre">min</span> <span class="pre">/</span> <span class="pre">max</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">linkable</span></tt>: whether a link to add a filter should be displayed</li>
+<li><tt class="docutils literal"><span class="pre">visible</span></tt>: whether the column should be visible at all (useful mostly internally for derived values)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="console-default-dashboard">
+<span id="id1"></span><h3>Default Dashboard<a class="headerlink" href="#console-default-dashboard" title="Permalink to this headline">¶</a></h3>
+<p>When a user logs in the first time it is assigned a <cite>default</cite> dashboard. This dashboard is defined in the configuration file under the <tt class="docutils literal"><span class="pre">defaults.dashboard</span></tt> section and can be a json string or a simple groovy array of <tt class="docutils literal"><span class="pre">columnsDefinition</span></tt> as defined previously. This is the one that comes by default:</p>
+<div class="highlight-text"><div class="highlight"><pre>dashboard:
+[
+  [ name: &quot;mountPoint&quot;, source: &quot;mountPoint&quot; ],
+  [ name: &quot;agent&quot;,      source: &quot;agent&quot;],
+  [ name: &quot;tags&quot;,       source: &quot;tags&quot;,       groupBy: &quot;uniqueVals&quot;],
+  [ name: &quot;container&quot;,  source: &quot;metadata.container.name&quot;],
+  [ name: &quot;version&quot;,    source: &quot;metadata.version&quot;],
+  [ name: &quot;product&quot;,    source: &quot;metadata.product&quot;],
+  [ name: &quot;cluster&quot;,    source: &quot;metadata.cluster&quot;],
+  [ name: &quot;status&quot;,     source: &quot;status&quot; ],
+  [ name: &quot;statusInfo&quot;, source: &quot;statusInfo&quot;, groupBy: &quot;vals&quot;, visible: false],
+  [ name: &quot;state&quot;,      source: &quot;state&quot;,                       visible: false]
+]
+</pre></div>
 </div>
 </div>
 </div>
@@ -563,8 +554,8 @@ password: admin
 <div class="section" id="user-management">
 <span id="console-user-management"></span><h2>User management<a class="headerlink" href="#user-management" title="Permalink to this headline">¶</a></h2>
 <p>There are 2 ways to manage users.</p>
-<div class="section" id="id1">
-<h3>LDAP<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>LDAP<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>If you define an ldap section in the configuration file (see <a class="reference internal" href="#console-configuration-ldap"><em>configuration section</em></a> for details), then the console will automatically allow any user who has the correct ldap credentials to login. If the user has never logged in before, a new account will be automatically created and the user will have the role <tt class="docutils literal"><span class="pre">USER</span></tt> which gives him read access mostly (and limited access to log files). This allows any user to login to the console without any administrator intervention.</p>
 </div>
 <div class="section" id="manual-user-management">
@@ -647,20 +638,26 @@ entries…)</td>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#ui-configuration">UI configuration</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#custom-css">Custom Css</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dashboard">Dashboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#default-dashboard">Default Dashboard</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tags">Tags</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#system">System</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#non-editable-model">Non Editable Model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#model">Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#non-editable-model">Non Editable Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shortcut-filters">Shortcut Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#header">Header</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dashboard-agent-links">Dashboard Agent Links</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dashboard">Dashboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#customization">Customization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#console-default-dashboard">Default Dashboard</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#log-files-display">Log Files Display</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#first-bootstrap">First bootstrap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-management">User management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">LDAP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#manual-user-management">Manual user management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#password-management">Password management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#console-tabs">Console tabs</a></li>

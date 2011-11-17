@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Development Setup &mdash; glu v4.0.0-RC1 documentation</title>
+    <title>Development Setup &mdash; glu v4.0.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.0.0-RC1',
+        VERSION:     '4.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.0.0-RC1 documentation" href="index.html" />
+    <link rel="top" title="glu v4.0.0 documentation" href="index.html" />
     <link rel="next" title="Latest changes" href="RELEASE.html" />
     <link rel="prev" title="Production Setup" href="production-setup.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.0.0-RC1 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.0.0 documentation</a></h1>
         <div class="rel">
           <a href="production-setup.html" title="Production Setup"
              accesskey="P">previous</a> |
@@ -64,16 +64,6 @@
 <div class="content-wrapper">
 <div class="content">
 <div class="document">
-  <div class="documentwrapper">
-    <div class="bodywrapper">
-      <div class="body">
-        <div class="admonition warning" style="margin-bottom: 1em">
-          <p class="first admonition-title">Warning</p>
-          <p class="last" style="font-size: 0.8em">The documentation you are currently looking at is in the process of being updated for all the UI changes that went into 4.0.0 (current RC1). As a result the tutorial and most of the screenshots are not entirely accurate. The documentation is currently referring to glu 3.4.0 which you can download on the <a class="reference external" href="https://github.com/linkedin/glu/downloads">download page</a>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
   
             
       <div class="documentwrapper">
@@ -96,7 +86,8 @@
 </pre></div>
 </div>
 <p>and issue:</p>
-<div class="highlight-text"><div class="highlight"><pre>grails upgrade
+<div class="highlight-text"><div class="highlight"><pre>grails install-plugin ../../local-maven-repo/com/pongasoft/grails-external-domain-classes/1.0.0/grails-external-domain-classes-1.0.0.zip
+grails upgrade
 </pre></div>
 </div>
 <p>At the top simply run:</p>
@@ -106,7 +97,6 @@
 <p>which should compile and run all the tests.</p>
 <p>Note: if you do not run the &#8216;grails upgrade&#8217; command, you may see this messages:</p>
 <div class="highlight-text"><div class="highlight"><pre>Plugin `shiro-1.1-SNAPSHOT &lt;not installed. ...
-Plugin [yui-2.7.0.1] not installed. ...
 Plugin [hibernate-1.3.5] not installed. ...
 Plugin [tomcat-1.3.5] not installed. ...
 </pre></div>
@@ -202,6 +192,14 @@ The manual/documentation. To build simply issue:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">You need to have sphinx installed in order to build the documentation.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The various screenshots have been taken from the live running webapp and using ImageMagick to
+rescale them:</p>
+<div class="last highlight-text"><div class="highlight"><pre>convert xxx.png -resize 600 xxx.png
+</pre></div>
+</div>
 </div>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">packaging/org.linkedin.glu.packaging-all</span></tt>:

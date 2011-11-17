@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>A taste of glu (tutorial) &mdash; glu v4.0.0-RC1 documentation</title>
+    <title>A taste of glu (tutorial) &mdash; glu v4.0.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.0.0-RC1',
+        VERSION:     '4.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.0.0-RC1 documentation" href="index.html" />
+    <link rel="top" title="glu v4.0.0 documentation" href="index.html" />
     <link rel="next" title="Agent" href="agent.html" />
     <link rel="prev" title="What is glu?" href="index.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.0.0-RC1 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.0.0 documentation</a></h1>
         <div class="rel">
           <a href="index.html" title="What is glu?"
              accesskey="P">previous</a> |
@@ -64,16 +64,6 @@
 <div class="content-wrapper">
 <div class="content">
 <div class="document">
-  <div class="documentwrapper">
-    <div class="bodywrapper">
-      <div class="body">
-        <div class="admonition warning" style="margin-bottom: 1em">
-          <p class="first admonition-title">Warning</p>
-          <p class="last" style="font-size: 0.8em">The documentation you are currently looking at is in the process of being updated for all the UI changes that went into 4.0.0 (current RC1). As a result the tutorial and most of the screenshots are not entirely accurate. The documentation is currently referring to glu 3.4.0 which you can download on the <a class="reference external" href="https://github.com/linkedin/glu/downloads">download page</a>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
   
             
       <div class="documentwrapper">
@@ -189,23 +179,14 @@ Zk Timeout       : 30s
 </div>
 <div class="section" id="view-the-agent">
 <h2>View the agent<a class="headerlink" href="#view-the-agent" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic">
-<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Dashboard'</span></tt> tab</p>
-</li>
-<li><p class="first">Click on <tt class="docutils literal"><span class="pre">agent:1</span></tt> (in the <tt class="docutils literal"><span class="pre">'Group</span> <span class="pre">By'</span></tt> section) (don&#8217;t click on the checkbox, but on <tt class="docutils literal"><span class="pre">'agent:1'</span></tt>)</p>
-</li>
-<li><p class="first">You should see a row in the table where the status says:</p>
-<div class="highlight-text"><div class="highlight"><pre>&#39;nothing deployed&#39;
-</pre></div>
-</div>
-</li>
-<li><p class="first">Click on <tt class="docutils literal"><span class="pre">'agent-1'</span></tt> (in the first column of the table) which brings you to the agent view.</p>
-</li>
+<ol class="arabic simple">
+<li>Click on the <tt class="docutils literal"><span class="pre">'Agents'</span></tt> tab where you will see a list of all agents (nodes). In this case there should be only 1 entry.</li>
 </ol>
 <blockquote>
-<div><img alt="From the dashboard, click on agent-1" class="align-center" src="_images/tutorial-dashboard-1-600.png" />
+<div><img alt="From the Agents list, click on agent-1" class="align-center" src="_images/tutorial-dashboard-1-600.png" />
 </div></blockquote>
-<ol class="arabic simple" start="5">
+<ol class="arabic simple" start="2">
+<li>Click on <tt class="docutils literal"><span class="pre">agent-1</span></tt> (which is the name of the agent that was previously set up)</li>
 <li>Click on <tt class="docutils literal"><span class="pre">'View</span> <span class="pre">Details'</span></tt> which show/hide the details about the agent: this information is coming straight from agent-1 which was registered in ZooKeeper when the agent started.</li>
 <li>You should see the properties <tt class="docutils literal"><span class="pre">glu.agent.port</span></tt> (<tt class="docutils literal"><span class="pre">12906</span></tt>) and <tt class="docutils literal"><span class="pre">glu.agent.pid</span></tt> representing the pid of the agent.</li>
 </ol>
@@ -239,7 +220,7 @@ Zk Timeout       : 30s
 <div class="section" id="view-processes-ps">
 <h2>View processes (<tt class="docutils literal"><span class="pre">ps</span></tt>)<a class="headerlink" href="#view-processes-ps" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Go back to the agent view page and click <tt class="docutils literal"><span class="pre">'All</span> <span class="pre">Processes'</span></tt>. This essentialy runs the <tt class="docutils literal"><span class="pre">'ps'</span></tt> command on the agent and returns the result.</li>
+<li>Click on the <tt class="docutils literal"><span class="pre">'All</span> <span class="pre">Processes'</span></tt> subtab. This essentialy runs the <tt class="docutils literal"><span class="pre">'ps'</span></tt> command on the agent and returns the result.</li>
 </ol>
 <blockquote>
 <div><img alt="View all processes running on an agent" class="align-center" src="_images/tutorial-ps-1-600.png" />
@@ -256,7 +237,7 @@ Zk Timeout       : 30s
 <div class="section" id="loading-the-model">
 <h2>Loading the model<a class="headerlink" href="#loading-the-model" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Model'</span></tt> tab and enter:</p>
+<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Model'</span></tt> tab and <tt class="docutils literal"><span class="pre">'Load'</span></tt> subtab and enter:</p>
 <div class="highlight-text"><div class="highlight"><pre>Json Uri: http://localhost:8080/glu/repository/systems/sample-webapp-system.json
 </pre></div>
 </div>
@@ -288,11 +269,10 @@ Zk Timeout       : 30s
 <p class="last">From there, there are several ways to go about it (partially or all at once). Let&#8217;s do it all for now.</p>
 </div>
 </li>
-<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'System'</span></tt> tab.</p>
-</li>
-<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Current'</span></tt> subtab. You should see a table at the bottom of the page with <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">plan</span></tt> right next to it. Select the radio group control in the table that says <tt class="docutils literal"><span class="pre">Deploy</span> <span class="pre">PARALLEL</span></tt> (the row should be highlighted in red). It should immediately shows you the list of actions (and their ordering) that are going to be accomplished to &#8216;fix&#8217; the delta.</p>
+<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Plans'</span></tt> subtab. You should see a table at the bottom of the page with <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">plan</span></tt> right next to it. Select the radio group control in the table that says <tt class="docutils literal"><span class="pre">Deploy</span> <span class="pre">PARALLEL</span></tt> (the row should be highlighted in red). It should immediately shows you the list of actions (and their ordering) that are going to be accomplished to &#8216;fix&#8217; the delta.</p>
 </li>
 <li><p class="first">Click <tt class="docutils literal"><span class="pre">'Select</span> <span class="pre">this</span> <span class="pre">plan'</span></tt>.</p>
+<img alt="Select a plan page" class="align-center" src="_images/tutorial-select-plan-3-600.png" />
 </li>
 <li><p class="first">The next page allows you to <em>customize</em> the plan. Simply click <tt class="docutils literal"><span class="pre">'Execute'</span></tt> and confirm the action.</p>
 </li>
@@ -329,7 +309,7 @@ webapp3: /sample/i003 (port 9002)
 <div class="section" id="viewing-entry-details">
 <h2>Viewing entry details<a class="headerlink" href="#viewing-entry-details" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">Click on <tt class="docutils literal"><span class="pre">'agent-1'</span></tt> on any of the 3 rows to go back to the agent page (same step as before).</p>
+<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Agents'</span></tt> tab and select <tt class="docutils literal"><span class="pre">'agent-1'</span></tt> from the list</p>
 <p>The page shows you now the 3 entries that were installed.</p>
 </li>
 <li><p class="first">Under <tt class="docutils literal"><span class="pre">/sample/i001</span></tt> click the <tt class="docutils literal"><span class="pre">'View</span> <span class="pre">Details'</span></tt> link to show/hide details about the entry.</p>
@@ -380,21 +360,21 @@ webapp3: /sample/i003 (port 9002)
 <div class="section" id="changing-the-model">
 <h2>Changing the model<a class="headerlink" href="#changing-the-model" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">Now click the <tt class="docutils literal"><span class="pre">'System'</span></tt> tab again.</p>
+<li><p class="first">Now click the <tt class="docutils literal"><span class="pre">'Model'</span></tt> tab again.</p>
 </li>
-<li><p class="first">You should see a table with 1 entry which shows you the systems that you loaded.</p>
+<li><p class="first">You should see a table with 2 entries which shows you the model that you loaded previously (the one highlighted) as well as the empty model (default one when creating a fabric)</p>
 <p>Click on the first id. You should now see the json document that you loaded previously. We are going to edit it in place.</p>
-<p>The format is an array of entries representing each entry in the system (as explained previously).</p>
+<p>The format is an array of entries representing each entry in the model (as explained previously).</p>
 </li>
 <li><p class="first">In the second entry (look for <tt class="docutils literal"><span class="pre">&quot;port&quot;:</span> <span class="pre">9001</span></tt>, around the bottom of the text area), change the <tt class="docutils literal"><span class="pre">contextPath</span></tt> value to <tt class="docutils literal"><span class="pre">/cp3</span></tt>. and click <tt class="docutils literal"><span class="pre">&quot;Save</span> <span class="pre">Changes&quot;</span></tt>.</p>
 <img alt="Changing the model" class="align-center" src="_images/tutorial-model-change-1.png" />
 </li>
 <li><p class="first">Go back to the <tt class="docutils literal"><span class="pre">Dashboard</span></tt>.</p>
-<p>Note that the second row is now red and the status says <tt class="docutils literal"><span class="pre">'DELTA'</span></tt>. If you click on the status you can view an explanation of the delta (in this case the context path is different).</p>
+<p>Note that the second row is now yellow and the status says <tt class="docutils literal"><span class="pre">'DELTA'</span></tt>. If you click on the status you can view an explanation of the delta (in this case the context path is different).</p>
 <img alt="Dashboard shows the delta" class="align-center" src="_images/tutorial-dashboard-5.png" />
-<p>There is a delta: the system in the console is not matching with what is currently deployed. Hence it is red.</p>
+<p>There is a delta: the system in the console is not matching with what is currently deployed. It is graphically represented as a different color.</p>
 </li>
-<li><p class="first">Click on <tt class="docutils literal"><span class="pre">'/sample/i002'</span></tt> and you land on a filtered view containing only the mountPoint you clicked on.</p>
+<li><p class="first">Click on <tt class="docutils literal"><span class="pre">'/sample/i002'</span></tt> which sets a filter on the model: it excludes all the entries except the one where <tt class="docutils literal"><span class="pre">'mountPoint'</span></tt> is equal to <tt class="docutils literal"><span class="pre">'/sample/i002'</span></tt>. Click on the <tt class="docutils literal"><span class="pre">'Plans'</span></tt> subtab.</p>
 </li>
 <li><p class="first">Choose <tt class="docutils literal"><span class="pre">'Deploy</span> <span class="pre">/</span> <span class="pre">SEQUENTIAL'</span></tt>. Note that since there is only 1 entry, choosing <tt class="docutils literal"><span class="pre">SEQUENTIAL</span></tt> or <tt class="docutils literal"><span class="pre">PARALLEL</span></tt> will have the same effect.</p>
 <img alt="Dashboard shows the delta" class="align-center" src="_images/tutorial-select-plan-2.png" />
@@ -413,21 +393,21 @@ webapp3: /sample/i003 (port 9002)
 <ol class="arabic">
 <li><p class="first">Manually edit the file: <tt class="docutils literal"><span class="pre">$GLU_TUTORIAL_ROOT/console-server/glu/repository/systems/sample-webapp-system.json</span></tt></p>
 </li>
-<li><p class="first">Change the contextPath in the very last entry from <tt class="docutils literal"><span class="pre">/cp4</span></tt> to <tt class="docutils literal"><span class="pre">/fail</span></tt> and save your changes</p>
+<li><p class="first">Change the contextPath in the very last entry from <tt class="docutils literal"><span class="pre">/cp4</span></tt> to <tt class="docutils literal"><span class="pre">/fail</span></tt> and change the name of the model to <tt class="docutils literal"><span class="pre">Tutorial</span> <span class="pre">System</span> <span class="pre">Model</span> <span class="pre">(with</span> <span class="pre">failure)</span></tt> and save your changes (it will make it easier to differentiate the model in the UI by giving it a different name).</p>
 </li>
 <li><p class="first">Go back to the console and reload the model:</p>
-<p>Click on the <tt class="docutils literal"><span class="pre">'Model'</span></tt> tab and enter:</p>
+<p>Click on the <tt class="docutils literal"><span class="pre">'Model'</span></tt> tab, <tt class="docutils literal"><span class="pre">'Load'</span></tt> subtab and enter:</p>
 <div class="highlight-text"><div class="highlight"><pre>Json Uri: http://localhost:8080/glu/repository/systems/sample-webapp-system.json
 </pre></div>
 </div>
 <p>and click <tt class="docutils literal"><span class="pre">Load</span></tt>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>You should now have 2 rows that are red: you reloaded the model thus discarding the changes you had made to entry 2 and you changed entry 3.</p>
+<p>When you go back to the model, the filter you set previously will still be active. Make sure you click the <tt class="docutils literal"><span class="pre">'X'</span></tt> right next to it to remove it and see the whole, unfiltered model! You should now have 2 rows that are yello: you reloaded the model thus discarding the changes you had made to entry 2 and you changed entry 3.</p>
 <img alt="2 rows are in error" class="last align-center" src="_images/tutorial-dashboard-6-600.png" />
 </div>
 </li>
-<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">System</span></tt> tab and then on <tt class="docutils literal"><span class="pre">Current</span></tt> subtab and follow the same steps we did before to &#8216;fix&#8217; the delta (select deploy in parallel and then execute the plan).</p>
+<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Plans'</span></tt> subtab and follow the same steps we executed before to &#8216;fix&#8217; the delta (select deploy in parallel and then execute the plan).</p>
 <p>This time around you should see a failure: the last entry failed during boot time (this is artificially triggered by deploying it under <tt class="docutils literal"><span class="pre">/fail</span></tt>).</p>
 <img alt="one entry in the plan fails" class="align-center" src="_images/tutorial-plan-failure.png" />
 <div class="admonition note">
@@ -447,9 +427,9 @@ webapp3: /sample/i003 (port 9002)
 <div class="section" id="using-the-console-cli">
 <span id="tutorial-using-console-cli"></span><h2>Using the console cli<a class="headerlink" href="#using-the-console-cli" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">System</span></tt> tab and on the currently selected system and make sure you change the <tt class="docutils literal"><span class="pre">/fail</span></tt> back to <tt class="docutils literal"><span class="pre">/cp4</span></tt>.</p>
+<li><p class="first">Click on the <tt class="docutils literal"><span class="pre">'Model'</span></tt> tab and set as current the very first model you loaded (it should be right above the <tt class="docutils literal"><span class="pre">Empty</span> <span class="pre">System</span> <span class="pre">Model</span></tt> one).</p>
 </li>
-<li><p class="first">In the console, click on the <tt class="docutils literal"><span class="pre">'Plans'</span></tt> tab and make sure you leave this window visible. Note that at this point you should see the list of all the plans you have already executed including the last one which failed.</p>
+<li><p class="first">In the console, click on the <tt class="docutils literal"><span class="pre">'Deployments'</span></tt> tab and make sure you leave this window visible. Note that at this point you should see the list of all the plans you have already executed including the last one which failed.</p>
 <img alt="Execution plans" class="align-center" src="_images/tutorial-plans-600.png" />
 </li>
 <li><p class="first">Now open a new shell terminal</p>
@@ -492,7 +472,7 @@ webapp3: /sample/i003 (port 9002)
 <div class="highlight-text"><div class="highlight"><pre>100:COMPLETED
 </pre></div>
 </div>
-<p>unless you did not change the context path to <tt class="docutils literal"><span class="pre">/cp4</span></tt> (you may want to try reverting the system to <tt class="docutils literal"><span class="pre">/fail</span></tt> as an exercise...).</p>
+<p>unless you did not change the context path to <tt class="docutils literal"><span class="pre">/cp4</span></tt> (you may want to try reverting the model to <tt class="docutils literal"><span class="pre">/fail</span></tt> as an exercise...).</p>
 </li>
 <li><p class="first">Try a dry-run mode (<tt class="docutils literal"><span class="pre">-n</span></tt>):</p>
 <div class="highlight-text"><div class="highlight"><pre>./bin/console-cli.sh -f glu-dev-1 -u admin -x admin -a -n -p redeploy
