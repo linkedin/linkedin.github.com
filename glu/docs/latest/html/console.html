@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Console &mdash; glu v4.0.0 documentation</title>
+    <title>Console &mdash; glu v4.1.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.0.0',
+        VERSION:     '4.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.0.0 documentation" href="index.html" />
+    <link rel="top" title="glu v4.1.0 documentation" href="index.html" />
     <link rel="next" title="Production Setup" href="production-setup.html" />
     <link rel="prev" title="Filtering" href="filtering.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.0.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.1.0 documentation</a></h1>
         <div class="rel">
           <a href="filtering.html" title="Filtering"
              accesskey="P">previous</a> |
@@ -131,12 +131,28 @@ console.truststorePassword = &quot;&quot;
 <p class="last">Disabling the secure connection means that the agents will happily serve any request irrelevant of where it is coming from, which could be a serious security hole.</p>
 </div>
 </div>
-<div class="section" id="restricting-file-access-on-an-agent">
-<h3>Restricting file access on an agent<a class="headerlink" href="#restricting-file-access-on-an-agent" title="Permalink to this headline">¶</a></h3>
-<p>The console offers the ability to show any file on a remote agent which may not always be desirable. There is a way to limit what can be viewed for users which are not <tt class="docutils literal"><span class="pre">ADMIN</span></tt> (see <a class="reference internal" href="#console-user-management"><em>User management</em></a> for an explanation of roles):</p>
-<div class="highlight-text"><div class="highlight"><pre>// path to the root of the unrestricted location (empty means no restriction)
-console.authorizationService.unrestrictedLocation = &quot;/export/content/glu&quot;
+<div class="section" id="plugins">
+<h3>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h3>
+<p>The console (orchestration engine) behavior can be tweaked and or enhanced with the use of plugins. Check the <a class="reference internal" href="orchestration-engine.html#goe-plugins"><em>Plugins</em></a> section for details on how to create and install a plugin. You add your plugin(s) to the console by modifying the following property:</p>
+<div class="highlight-text"><div class="highlight"><pre>orchestration.engine.plugins = [
+  &#39;org.linkedin.glu.orchestration.engine.plugins.builtin.StreamFileContentPlugin&#39;,
+  &#39;org.acme.MyPlugin&#39;,
+  // etc...
+]
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Since 4.1.0, <em>restricting file access on an agent</em> has been migrated to the <tt class="docutils literal"><span class="pre">StreamFileContentPlugin</span></tt> plugin and is now being configured by defining the
+properties:</p>
+<div class="last highlight-text"><div class="highlight"><pre>// path to the root of the unrestricted location (empty means no restriction)
+// this property is used by StreamFileContentPlugin
+plugins.StreamFileContentPlugin.unrestrictedLocation = &quot;/export/content/glu&quot;
+
+// role for unrestricted
+plugins.StreamFileContentPlugin.unrestrictedRole = &#39;ADMIN&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="database">
@@ -625,7 +641,7 @@ entries…)</td>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration-file">Configuration file</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#console-agent-connection">Console &lt;-&gt; Agent Connection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#restricting-file-access-on-an-agent">Restricting file access on an agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plugins">Plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#database">Database</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#example-for-a-different-database-mysql">Example for a different database: MySql</a></li>
 </ul>

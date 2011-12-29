@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Orchestration engine &mdash; glu v4.0.0 documentation</title>
+    <title>Orchestration engine &mdash; glu v4.1.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.0.0',
+        VERSION:     '4.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.0.0 documentation" href="index.html" />
+    <link rel="top" title="glu v4.1.0 documentation" href="index.html" />
     <link rel="next" title="Static Model" href="static-model.html" />
     <link rel="prev" title="glu script" href="glu-script.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.0.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.1.0 documentation</a></h1>
         <div class="rel">
           <a href="glu-script.html" title="glu script"
              accesskey="P">previous</a> |
@@ -1658,6 +1658,71 @@ don&#8217;t filter at all.</td>
 <h2>Json/DSL Based<a class="headerlink" href="#json-dsl-based" title="Permalink to this headline">¶</a></h2>
 <p>Coming soon</p>
 </div>
+<div class="section" id="plugins">
+<span id="goe-plugins"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
+<p>The orchestration engine offers a plugin mechanism which allows you to hook into some specific phases to tweak and/or change the behavior. For example, the <tt class="docutils literal"><span class="pre">UserService_pre_authenticate</span></tt> hook allows you to bypass entirely the login/authentication mechanism that comes built-in and instead provide your own.</p>
+<div class="section" id="what-is-a-plugin">
+<h3>What is a plugin?<a class="headerlink" href="#what-is-a-plugin" title="Permalink to this headline">¶</a></h3>
+<p>A plugin is simply a class with (groovy) closures, each of them defining a specific hook. You can define as many or as little of those closures as you want and you can <em>spread</em> them accross different classes (for example, you can have a plugin class handling only the <em>deployment</em> related plugin hooks, and another handling the hooks for a different part of the system). If a closure is missing, then it will simply not be called.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The class <a class="reference external" href="https://github.com/linkedin/glu/tree/master/orchestration/org.linkedin.glu.orchestration-engine/src/main/groovy/org/linkedin/glu/orchestration/engine/plugins/builtin/DocumentationPlugin.groovy">DocumentationPlugin</a> is meant to be an hexaustive list of all the hooks available as well as a documentation on how to use them. It also serves as an example of how to write a plugin!</p>
+</div>
+</div>
+<div class="section" id="how-do-you-install-a-plugin">
+<h3>How do you install a plugin?<a class="headerlink" href="#how-do-you-install-a-plugin" title="Permalink to this headline">¶</a></h3>
+<p>The orchestration engine is currently bundled in the console web application. In order to install your plugins(s), you need to package them as jar file(s) and make sure they are available in the classpath of your web server. If you deploy the console as the provided console server, then simply drop your plugins (jar files) in the <tt class="docutils literal"><span class="pre">glu/repository/plugins</span></tt> folder.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If your plugin has external dependencies, they also need to be made available in the classpath of your web server! For the console server, simply drop them in <tt class="docutils literal"><span class="pre">jetty-distribution-&lt;version&gt;/lib/ext</span></tt>.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you use the provided console server wrapper (which underneath uses jetty), then you can simply drop your plugins jar files under <tt class="docutils literal"><span class="pre">glu/repository/plugins</span></tt> (and your dependencies under <tt class="docutils literal"><span class="pre">jetty-distribution-&lt;version&gt;/lib/ext</span></tt>)  and you are done. On the other hand, if you use your own web server (tomcat, etc...) or your own version of jetty, make sure to configure it properly: the plugins need to be available from the same class space as the webapp. For example, with jetty, dropping your plugins jar files under the <tt class="docutils literal"><span class="pre">jetty-distribution-&lt;version&gt;/lib/ext</span></tt> does not work! Check the files <tt class="docutils literal"><span class="pre">bin/consolectl.sh</span></tt> and <tt class="docutils literal"><span class="pre">conf/console-jetty-context.xml</span></tt> to see how this is accomplished with jetty.</p>
+</div>
+<p>You then need to tell the console about it. For this you change the configuration file (<tt class="docutils literal"><span class="pre">conf/glu-console-webapp.groovy</span></tt>), by adding the class name(s) of your plugin(s):</p>
+<div class="highlight-text"><div class="highlight"><pre>orchestration.engine.plugins = [
+  &#39;org.linkedin.glu.orchestration.engine.plugins.builtin.StreamFileContentPlugin&#39;,
+  &#39;org.acme.MyPlugin&#39;,
+  // etc...
+]
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-of-hooks-available">
+<h3>List of hooks available<a class="headerlink" href="#list-of-hooks-available" title="Permalink to this headline">¶</a></h3>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">For full documentation and typical use cases, refer to the class <a class="reference external" href="https://github.com/linkedin/glu/tree/master/orchestration/org.linkedin.glu.orchestration-engine/src/main/groovy/org/linkedin/glu/orchestration/engine/plugins/builtin/DocumentationPlugin.groovy">DocumentationPlugin</a>.</p>
+</div>
+<ul class="simple">
+<li>Initialization<ul>
+<li><tt class="docutils literal"><span class="pre">PluginService_initialize</span></tt>: called for initializing your plugin</li>
+</ul>
+</li>
+<li>User management<ul>
+<li><tt class="docutils literal"><span class="pre">UserService_pre_authenticate</span></tt>: called before authentication</li>
+<li><tt class="docutils literal"><span class="pre">UserService_post_authenticate</span></tt>: called after authentication</li>
+</ul>
+</li>
+<li>Model<ul>
+<li><tt class="docutils literal"><span class="pre">SystemService_pre_parseSystemModel</span></tt>: called before parsing the system model</li>
+<li><tt class="docutils literal"><span class="pre">SystemService_post_parseSystemModel</span></tt>: called after parsing the system model</li>
+</ul>
+</li>
+<li>Deployment<ul>
+<li><tt class="docutils literal"><span class="pre">DeploymentService_pre_executeDeploymentPlan</span></tt>: called before executing a deployment plan</li>
+<li><tt class="docutils literal"><span class="pre">DeploymentService_onStart_executeDeploymentPlan</span></tt>: called when the deployment plan starts executing</li>
+<li><tt class="docutils literal"><span class="pre">DeploymentService_post_executeDeploymentPlan</span></tt>: called after executing a deployment plan</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="future-hooks">
+<h3>Future hooks<a class="headerlink" href="#future-hooks" title="Permalink to this headline">¶</a></h3>
+<p>Now that the plugin mechanism is in place, adding new hooks is not very complicated. If you have specific requirements for a new hook, please open a ticket on the <a class="reference external" href="https://github.com/linkedin/glu/issues">glu ticketing system</a>.</p>
+</div>
+</div>
 <div class="section" id="command-line">
 <span id="goe-cli"></span><h2>Command Line<a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h2>
 <p>The orchestration engine also comes with a cli which is essentially a wrapper around the REST api which can be used in several ways:</p>
@@ -1909,6 +1974,13 @@ don&#8217;t filter at all.</td>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#json-dsl-based">Json/DSL Based</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plugins">Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-a-plugin">What is a plugin?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-you-install-a-plugin">How do you install a plugin?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-of-hooks-available">List of hooks available</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#future-hooks">Future hooks</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#command-line">Command Line</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#help">Help</a></li>
 </ul>
