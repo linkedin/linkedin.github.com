@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>glu script &mdash; glu v4.1.1 documentation</title>
+    <title>glu script &mdash; glu v4.2.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.1.1',
+        VERSION:     '4.2.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.1.1 documentation" href="index.html" />
+    <link rel="top" title="glu v4.2.0 documentation" href="index.html" />
     <link rel="next" title="Orchestration engine" href="orchestration-engine.html" />
     <link rel="prev" title="Agent" href="agent.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.1.1 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.2.0 documentation</a></h1>
         <div class="rel">
           <a href="agent.html" title="Agent"
              accesskey="P">previous</a> |
@@ -287,6 +287,93 @@ dependencies {
 </ul>
 </div>
 </div>
+<div class="section" id="packaging-a-glu-script">
+<span id="glu-script-packaging"></span><h2>Packaging a glu script<a class="headerlink" href="#packaging-a-glu-script" title="Permalink to this headline">¶</a></h2>
+<p>A glu script can be packaged in 2 different ways:</p>
+<ul>
+<li><p class="first">as a simple groovy file, in which case the <tt class="docutils literal"><span class="pre">script</span></tt> entry in the model is a URI pointing directly to the groovy file.
+Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>&quot;script&quot;: &quot;http://host:port/x/c/v/MyGluScript.groovy&quot;
+</pre></div>
+</div>
+</li>
+<li><p class="first">already compiled and packaged in a jar file (new since 4.2.0), in which case the <tt class="docutils literal"><span class="pre">script</span></tt> entry in the model is a special
+URI of the form:</p>
+<div class="highlight-text"><div class="highlight"><pre>class:/&lt;FQCN&gt;?cp=&lt;URI to jar&gt;&amp;cp=&lt;URI to jar&gt;...
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>&quot;script&quot;: &quot;class:/com.acme.MyGluScript?cp=http%3A%2F%2Facme.com%2Fjars%2Fscript.jar&amp;cp=http%3A%2F%2Facme.com%2Fjars%2Fdependency.jar&quot;
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In this second form, the script can be split into multiple files and have external dependencies (as long as they are provided as classpath elements)</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Every classpath element (<tt class="docutils literal"><span class="pre">cp</span></tt>) being a query string paramater must be properly URL encoded!</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="inheritance">
+<h2>Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
+<p>New since 4.2.0, a glu script can now inherit from another one (in which case you should use the second packaging technique so that you can distribute the base script as a dependency). Here is an example:</p>
+<p>The base script:</p>
+<div class="highlight-text"><div class="highlight"><pre>package test.agent.base
+
+class BaseScript
+{
+  def base1
+  def base2
+  def base3
+
+  def install = { args -&gt;
+    log.info &quot;base.install&quot;
+    base1 = params.base1Value
+    log.info &quot;base.install.\${args.sub}.\${subValue}&quot;
+  }
+
+  def baseConfigure = { args -&gt;
+    base2 = args.base2Value
+    return &quot;base.baseConfigure.\${args.sub}.\${subValue}&quot;
+  }
+
+  protected def getSubValue()
+  {
+    return &quot;fromBaseScript&quot;
+  }
+}
+</pre></div>
+</div>
+<p>The subclass script:</p>
+<div class="highlight-text"><div class="highlight"><pre>package test.agent.sub
+
+import test.agent.base.BaseScript
+
+class SubScript extends BaseScript
+{
+  String sub1
+
+  def configure = { args -&gt;
+    sub1 = baseConfigure(args)
+    base3 = params.base3Value
+  }
+
+  protected def getSubValue()
+  {
+    return &quot;fromSubScript&quot;
+  }
+}
+</pre></div>
+</div>
+<p>A few words about the example:</p>
+<ul class="simple">
+<li>all attributes defined in the base script will automatically be exported to ZooKeeper as if they were defined in the subclass!</li>
+<li>since glu uses closures (and not methods), you cannot <cite>override</cite> a lifecycle method. Instead you should use a technique similar to the example in which the base class defines a closure (<tt class="docutils literal"><span class="pre">baseConfigure</span></tt>) that gets called directly by the subclass.</li>
+</ul>
+</div>
 </div>
 
 
@@ -314,6 +401,8 @@ dependencies {
 <li class="toctree-l2"><a class="reference internal" href="#an-example-of-glu-script">An example of glu script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#real-life-example">Real life example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#developing-and-unit-testing-a-glu-script">Developing and unit testing a glu script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#packaging-a-glu-script">Packaging a glu script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inheritance">Inheritance</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="orchestration-engine.html"> Orchestration engine</a></li>

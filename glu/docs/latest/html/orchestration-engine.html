@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Orchestration engine &mdash; glu v4.1.1 documentation</title>
+    <title>Orchestration engine &mdash; glu v4.2.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.1.1',
+        VERSION:     '4.2.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.1.1 documentation" href="index.html" />
+    <link rel="top" title="glu v4.2.0 documentation" href="index.html" />
     <link rel="next" title="Static Model" href="static-model.html" />
     <link rel="prev" title="glu script" href="glu-script.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.1.1 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.2.0 documentation</a></h1>
         <div class="rel">
           <a href="glu-script.html" title="glu script"
              accesskey="P">previous</a> |
@@ -428,6 +428,21 @@ GET /deployment/archived/&lt;executionId&gt;
 </tr>
 </thead>
 <tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<td>None</td>
+<td>Returns details for fabric</td>
+<td><a class="reference internal" href="#goe-rest-api-get-fabric"><em>view</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">PUT</span></tt></td>
+<td>None</td>
+<td>Add/Update a fabric</td>
+<td><a class="reference internal" href="#goe-rest-api-put-fabric"><em>view</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
+<td>None</td>
+<td>Delete a fabric</td>
+<td><a class="reference internal" href="#goe-rest-api-delete-fabric"><em>view</em></a></td>
+</tr>
 <tr><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agents</span></tt></td>
 <td>Returns the number of agents</td>
@@ -617,6 +632,94 @@ agent -&gt; fabric</td>
 </tr>
 </tbody>
 </table>
+<div class="section" id="fabric-details">
+<span id="goe-rest-api-get-fabric"></span><h4>Fabric details<a class="headerlink" href="#fabric-details" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Retrieve the details about the fabric</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">GET</span></tt></p>
+<p>optional request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">prettyPrint=true</span></tt> for human readable output</li>
+</ul>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with:</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>body: json map with the details of the fabric</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT</span> <span class="pre">FOUND</span></tt>) when there is no such fabric</li>
+</ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1/glu-dev-1?prettyPrint=true&quot;
+&lt; HTTP/1.1 200 OK
+{
+  &quot;color&quot;: &quot;#005a87&quot;,
+  &quot;name&quot;: &quot;glu-dev-1&quot;,
+  &quot;zkConnectString&quot;: &quot;localhost:2181&quot;,
+  &quot;zkSessionTimeout&quot;: &quot;30s&quot;
+}
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="add-update-a-fabric">
+<span id="goe-rest-api-put-fabric"></span><h4>Add/Update a fabric<a class="headerlink" href="#add-update-a-fabric" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Add (or update if already exists) a fabric</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">PUT</span></tt></p>
+<p>request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">zkConnectString=localhost:2181</span></tt> the connection string to your ZooKeeper setup</li>
+<li><tt class="docutils literal"><span class="pre">zkSessionTimeout=30s</span></tt> the timeout for ZooKeeper sessions</li>
+<li><tt class="docutils literal"><span class="pre">color=%23ff00ff</span></tt> the color (for the ui top navigation bar), can be anything that is useable as a color in css (ex of valid input: <tt class="docutils literal"><span class="pre">red</span></tt>, <tt class="docutils literal"><span class="pre">#ff00ff</span></tt> (which must be properly query string encoded =&gt; <tt class="docutils literal"><span class="pre">#</span></tt> gets encoded into <tt class="docutils literal"><span class="pre">%23</span></tt>))</li>
+</ul>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) when the update was successful</li>
+<li><tt class="docutils literal"><span class="pre">400</span></tt> (<tt class="docutils literal"><span class="pre">BAD</span> <span class="pre">REQUEST</span></tt>) when the parameters are not valid (body will contain details about the error)</li>
+</ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; -X PUT &quot;http://localhost:8080/console/rest/v1/glu-dev-3?zkConnectString=localhost:2181&amp;zkSessionTimeout=30s&amp;color=%23ff00ff&quot;
+&gt; PUT /console/rest/v1/glu-dev-3?zkConnectString=localhost:2181&amp;zkSessionTimeout=30s&amp;color=%23ff00ff HTTP/1.1
+&lt; HTTP/1.1 200 OK
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="delete-a-fabric">
+<span id="goe-rest-api-delete-fabric"></span><h4>Delete a fabric<a class="headerlink" href="#delete-a-fabric" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Delete a fabric</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">DELETE</span></tt></p>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) when the delete was successful</li>
+<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">NOT</span> <span class="pre">FOUND</span></tt>) when the fabric was already deleted</li>
+</ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; -X DELETE &quot;http://localhost:8080/console/rest/v1/glu-dev-3&quot;
+&gt; DELETE /console/rest/v1/glu-dev-3 HTTP/1.1
+&lt; HTTP/1.1 200 OK
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
 <div class="section" id="agents-count">
 <span id="goe-rest-api-head-agents"></span><h4>Agents count<a class="headerlink" href="#agents-count" title="Permalink to this headline">¶</a></h4>
 <ul>
@@ -1933,6 +2036,9 @@ don&#8217;t filter at all.</td>
 <li class="toctree-l3"><a class="reference internal" href="#security-authorization">Security / Authorization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a-few-concepts">A few concepts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#api">API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fabric-details">Fabric details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-update-a-fabric">Add/Update a fabric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-a-fabric">Delete a fabric</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#agents-count">Agents count</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#list-all-the-agents">List all the agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#view-agent-details">View agent details</a></li>
