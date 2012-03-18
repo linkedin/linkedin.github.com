@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Orchestration engine &mdash; glu v4.2.0 documentation</title>
+    <title>Orchestration engine &mdash; glu v4.3.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.2.0',
+        VERSION:     '4.3.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.2.0 documentation" href="index.html" />
+    <link rel="top" title="glu v4.3.0 documentation" href="index.html" />
     <link rel="next" title="Static Model" href="static-model.html" />
     <link rel="prev" title="glu script" href="glu-script.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.2.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.3.0 documentation</a></h1>
         <div class="rel">
           <a href="glu-script.html" title="glu script"
              accesskey="P">previous</a> |
@@ -1070,16 +1070,31 @@ curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1
 </div>
 <div class="section" id="create-deployment-plan">
 <span id="goe-rest-api-post-plans"></span><h4>Create deployment plan<a class="headerlink" href="#create-deployment-plan" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Create a plan.</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">POST</span> <span class="pre">/plans</span></tt></p>
 <ul class="simple">
-<li>Description: Create a plan.</li>
-<li>Request: <tt class="docutils literal"><span class="pre">POST</span> <span class="pre">/plans</span></tt><ul>
 <li>view details <a class="reference internal" href="#goe-rest-api-representing-a-plan"><em>below</em></a> for the content of body of the <tt class="docutils literal"><span class="pre">POST</span></tt></li>
 </ul>
 </li>
-<li>Response:<ul>
+<li><p class="first">Response:</p>
+<ul class="simple">
 <li><tt class="docutils literal"><span class="pre">201</span></tt> (<tt class="docutils literal"><span class="pre">CREATED</span></tt>) with <tt class="docutils literal"><span class="pre">Location</span></tt> header to access the plan (<tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;</span></tt>)</li>
 <li><tt class="docutils literal"><span class="pre">204</span></tt> (<tt class="docutils literal"><span class="pre">NO</span> <span class="pre">CONTENT</span></tt>) when no plan created because there is nothing to do</li>
 </ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; --data &quot;state=stopped&amp;planType=transition&quot; http://localhost:8080/console/rest/v1/glu-dev-1/plans
+&gt; POST /console/rest/v1/glu-dev-1/plans HTTP/1.1
+&gt; Authorization: Basic Z2x1YTpwYXNzd29yZA==
+&gt; Content-Length: 33
+&gt; Content-Type: application/x-www-form-urlencoded
+&gt;
+&lt; HTTP/1.1 201 Created
+&lt; Location: http://localhost:8080/console/rest/v1/glu-dev-1/plan/8283e25e-f68d-4bbd-8a71-5149f23466ec
+</pre></div>
+</div>
 </li>
 </ul>
 </div>
@@ -1732,8 +1747,22 @@ curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1
 <tt class="docutils literal"><span class="pre">deploy</span></tt>,
 <tt class="docutils literal"><span class="pre">undeploy</span></tt>,
 <tt class="docutils literal"><span class="pre">redeploy</span></tt></td>
-<td>Yes</td>
+<td>One of
+<tt class="docutils literal"><span class="pre">planAction</span></tt> or
+<tt class="docutils literal"><span class="pre">planType</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">planAction=start</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">planType</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">deploy</span></tt>,
+<tt class="docutils literal"><span class="pre">undeploy</span></tt>,
+<tt class="docutils literal"><span class="pre">redeploy</span></tt>,
+<tt class="docutils literal"><span class="pre">bounce</span></tt>,
+<tt class="docutils literal"><span class="pre">transition</span></tt> or
+anything custom</td>
+<td>One of
+<tt class="docutils literal"><span class="pre">planAction</span></tt> or
+<tt class="docutils literal"><span class="pre">planType</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">planType=transition&amp;state=stopped</span></tt></td>
 </tr>
 <tr><td><tt class="docutils literal"><span class="pre">systemFilter</span></tt></td>
 <td>a system filter as
@@ -1755,6 +1784,10 @@ don&#8217;t filter at all.</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="docutils literal"><span class="pre">planAction=stop</span></tt> is equivalent to <tt class="docutils literal"><span class="pre">planType=transition&amp;state=stopped</span></tt>. The <tt class="docutils literal"><span class="pre">planType</span></tt> notation is more generic and should be used when using your own state machine or creating your own custom plan types (in which case you can also pass as many parameters as you want).</p>
+</div>
 </div>
 </div>
 <div class="section" id="json-dsl-based">
@@ -1811,6 +1844,11 @@ don&#8217;t filter at all.</td>
 <li>Model<ul>
 <li><tt class="docutils literal"><span class="pre">SystemService_pre_parseSystemModel</span></tt>: called before parsing the system model</li>
 <li><tt class="docutils literal"><span class="pre">SystemService_post_parseSystemModel</span></tt>: called after parsing the system model</li>
+</ul>
+</li>
+<li>Plans<ul>
+<li><tt class="docutils literal"><span class="pre">PlannerService_pre_computePlans</span></tt>: called before computing a deployment plan</li>
+<li><tt class="docutils literal"><span class="pre">PlannerService_post_computePlans</span></tt>: called after computing a deployment plan</li>
 </ul>
 </li>
 <li>Deployment<ul>

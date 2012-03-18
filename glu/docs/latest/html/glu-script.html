@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>glu script &mdash; glu v4.2.0 documentation</title>
+    <title>glu script &mdash; glu v4.3.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.2.0',
+        VERSION:     '4.3.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.2.0 documentation" href="index.html" />
+    <link rel="top" title="glu v4.3.0 documentation" href="index.html" />
     <link rel="next" title="Orchestration engine" href="orchestration-engine.html" />
     <link rel="prev" title="Agent" href="agent.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.2.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.3.0 documentation</a></h1>
         <div class="rel">
           <a href="agent.html" title="Agent"
              accesskey="P">previous</a> |
@@ -88,23 +88,8 @@
 <a class="reference internal image-reference" href="_images/state_machine_diagram.png"><img alt="State Machine diagram" class="align-center" src="_images/state_machine_diagram.png" style="width: 680.0px; height: 181.05px;" /></a>
 <p>This is how the default state machine is defined.</p>
 <a class="reference internal image-reference" href="_images/state_machine.png"><img alt="State Machine Definition" class="align-center" src="_images/state_machine.png" style="width: 683.9px; height: 105.7px;" /></a>
-<p>You can define your own state machine by defining a static attribute called <tt class="docutils literal"><span class="pre">stateMachine</span></tt></p>
-<p>This is how the <tt class="docutils literal"><span class="pre">AutoUpgradeScript</span></tt> (<a class="reference external" href="https://github.com/linkedin/glu/blob/master/agent/org.linkedin.glu.agent-impl/src/main/groovy/org/linkedin/glu/agent/impl/script/AutoUpgradeScript.groovy">AutoUpgradeScript source</a>) glu script defines different states and actions:</p>
-<div class="highlight-text"><div class="highlight"><pre> class AutoUpgradeScript {
-   def static stateMachine =
-   [
-       NONE: [ [to: &#39;installed&#39;, action: &#39;install&#39;] ],
-       installed: [ [to: &#39;NONE&#39;, action: &#39;uninstall&#39;], [to: &#39;prepared&#39;, action: &#39;prepare&#39;] ],
-       prepared: [ [to: &#39;upgraded&#39;, action: &#39;commit&#39;], [to: &#39;installed&#39;, action: &#39;rollback&#39;] ],
-       upgraded: [ [to: &#39;NONE&#39;, action: &#39;uninstall&#39;] ]
-   ]
-   ...
-}
-</pre></div>
-</div>
 <p>The minimum (usefull) state machine that you can define could look like:</p>
-<div class="highlight-text"><div class="highlight"><pre>def static stateMachine =
-[
+<div class="highlight-text"><div class="highlight"><pre>[
     NONE: [ [to: &#39;running&#39;, action: &#39;start&#39;] ],
     running: [ [to: &#39;NONE&#39;, action: &#39;stop&#39;] ]
 ]
@@ -113,6 +98,50 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If an action is empty you don&#8217;t even have to define its equivalent action but you still need to call all prior actions to satisfy the state machine.</p>
+</div>
+<div class="section" id="defining-your-own-state-machine">
+<h3>Defining your own state machine<a class="headerlink" href="#defining-your-own-state-machine" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Advanced Feature</p>
+<p class="last">This section is for advanced users only. You can safely skip it and come back later if you feel like you need to change the default state machine.</p>
+</div>
+<p>In the event when the default state machine does not match your needs, you can define your own (system wide) state machine and configure glu to use it.</p>
+<p>For this you need to create a jar file which contains a file called <tt class="docutils literal"><span class="pre">glu/DefaultStateMachine.groovy</span></tt>. This file needs to look like this:</p>
+<div class="highlight-text"><div class="highlight"><pre>defaultTransitions =
+[
+  NONE: [[to: &#39;s1&#39;, action: &#39;noneTOs1&#39;]],
+  s1: [[to: &#39;NONE&#39;, action: &#39;s1TOnone&#39;], [to: &#39;s2&#39;, action: &#39;s1TOs2&#39;]],
+  s2: [[to: &#39;s1&#39;, action: &#39;s2TOs1&#39;]]
+]
+
+defaultEntryState = &#39;s2&#39;
+</pre></div>
+</div>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">defaultTransitions</span></tt> defines the transitions for the state machine</li>
+<li><tt class="docutils literal"><span class="pre">defaultEntryState</span></tt> defines which state in the state machine is the one that is considered to not be in error (<tt class="docutils literal"><span class="pre">running</span></tt> in the case of the default state machine)</li>
+</ul>
+</div>
+<div class="section" id="making-it-available-to-glu">
+<h3>Making it available to glu<a class="headerlink" href="#making-it-available-to-glu" title="Permalink to this headline">¶</a></h3>
+<p>In order for glu to use your state machine you simply need to drop the jar file you created in the previous step in the following locations:</p>
+<ul class="simple">
+<li>for the console, in the <tt class="docutils literal"><span class="pre">console-server/glu/repository/plugins</span></tt> folder</li>
+<li>for the agent, in the <tt class="docutils literal"><span class="pre">agent-server/&lt;version&gt;/lib</span></tt> folder</li>
+<li>for the agent cli, in the <tt class="docutils literal"><span class="pre">agent-cli/lib</span></tt> folder</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Those folder are relative to the <em>standard</em> distribution of glu. If you package it yourself, then make sure that the jar file is in the classpath of your server.</p>
+</div>
+</div>
+<div class="section" id="configuring-the-console">
+<h3>Configuring the console<a class="headerlink" href="#configuring-the-console" title="Permalink to this headline">¶</a></h3>
+<p>You will need to configure the console (UI) to display your own actions if you want to. Check the <a class="reference internal" href="console.html#console-configuration-plans"><em>Plans</em></a> and <a class="reference internal" href="console.html#console-configuration-mountpointactions"><em>MountPoint actions</em></a> sections for more details.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">In addition to your own state machine you can also use the <a class="reference internal" href="orchestration-engine.html#goe-plugins"><em>plugin hook</em></a> <tt class="docutils literal"><span class="pre">PlannerService_pre_computePlans</span></tt> to define your own custom actions!</p>
+</div>
 </div>
 </div>
 <div class="section" id="capabilities">
@@ -390,7 +419,12 @@ class SubScript extends BaseScript
 <li class="toctree-l1"><a class="reference internal" href="agent.html"> Agent</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href=""> glu script</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#groovy-class">Groovy Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#state-machine">State machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#state-machine">State machine</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#defining-your-own-state-machine">Defining your own state machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#making-it-available-to-glu">Making it available to glu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-console">Configuring the console</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#capabilities">Capabilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parent-script">Parent Script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a><ul>

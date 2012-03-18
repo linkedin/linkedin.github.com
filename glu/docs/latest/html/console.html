@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Console &mdash; glu v4.2.0 documentation</title>
+    <title>Console &mdash; glu v4.3.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.2.0',
+        VERSION:     '4.3.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.2.0 documentation" href="index.html" />
+    <link rel="top" title="glu v4.3.0 documentation" href="index.html" />
     <link rel="next" title="Production Setup" href="production-setup.html" />
     <link rel="prev" title="Filtering" href="filtering.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.2.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.3.0 documentation</a></h1>
         <div class="rel">
           <a href="filtering.html" title="Filtering"
              accesskey="P">previous</a> |
@@ -470,6 +470,59 @@ customCss: new URI(&quot;/glu/repository/css/custom.css&quot;)
 </pre></div>
 </div>
 </div>
+<div class="section" id="plans">
+<span id="console-configuration-plans"></span><h4>Plans<a class="headerlink" href="#plans" title="Permalink to this headline">¶</a></h4>
+<p>This (optional) entry allow you to configure what gets displayed in the table when you select the <tt class="docutils literal"><span class="pre">Plans</span></tt> subtab. Example (using the custom state machine as defined in the <a class="reference external" href="glu-script-state-machine">Defining your own state machine</a> section):</p>
+<div class="highlight-text"><div class="highlight"><pre>plans: [
+  [planType: &quot;deploy&quot;],
+  [planType: &quot;redeploy&quot;],
+  [planType: &quot;undeploy&quot;],
+  [planType: &quot;transition&quot;, displayName: &quot;* -&gt; s1&quot;, state: &quot;s1&quot;],
+  [planType: &quot;transition&quot;, displayName: &quot;* -&gt; NONE&quot;, state: &quot;NONE&quot;],
+],
+</pre></div>
+</div>
+<p>The <em>standard</em> plan types are: <tt class="docutils literal"><span class="pre">deploy</span></tt>, <tt class="docutils literal"><span class="pre">redeploy</span></tt>, <tt class="docutils literal"><span class="pre">undeploy</span></tt>, <tt class="docutils literal"><span class="pre">bounce</span></tt> and <tt class="docutils literal"><span class="pre">transition</span></tt> (which requires a <tt class="docutils literal"><span class="pre">state</span></tt> attribute).</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">By using the <a class="reference internal" href="orchestration-engine.html#goe-plugins"><em>plugin hook</em></a> <tt class="docutils literal"><span class="pre">PlannerService_pre_computePlans</span></tt> you can add your own plan types!</p>
+</div>
+</div>
+<div class="section" id="mountpoint-actions">
+<span id="console-configuration-mountpointactions"></span><h4>MountPoint actions<a class="headerlink" href="#mountpoint-actions" title="Permalink to this headline">¶</a></h4>
+<p>This (optional) entry defines the actions available for a given mountPoint on the agents page. Example (using the custom state machine as defined in the <a class="reference external" href="glu-script-state-machine">Defining your own state machine</a> section):</p>
+<div class="highlight-text"><div class="highlight"><pre>// - key is &quot;state of the mountPoint&quot; (meaning, if the state of the mountPoint is &quot;&lt;key&gt;&quot; then
+//   display the actions defined by the value)
+//   * The key &quot;-&quot; is special and is reserved for the actions to display when the state does
+//     not have an entry (in this example, everything besides running).
+//   * The key &quot;*&quot; is special and is reserved for the actions to display all the time.
+//
+// - value is a map defining what to do (ex: bounce, undeploy) as well as extra informations
+mountPointActions: [
+  s2: [
+    [planType: &quot;transition&quot;, displayName: &quot;s2 -&gt; s1&quot;, state: &quot;s1&quot;],
+    [planType: &quot;transition&quot;, displayName: &quot;s2 -&gt; NONE&quot;, state: &quot;NONE&quot;],
+  ],
+
+  // all other states
+  &quot;-&quot;: [
+    [planType: &quot;transition&quot;, displayName: &quot;Start&quot;, state: &quot;s2&quot;],
+  ],
+
+  // actions to include for all states
+  &quot;*&quot;: [
+    [planType: &quot;undeploy&quot;, displayName: &quot;Undeploy&quot;],
+    [planType: &quot;redeploy&quot;, displayName: &quot;Redeploy&quot;],
+  ]
+],
+</pre></div>
+</div>
+<p>The <em>standard</em> plan types are: <tt class="docutils literal"><span class="pre">deploy</span></tt>, <tt class="docutils literal"><span class="pre">redeploy</span></tt>, <tt class="docutils literal"><span class="pre">undeploy</span></tt>, <tt class="docutils literal"><span class="pre">bounce</span></tt> and <tt class="docutils literal"><span class="pre">transition</span></tt> (which requires a <tt class="docutils literal"><span class="pre">state</span></tt> attribute).</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">By using the <a class="reference internal" href="orchestration-engine.html#goe-plugins"><em>plugin hook</em></a> <tt class="docutils literal"><span class="pre">PlannerService_pre_computePlans</span></tt> you can add your own plan types!</p>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="dashboard">
@@ -516,7 +569,7 @@ customCss: new URI(&quot;/glu/repository/css/custom.css&quot;)
 </ul>
 </div>
 <div class="section" id="console-default-dashboard">
-<span id="id1"></span><h3>Default Dashboard<a class="headerlink" href="#console-default-dashboard" title="Permalink to this headline">¶</a></h3>
+<span id="id2"></span><h3>Default Dashboard<a class="headerlink" href="#console-default-dashboard" title="Permalink to this headline">¶</a></h3>
 <p>When a user logs in the first time it is assigned a <cite>default</cite> dashboard. This dashboard is defined in the configuration file under the <tt class="docutils literal"><span class="pre">defaults.dashboard</span></tt> section and can be a json string or a simple groovy array of <tt class="docutils literal"><span class="pre">columnsDefinition</span></tt> as defined previously. This is the one that comes by default:</p>
 <div class="highlight-text"><div class="highlight"><pre>dashboard:
 [
@@ -577,8 +630,8 @@ password: admin
 <div class="section" id="user-management">
 <span id="console-user-management"></span><h2>User management<a class="headerlink" href="#user-management" title="Permalink to this headline">¶</a></h2>
 <p>There are 2 ways to manage users.</p>
-<div class="section" id="id2">
-<h3>LDAP<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>LDAP<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>If you define an ldap section in the configuration file (see <a class="reference internal" href="#console-configuration-ldap"><em>configuration section</em></a> for details), then the console will automatically allow any user who has the correct ldap credentials to login. If the user has never logged in before, a new account will be automatically created and the user will have the role <tt class="docutils literal"><span class="pre">USER</span></tt> which gives him read access mostly (and limited access to log files). This allows any user to login to the console without any administrator intervention.</p>
 </div>
 <div class="section" id="manual-user-management">
@@ -669,6 +722,8 @@ entries…)</td>
 <li class="toctree-l4"><a class="reference internal" href="#shortcut-filters">Shortcut Filters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#header">Header</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dashboard-agent-links">Dashboard Agent Links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plans">Plans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mountpoint-actions">MountPoint actions</a></li>
 </ul>
 </li>
 </ul>
@@ -681,7 +736,7 @@ entries…)</td>
 <li class="toctree-l2"><a class="reference internal" href="#log-files-display">Log Files Display</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#first-bootstrap">First bootstrap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-management">User management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">LDAP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#manual-user-management">Manual user management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#password-management">Password management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#console-tabs">Console tabs</a></li>
