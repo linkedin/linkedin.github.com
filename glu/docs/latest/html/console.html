@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Console &mdash; glu v4.3.0 documentation</title>
+    <title>Console &mdash; glu v4.3.1 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.3.0',
+        VERSION:     '4.3.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.3.0 documentation" href="index.html" />
+    <link rel="top" title="glu v4.3.1 documentation" href="index.html" />
     <link rel="next" title="Production Setup" href="production-setup.html" />
     <link rel="prev" title="Filtering" href="filtering.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.3.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.3.1 documentation</a></h1>
         <div class="rel">
           <a href="filtering.html" title="Filtering"
              accesskey="P">previous</a> |
@@ -87,7 +87,7 @@
 <ol class="arabic simple">
 <li>store it under <tt class="docutils literal"><span class="pre">$HOME/.org.linkedin.glu/glu-console-webapp.groovy</span></tt></li>
 <li>store it under <tt class="docutils literal"><span class="pre">conf/glu-console-webapp.groovy</span></tt> (relative to wherever the VM <tt class="docutils literal"><span class="pre">user.dir</span></tt> is set to)</li>
-<li>pass a system property <tt class="docutils literal"><span class="pre">-Dorg.linkedin.glu.console.config.location=/fullpath/to/file</span></tt></li>
+<li>pass a system property <tt class="docutils literal"><span class="pre">-Dorg.linkedin.glu.console.config.location=/fullpath/to/file</span></tt> (or use the <tt class="docutils literal"><span class="pre">JAVA_OPTIONS</span></tt> environment variable)</li>
 </ol>
 <p>Through this file, the console allows you to configure several areas including some aspects of the UI.</p>
 <div class="admonition note">
@@ -156,8 +156,8 @@ plugins.StreamFileContentPlugin.unrestrictedRole = &#39;ADMIN&#39;
 </div>
 </div>
 <div class="section" id="database">
-<h3>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h3>
-<p>The console uses a database to store some of its data (like the audit log, user information, etc...). At this moment in time, the console uses <a class="reference external" href="http://hsqldb.org/">HSQLDB</a> for its database. You may want to change the location of the database folder by providing a <tt class="docutils literal"><span class="pre">org.linkedin.glu.console.dataSource.url</span></tt> system property (<tt class="docutils literal"><span class="pre">-Dorg.linkedin.glu.console.dataSource.url=/path/to/database/root</span></tt> when starting the webapp container) or directly modifying the following section in the configuration file:</p>
+<span id="console-configuration-database"></span><h3>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h3>
+<p>The console uses a database to store some of its data (like the audit log, user information, etc...). At this moment in time, the console uses <a class="reference external" href="http://hsqldb.org/">HSQLDB</a> for its database. You may want to change the location of the database folder by providing a <tt class="docutils literal"><span class="pre">org.linkedin.glu.console.dataSource.url</span></tt> system property (<tt class="docutils literal"><span class="pre">-Dorg.linkedin.glu.console.dataSource.url=/path/to/database/root</span></tt> when starting the webapp container (or using the <tt class="docutils literal"><span class="pre">JAVA_OPTIONS</span></tt> environment variable)) or directly modifying the following section in the configuration file:</p>
 <div class="highlight-text"><div class="highlight"><pre>def dataSourceUrl =
   System.properties[&#39;org.linkedin.glu.console.dataSource.url&#39;] ?:
   &quot;jdbc:hsqldb:file:${System.properties[&#39;user.dir&#39;]}/database/prod;shutdown=true&quot;
@@ -760,6 +760,7 @@ entries…)</td>
     <li><a href="http://www.github.com/linkedin/glu">Source Code</a>
     <li><a href="http://glu.977617.n3.nabble.com/">Forum / Questions / Help</a>
     <li><a href="http://devops.com/2011/07/09/glu-deployment-automation-video/">Video (July 2011)</a>
+    <li><a href="https://plus.google.com/111352340806201326494?prsrc=3" rel="publisher" style="text-decoration:none;">Google+<img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:16px;height:16px;margin:0;padding:0 0 0 .5em;vertical-align:middle"/></a>
     <li><a href="http://twitter.com/glutweets">Twitter</a>
     <li><a href="https://github.com/linkedin/glu/issues">Issues / Tasks</a>
     <li><a href="RELEASE.html">Latest Changes</a>
