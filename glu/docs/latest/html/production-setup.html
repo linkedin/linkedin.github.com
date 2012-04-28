@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Production Setup &mdash; glu v4.3.1 documentation</title>
+    <title>Production Setup &mdash; glu v4.4.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.3.1',
+        VERSION:     '4.4.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.3.1 documentation" href="index.html" />
+    <link rel="top" title="glu v4.4.0 documentation" href="index.html" />
     <link rel="next" title="Development Setup" href="dev-setup.html" />
     <link rel="prev" title="Console" href="console.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.3.1 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.4.0 documentation</a></h1>
         <div class="rel">
           <a href="console.html" title="Console"
              accesskey="P">previous</a> |
@@ -452,7 +452,7 @@ located)</li>
 <p>You can now install the agent on each host you will want to do deployment. The agent is contained in the folder called <tt class="docutils literal"><span class="pre">agent-server</span></tt>. Check the <a class="reference internal" href="agent.html#agent-configuration"><em>Agent boot sequence and configuration</em></a> for details on how to configure the agent. What is important is to provide the following configuration to the agent:</p>
 <ul class="simple">
 <li>the fabric (as set in <a class="reference internal" href="#production-setup-prepare-zookeeper"><em>Step 5: Prepare ZooKeeper</em></a>)</li>
-<li>the ZooKeeper connection string (which, if you have followed the recommendations in <a class="reference internal" href="#production-setup-zookeeper"><em>Step 2: Setup ZooKeeper</em></a>, will contain a semi-colon separated list of servers (example: <tt class="docutils literal"><span class="pre">zk01.acme.com:2181;zk02.acme.com:2181;zk03.acme.com:2181</span></tt>))</li>
+<li>the ZooKeeper connection string (which, if you have followed the recommendations in <a class="reference internal" href="#production-setup-zookeeper"><em>Step 2: Setup ZooKeeper</em></a>, will contain a comma separated list of servers (example: <tt class="docutils literal"><span class="pre">zk01.acme.com:2181,zk02.acme.com:2181,zk03.acme.com:2181</span></tt>))</li>
 <li>the agent name (unless the default is fine)</li>
 </ul>
 <div class="admonition tip">
