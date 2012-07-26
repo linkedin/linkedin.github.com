@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Production Setup &mdash; glu v4.4.0 documentation</title>
+    <title>Production Setup &mdash; glu v4.4.2 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.4.0',
+        VERSION:     '4.4.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,21 +22,24 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.4.0 documentation" href="index.html" />
+    <link rel="top" title="glu v4.4.2 documentation" href="index.html" />
     <link rel="next" title="Development Setup" href="dev-setup.html" />
     <link rel="prev" title="Console" href="console.html" />
  
 <link rel="stylesheet" href="_static/glu.css" type="text/css" />
 <script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
 <script type="text/javascript">
+
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-8362808-4']);
   _gaq.push(['_trackPageview']);
+
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+
 </script>
 
   </head>
@@ -46,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.4.0 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.4.2 documentation</a></h1>
         <div class="rel">
           <a href="console.html" title="Console"
              accesskey="P">previous</a> |
@@ -476,7 +479,7 @@ located)</li>
 <span id="production-setup-console"></span><h2>Step 8: Install the console<a class="headerlink" href="#step-8-install-the-console" title="Permalink to this headline">¶</a></h2>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">The default configuration uses HSQLDB for the database. In a production setup, it is <strong>not</strong> recommended to use HSQLDB. Check the section <a class="reference internal" href="console.html#console-configuration-database-mysql"><em>Example for a different database: MySql</em></a> for details on how to configure a different database.</p>
+<p class="last">The default configuration uses HSQLDB for the database. In a production setup, it is <strong>not</strong> recommended to use HSQLDB. Check the section <a class="reference internal" href="console.html#console-configuration-database-mysql"><em>Example for a different database: MySql</em></a> for details on how to configure a different database. If you want to use Oracle or PostgresSQL, please check the section <a class="reference internal" href="console.html#console-configuration-database-other"><em>Other databases: Oracle, PostgresSQL</em></a> for more configuration information.</p>
 </div>
 <div class="section" id="option-1-install-the-war-file">
 <h3>Option 1: Install the war file<a class="headerlink" href="#option-1-install-the-war-file" title="Permalink to this headline">¶</a></h3>
