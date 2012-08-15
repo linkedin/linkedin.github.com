@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Console &mdash; glu v4.4.2 documentation</title>
+    <title>Console &mdash; glu v4.5.0 documentation</title>
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.4.2',
+        VERSION:     '4.5.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.4.2 documentation" href="index.html" />
+    <link rel="top" title="glu v4.5.0 documentation" href="index.html" />
     <link rel="next" title="Production Setup" href="production-setup.html" />
     <link rel="prev" title="Filtering" href="filtering.html" />
  
@@ -49,7 +49,7 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.4.2 documentation</a></h1>
+        <h1><a href="contents.html">glu v4.5.0 documentation</a></h1>
         <div class="rel">
           <a href="filtering.html" title="Filtering"
              accesskey="P">previous</a> |
@@ -318,11 +318,43 @@ ldap.username.attribute=&quot;sAMAccountName&quot;
 </pre></div>
 </div>
 </div>
-<div class="section" id="rest">
-<h3>REST<a class="headerlink" href="#rest" title="Permalink to this headline">¶</a></h3>
-<p>By default, REST calls that modify the database (<tt class="docutils literal"><span class="pre">POST</span></tt>, <tt class="docutils literal"><span class="pre">PUT</span></tt>, <tt class="docutils literal"><span class="pre">DELETE</span></tt>) require <tt class="docutils literal"><span class="pre">ADMIN</span></tt> level. You can <cite>downgrade</cite> the required level with the property:</p>
-<div class="highlight-text"><div class="highlight"><pre>console.authFilters.rest.write.roleName = &quot;RELEASE&quot;
+<div class="section" id="security-levels">
+<span id="console-configuration-security-levels"></span><h3>Security Levels<a class="headerlink" href="#security-levels" title="Permalink to this headline">¶</a></h3>
+<p>You can define your own security level (<cite>USER</cite>, <cite>RELEASE</cite> or <cite>ADMIN</cite>) per URL by defining a property like this in your configuration file:</p>
+<div class="highlight-text"><div class="highlight"><pre>console.security.roles.&#39;&lt;path&gt;&#39; = &#39;&lt;role&gt;&#39;
 </pre></div>
+</div>
+<p>You can define your own security level (<cite>USER</cite>, <cite>RELEASE</cite> or <cite>ADMIN</cite>) per REST call by defining a property like this in your configuration file:</p>
+<div class="highlight-text"><div class="highlight"><pre>console.security.roles.&#39;&lt;method&gt;:&lt;path&gt;&#39; = &#39;&lt;role&gt;&#39;
+</pre></div>
+</div>
+<p>Here are some examples:</p>
+<div class="highlight-text"><div class="highlight"><pre>// a URL for the web interface
+console.security.roles.&#39;/model/load&#39; = &#39;USER&#39;
+
+// a REST call
+console.security.roles.&#39;POST:/rest/v1/$fabric/model/static&#39; = &#39;RELEASE&#39;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can check the <a class="reference external" href="https://github.com/linkedin/glu/blob/master/console/org.linkedin.glu.console-webapp/grails-app/conf/Config.groovy">Config</a> file for an exhaustive list of all the URLs and REST calls.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If you have more than one entry to change, you can use a simpler
+notation:</p>
+<div class="last highlight-text"><div class="highlight"><pre>console.security.roles.putAll([
+  &#39;/agents/kill/$id/$pid&#39;: &#39;ADMIN&#39;,
+  &#39;/plan/execute/$id&#39;: &#39;ADMIN&#39;,
+  &#39;/plan/filter/$id&#39;: &#39;ADMIN&#39;
+])
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You can customize or bypass entirely the way glu handles security by implemeting your own <a class="reference internal" href="orchestration-engine.html#goe-plugins"><em>plugin</em></a></p>
 </div>
 </div>
 <div class="section" id="tuning">
@@ -750,7 +782,7 @@ entries…)</td>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ldap">LDAP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#rest">REST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#security-levels">Security Levels</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tuning">Tuning</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#deployments-auto-archive">Deployments auto-archive</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#limiting-the-number-of-paralell-steps">Limiting the number of paralell steps</a></li>
