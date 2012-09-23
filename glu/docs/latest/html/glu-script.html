@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>glu script &mdash; glu v4.5.0 documentation</title>
+    <title>glu script &mdash; glu 4.5.1 documentation</title>
+    
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.5.0',
+        VERSION:     '4.5.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.5.0 documentation" href="index.html" />
+    <link rel="top" title="glu 4.5.1 documentation" href="index.html" />
     <link rel="next" title="Orchestration engine" href="orchestration-engine.html" />
     <link rel="prev" title="Agent" href="agent.html" />
  
@@ -49,7 +52,8 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.5.0 documentation</a></h1>
+        <div class="headertitle"><a
+          href="contents.html">glu 4.5.1 documentation</a></div>
         <div class="rel">
           <a href="agent.html" title="Agent"
              accesskey="P">previous</a> |
@@ -158,39 +162,39 @@ defaultEntryState = &#39;s2&#39;
 <col width="53%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Name</th>
+<tr class="row-odd"><th class="head">Name</th>
 <th class="head">Usage</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><a class="reference internal" href="agent.html#agent-capabilities-children"><em>children</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="agent.html#agent-capabilities-children"><em>children</em></a></td>
 <td>Access to the children of this glu script</td>
 </tr>
-<tr><td><a class="reference internal" href="agent.html#agent-capabilities-log"><em>log</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="agent.html#agent-capabilities-log"><em>log</em></a></td>
 <td>Write log messages in agent log file</td>
 </tr>
-<tr><td><a class="reference internal" href="agent.html#agent-capabilities-mountpoint"><em>mountPoint</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="agent.html#agent-capabilities-mountpoint"><em>mountPoint</em></a></td>
 <td>The mountPoint on which this script was <em>mounted</em></td>
 </tr>
-<tr><td><a class="reference internal" href="agent.html#agent-capabilities-params"><em>params</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="agent.html#agent-capabilities-params"><em>params</em></a></td>
 <td>Access to the model <a class="reference internal" href="static-model.html#static-model-entries-initparameters"><em>initParameters</em></a> section</td>
 </tr>
-<tr><td><a class="reference internal" href="agent.html#agent-capabilities-parent"><em>parent</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="agent.html#agent-capabilities-parent"><em>parent</em></a></td>
 <td>Access to the parent glu script</td>
 </tr>
-<tr><td><a class="reference internal" href="agent.html#agent-capabilities-shell"><em>shell</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="agent.html#agent-capabilities-shell"><em>shell</em></a></td>
 <td>Access to all shell like capabilities (mv, ls, etc...)</td>
 </tr>
-<tr><td><a class="reference internal" href="agent.html#agent-capabilities-shell-env"><em>shell.env</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="agent.html#agent-capabilities-shell-env"><em>shell.env</em></a></td>
 <td>Access to environment variables set at agent boot time</td>
 </tr>
-<tr><td><a class="reference internal" href="agent.html#agent-capabilities-statemanager"><em>stateManager</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="agent.html#agent-capabilities-statemanager"><em>stateManager</em></a></td>
 <td>Manage/Query the state</td>
 </tr>
-<tr><td><a class="reference internal" href="agent.html#agent-capabilities-state"><em>state</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="agent.html#agent-capabilities-state"><em>state</em></a></td>
 <td>Shortcut to current state</td>
 </tr>
-<tr><td><a class="reference internal" href="agent.html#agent-capabilities-timers"><em>timers</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="agent.html#agent-capabilities-timers"><em>timers</em></a></td>
 <td>Schedule/Cancel timers</td>
 </tr>
 </tbody>
@@ -518,7 +522,7 @@ class SubScript extends BaseScript
         <div class="right">
           
     <div class="footer">
-        &copy; Copyright 2011, Yan Pujante.
+        &copy; Copyright 2011-2012, Yan Pujante.
     </div>
         </div>
         <div class="clearer"></div>

@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Orchestration engine &mdash; glu v4.5.0 documentation</title>
+    <title>Orchestration engine &mdash; glu 4.5.1 documentation</title>
+    
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.5.0',
+        VERSION:     '4.5.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu v4.5.0 documentation" href="index.html" />
+    <link rel="top" title="glu 4.5.1 documentation" href="index.html" />
     <link rel="next" title="Static Model" href="static-model.html" />
     <link rel="prev" title="glu script" href="glu-script.html" />
  
@@ -49,7 +52,8 @@
           <p class="logo"><a href="contents.html">
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
-        <h1><a href="contents.html">glu v4.5.0 documentation</a></h1>
+        <div class="headertitle"><a
+          href="contents.html">glu 4.5.1 documentation</a></div>
         <div class="rel">
           <a href="glu-script.html" title="glu script"
              accesskey="P">previous</a> |
@@ -425,181 +429,181 @@ GET /deployment/archived/&lt;executionId&gt;
 <col width="32%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Method</th>
+<tr class="row-odd"><th class="head">Method</th>
 <th class="head">URI</th>
 <th class="head">Description</th>
 <th class="head">Details</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td>None</td>
 <td>Returns details for fabric</td>
 <td><a class="reference internal" href="#goe-rest-api-get-fabric"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">PUT</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">PUT</span></tt></td>
 <td>None</td>
 <td>Add/Update a fabric</td>
 <td><a class="reference internal" href="#goe-rest-api-put-fabric"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
 <td>None</td>
 <td>Delete a fabric</td>
 <td><a class="reference internal" href="#goe-rest-api-delete-fabric"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agents</span></tt></td>
 <td>Returns the number of agents</td>
 <td><a class="reference internal" href="#goe-rest-api-head-agents"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agents</span></tt></td>
 <td>List all the agents</td>
 <td><a class="reference internal" href="#goe-rest-api-get-agents"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agent/&lt;agentName&gt;</span></tt></td>
 <td>View details about the agent</td>
 <td><a class="reference internal" href="#goe-rest-api-get-agent"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agent/&lt;agentName&gt;</span></tt></td>
 <td>Remove all knowledge of an agent</td>
 <td><a class="reference internal" href="#goe-rest-api-delete-agent"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">PUT</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">PUT</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agent/&lt;agentName&gt;/fabric</span></tt></td>
 <td>Sets the fabric for the agent</td>
 <td><a class="reference internal" href="#goe-rest-api-put-agent-fabric"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agent/&lt;agentName&gt;/fabric</span></tt></td>
 <td>Clears the fabric for the agent</td>
 <td><a class="reference internal" href="#goe-rest-api-delete-agent-fabric"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agents/versions</span></tt></td>
 <td>List all the agents versions</td>
 <td><a class="reference internal" href="#goe-rest-api-get-agents-versions"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agents/versions</span></tt></td>
 <td>Upgrade the agents</td>
 <td><a class="reference internal" href="#goe-rest-api-post-agents-versions"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plans</span></tt></td>
 <td>List all the plans</td>
 <td><a class="reference internal" href="#goe-rest-api-get-plans"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plans</span></tt></td>
 <td>Create a plan</td>
 <td><a class="reference internal" href="#goe-rest-api-post-plans"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;</span></tt></td>
 <td>View the plan (as an xml document)</td>
 <td><a class="reference internal" href="#goe-rest-api-get-plan"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;/execution</span></tt></td>
 <td>Executes the plan</td>
 <td><a class="reference internal" href="#goe-rest-api-post-plan-execution"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;/executions</span></tt></td>
 <td>List all the executions for a plan</td>
 <td><a class="reference internal" href="#goe-rest-api-get-plan-executions"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;/execution/&lt;executionId&gt;</span></tt></td>
 <td>Returns the status of the
 execution</td>
 <td><a class="reference internal" href="#goe-rest-api-head-plan-execution"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;/execution/&lt;executionId&gt;</span></tt></td>
 <td>Returns the execution as an xml
 document</td>
 <td><a class="reference internal" href="#goe-rest-api-get-plan-execution"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/plan/&lt;planId&gt;/execution/&lt;executionId&gt;</span></tt></td>
 <td>Aborts the execution</td>
 <td><a class="reference internal" href="#goe-rest-api-delete-plan-execution"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/deployments/current</span></tt></td>
 <td>List all current deployments</td>
 <td><a class="reference internal" href="#goe-rest-api-get-deployments-current"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/deployments/current</span></tt></td>
 <td>Archive all current deployments</td>
 <td><a class="reference internal" href="#goe-rest-api-delete-deployments-current"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/deployment/current/&lt;deploymentId&gt;</span></tt></td>
 <td>View details about the current
 deployment</td>
 <td><a class="reference internal" href="#goe-rest-api-get-deployment-current"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/deployment/current/&lt;deploymentId&gt;</span></tt></td>
 <td>View info only about the current
 deployment</td>
 <td><a class="reference internal" href="#goe-rest-api-head-deployment-current"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">DELETE</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/deployment/current/&lt;deploymentId&gt;</span></tt></td>
 <td>Archive the current deployment</td>
 <td><a class="reference internal" href="#goe-rest-api-delete-deployment-current"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/deployments/archived</span></tt></td>
 <td>Returns the total count of
 archived deployments</td>
 <td><a class="reference internal" href="#goe-rest-api-head-deployments-archived"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/deployments/archived</span></tt></td>
 <td>List the archived deployments
 (paginated!)</td>
 <td><a class="reference internal" href="#goe-rest-api-get-deployments-archived"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">HEAD</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/deployment/archived/&lt;deploymentId&gt;</span></tt></td>
 <td>View info about the archived
 deployment</td>
 <td><a class="reference internal" href="#goe-rest-api-head-deployment-archived"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/deployment/archived/&lt;deploymentId&gt;</span></tt></td>
 <td>View details about the archived
 deployment</td>
 <td><a class="reference internal" href="#goe-rest-api-get-deployment-archived"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/model/static</span></tt></td>
 <td>Loads the (desired) model in the
 console</td>
 <td><a class="reference internal" href="#goe-rest-api-post-model-static"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/model/static</span></tt></td>
 <td>Retrieves the current loaded model
 (aka &#8216;desired&#8217; state)</td>
 <td><a class="reference internal" href="#goe-rest-api-get-model-static"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/model/live</span></tt></td>
 <td>Retrieves the current live model
 coming from ZooKeeper (aka current
 state)</td>
 <td><a class="reference internal" href="#goe-rest-api-get-model-live"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/model/delta</span></tt></td>
 <td>Retrieves the delta between static
 model and live model</td>
@@ -616,19 +620,19 @@ model and live model</td>
 <col width="32%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Method</th>
+<tr class="row-odd"><th class="head">Method</th>
 <th class="head">URI</th>
 <th class="head">Description</th>
 <th class="head">Details</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/</span></tt></td>
 <td>Returns the list of fabrics</td>
 <td><a class="reference internal" href="#goe-rest-api-get-fabrics"><em>view</em></a></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/agents</span></tt></td>
 <td>Returns the map of associations
 agent -&gt; fabric</td>
@@ -1748,12 +1752,12 @@ curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1
 <col width="46%" />
 </colgroup>
 <tbody valign="top">
-<tr><td>name</td>
+<tr class="row-odd"><td>name</td>
 <td>value</td>
 <td>required</td>
 <td>example</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">planAction</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">planAction</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">start</span></tt>, <tt class="docutils literal"><span class="pre">stop</span></tt>,
 <tt class="docutils literal"><span class="pre">bounce</span></tt>,
 <tt class="docutils literal"><span class="pre">deploy</span></tt>,
@@ -1764,7 +1768,7 @@ curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1
 <tt class="docutils literal"><span class="pre">planType</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">planAction=start</span></tt></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">planType</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">planType</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">deploy</span></tt>,
 <tt class="docutils literal"><span class="pre">undeploy</span></tt>,
 <tt class="docutils literal"><span class="pre">redeploy</span></tt>,
@@ -1776,7 +1780,7 @@ anything custom</td>
 <tt class="docutils literal"><span class="pre">planType</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">planType=transition&amp;state=stopped</span></tt></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">systemFilter</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">systemFilter</span></tt></td>
 <td>a system filter as
 described in the
 previous section
@@ -1787,7 +1791,7 @@ url encoded.</td>
 don&#8217;t filter at all.</td>
 <td><tt class="docutils literal"><span class="pre">systemFilter=and%7bagent%3d'ei2-app3-zone5.qa'%7d</span></tt></td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">order</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">order</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">parallel</span></tt> or
 <tt class="docutils literal"><span class="pre">sequential</span></tt></td>
 <td>No. Default to
@@ -2226,7 +2230,7 @@ don&#8217;t filter at all.</td>
         <div class="right">
           
     <div class="footer">
-        &copy; Copyright 2011, Yan Pujante.
+        &copy; Copyright 2011-2012, Yan Pujante.
     </div>
         </div>
         <div class="clearer"></div>
