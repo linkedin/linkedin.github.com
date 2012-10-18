@@ -1,0 +1,5 @@
+com.linkedin.parseq
+com.linkedin.parseq.promise
+com.linkedin.parseq.trace
+com.linkedin.parseq.trace.codec
+com.linkedin.parseq.trace.codec.json
