@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Console &mdash; glu 4.5.2 documentation</title>
+    <title>Console &mdash; glu 4.6.0 documentation</title>
     
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.5.2',
+        VERSION:     '4.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu 4.5.2 documentation" href="index.html" />
+    <link rel="top" title="glu 4.6.0 documentation" href="index.html" />
     <link rel="next" title="Production Setup" href="production-setup.html" />
     <link rel="prev" title="Filtering" href="filtering.html" />
  
@@ -53,7 +53,7 @@
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
         <div class="headertitle"><a
-          href="contents.html">glu 4.5.2 documentation</a></div>
+          href="contents.html">glu 4.6.0 documentation</a></div>
         <div class="rel">
           <a href="filtering.html" title="Filtering"
              accesskey="P">previous</a> |
@@ -600,10 +600,60 @@ mountPointActions: [
 <p class="last">By using the <a class="reference internal" href="orchestration-engine.html#goe-plugins"><em>plugin hook</em></a> <tt class="docutils literal"><span class="pre">PlannerService_pre_computePlans</span></tt> you can add your own plan types!</p>
 </div>
 </div>
+<div class="section" id="features">
+<span id="console-dashboard"></span><h4>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h4>
+<p>This section allows you to enable/disable certain features:</p>
+<div class="highlight-text"><div class="highlight"><pre>features:
+[
+  commands: true
+],
+</pre></div>
+</div>
+<ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">commands</span></tt> is the feature which allows you to run any kind of (unix/shell) command on an agent. You can disable this feature entirely in which case it will not be present in the UI at all.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This feature also has an agent side to it and it needs to be properly configured as well. Check the <a class="reference internal" href="agent.html#agent-configuration"><em>agent configuration</em></a> section.</p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<p>If the <tt class="docutils literal"><span class="pre">commands</span></tt> feature is enabled, then you can configure what happens with the result (IO) of the command execution:</p>
+<div class="highlight-text"><div class="highlight"><pre>def commandsDir =
+  System.properties[&#39;org.linkedin.glu.console.commands.dir&#39;] ?: &quot;${System.properties[&#39;user.dir&#39;]}/commands&quot;
+
+// storage type supported right now are &#39;filesystem&#39; and &#39;memory&#39;
+console.commandsService.storageType = &#39;filesystem&#39;
+
+// when storage is filesystem =&gt; where the commands are stored
+console.commandsService.commandExecutionIOStorage.filesystem.rootDir = commandsDir
+
+// when storage is memory =&gt; how many elements maximum to store (then start evicting...)
+console.commandsService.commandExecutionIOStorage.memory.maxNumberOfElements = 25
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>By default, the IO of a command is stored on the filesystem in a path structure that is like
+this. This allows for easy maintenance!:</p>
+<div class="last highlight-text"><div class="highlight"><pre>.../commands/&lt;yyyy&gt;/&lt;mm&gt;/&lt;dd&gt;/&lt;HH&gt;/&lt;z&gt;/&lt;commandId&gt;/*
+
+Example:
+.../commands/2012/11/15/07/PST/13b0533729f-18c3a1e8-2a19-4291-a161-77155d9472ae/command.json
+.../commands/2012/11/15/07/PST/13b0533c29c-be265ce6-2d61-4502-acf8-978e18580cbe/command.json
+.../commands/2012/11/15/07/PST/13b0533f383-0f61f819-6a0f-4639-9695-8060a13799c4/command.json
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="dashboard">
-<span id="console-dashboard"></span><h2>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this headline">¶</a></h2>
+<h2>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this headline">¶</a></h2>
 <p>The dashboard is the main entry point of the console and is a visual representation of the <a class="reference internal" href="orchestration-engine.html#goe-delta"><em>delta</em></a>.</p>
 <img alt="Console dashboard" class="align-center" src="_images/console-dashboard-600.png" />
 <div class="section" id="customization">
@@ -803,10 +853,12 @@ entries…)</td>
 <li class="toctree-l4"><a class="reference internal" href="#dashboard-agent-links">Dashboard Agent Links</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#plans">Plans</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mountpoint-actions">MountPoint actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#features">Features</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dashboard">Dashboard</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#customization">Customization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#console-default-dashboard">Default Dashboard</a></li>

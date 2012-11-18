@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Agent &mdash; glu 4.5.2 documentation</title>
+    <title>Agent &mdash; glu 4.6.0 documentation</title>
     
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.5.2',
+        VERSION:     '4.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu 4.5.2 documentation" href="index.html" />
+    <link rel="top" title="glu 4.6.0 documentation" href="index.html" />
     <link rel="next" title="glu script" href="glu-script.html" />
     <link rel="prev" title="A taste of glu (tutorial)" href="tutorial.html" />
  
@@ -53,7 +53,7 @@
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
         <div class="headertitle"><a
-          href="contents.html">glu 4.5.2 documentation</a></div>
+          href="contents.html">glu 4.6.0 documentation</a></div>
         <div class="rel">
           <a href="tutorial.html" title="A taste of glu (tutorial)"
              accesskey="P">previous</a> |
@@ -560,10 +560,10 @@ Example:</p>
 <h3>Configuration properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
-<col width="10%" />
+<col width="9%" />
 <col width="14%" />
-<col width="17%" />
-<col width="44%" />
+<col width="18%" />
+<col width="43%" />
 <col width="15%" />
 </colgroup>
 <thead valign="bottom">
@@ -924,6 +924,25 @@ console</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.truststorePassword</span></tt></td>
 <td>Must be computed</td>
 <td>Password for the truststore</td>
+</tr>
+<tr class="row-even"><td>NA</td>
+<td>NA</td>
+<td><tt class="docutils literal"><span class="pre">glu.agent.features.commands.enabled</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">true</span></tt></td>
+<td>enable/disable the commands
+feature</td>
+</tr>
+<tr class="row-odd"><td>NA</td>
+<td>NA</td>
+<td><tt class="docutils literal"><span class="pre">glu.agent.commands.storageType</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">filesystem</span></tt> (only supported value right now)</td>
+<td>type of storage for commands</td>
+</tr>
+<tr class="row-even"><td>NA</td>
+<td>NA</td>
+<td><tt class="docutils literal"><span class="pre">glu.agent.commands.filesystem.dir</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">${glu.agent.dataDir}/commands</span></tt></td>
+<td>root dir for commands storage</td>
 </tr>
 </tbody>
 </table>

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>A taste of glu (tutorial) &mdash; glu 4.5.2 documentation</title>
+    <title>A taste of glu (tutorial) &mdash; glu 4.6.0 documentation</title>
     
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.5.2',
+        VERSION:     '4.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu 4.5.2 documentation" href="index.html" />
+    <link rel="top" title="glu 4.6.0 documentation" href="index.html" />
     <link rel="next" title="Agent" href="agent.html" />
     <link rel="prev" title="What is glu?" href="index.html" />
  
@@ -53,7 +53,7 @@
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
         <div class="headertitle"><a
-          href="contents.html">glu 4.5.2 documentation</a></div>
+          href="contents.html">glu 4.6.0 documentation</a></div>
         <div class="rel">
           <a href="index.html" title="What is glu?"
              accesskey="P">previous</a> |
@@ -567,6 +567,22 @@ webapp3: /sample/i003 (port 9002)
 </li>
 </ol>
 </div>
+<div class="section" id="executing-an-arbitrary-shell-command">
+<h2>Executing an arbitrary shell command<a class="headerlink" href="#executing-an-arbitrary-shell-command" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">In the console, click on the <tt class="docutils literal"><span class="pre">'Agents'</span></tt> tab, then click <tt class="docutils literal"><span class="pre">'agent-1'</span></tt> and then the <tt class="docutils literal"><span class="pre">'Commands'</span></tt> subtab.</p>
+</li>
+<li><p class="first">Enter <tt class="docutils literal"><span class="pre">uptime</span></tt> in the text field and press <tt class="docutils literal"><span class="pre">return</span></tt> on your keyboard or click on <tt class="docutils literal"><span class="pre">Execute</span></tt></p>
+<img alt="Running the uptime command" class="align-center" src="_images/tutorial-agent-command-600.png" />
+</li>
+<li><p class="first">What happens here is (like the <tt class="docutils literal"><span class="pre">ps</span></tt> section previously), the command you enter in the text field will be executed on the (remote) agent and the result will be displayed in the console.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It can be any shell command supported on your agent, including pipes, redirects, etc... Simply try another command like <tt class="docutils literal"><span class="pre">env|sort</span></tt> (you will need to click the <tt class="docutils literal"><span class="pre">[...]</span></tt> to see the full output).</p>
+</div>
+</li>
+</ol>
+</div>
 <div class="section" id="viewing-the-audit-log">
 <h2>Viewing the audit log<a class="headerlink" href="#viewing-the-audit-log" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
@@ -619,6 +635,7 @@ webapp3: /sample/i003 (port 9002)
 <li class="toctree-l2"><a class="reference internal" href="#changing-the-model">Changing the model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reloading-the-model-and-experiencing-a-failure">Reloading the model and experiencing a failure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-the-console-cli">Using the console cli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#executing-an-arbitrary-shell-command">Executing an arbitrary shell command</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#viewing-the-audit-log">Viewing the audit log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-end">The end</a></li>
 </ul>

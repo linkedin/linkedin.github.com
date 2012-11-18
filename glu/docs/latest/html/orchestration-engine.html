@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Orchestration engine &mdash; glu 4.5.2 documentation</title>
+    <title>Orchestration engine &mdash; glu 4.6.0 documentation</title>
     
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.5.2',
+        VERSION:     '4.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu 4.5.2 documentation" href="index.html" />
+    <link rel="top" title="glu 4.6.0 documentation" href="index.html" />
     <link rel="next" title="Static Model" href="static-model.html" />
     <link rel="prev" title="glu script" href="glu-script.html" />
  
@@ -53,7 +53,7 @@
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
         <div class="headertitle"><a
-          href="contents.html">glu 4.5.2 documentation</a></div>
+          href="contents.html">glu 4.6.0 documentation</a></div>
         <div class="rel">
           <a href="glu-script.html" title="glu script"
              accesskey="P">previous</a> |
@@ -608,6 +608,17 @@ state)</td>
 <td>Retrieves the delta between static
 model and live model</td>
 <td><a class="reference internal" href="#goe-rest-api-get-model-delta"><em>view</em></a></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">POST</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">/agent/&lt;agentName&gt;/commands</span></tt></td>
+<td>Executes a shell command</td>
+<td><a class="reference internal" href="#goe-rest-api-post-command-execute"><em>view</em></a></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">GET</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">/command/&lt;commandId&gt;/streams</span></tt></td>
+<td>Retrieves the streams (=result)
+of the command execution</td>
+<td><a class="reference internal" href="#goe-rest-api-get-command-streams"><em>view</em></a></td>
 </tr>
 </tbody>
 </table>
@@ -1721,6 +1732,127 @@ curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1
 <p class="last">This api (<tt class="docutils literal"><span class="pre">/rest/v1/-/agents</span></tt>) which returns a map of association agent -&gt; fabric should not be mistaken with the api <tt class="docutils literal"><span class="pre">/rest/v1/&lt;fabric&gt;/agents</span></tt> which specifies the fabric and list all agents in a given fabric!</p>
 </div>
 </div>
+<div class="section" id="execute-a-shell-command">
+<span id="goe-rest-api-post-command-execute"></span><h4>Execute a shell command<a class="headerlink" href="#execute-a-shell-command" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Description: Execute a shell command on the agent. Note that this call is non blocking and return right away. In order to wait for the command to complete and read the result of the command, you need to use the <a class="reference internal" href="#goe-rest-api-get-command-streams"><em>other api</em></a></p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">POST</span> <span class="pre">/agent/&lt;agentName&gt;/commands</span></tt></p>
+<p>required request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">command=...</span></tt>: the command to execute (ex: <tt class="docutils literal"><span class="pre">uptime</span></tt>)</li>
+</ul>
+<p>optional request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">type=shell</span></tt> the type of command to run (at this moment only <tt class="docutils literal"><span class="pre">shell</span></tt> is supported)</li>
+<li><tt class="docutils literal"><span class="pre">redirectStderr=true</span></tt> whether stderr should be redirected to stdout (default to <tt class="docutils literal"><span class="pre">false</span></tt>)</li>
+</ul>
+<p>optional input stream: if you want to provide <tt class="docutils literal"><span class="pre">stdin</span></tt> to your command, simply put it in the body of the post</p>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">201</span></tt> (<tt class="docutils literal"><span class="pre">Created</span></tt>) with:<ul>
+<li>headers: <tt class="docutils literal"><span class="pre">X-glu-command-id</span></tt> the id of the command created</li>
+<li>body: json map containing the same id</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">Not</span> <span class="pre">found</span></tt>) if no such agent</li>
+</ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1/glu-dev-1/agent/agent-1/commands?command=cat%20-&quot; -H &quot;Content-Type: application/octet-stream&quot; --data-binary &#39;abcdef&#39;
+&gt; POST /console/rest/v1/glu-dev-1/agent/agent-1/commands?command=cat%20- HTTP/1.1
+&gt; ...
+&gt; Content-Type: application/octet-stream
+&gt; Content-Length: 6
+&gt;
+* upload completely sent off: 6 out of 6 bytes
+&lt; HTTP/1.1 201 Created
+&lt; ...
+&lt; X-glu-command-id: 13b05a27b80-d527ccf3-166a-4986-90b2-41be8c2ba536
+&lt; Content-Type: text/json
+&lt; Content-Length: 57
+&lt;
+{&quot;id&quot;:&quot;13b05a27b80-d527ccf3-166a-4986-90b2-41be8c2ba536&quot;}
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="read-wait-for-command-result">
+<span id="goe-rest-api-get-command-streams"></span><h4>Read/Wait for command result<a class="headerlink" href="#read-wait-for-command-result" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">Once a command has been started, this api will retrieve the result(s) and optionally wait. If you request more than one stream, then you will get a muliplexed stream of results (the format is fairly simple and you can take a look at the java code on how to demultiplex it. TODO: add python code for demultiplexing/example).</p>
+</li>
+<li><p class="first">Request: <tt class="docutils literal"><span class="pre">GET</span> <span class="pre">/commands/&lt;commandId&gt;/streams</span></tt></p>
+<p>optional request parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">stdoutStream=true</span></tt> include stdout stream (default: <tt class="docutils literal"><span class="pre">false</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">stdoutOffset=...</span></tt> where to start in stdout stream in number of bytes (negative number counts backward) (default: <tt class="docutils literal"><span class="pre">0</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">stdoutLen=...</span></tt> how many bytes max to read for stdout (default: <tt class="docutils literal"><span class="pre">-1</span></tt> =&gt; read all)</li>
+<li><tt class="docutils literal"><span class="pre">stderrStream=true</span></tt> include stderr stream (default: <tt class="docutils literal"><span class="pre">false</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">stderrOffset=...</span></tt> where to start in stderr stream in number of bytes (negative number counts backward) (default: <tt class="docutils literal"><span class="pre">0</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">stderrLen=...</span></tt> how many bytes max to read for stderr (default: <tt class="docutils literal"><span class="pre">-1</span></tt> =&gt; read all)</li>
+<li><tt class="docutils literal"><span class="pre">stdinStream=true</span></tt> include stdin stream (default: <tt class="docutils literal"><span class="pre">false</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">stdinOffset=...</span></tt> where to start in stdin stream in number of bytes (negative number counts backward) (default: <tt class="docutils literal"><span class="pre">0</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">stdinLen=...</span></tt> how many bytes max to read for stdin (default: <tt class="docutils literal"><span class="pre">-1</span></tt> =&gt; read all)</li>
+<li><tt class="docutils literal"><span class="pre">exitValueStream=true</span></tt> include the exit value (which is what the shell command returned: <tt class="docutils literal"><span class="pre">$?</span></tt>) (default: <tt class="docutils literal"><span class="pre">false</span></tt>)</li>
+<li><tt class="docutils literal"><span class="pre">exitValueStreamTimeout=...</span></tt> if the command is not completed yet, how long to wait (meaning block) until the result is returned (0 means wait until completed). Can be any timespan (ex: <tt class="docutils literal"><span class="pre">5s</span></tt>, <tt class="docutils literal"><span class="pre">10m</span></tt>, <tt class="docutils literal"><span class="pre">50</span></tt> for 50 milliseconds) (default: don&#8217;t wait!)</li>
+<li><tt class="docutils literal"><span class="pre">exitErrorStream=true</span></tt> include the error stream (when an exception is generated for any reason, usually communication) (default: <tt class="docutils literal"><span class="pre">false</span></tt>)</li>
+</ul>
+</li>
+<li><p class="first">Response:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">200</span></tt> (<tt class="docutils literal"><span class="pre">OK</span></tt>) with:<ul>
+<li>headers:<ul>
+<li><tt class="docutils literal"><span class="pre">X-glu-command-id</span></tt> the id of the command</li>
+<li><tt class="docutils literal"><span class="pre">X-glu-command-startTime</span></tt> the time when the command was started</li>
+<li><tt class="docutils literal"><span class="pre">X-glu-command-completionTime</span></tt> the time when the command was completed (if completed)</li>
+</ul>
+</li>
+<li>body: the stream(s) requested</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">404</span></tt> (<tt class="docutils literal"><span class="pre">Not</span> <span class="pre">found</span></tt>) if no such command</li>
+</ul>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-text"><div class="highlight"><pre>curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1/glu-dev-1/command/13b05a27b80-d527ccf3-166a-4986-90b2-41be8c2ba536/streams?stdoutStream=true&quot;
+&gt; GET /console/rest/v1/glu-dev-1/command/13b05a27b80-d527ccf3-166a-4986-90b2-41be8c2ba536/streams?stdoutStream=true HTTP/1.1
+&gt; ...
+&gt;
+&lt; HTTP/1.1 200 OK
+&lt; X-glu-command-id: 13b05a27b80-d527ccf3-166a-4986-90b2-41be8c2ba536
+&lt; X-glu-command-startTime: 1353009232768
+&lt; X-glu-command-completionTime: 1353009232917
+&lt; Content-Type: application/octet-stream
+&lt; ...
+&lt;
+abcdef
+
+curl -v -u &quot;glua:password&quot; &quot;http://localhost:8080/console/rest/v1/glu-dev-1/command/13b05a27b80-d527ccf3-166a-4986-90b2-41be8c2ba536/streams?stdoutStream=true&amp;exitValueStream=true&quot;
+&gt; GET /console/rest/v1/glu-dev-1/command/13b05a27b80-d527ccf3-166a-4986-90b2-41be8c2ba536/streams?stdoutStream=true&amp;exitValueStream=true HTTP/1.1
+&gt; ...
+&gt;
+&lt; HTTP/1.1 200 OK
+&lt; X-glu-command-id: 13b05a27b80-d527ccf3-166a-4986-90b2-41be8c2ba536
+&lt; X-glu-command-startTime: 1353009232768
+&lt; X-glu-command-completionTime: 1353009232917
+&lt; Content-Type: application/octet-stream
+&lt; ...
+&lt;
+MISV1.0=V=O
+
+V=1
+0
+
+O=6
+abcdef
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="api-examples">
 <h3>API Examples<a class="headerlink" href="#api-examples" title="Permalink to this headline">¶</a></h3>
@@ -1875,6 +2007,13 @@ don&#8217;t filter at all.</td>
 <li><tt class="docutils literal"><span class="pre">DeploymentService_pre_executeDeploymentPlan</span></tt>: called before executing a deployment plan</li>
 <li><tt class="docutils literal"><span class="pre">DeploymentService_onStart_executeDeploymentPlan</span></tt>: called when the deployment plan starts executing</li>
 <li><tt class="docutils literal"><span class="pre">DeploymentService_post_executeDeploymentPlan</span></tt>: called after executing a deployment plan</li>
+</ul>
+</li>
+<li>Commands<ul>
+<li><tt class="docutils literal"><span class="pre">CommandsService_pre_executeCommand</span></tt>: called before executing a command</li>
+<li><tt class="docutils literal"><span class="pre">CommandsService_post_executeCommand</span></tt>: called when the command is complete</li>
+<li><tt class="docutils literal"><span class="pre">FileSystemCommandExecutionIOStorage_createInputStream</span></tt>: called to create the input stream to read the IO of the command from the filesystem</li>
+<li><tt class="docutils literal"><span class="pre">FileSystemCommandExecutionIOStorage_createOutputStream</span></tt>:called to create the output stream to write the IO of the command from the filesystem</li>
 </ul>
 </li>
 </ul>
@@ -2128,6 +2267,8 @@ don&#8217;t filter at all.</td>
 <li class="toctree-l4"><a class="reference internal" href="#view-delta">View delta</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#list-all-the-fabrics">List all the fabrics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#list-all-the-agents-fabrics">List all the agents fabrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#execute-a-shell-command">Execute a shell command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#read-wait-for-command-result">Read/Wait for command result</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#api-examples">API Examples</a></li>
