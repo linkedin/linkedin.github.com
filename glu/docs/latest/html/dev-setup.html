@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Development Setup &mdash; glu 4.6.2 documentation</title>
+    <title>Development Setup &mdash; glu 4.7.0 documentation</title>
     
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.6.2',
+        VERSION:     '4.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu 4.6.2 documentation" href="index.html" />
+    <link rel="top" title="glu 4.7.0 documentation" href="index.html" />
     <link rel="next" title="Latest changes" href="RELEASE.html" />
     <link rel="prev" title="Production Setup" href="production-setup.html" />
  
@@ -53,7 +53,7 @@
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
         <div class="headertitle"><a
-          href="contents.html">glu 4.6.2 documentation</a></div>
+          href="contents.html">glu 4.7.0 documentation</a></div>
         <div class="rel">
           <a href="production-setup.html" title="Production Setup"
              accesskey="P">previous</a> |
@@ -81,35 +81,18 @@
 <p>In order to compile the code you need</p>
 <ul class="simple">
 <li>java 1.6</li>
-<li><a class="reference external" href="http://www.gradle.org/">gradle 0.9</a></li>
-<li><a class="reference external" href="http://www.grails.org/">grails 1.3.5</a> (only for the console)</li>
 <li>Unix (tested on Mac OS X and Solaris)</li>
 </ul>
-<p>Before doing anything go to:</p>
-<div class="highlight-text"><div class="highlight"><pre>console/org.linkedin.glu.console-webapp
-</pre></div>
-</div>
-<p>and issue:</p>
-<div class="highlight-text"><div class="highlight"><pre>grails install-plugin ../../local-maven-repo/com/pongasoft/grails-external-domain-classes/1.0.0/grails-external-domain-classes-1.0.0.zip
-grails upgrade
-</pre></div>
-</div>
 <p>At the top simply run:</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle test
+<div class="highlight-text"><div class="highlight"><pre>./gradlew test
 </pre></div>
 </div>
-<p>which should compile and run all the tests.</p>
-<p>Note: if you do not run the &#8216;grails upgrade&#8217; command, you may see this messages:</p>
-<div class="highlight-text"><div class="highlight"><pre>Plugin `shiro-1.1-SNAPSHOT &lt;not installed. ...
-Plugin [hibernate-1.3.5] not installed. ...
-Plugin [tomcat-1.3.5] not installed. ...
-</pre></div>
-</div>
+<p>which should compile and run all the tests (glu uses the gradle wrapper which will download the proper version of gradle as well as the grails wrapper which will as well download the proper version of grails).</p>
 </div>
 <div class="section" id="ide-support">
 <h2>IDE Support<a class="headerlink" href="#ide-support" title="Permalink to this headline">¶</a></h2>
 <p>You can issue the command (at the top):</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle idea
+<div class="highlight-text"><div class="highlight"><pre>./gradlew cleanIdea idea
 </pre></div>
 </div>
 <p>which will use the gradle IDEA plugin to create the right set of modules in order to open the
@@ -132,8 +115,8 @@ REST client (which talks to the resources) (used in both agent-cli and console-w
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">agent/org.linkedin.glu.agent-cli</span></tt>:
 The command line which can talk to the agent directly:</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle package // to create the package
-gradle package-install // to install locally (for dev)
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew package // to create the package
+../../gradlew package-install // to install locally (for dev)
 </pre></div>
 </div>
 </li>
@@ -148,49 +131,49 @@ Contains the implementation of the agent server cli.</p>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">agent/org.linkedin.glu.agent-server-upgrade</span></tt>:
 Create the upgrade package (to be used when uprading an already installed agent):</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle package // create the upgrade package
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew package // create the upgrade package
 </pre></div>
 </div>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">agent/org.linkedin.glu.agent-server</span></tt>:
 The actual server:</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle package // create the package
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew package // create the package
 
-gradle package-install // to install locally (for dev)
-gradle setup // setup dev fabric and keys in zookeeper (used in conjunction with gradle install)
+../../gradlew package-install // to install locally (for dev)
+../../gradlew setup // setup dev fabric and keys in zookeeper (used in conjunction with gradle install)
 
-gradle setup-x-y // setup x agents in y fabrics: automatically setup zookeeper with the right set of
-                    data and create x agents package with a wrapper shell script to start them all
+../../gradlew setup-x-y // setup x agents in y fabrics: automatically setup zookeeper with the right set of
+                        // data and create x agents package with a wrapper shell script to start them all
 
-gradle clean-setup // to delete the setup
+../../gradlew clean-setup // to delete the setup
 </pre></div>
 </div>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">console/org.linkedin.glu.console-webapp</span></tt>:
 The console webapp (grails application):</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle lib // compile all the dependencies and put them in the lib folder
-grails run-app // after running gradle lib, you can simply run grails directly as it will use the
-               // libraries in lib to boot the app
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew lib // compile all the dependencies and put them in the lib folder
+../../gradlew run-app // after running gradle lib, you can simply run grails directly as it will use the
+                      // libraries in lib to boot the app
 </pre></div>
 </div>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">console/org.linkedin.glu.console-cli</span></tt>:
 The cli for the console (written in python) to use the REST api of the console:</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle package // create the package
-gradle package-install // to install locally (for dev)
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew package // create the package
+../../gradlew package-install // to install locally (for dev)
 </pre></div>
 </div>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">console/org.linkedin.glu.console-server</span></tt>:
 The <tt class="docutils literal"><span class="pre">console/org.linkedin.glu.console-webapp</span></tt> project generates the war (or is used in dev through grails). This project creates a ready to run console embedding jetty:</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle package // create the package
-gradle package-install // to install locally (for dev)
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew package // create the package
+../../gradlew package-install // to install locally (for dev)
 </pre></div>
 </div>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">docs/manual</span></tt>:
 The manual/documentation. To build simply issue:</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle doc
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew doc
 </pre></div>
 </div>
 <div class="admonition note">
@@ -208,15 +191,15 @@ rescale them:</p>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">packaging/org.linkedin.glu.packaging-all</span></tt>:
 Creates a package which contains all prebuilt packages and is also used for the tutorial:</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle package // create the package
-gradle package-install // to install locally (for dev)
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew package // create the package
+../../gradlew package-install // to install locally (for dev)
 </pre></div>
 </div>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">packaging/org.linkedin.glu.packaging-setup</span></tt>:
 Creates a package with convenient shell scripts to setup the keys and agent in ZooKeeper:</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle package // create the package
-gradle package-install // to install locally (for dev)
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew package // create the package
+../../gradlew package-install // to install locally (for dev)
 </pre></div>
 </div>
 </li>
@@ -261,7 +244,7 @@ top.publish.dir=&quot;/export/content/repositories/publish&quot;
 <p>Issue:</p>
 <div class="highlight-text"><div class="highlight"><pre>cd agent/org.linkedin.glu.agent-server
 
-gradle setup-2-2
+../../gradlew setup-2-2
 </pre></div>
 </div>
 <p>This will automatically create a setup by loading all the necessary information in ZooKeeper and creating a startup script: it creates 2 fabrics and 2 agents.</p>
@@ -288,7 +271,7 @@ gradle setup-2-2
 <p>Go to checkout root (you may want to do this in a different window as the tail command is blocking):</p>
 <div class="highlight-text"><div class="highlight"><pre>cd agent/org.linkedin.glu.agent-cli
 
-gradle package-install
+../../gradlew package-install
 </pre></div>
 </div>
 <p>Go to the installation folder (the previous command will tell you where) and issue:</p>
@@ -334,7 +317,7 @@ gradle package-install
 <p>Go to checkout root:</p>
 <div class="highlight-text"><div class="highlight"><pre>cd console/org.linkedin.glu.console-webapp
 
-gradle -i run-app
+../../gradlew -i run-app
 </pre></div>
 </div>
 <dl class="docutils">
@@ -342,7 +325,7 @@ gradle -i run-app
 <dd>[ant:exec] Server running. Browse to http://localhost:8080/console</dd>
 </dl>
 <p>Note that if you prefer you can run:</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle lib
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew lib
 grails run-app
 </pre></div>
 </div>
@@ -372,7 +355,7 @@ are used.</p>
 </div>
 <div class="section" id="different-setups">
 <h3>7. Different setups<a class="headerlink" href="#different-setups" title="Permalink to this headline">¶</a></h3>
-<p>The command <tt class="docutils literal"><span class="pre">gradle</span> <span class="pre">setup-2-2</span></tt> has several flavors using gradle task rules. It allows to configure and setup your development environment with multiple agents on multiple fabrics quickly and effortlessly: the first number is the number of agents, the second one is the number of fabrics.</p>
+<p>The command <tt class="docutils literal"><span class="pre">../../gradlew</span> <span class="pre">setup-2-2</span></tt> has several flavors using gradle task rules. It allows to configure and setup your development environment with multiple agents on multiple fabrics quickly and effortlessly: the first number is the number of agents, the second one is the number of fabrics.</p>
 </div>
 <div class="section" id="cleaning-up">
 <h3>8. Cleaning up<a class="headerlink" href="#cleaning-up" title="Permalink to this headline">¶</a></h3>
@@ -383,7 +366,7 @@ are used.</p>
 </div>
 <p>(you may need to <tt class="docutils literal"><span class="pre">CTRL-C</span></tt> the tail command if it is still running)</p>
 <p>Under <tt class="docutils literal"><span class="pre">agent/org.linkedin.glu.agent-server</span></tt> you can use:</p>
-<div class="highlight-text"><div class="highlight"><pre>gradle clean-setup
+<div class="highlight-text"><div class="highlight"><pre>../../gradlew clean-setup
 </pre></div>
 </div>
 <p>which cleans up all the data in ZooKeeper and deletes the devsetup folder created in step 2.</p>
@@ -449,6 +432,12 @@ are used.</p>
     <li><a href="RELEASE.html">Latest Changes</a>
   </ul>
 </div>
+<div class="sidebar-entry">
+  <h3>Technologies</h3>
+  <ul class="quick-links">
+    <li><a href="http://www.ej-technologies.com/products/jprofiler/overview.html">JProfiler</a>
+  </ul>
+</div>
   <div class="sidebar-entry">
     <h3>Twitter</h3>
     <script type="text/javascript">
@@ -502,7 +491,7 @@ are used.</p>
         <div class="right">
           
     <div class="footer">
-        &copy; Copyright 2011-2012, Yan Pujante.
+        &copy; Copyright 2011-2013, Yan Pujante.
     </div>
         </div>
         <div class="clearer"></div>

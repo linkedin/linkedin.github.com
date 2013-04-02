@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Production Setup &mdash; glu 4.6.2 documentation</title>
+    <title>Production Setup &mdash; glu 4.7.0 documentation</title>
     
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.6.2',
+        VERSION:     '4.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu 4.6.2 documentation" href="index.html" />
+    <link rel="top" title="glu 4.7.0 documentation" href="index.html" />
     <link rel="next" title="Development Setup" href="dev-setup.html" />
     <link rel="prev" title="Console" href="console.html" />
  
@@ -53,7 +53,7 @@
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
         <div class="headertitle"><a
-          href="contents.html">glu 4.6.2 documentation</a></div>
+          href="contents.html">glu 4.7.0 documentation</a></div>
         <div class="rel">
           <a href="console.html" title="Console"
              accesskey="P">previous</a> |
@@ -79,10 +79,29 @@
 <p>This document describes how to setup glu for production.</p>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Currently glu requires a UNIX like platform (tested on Mac OS X and Solaris) and Java 1.6.</p>
+<p>Currently glu requires a UNIX like platform (tested on Mac OS X) and the following version of java:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">glu version</th>
+<th class="head">java version(s)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>4.7.x</td>
+<td>java 1.6 (any VM) or java 1.7</td>
+</tr>
+<tr class="row-odd"><td>4.6.x and below</td>
+<td>java 1.6 (with Sun/Oracle VM only!)</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Due to a <a class="reference external" href="https://github.com/linkedin/glu/issues/74">bug with OpenJDK</a> glu currently requires the Sun Java VM.</p>
+<p class="last">Due to a <a class="reference external" href="https://github.com/linkedin/glu/issues/74">bug with OpenJDK</a> glu prior to 4.7.0 requires the Sun Java VM.</p>
 </div>
 </div>
 <div class="section" id="step-1-download">
@@ -531,6 +550,10 @@ located)</li>
 </div>
 </div>
 </div>
+<div class="section" id="upgrade">
+<h2>Upgrade<a class="headerlink" href="#upgrade" title="Permalink to this headline">¶</a></h2>
+<p>Check the <a class="reference internal" href="agent.html#agent-auto-upgrade"><em>section</em></a> on how to upgrade the agents.</p>
+</div>
 </div>
 
 
@@ -576,6 +599,7 @@ located)</li>
 <li class="toctree-l3"><a class="reference internal" href="#option-2-use-the-server">Option 2: Use the server</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#upgrade">Upgrade</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dev-setup.html">Development Setup</a></li>
@@ -598,6 +622,12 @@ located)</li>
     <li><a href="http://twitter.com/glutweets">Twitter</a>
     <li><a href="https://github.com/linkedin/glu/issues">Issues / Tasks</a>
     <li><a href="RELEASE.html">Latest Changes</a>
+  </ul>
+</div>
+<div class="sidebar-entry">
+  <h3>Technologies</h3>
+  <ul class="quick-links">
+    <li><a href="http://www.ej-technologies.com/products/jprofiler/overview.html">JProfiler</a>
   </ul>
 </div>
   <div class="sidebar-entry">
@@ -653,7 +683,7 @@ located)</li>
         <div class="right">
           
     <div class="footer">
-        &copy; Copyright 2011-2012, Yan Pujante.
+        &copy; Copyright 2011-2013, Yan Pujante.
     </div>
         </div>
         <div class="clearer"></div>
