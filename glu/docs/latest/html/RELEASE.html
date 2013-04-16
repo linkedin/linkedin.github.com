@@ -78,6 +78,10 @@
 <h1>Latest changes<a class="headerlink" href="#latest-changes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>4.7.0 (2013/04/02)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">2013/04/16 update: a <a class="reference external" href="https://github.com/linkedin/glu/issues/214">critical bug</a> has been found in this release if you are using the <tt class="docutils literal"><span class="pre">console.datasource.table.user.mapping</span></tt> configuration option (which allows you to rename the <tt class="docutils literal"><span class="pre">user</span></tt> table). If you are, do not upgrade to this version until further notice.</p>
+</div>
 <p>This release contains a major upgrade of all the libraries used by glu. The purpose of this release is to allow glu to finally be able to run under any java VM including java 1.7 (as java 1.6 is now no longer supported by Oracle). Here are the requirements in terms of VM version(s):</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -106,7 +110,7 @@
 </div>
 <ul class="simple">
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/74">glu-74</a>: <cite>NPE when opening the Dashboard in the tutorial</cite></li>
-<li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/109">glu-109</a>: <cite>Make build compatiable with Gradle version 1.0-miestone-3</cite></li>
+<li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/109">glu-109</a>: <cite>Make build compatible with Gradle version 1.0-milestone-3</cite></li>
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/123">glu-123</a>: <cite>Hammering console with several simple REST requests in parallel leads to strange groovy error</cite></li>
 <li>Implemented <a class="reference external" href="https://github.com/linkedin/glu/issues/135">glu-135</a>: <cite>Migrate to latest grails/groovy</cite></li>
 <li>Fixed <a class="reference external" href="https://github.com/linkedin/glu/issues/143">glu-143</a>: <cite>Removal of hardcoded &#8216;java&#8217; command from zk.sh</cite></li>
