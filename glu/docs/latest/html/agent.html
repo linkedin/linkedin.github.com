@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Agent &mdash; glu 4.7.0 documentation</title>
+    <title>Agent &mdash; glu 4.7.1 documentation</title>
     
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.7.0',
+        VERSION:     '4.7.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu 4.7.0 documentation" href="index.html" />
+    <link rel="top" title="glu 4.7.1 documentation" href="index.html" />
     <link rel="next" title="glu script" href="glu-script.html" />
     <link rel="prev" title="A taste of glu (tutorial)" href="tutorial.html" />
  
@@ -53,7 +53,7 @@
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
         <div class="headertitle"><a
-          href="contents.html">glu 4.7.0 documentation</a></div>
+          href="contents.html">glu 4.7.1 documentation</a></div>
         <div class="rel">
           <a href="tutorial.html" title="A taste of glu (tutorial)"
              accesskey="P">previous</a> |
@@ -645,7 +645,14 @@ else&gt;</li>
 <td>The port the agent will listen
 on (REST api port)</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">-f</span></tt></td>
+<tr class="row-even"><td>NA</td>
+<td><tt class="docutils literal"><span class="pre">GLU_AGENT_ADDRESS</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">glu.agent.address</span></tt></td>
+<td>Undefined (optional)</td>
+<td>The address the agent will bind
+to (REST api address)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">-f</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">GLU_AGENT_FABRIC</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.fabric</span></tt></td>
 <td>Undefined but required (see
@@ -653,7 +660,7 @@ on (REST api port)</td>
 <td>The <a class="reference internal" href="glossary.html#term-fabric"><em class="xref std std-term">fabric</em></a> this agent
 belongs to</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">GLU_AGENT_APPS</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.apps</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">$GLU_AGENT_HOME/../apps</span></tt></td>
@@ -668,7 +675,7 @@ folder!</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">GLU_AGENT_ZOOKEEPER_ROOT</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.zookeeper.root</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">/org/glu</span></tt></td>
@@ -683,7 +690,7 @@ console!</p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">APP_NAME</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">org.linkedin.app.name</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">org.linkedin.glu.agent-server</span></tt></td>
@@ -692,7 +699,7 @@ distinguish the process running
 and is not used by the agent per
 se</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">APP_VERSION</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">org.linkedin.app.version</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">&lt;version</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">agent&gt;</span></tt></td>
@@ -701,74 +708,74 @@ distinguish the process running
 and is not used by the agent per
 se</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_CLASSPATH</span></tt></td>
 <td>NA</td>
 <td>set by the ctl script</td>
 <td>Classpath for the agent</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_SIZE</span></tt></td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">-Xmx128m</span></tt></td>
 <td>Java VM size</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_SIZE_NEW</span></tt></td>
 <td>NA</td>
 <td>Undefined</td>
 <td>New Generation Sizes
 (-XX:NewSize -XX:MaxNewSize)</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_SIZE_PERM</span></tt></td>
 <td>NA</td>
 <td>Undefined</td>
 <td>Perm Generation Sizes
 (-XX:PermSize -XX:MaxPermSize)</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_GC_TYPE</span></tt></td>
 <td>NA</td>
 <td>Undefined</td>
 <td>Type of Garbage Collector to use</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_GC_OPTS</span></tt></td>
 <td>NA</td>
 <td>Undefined</td>
 <td>Tuning options for the above
 garbage collector</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_GC_LOG</span></tt></td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">-XX:+PrintGCDateStamps</span> <span class="pre">-Xloggc:$GC_LOG</span></tt></td>
 <td>JVM GC activity logging settings
 ($LOG_DIR set in the ctl script)</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_LOG4J</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">log4j.configuration</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">file:$CONF_DIR/log4j.xml</span></tt></td>
 <td>log4j configuration (logging
 output/error for the agent)</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_TMP_DIR</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">java.io.tmpdir</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">$GLU_AGENT_HOME/data/tmp</span></tt></td>
 <td>temporary folder for the glu
 agent</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_XTRA_ARGS</span></tt></td>
 <td>NA</td>
 <td>all other values combined</td>
 <td>directly set to the java command
 line</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_DEBUG</span></tt></td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">-Xdebug</span> <span class="pre">-Xnoagent</span>
@@ -780,7 +787,7 @@ line</td>
 JVM (when starting with <tt class="docutils literal"><span class="pre">-d</span></tt>
 flag)</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JVM_APP_INFO</span></tt></td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">-Dorg.linkedin.app.name=$APP_NAME</span>
@@ -788,13 +795,13 @@ flag)</td>
 <td>Appears as command line
 arguments</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">MAIN_CLASS</span></tt></td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">org.linkedin.glu.agent.server.AgentMain</span></tt></td>
 <td>Main java class to run</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">MAIN_CLASS_ARGS</span></tt></td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">file:$CONF_DIR/agentConfig.properties</span></tt></td>
@@ -802,46 +809,46 @@ arguments</td>
 bootstrap (see
 <a class="reference internal" href="#agent-configuration"><em>Agent boot sequence and configuration</em></a>)</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JAVA_HOME</span></tt></td>
 <td>NA</td>
 <td>Undefined but required</td>
 <td>Must be set to the location of
 java</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td><tt class="docutils literal"><span class="pre">JAVA_CMD</span></tt></td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">$JAVA_HOME/bin/java</span></tt></td>
 <td>The actual java command</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.scriptRootDir</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">${glu.agent.apps}</span></tt></td>
 <td>See <tt class="docutils literal"><span class="pre">GLU_AGENT_APPS</span></tt></td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.dataDir</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">${glu.agent.homeDir}/data</span></tt></td>
 <td>the directory where the data
 (non version specific) is stored</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.logDir</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">${glu.agent.dataDir}/logs</span></tt></td>
 <td>the log directory</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.tempDir</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">${glu.agent.dataDir}/tmp</span></tt></td>
 <td>This is the temporary directory
 for the agent</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.scriptStateDir</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">${glu.agent.dataDir}/scripts/state</span></tt></td>
@@ -850,7 +857,7 @@ scripts (when the agent
 shutdowns/reboots, it can
 recover the state)</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.rest.nonSecure.port</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">12907</span></tt></td>
@@ -860,7 +867,7 @@ the console can tell the agent
 where is its ZooKeeper (TODO:
 explain this in another section)</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.persistent.properties</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">${glu.agent.dataDir}/config/agent.properties</span></tt></td>
@@ -869,13 +876,13 @@ from one run to another so that
 you don&#8217;t have to specify them
 over and over</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.zkSessionTimeout</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">5s</span></tt></td>
 <td>Timeout for ZooKeeper</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.configURL</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">${glu.agent.zookeeper.root}/agents/fabrics/${glu.agent.fabric}/config/config.properties</span></tt></td>
@@ -884,14 +891,14 @@ configuration for the agent
 (default to a fabric dependent
 location in ZooKeeper).</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.sslEnabled</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">true</span></tt></td>
 <td>Whether the REST api should be
 exported over https or not</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.keystorePath</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">zookeeper:${glu.agent.zookeeper.root}</span> <span class="pre">/agents</span>
@@ -901,26 +908,26 @@ exported over https or not</td>
 contains the private key of the
 agent</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.keystoreChecksum</span></tt></td>
 <td>Must be computed</td>
 <td>Checksum for the keystore</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.keystorePassword</span></tt></td>
 <td>Must be computed</td>
 <td>Password for the keystore</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.keyPassword</span></tt></td>
 <td>Must be computed</td>
 <td>Password for the key (inside the
 keystore)</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.truststorePath</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">zookeeper:${glu.agent.zookeeper.root}</span> <span class="pre">/agents</span>
@@ -930,32 +937,32 @@ keystore)</td>
 contains the public key of the
 console</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.truststoreChecksum</span></tt></td>
 <td>Must be computed</td>
 <td>Checksum for the truststore</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.truststorePassword</span></tt></td>
 <td>Must be computed</td>
 <td>Password for the truststore</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.features.commands.enabled</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">true</span></tt></td>
 <td>enable/disable the commands
 feature</td>
 </tr>
-<tr class="row-odd"><td>NA</td>
+<tr class="row-even"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.commands.storageType</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">filesystem</span></tt> (only supported value right now)</td>
 <td>type of storage for commands</td>
 </tr>
-<tr class="row-even"><td>NA</td>
+<tr class="row-odd"><td>NA</td>
 <td>NA</td>
 <td><tt class="docutils literal"><span class="pre">glu.agent.commands.filesystem.dir</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">${glu.agent.dataDir}/commands</span></tt></td>
