@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>glu script &mdash; glu 4.7.1 documentation</title>
+    <title>glu script &mdash; glu 5.0.0 documentation</title>
     
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.7.1',
+        VERSION:     '5.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu 4.7.1 documentation" href="index.html" />
+    <link rel="top" title="glu 5.0.0 documentation" href="index.html" />
     <link rel="next" title="Orchestration engine" href="orchestration-engine.html" />
     <link rel="prev" title="Agent" href="agent.html" />
  
@@ -53,7 +53,7 @@
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
         <div class="headertitle"><a
-          href="contents.html">glu 4.7.1 documentation</a></div>
+          href="contents.html">glu 5.0.0 documentation</a></div>
         <div class="rel">
           <a href="agent.html" title="Agent"
              accesskey="P">previous</a> |
@@ -88,7 +88,7 @@
 </div>
 <div class="section" id="state-machine">
 <span id="glu-script-state-machine"></span><h2>State machine<a class="headerlink" href="#state-machine" title="Permalink to this headline">¶</a></h2>
-<p>Each glu script is backed by a state machine which is an instance of <tt class="docutils literal"><span class="pre">org.linkedin.groovy.util.state.StateMachine</span></tt> (<a class="reference external" href="https://github.com/linkedin/linkedin-utils/blob/master/org.linkedin.util-groovy/src/main/groovy/org/linkedin/groovy/util/state/StateMachine.groovy">StateMachine api</a>). The default state machine is the following:</p>
+<p>Each glu script is backed by a state machine which is an instance of <tt class="docutils literal"><span class="pre">org.linkedin.groovy.util.state.StateMachine</span></tt> (<a class="reference external" href="https://github.com/pongasoft/linkedin-utils/blob/master/org.linkedin.util-groovy/src/main/groovy/org/linkedin/groovy/util/state/StateMachine.groovy">StateMachine api</a>). The default state machine is the following:</p>
 <a class="reference internal image-reference" href="_images/state_machine_diagram.png"><img alt="State Machine diagram" class="align-center" src="_images/state_machine_diagram.png" style="width: 680.0px; height: 181.05px;" /></a>
 <p>This is how the default state machine is defined.</p>
 <a class="reference internal image-reference" href="_images/state_machine.png"><img alt="State Machine Definition" class="align-center" src="_images/state_machine.png" style="width: 683.9px; height: 105.7px;" /></a>
@@ -153,7 +153,7 @@ defaultEntryState = &#39;s2&#39;
 <p>As described in the section <a class="reference internal" href="agent.html#agent-capabitites"><em>Capabilities</em></a>, a glu script can use all the capabilities provided by the agent.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">Implicitely (at runtime), all glu scripts implement the <a class="reference external" href="https://github.com/linkedin/glu/blob/master/agent/org.linkedin.glu.agent-impl/src/main/groovy/org/linkedin/glu/agent/impl/GluScript.groovy">GluScript</a> interface.</p>
+<p class="last">Implicitely (at runtime), all glu scripts implement the <a class="reference external" href="https://github.com/pongasoft/glu/blob/master/agent/org.linkedin.glu.agent-impl/src/main/groovy/org/linkedin/glu/agent/impl/GluScript.groovy">GluScript</a> interface.</p>
 </div>
 <p>Table of all the properties usable from a <tt class="docutils literal"><span class="pre">GluScript</span></tt>:</p>
 <table border="1" class="docutils">
@@ -272,11 +272,11 @@ def destroyChild = { args -&gt; // mountPoint, script
 </div>
 <div class="section" id="real-life-example">
 <h2>Real life example<a class="headerlink" href="#real-life-example" title="Permalink to this headline">¶</a></h2>
-<p>You can find a real life example of a glu script called <a class="reference external" href="https://github.com/linkedin/glu/blob/master/scripts/org.linkedin.glu.script-jetty/src/main/groovy/JettyGluScript.groovy">JettyGluScript</a> which shows how to deploy a webapp container (jetty), install web applications in it and monitor it.</p>
+<p>You can find a real life example of a glu script called <a class="reference external" href="https://github.com/pongasoft/glu/blob/master/scripts/org.linkedin.glu.script-jetty/src/main/groovy/JettyGluScript.groovy">JettyGluScript</a> which shows how to deploy a webapp container (jetty), install web applications in it and monitor it.</p>
 </div>
 <div class="section" id="developing-and-unit-testing-a-glu-script">
 <h2>Developing and unit testing a glu script<a class="headerlink" href="#developing-and-unit-testing-a-glu-script" title="Permalink to this headline">¶</a></h2>
-<p>The glu script test framework allows you to develop and unit test your glu script without having to worry about setting up all the components. To write a unit test for a glu script, you can simply inherit from the <a class="reference external" href="https://github.com/linkedin/glu/blob/master/utils/org.linkedin.glu.scripts-test-fwk/src/main/groovy/org/linkedin/glu/scripts/testFwk/GluScriptBaseTest.groovy">GluScriptBaseTest</a>, setup a couple of parameters and run the convenient methods provided by the framework:</p>
+<p>The glu script test framework allows you to develop and unit test your glu script without having to worry about setting up all the components. To write a unit test for a glu script, you can simply inherit from the <a class="reference external" href="https://github.com/pongasoft/glu/blob/master/utils/org.linkedin.glu.scripts-test-fwk/src/main/groovy/org/linkedin/glu/scripts/testFwk/GluScriptBaseTest.groovy">GluScriptBaseTest</a>, setup a couple of parameters and run the convenient methods provided by the framework:</p>
 <div class="highlight-text"><div class="highlight"><pre>class TestMyGluScript extends GluScriptBaseTest
 {
   public void setUp() {
@@ -316,10 +316,10 @@ dependencies {
 <p class="first admonition-title">Tip</p>
 <p>For more information and examples, you can check the following:</p>
 <ul class="last simple">
-<li><a class="reference external" href="https://github.com/linkedin/glu/blob/master/utils/org.linkedin.glu.scripts-test-fwk/src/main/groovy/org/linkedin/glu/scripts/testFwk/GluScriptBaseTest.groovy">GluScriptBaseTest</a> to check what the framework has to offer (javadoc is fairly comprehensive)</li>
-<li><a class="reference external" href="https://github.com/linkedin/glu/blob/master/scripts/org.linkedin.glu.script-jetty/src/test/groovy/test/script/jetty/TestJettyGluScript.groovy">TestJettyGluScript</a> for a real life example of unit testing a glu script</li>
-<li><a class="reference external" href="https://github.com/linkedin/glu-scripts-contrib">glu-scripts-contrib</a> is the project that contains glu script contributed by the community as well as a sample</li>
-<li><a class="reference external" href="https://github.com/linkedin/glu-scripts-contrib/tree/master/scripts/org.linkedin.glu-scripts-contrib.sample">sample</a> is a sample glu script and unit test with comprehensive documentation demonstrating several features about writing and unit testing a glu script</li>
+<li><a class="reference external" href="https://github.com/pongasoft/glu/blob/master/utils/org.linkedin.glu.scripts-test-fwk/src/main/groovy/org/linkedin/glu/scripts/testFwk/GluScriptBaseTest.groovy">GluScriptBaseTest</a> to check what the framework has to offer (javadoc is fairly comprehensive)</li>
+<li><a class="reference external" href="https://github.com/pongasoft/glu/blob/master/scripts/org.linkedin.glu.script-jetty/src/test/groovy/test/script/jetty/TestJettyGluScript.groovy">TestJettyGluScript</a> for a real life example of unit testing a glu script</li>
+<li><a class="reference external" href="https://github.com/pongasoft/glu-scripts-contrib">glu-scripts-contrib</a> is the project that contains glu script contributed by the community as well as a sample</li>
+<li><a class="reference external" href="https://github.com/pongasoft/glu-scripts-contrib/tree/master/scripts/org.linkedin.glu-scripts-contrib.sample">sample</a> is a sample glu script and unit test with comprehensive documentation demonstrating several features about writing and unit testing a glu script</li>
 </ul>
 </div>
 </div>
@@ -461,15 +461,15 @@ class SubScript extends BaseScript
 <div class="sidebar-entry">
   <h3>Quick Links</h3>
   <ul class="quick-links">
-    <li><a href="http://www.pongasoft.com/glu/downloads/">Download</a>
+    <li><a href="https://bintray.com/pkg/show/general/pongasoft/glu/releases/">Download</a>
     <li><a href="tutorial.html">Tutorial</a>
-    <li><a href="http://www.github.com/linkedin/glu">Source Code</a>
+    <li><a href="http://www.github.com/pongasoft/glu">Source Code</a>
     <li><a href="http://glu.977617.n3.nabble.com/">Forum / Questions / Help</a>
     <li><a href="http://devops.com/2011/07/09/glu-deployment-automation-video/">Video (July 2011)</a>
     <li><a href="https://plus.google.com/111352340806201326494?prsrc=3" rel="publisher" style="text-decoration:none;">Google+<img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:16px;height:16px;margin:0;padding:0 0 0 .5em;vertical-align:middle"/></a>
     <li><a href="https://plus.google.com/communities/118019862679241960849">Google+ Community</a></li>
     <li><a href="http://twitter.com/glutweets">Twitter</a>
-    <li><a href="https://github.com/linkedin/glu/issues">Issues / Tasks</a>
+    <li><a href="https://github.com/pongasoft/glu/issues">Issues / Tasks</a>
     <li><a href="RELEASE.html">Latest Changes</a>
   </ul>
 </div>

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Development Setup &mdash; glu 4.7.1 documentation</title>
+    <title>Development Setup &mdash; glu 5.0.0 documentation</title>
     
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.7.1',
+        VERSION:     '5.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu 4.7.1 documentation" href="index.html" />
+    <link rel="top" title="glu 5.0.0 documentation" href="index.html" />
     <link rel="next" title="Latest changes" href="RELEASE.html" />
     <link rel="prev" title="Production Setup" href="production-setup.html" />
  
@@ -53,7 +53,7 @@
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
         <div class="headertitle"><a
-          href="contents.html">glu 4.7.1 documentation</a></div>
+          href="contents.html">glu 5.0.0 documentation</a></div>
         <div class="rel">
           <a href="production-setup.html" title="Production Setup"
              accesskey="P">previous</a> |
@@ -80,7 +80,7 @@
 <h2>Compilation<a class="headerlink" href="#compilation" title="Permalink to this headline">¶</a></h2>
 <p>In order to compile the code you need</p>
 <ul class="simple">
-<li>java 1.6</li>
+<li>java 1.7</li>
 <li>Unix (tested on Mac OS X and Solaris)</li>
 </ul>
 <p>At the top simply run:</p>
@@ -204,13 +204,13 @@ Creates a package with convenient shell scripts to setup the keys and agent in Z
 </div>
 </li>
 <li><p class="first"><tt class="docutils literal"><span class="pre">dev-keys</span></tt>:
-Contains the keys used in dev (check <a class="reference external" href="https://github.com/linkedin/glu/blob/master/dev-keys/key_generation.txt">key_generation.txt</a>) for instructions on how to generate a different set of keys)</p>
+Contains the keys used in dev (check <a class="reference external" href="https://github.com/pongasoft/glu/blob/master/dev-keys/key_generation.txt">key_generation.txt</a>) for instructions on how to generate a different set of keys)</p>
 </li>
 </ul>
 </div>
 <div class="section" id="build-configuration">
 <h2>Build configuration<a class="headerlink" href="#build-configuration" title="Permalink to this headline">¶</a></h2>
-<p>The project uses the <a class="reference external" href="https://github.com/linkedin/gradle-plugins/blob/master/README.md">org.linkedin.userConfig</a> plugin and as such can be configured</p>
+<p>The project uses the <a class="reference external" href="https://github.com/pongasoft/gradle-plugins/blob/master/README.md">org.linkedin.userConfig</a> plugin and as such can be configured</p>
 <p>Example:</p>
 <div class="highlight-text"><div class="highlight"><pre>~/.userConfig.properties
 top.build.dir=&quot;/Volumes/Disk2/deployment/${userConfig.project.name}&quot;
@@ -228,7 +228,7 @@ top.publish.dir=&quot;/export/content/repositories/publish&quot;
 <p>First you need ZooKeeper installed. If you do not have a ZooKeeper running on your box then you can either:</p>
 <ul class="simple">
 <li>download it and install it from <a class="reference external" href="http://hadoop.apache.org/zookeeper/">the main website</a></li>
-<li>download and install the server and cli from the sibling project on github called <a class="reference external" href="https://github.com/linkedin/linkedin-zookeeper/downloads">linkedin-zookeeper</a> (if you want to build it yourself, follow the <a class="reference external" href="https://github.com/linkedin/linkedin-zookeeper/blob/master/README.md">instructions</a>)</li>
+<li>download and install the server and cli from the sibling project on github called <a class="reference external" href="https://github.com/pongasoft/linkedin-zookeeper/downloads">linkedin-zookeeper</a> (if you want to build it yourself, follow the <a class="reference external" href="https://github.com/pongasoft/linkedin-zookeeper/blob/master/README.md">instructions</a>)</li>
 </ul>
 <p>In any case, make sure that ZooKeeper is up and running. If you installed the cli simply run:</p>
 <div class="highlight-text"><div class="highlight"><pre>&lt;path_to_cli&gt;/bin/zk.sh ls /
@@ -350,7 +350,7 @@ glu.agent.devsetup.dir=... &lt;---- this is most likely the one you will modify 
 glu.agent.setup.zkConfigDir=...
 </pre></div>
 </div>
-<p>Check the file <a class="reference external" href="https://github.com/linkedin/glu/blob/master/agent/org.linkedin.glu.agent-server/build.gradle">build.gradle</a> in <tt class="docutils literal"><span class="pre">org.linkedin.glu.agent-server</span></tt> for details on how those properties
+<p>Check the file <a class="reference external" href="https://github.com/pongasoft/glu/blob/master/agent/org.linkedin.glu.agent-server/build.gradle">build.gradle</a> in <tt class="docutils literal"><span class="pre">org.linkedin.glu.agent-server</span></tt> for details on how those properties
 are used.</p>
 </div>
 <div class="section" id="different-setups">
@@ -420,15 +420,15 @@ are used.</p>
 <div class="sidebar-entry">
   <h3>Quick Links</h3>
   <ul class="quick-links">
-    <li><a href="http://www.pongasoft.com/glu/downloads/">Download</a>
+    <li><a href="https://bintray.com/pkg/show/general/pongasoft/glu/releases/">Download</a>
     <li><a href="tutorial.html">Tutorial</a>
-    <li><a href="http://www.github.com/linkedin/glu">Source Code</a>
+    <li><a href="http://www.github.com/pongasoft/glu">Source Code</a>
     <li><a href="http://glu.977617.n3.nabble.com/">Forum / Questions / Help</a>
     <li><a href="http://devops.com/2011/07/09/glu-deployment-automation-video/">Video (July 2011)</a>
     <li><a href="https://plus.google.com/111352340806201326494?prsrc=3" rel="publisher" style="text-decoration:none;">Google+<img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:16px;height:16px;margin:0;padding:0 0 0 .5em;vertical-align:middle"/></a>
     <li><a href="https://plus.google.com/communities/118019862679241960849">Google+ Community</a></li>
     <li><a href="http://twitter.com/glutweets">Twitter</a>
-    <li><a href="https://github.com/linkedin/glu/issues">Issues / Tasks</a>
+    <li><a href="https://github.com/pongasoft/glu/issues">Issues / Tasks</a>
     <li><a href="RELEASE.html">Latest Changes</a>
   </ul>
 </div>

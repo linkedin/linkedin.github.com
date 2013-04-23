@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Orchestration engine &mdash; glu 4.7.1 documentation</title>
+    <title>Orchestration engine &mdash; glu 5.0.0 documentation</title>
     
     <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '4.7.1',
+        VERSION:     '5.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="glu 4.7.1 documentation" href="index.html" />
+    <link rel="top" title="glu 5.0.0 documentation" href="index.html" />
     <link rel="next" title="Static Model" href="static-model.html" />
     <link rel="prev" title="glu script" href="glu-script.html" />
  
@@ -53,7 +53,7 @@
             <img class="logo" src="_static/glu-logo-214x72.png" alt="Logo"/>
           </a></p>
         <div class="headertitle"><a
-          href="contents.html">glu 4.7.1 documentation</a></div>
+          href="contents.html">glu 5.0.0 documentation</a></div>
         <div class="rel">
           <a href="glu-script.html" title="glu script"
              accesskey="P">previous</a> |
@@ -1858,7 +1858,7 @@ abcdef
 <h3>API Examples<a class="headerlink" href="#api-examples" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Sending the model to glu in <a class="reference external" href="https://gist.github.com/756465">java</a></li>
-<li><a class="reference external" href="https://github.com/linkedin/glu/blob/REL_1.5.0/console/org.linkedin.glu.console-cli/src/cmdline/resources/lib/python/gluconsole/rest.py">Python example</a> (part of the cli)</li>
+<li><a class="reference external" href="https://github.com/pongasoft/glu/blob/REL_1.5.0/console/org.linkedin.glu.console-cli/src/cmdline/resources/lib/python/gluconsole/rest.py">Python example</a> (part of the cli)</li>
 </ul>
 </div>
 </div>
@@ -1950,7 +1950,7 @@ don&#8217;t filter at all.</td>
 <p>A plugin is simply a class with (groovy) closures, each of them defining a specific hook. You can define as many or as little of those closures as you want and you can <em>spread</em> them accross different classes (for example, you can have a plugin class handling only the <em>deployment</em> related plugin hooks, and another handling the hooks for a different part of the system). If a closure is missing, then it will simply not be called.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">The class <a class="reference external" href="https://github.com/linkedin/glu/tree/master/orchestration/org.linkedin.glu.orchestration-engine/src/main/groovy/org/linkedin/glu/orchestration/engine/plugins/builtin/DocumentationPlugin.groovy">DocumentationPlugin</a> is meant to be an hexaustive list of all the hooks available as well as a documentation on how to use them. It also serves as an example of how to write a plugin!</p>
+<p class="last">The class <a class="reference external" href="https://github.com/pongasoft/glu/tree/master/orchestration/org.linkedin.glu.orchestration-engine/src/main/groovy/org/linkedin/glu/orchestration/engine/plugins/builtin/DocumentationPlugin.groovy">DocumentationPlugin</a> is meant to be an hexaustive list of all the hooks available as well as a documentation on how to use them. It also serves as an example of how to write a plugin!</p>
 </div>
 </div>
 <div class="section" id="how-do-you-install-a-plugin">
@@ -1977,7 +1977,7 @@ don&#8217;t filter at all.</td>
 <h3>List of hooks available<a class="headerlink" href="#list-of-hooks-available" title="Permalink to this headline">¶</a></h3>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">For full documentation and typical use cases, refer to the class <a class="reference external" href="https://github.com/linkedin/glu/tree/master/orchestration/org.linkedin.glu.orchestration-engine/src/main/groovy/org/linkedin/glu/orchestration/engine/plugins/builtin/DocumentationPlugin.groovy">DocumentationPlugin</a>.</p>
+<p class="last">For full documentation and typical use cases, refer to the class <a class="reference external" href="https://github.com/pongasoft/glu/tree/master/orchestration/org.linkedin.glu.orchestration-engine/src/main/groovy/org/linkedin/glu/orchestration/engine/plugins/builtin/DocumentationPlugin.groovy">DocumentationPlugin</a>.</p>
 </div>
 <ul class="simple">
 <li>Initialization<ul>
@@ -2020,7 +2020,7 @@ don&#8217;t filter at all.</td>
 </div>
 <div class="section" id="future-hooks">
 <h3>Future hooks<a class="headerlink" href="#future-hooks" title="Permalink to this headline">¶</a></h3>
-<p>Now that the plugin mechanism is in place, adding new hooks is not very complicated. If you have specific requirements for a new hook, please open a ticket on the <a class="reference external" href="https://github.com/linkedin/glu/issues">glu ticketing system</a>.</p>
+<p>Now that the plugin mechanism is in place, adding new hooks is not very complicated. If you have specific requirements for a new hook, please open a ticket on the <a class="reference external" href="https://github.com/pongasoft/glu/issues">glu ticketing system</a>.</p>
 </div>
 </div>
 <div class="section" id="command-line">
@@ -2307,15 +2307,15 @@ don&#8217;t filter at all.</td>
 <div class="sidebar-entry">
   <h3>Quick Links</h3>
   <ul class="quick-links">
-    <li><a href="http://www.pongasoft.com/glu/downloads/">Download</a>
+    <li><a href="https://bintray.com/pkg/show/general/pongasoft/glu/releases/">Download</a>
     <li><a href="tutorial.html">Tutorial</a>
-    <li><a href="http://www.github.com/linkedin/glu">Source Code</a>
+    <li><a href="http://www.github.com/pongasoft/glu">Source Code</a>
     <li><a href="http://glu.977617.n3.nabble.com/">Forum / Questions / Help</a>
     <li><a href="http://devops.com/2011/07/09/glu-deployment-automation-video/">Video (July 2011)</a>
     <li><a href="https://plus.google.com/111352340806201326494?prsrc=3" rel="publisher" style="text-decoration:none;">Google+<img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:16px;height:16px;margin:0;padding:0 0 0 .5em;vertical-align:middle"/></a>
     <li><a href="https://plus.google.com/communities/118019862679241960849">Google+ Community</a></li>
     <li><a href="http://twitter.com/glutweets">Twitter</a>
-    <li><a href="https://github.com/linkedin/glu/issues">Issues / Tasks</a>
+    <li><a href="https://github.com/pongasoft/glu/issues">Issues / Tasks</a>
     <li><a href="RELEASE.html">Latest Changes</a>
   </ul>
 </div>
