@@ -1,0 +1,66 @@
+var liRepoCategories = 
+  [
+    {
+      "category": "Data",
+      "repos":
+      [
+      "camus",
+      "naarad",
+      "lafayette",
+      "databus",
+      "datafu",
+      "hello-samza",
+      "sensei",
+      "zoie",
+      "cleo",
+      "krati",
+      "bobo",
+      "indextank-engine",
+      "indextank-service",
+      "white-elephant"
+      ]
+    },
+    {
+      "category": "Frameworks",
+      "repos":
+      [
+      "dustjs",
+      "rest.li",
+      "archetype",
+      "parseq",
+      "dmarc-msys",
+      "norbert",
+      "inject",
+      "Fiber",
+      "dustjs-helpers",
+      "hopscotch",
+      "talkin",
+      "helix",
+      "dustjs-filters-secure",
+      "LIExposeController",
+      "linkedin-zookeeper",
+      "Backbone.TableView"
+      ]
+    },
+    {
+      "category": "SysOps",
+      "repos":
+      [
+      "sysops-api",
+      "atscppapi",
+      "ats_pagespeed"
+      ]
+    },
+    {
+      "category": "Testing",
+      "repos":
+      [
+      "venus.js",
+      "sepia",
+      "play-testng-plugin",
+      "boomerang",
+      "mobster",
+      "insframe"
+      ]
+    }
+  ];

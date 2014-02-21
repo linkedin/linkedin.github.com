@@ -1,252 +1,82 @@
-<html>
-<head>
-  <title>LinkedIn Open Source</title>
-  <link rel="shortcut icon" type="image/ico" href="http://www.linkedin.com/img/favicon_v2.ico"> 
-  <style type="text/css">
-    body {
-      font: 13px, arial, helvetica, sans-serif;
-    }
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+    <title>LinkedIn Open Source</title>	  
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8" />
+    <meta name="description" content="LinkedIn open source projects on Githb" />
+    <meta name="keywords" content="LinkedIn, Open Source, Github, Hopscotch, Dust.js, DataFu, rest.li, venus.js, white-elephant, parseq" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/hover-min.css" />
+		<link rel="stylesheet" href="twitter-bootstrap/css/bootstrap.min.css" />
+	</head>
+	<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://linkedin.github.io/"><img src="images/linkedin-logo.png" alt="LinkedIn Open Source" class="logo"/></a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="http://linkedin.github.io/">Open Source</a></li>
+            <li><a href="https://github.com/linkedin/" target="_blank">Github</a></li>
+            <li><a href="http://engineering.linkedin.com/" target="_blank">Blog</a></li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" href="#">Category <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="category">
+                <li role="presentation"><a role="menuitem" href="#" class="filter">Data</a></li>
+                <li role="presentation"><a role="menuitem" href="#" class="filter">Frameworks</a></li>
+                <li role="presentation"><a role="menuitem" href="#" class="filter">SysOps</a></li>
+                <li role="presentation"><a role="menuitem" href="#" class="filter">Testing</a></li>
+                <li role="presentation"><a role="menuitem" href="#" class="filter">Other</a></li>
+                <li role="presentation"><a role="menuitem" href="#" class="filter">All</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" href="#">Sort <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="sort">
+                <li role="presentation"><a role="menuitem" href="#" class="sort" data-option-value="name">by name</a></li>
+                <li role="presentation"><a role="menuitem" href="#" class="sort" data-option-value="forks">by # of forks</a></li>
+                <li role="presentation"><a role="menuitem" href="#" class="sort" data-option-value="watchers">by # of watchers</a></li>
+                <li role="presentation"><a role="menuitem" href="#" class="sort" data-option-value="size">by size</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>     
+    <div class="container main-container">
+      <div class="hero-unit">
+        <h1>Open Source at LinkedIn</h1>
+        <p>The open source projects behind the world's largest professional network. These are the technologies we use to connect the world's professionals to make them more productive and successful.</p>
+      </div>      
+      <div id="isotope-container"></div>
+      <div id="modals"></div>
+    </div>
+		<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
+		<script type="text/javascript" src="js/isotope.js"></script>
+    <script type="text/javascript" src="js/konami.js"></script>
+		<script type="text/javascript" src="twitter-bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/li-repo-blogposts.js"></script>
+		<script type="text/javascript" src="js/li-repo-categories.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    h1 {
-      padding: 0.2em 0.2em 9 0.2em;
-      text-align: right;
-    }
+      ga('create', 'UA-48320316-1', 'linkedin.github.io');
+      ga('send', 'pageview');
 
-    dt {
-      font-size: 1.2em;
-      font-weight: bold;
-      width: 100%;
-      background-color: #005a87;
-      background: -webkit-gradient(linear, left top, right top, from(#005a87), to(#ffffff));
-      padding: 0 0 0 0.2em;
-    }
-
-    dd {
-      padding-top: .2em;
-      padding-bottom: 1em;
-    }
-    
-    ul.links li {
-      display: inline;
-      font-style: italic;
-      margin-right: .5em;
-    }
-
-    ul.links {
-      margin: 0;
-      padding-left: 1em;
-    }
-
-    dt a:link {
-      text-decoration: none;
-      color: white;
-    }
-
-    dt a:visited {
-      text-decoration: none;
-      color: white;
-    }
-
-    dt a:hover {
-      text-decoration: none;
-      color: #aaaaff;
-    }
-
-    ul.links a:link {
-      text-decoration: none;
-      color: gray;
-    }
-
-    ul.links a:visited {
-      text-decoration: none;
-      color: gray;
-    }
-
-    ul.links a:hover {
-      color: black;
-      border-bottom: solid 1px gray;
-    }
-
-    #footer {
-      border-top: solid 1px gray;
-      text-align: right;
-      padding-top: 1em;
-      color: gray;
-    }
-
-  </style>
-  <script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-8362808-4']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-  </script>
-</head>
-<body>
-<h1>Open Source @ <img src="http://static02.linkedin.com/scds/common/u/img/pic/pic_logo_119x32.gif" alt="LinkedIn"/></h1>
-
-<dl>
-
-  <dt><a href="http://sna-projects.com/azkaban/">Azkaban</a></dt>
-  <dd>
-    <div class="overview">Azkaban is simple batch scheduler for constructing and running Hadoop jobs or other offline processes</div>
-    <ul class="links">
-      <li><a href="http://sna-projects.com/azkaban/">home</a></li>
-      <li><a href="http://github.com/azkaban/azkaban">source</a></li>
-      <li><a href="http://snaprojects.jira.com/wiki/display/AZK/Home">wiki</a></li>
-      <li><a href="http://groups.google.com/group/azkaban-dev">forum</a></li>
-      <li><a href="http://snaprojects.jira.com/browse/AZK">issues</a></li>
-    </ul>
-  </dd>
-
-  <dt><a href="http://sna-projects.com/bobo/">Bobo</a></dt>
-  <dd>
-    <div class="overview">Bobo is a Faceted Search implementation written purely in Java, an extension of Apache Lucene</div>
-    <ul class="links">
-      <li><a href="http://sna-projects.com/bobo/">home</a></li>
-      <li><a href="http://github.com/javasoze/bobo">source</a></li>
-      <li><a href="http://snaprojects.jira.com/wiki/display/BOBO/Home">wiki</a></li>
-      <li><a href="http://groups.google.com/group/bobo-browse">forum</a></li>
-      <li><a href="http://snaprojects.jira.com/browse/BOBO">issues</a></li>
-    </ul>
-  </dd>
-
-  <dt><a href="https://github.com/linkedin/glu">glu</a></dt>
-  <dd>
-    <div class="overview">glu is a deployment automation platform</div>
-    <ul class="links">
-      <li><a href="https://github.com/linkedin/glu">home</a></li>
-      <li><a href="https://github.com/linkedin/glu">source</a></li>
-      <li><a href="http://glu.977617.n3.nabble.com/">forum</a></li>
-      <li><a href="https://github.com/linkedin/glu/issues">issues</a></li>
-    </ul>
-  </dd>
-
-  <dt><a href="https://github.com/linkedin/gradle-plugins">gradle-plugins</a></dt>
-  <dd>
-    <div class="overview">A set of useful gradle plugins</div>
-    <ul class="links">
-      <li><a href="https://github.com/linkedin/gradle-plugins">home</a></li>
-      <li><a href="https://github.com/linkedin/gradle-plugins">source</a></li>
-      <li><a href="https://github.com/linkedin/gradle-plugins/issues">issues</a></li>
-    </ul>
-  </dd>
-
-  <dt><a href="http://sna-projects.com/kafka/">Kafka</a></dt>
-  <dd>
-    <div class="overview">Kafka is a distributed publish/subscribe messaging system</div>
-    <ul class="links">
-      <li><a href="http://sna-projects.com/kafka/">home</a></li>
-      <li><a href="https://github.com/kafka-dev/kafka">source</a></li>
-      <li><a href="http://snaprojects.jira.com/wiki/display/KAFKA">wiki</a></li>
-      <li><a href="http://groups.google.com/group/kafka-dev">forum</a></li>
-      <li><a href="http://snaprojects.jira.com/browse/KAFKA">issues</a></li>
-    </ul>
-  </dd>
-
-  <dt><a href="http://sna-projects.com/kamikaze/">Kamikaze</a></dt>
-  <dd>
-    <div class="overview">Kamikaze is a utility package for performing operations on compressed arrays of sorted integers</div>
-    <ul class="links">
-      <li><a href="http://sna-projects.com/kamikaze/">home</a></li>
-      <li><a href="http://github.com/hyan/kamikaze">source</a></li>
-      <li><a href="http://snaprojects.jira.com/wiki/display/KAMI/Home">wiki</a></li>
-      <li><a href="http://groups.google.com/group/kamikaze-users">forum</a></li>
-      <li><a href="http://snaprojects.jira.com/browse/KAMI">issues</a></li>
-    </ul>
-  </dd>
-
-  <dt><a href="http://sna-projects.com/krati/">Krati</a></dt>
-  <dd>
-    <div class="overview">Krati is a simple persistent data store with very low latency and high throughput</div>
-    <ul class="links">
-      <li><a href="http://sna-projects.com/krati/">home</a></li>
-      <li><a href="http://github.com/jingwei/krati">source</a></li>
-      <li><a href="http://snaprojects.jira.com/wiki/display/Krati/Home">wiki</a></li>
-      <li><a href="http://groups.google.com/group/krati">forum</a></li>
-      <li><a href="http://snaprojects.jira.com/browse/KRTI">issues</a></li>
-    </ul>
-  </dd>
-
-  <dt><a href="https://github.com/linkedin/linkedin-utils">linkedin-utils</a></dt>
-  <dd>
-    <div class="overview">Base utilities shared by all linkedin open source projects</div>
-    <ul class="links">
-      <li><a href="https://github.com/linkedin/linkedin-utils">home</a></li>
-      <li><a href="https://github.com/linkedin/linkedin-utils">source</a></li>
-      <!--<li><a href="https://github.com/linkedin/linkedin-utils/wiki">wiki</a></li>-->
-      <li><a href="https://github.com/linkedin/linkedin-utils/issues">issues</a></li>
-    </ul>
-  </dd>
-
-  <dt><a href="https://github.com/linkedin/linkedin-zookeeper">linkedin-zookeeper</a></dt>
-  <dd>
-    <div class="overview">A set of utility classes and wrappers around ZooKeeper</div>
-    <ul class="links">
-      <li><a href="https://github.com/linkedin/linkedin-zookeeper">home</a></li>
-      <li><a href="https://github.com/linkedin/linkedin-zookeeper">source</a></li>
-      <!--<li><a href="https://github.com/linkedin/linkedin-zookeeper/wiki">wiki</a></li>-->
-      <li><a href="https://github.com/linkedin/linkedin-zookeeper/issues">issues</a></li>
-    </ul>
-  </dd>
-
-  <dt><a href="http://sna-projects.com/norbert/">Norbert</a></dt>
-  <dd>
-    <div class="overview">Norbert is a library that provides easy cluster management and workload distribution</div>
-    <ul class="links">
-      <li><a href="http://sna-projects.com/norbert/">home</a></li>
-      <li><a href="http://github.com/rhavyn/norbert">source</a></li>
-      <li><a href="http://wiki.github.com/rhavyn/norbert/">wiki</a></li>
-      <li><a href="http://snaprojects.jira.com/browse/NOR">issues</a></li>
-    </ul>
-  </dd>
-
-  <dt><a href="http://sna-projects.com/sensei/">Sensei</a></dt>
-  <dd>
-    <div class="overview">A distributed, elastic, realtime, searchable database</div>
-    <ul class="links">
-      <li><a href="http://sna-projects.com/sensei/">home</a></li>
-      <li><a href="http://github.com/javasoze/sensei">source</a></li>
-      <li><a href="http://snaprojects.jira.com/wiki/display/SENSEI/Home">wiki</a></li>
-      <li><a href="http://groups.google.com/group/sensei-search">forum</a></li>
-      <li><a href="http://snaprojects.jira.com/browse/SENSEI">issues</a></li>
-    </ul>
-  </dd>
-
-
-  <dt><a href="http://project-voldemort.com/">Voldemort</a></dt>
-  <dd>
-    <div class="overview">Voldemort is a distributed key-value storage system</div>
-    <ul class="links">
-      <li><a href="http://project-voldemort.com/">home</a></li>
-      <li><a href="https://github.com/voldemort/voldemort">source</a></li>
-      <li><a href="http://wiki.github.com/voldemort/voldemort">wiki</a></li>
-      <li><a href="http://groups.google.com/group/project-voldemort">forum</a></li>
-      <li><a href="http://code.google.com/p/project-voldemort/issues">issues</a></li>
-    </ul>
-  </dd>
-  
-  <dt><a href="http://sna-projects.com/zoie/">Zoie</a></dt>
-  <dd>
-    <div class="overview">Zoie is a real-time search and indexing system built on Apache Lucene</div>
-    <ul class="links">
-      <li><a href="http://sna-projects.com/zoie/">home</a></li>
-      <li><a href="http://github.com/javasoze/zoie">source</a></li>
-      <li><a href="http://snaprojects.jira.com/wiki/display/Zoie/Home">wiki</a></li>
-      <li><a href="http://groups.google.com/group/zoie">forum</a></li>
-      <li><a href="http://snaprojects.jira.com/browse/ZOIE">issues</a></li>
-    </ul>
-  </dd>
-</dl>
-<div id="footer">
-  &copy;LinkedIn 2010
-</div>
-</body>
+    </script>      
+	</body>
 </html>

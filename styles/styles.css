@@ -1,0 +1,38 @@
+.item { 
+  width: 250px; 
+  height: 250px;
+  background-color: #eee;
+  border-style: solid;
+  border-width: 5px;
+  border-color: white;
+  cursor: pointer;
+}
+
+.main-container {
+  padding-top: 75px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.logo {
+  vertical-align: bottom;
+  margin-right: 10px;
+}
+
+.open-source-title {
+  font-size: 17px;
+  font-family: Helvetica;
+  color: white;
+}
+
+.hero-unit {
+  padding-bottom: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.hero-unit h1 {
+  text-align: center;
+}
