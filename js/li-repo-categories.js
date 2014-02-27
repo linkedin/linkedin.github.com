@@ -39,7 +39,8 @@ var liRepoCategories =
       "dustjs-filters-secure",
       "LIExposeController",
       "linkedin-zookeeper",
-      "Backbone.TableView"
+      "Backbone.TableView",
+      "rest.li-sbt-plugin"
       ]
     },
     {
