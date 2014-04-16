@@ -40,7 +40,8 @@ var liRepoCategories =
       "LIExposeController",
       "linkedin-zookeeper",
       "Backbone.TableView",
-      "rest.li-sbt-plugin"
+      "rest.li-sbt-plugin",
+      "rest.li-skeleton.g8"
       ]
     },
     {
