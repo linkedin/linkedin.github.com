@@ -5,6 +5,10 @@ var liBlogposts =
   "posts":
   [
   {
+    "title": "LinkedIn's Rest.li Moment",
+    "url": "http://engineering.linkedin.com/restli/linkedins-restli-moment"
+  },
+  {
     "title": "Building Dynamic Personalized Onboarding Flows for Mobile",
     "url": "http://engineering.linkedin.com/mobile/building-dynamic-personalized-onboarding-flows-mobile"
   },
