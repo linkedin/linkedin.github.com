@@ -165,5 +165,15 @@ var liBlogposts =
       "url": "http://engineering.linkedin.com/open-source/introducing-senseidb-10-open-source-distributed-realtime-semi-structured-database"
     }
   ]
+},
+{
+  "repo": "Isaac",
+  "posts":
+  [
+    {
+      "title": "Open Sourcing Isaac",
+      "url": "http://engineering.linkedin.com/objective-c/open-sourcing-isaac"
+    }
+  ]
 }
 ];
