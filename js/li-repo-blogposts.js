@@ -5,6 +5,10 @@ var liBlogposts =
   "posts":
   [
   {
+    "title": "LinkedIn Connected - Using Anticipatory Computing",
+    "url": "http://engineering.linkedin.com/building-linkedin-connected"
+  },
+  {
     "title": "LinkedIn's Rest.li Moment",
     "url": "http://engineering.linkedin.com/restli/linkedins-restli-moment"
   },
