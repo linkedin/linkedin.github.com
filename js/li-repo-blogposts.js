@@ -7,7 +7,7 @@ var liBlogposts =
   {
     "title": "Mobile Profile Redesign - It’s all about You!",
     "url": "http://engineering.linkedin.com/profile-redesign/mobile-profile-redesign-it%E2%80%99s-all-about-you"
-  }
+  },
   {
     "title": "LinkedIn Connected - Using Anticipatory Computing",
     "url": "http://engineering.linkedin.com/building-linkedin-connected"
