@@ -4,7 +4,9 @@ var liRepoCategories =
       "category": "Mobile",
       "repos":
       [
-      "Selene"
+      "Selene",
+      "Isaac",
+      "LIExposeController"
       ]
     },
     {
@@ -44,7 +46,6 @@ var liRepoCategories =
       "talkin",
       "helix",
       "dustjs-filters-secure",
-      "LIExposeController",
       "linkedin-zookeeper",
       "Backbone.TableView",
       "rest.li-sbt-plugin",
