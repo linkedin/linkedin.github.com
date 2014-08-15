@@ -5,6 +5,10 @@ var liBlogposts =
   "posts":
   [
   {
+    "title": "Maximizing Our Publishing Platform Reach with Network Distribution",
+    "url": "http://engineering.linkedin.com/publishing-platform/maximizing-our-publishing-platform-reach-network-distribution"
+  },
+  {
     "title": "Mobile Profile Redesign - It’s all about You!",
     "url": "http://engineering.linkedin.com/profile-redesign/mobile-profile-redesign-it%E2%80%99s-all-about-you"
   },
