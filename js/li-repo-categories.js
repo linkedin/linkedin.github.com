@@ -1,6 +1,13 @@
 var liRepoCategories = 
   [
     {
+      "category": "Mobile",
+      "repos":
+      [
+      "Selene"
+      ]
+    },
+    {
       "category": "Data",
       "repos":
       [

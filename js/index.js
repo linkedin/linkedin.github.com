@@ -90,6 +90,7 @@ $.ajax({
         "Frameworks": "primary",
         "SysOps": "success",
         "Testing": "info",
+        "Mobile": "warning",
         "Other": "danger"
       }
       return '<span class="label label-' + categorMap[category] + '">' + category + '</span>';
