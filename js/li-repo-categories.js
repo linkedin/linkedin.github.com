@@ -26,7 +26,8 @@ var liRepoCategories =
       "bobo",
       "indextank-engine",
       "indextank-service",
-      "white-elephant"
+      "white-elephant",
+      "ml-ease"
       ]
     },
     {
