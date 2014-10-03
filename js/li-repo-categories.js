@@ -27,7 +27,8 @@ var liRepoCategories =
       "indextank-engine",
       "indextank-service",
       "white-elephant",
-      "ml-ease"
+      "ml-ease",
+      "Cubert"
       ]
     },
     {
