@@ -1,6 +1,16 @@
 var liBlogposts = 
 [
 {
+  "repo": "ml-ease",
+  "posts":
+  [
+  {
+    "title": "Open Sourcing ml-ease",
+    "url": "http://engineering.linkedin.com/large-scale-machine-learning/open-sourcing-ml-ease"
+  }
+  ]
+},
+{
   "repo": "rest.li",
   "posts":
   [
