@@ -6,7 +6,8 @@ var liRepoCategories =
       [
       "Selene",
       "Isaac",
-      "LIExposeController"
+      "LIExposeController",
+      "Hakawai"
       ]
     },
     {
