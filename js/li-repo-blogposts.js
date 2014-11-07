@@ -1,6 +1,16 @@
 var liBlogposts = 
 [
 {
+  "repo": "Hakawai",
+  "posts":
+  [
+  {
+    "title": "Introducing Hakawai - a powerful, mentions-enabled text view for iOS",
+    "url": "http://engineering.linkedin.com/ios/introducing-hakawai-powerful-mentions-enabled-text-view-ios"
+  }
+  ]
+},
+{
   "repo": "ml-ease",
   "posts":
   [
