@@ -7,7 +7,8 @@ var liRepoCategories =
       "Selene",
       "Isaac",
       "LIExposeController",
-      "Hakawai"
+      "Hakawai",
+      "Spyglass"
       ]
     },
     {
