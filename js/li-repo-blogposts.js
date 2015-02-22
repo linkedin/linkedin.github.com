@@ -1,6 +1,16 @@
 var liBlogposts = 
 [
 {
+  "repo": "Spyglass",
+  "posts":
+  [
+  {
+    "title": "Open sourcing Spyglass - a flexible library for implementing mentions on Android",
+    "url": "http://engineering.linkedin.com/android/open-sourcing-spyglass-flexible-library-implementing-mentions-android"
+  }
+  ]
+},
+{
   "repo": "Hakawai",
   "posts":
   [
