@@ -35,6 +35,10 @@ var liBlogposts =
   "posts":
   [
   {
+    "url": "http://engineering.linkedin.com/restli/restli-2x-and-protocol-upgrade-story",
+    "title": "Rest.li 2.x and a Protocol Upgrade Story"
+  },  
+  {
     "title": "Maximizing Our Publishing Platform Reach with Network Distribution",
     "url": "http://engineering.linkedin.com/publishing-platform/maximizing-our-publishing-platform-reach-network-distribution"
   },
