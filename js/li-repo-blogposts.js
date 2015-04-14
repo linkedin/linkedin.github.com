@@ -1,6 +1,16 @@
 var liBlogposts = 
 [
 {
+  "repo": "JTune",
+  "posts": 
+  [
+  {
+    "title": "Optimizing Java CMS garbage collections, its difficulties, and using JTune as a solution",
+    "url": "http://engineering.linkedin.com/java/optimizing-java-cms-garbage-collections-its-difficulties-and-using-jtune-solution"
+  }
+  ]
+},
+{
   "repo": "Spyglass",
   "posts":
   [
