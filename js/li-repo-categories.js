@@ -62,7 +62,8 @@ var liRepoCategories =
       [
       "sysops-api",
       "atscppapi",
-      "ats_pagespeed"
+      "ats_pagespeed",
+      "JTune"
       ]
     },
     {
