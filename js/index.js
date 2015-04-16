@@ -17,10 +17,17 @@ var renderPage = function(data) {
 
   // repo name to blog post for repo
   var repoToBlogPost = {};
-  liBlogposts.forEach(function(item) {
+
+  // repo name to documentation website for repo
+  var repoToDoc = {};
+
+  liRepoMetadata.forEach(function(item) {
     var repoName = item["repo"];
     var posts = item["posts"];
     repoToBlogPost[repoName] = posts;
+    if ("doc" in item) {
+      repoToDoc[repoName] = item["doc"];
+    }
   });
 
   function getBlogposts(repo) {
@@ -58,7 +65,7 @@ var renderPage = function(data) {
     return name.replace(new RegExp("\\.", "g"), "-") + "-modal";
   }
 
-  function addModal(name, description, category, githubUrl, blogPosts) {
+  function addModal(name, description, category, githubUrl, blogPosts, doc) {
     var modalId = generateModalId(name);
     var modalBody = description;
     if (blogPosts != "") {
@@ -74,8 +81,11 @@ var renderPage = function(data) {
       '</div>' + 
       '<div class="modal-body">' + 
       modalBody + '</div>' + 
-      '<div class="modal-footer">' + 
-      '<a class="btn btn-primary" href="' + githubUrl + '" target="_blank">View on GitHub</a>'
+      '<div class="modal-footer">';
+    if (doc != "") {
+      modal = modal + '<a class="btn btn-primary" href="' + doc + '" target="_blank">Documentation</a>  ';
+    }
+    modal = modal + '<a class="btn btn-primary" href="' + githubUrl + '" target="_blank">View on GitHub</a>'
       '</div></div></div></div>';
     $("#modals").append(modal);
   }
@@ -109,7 +119,13 @@ var renderPage = function(data) {
       '<p class="watchers hidden">' + item.watchers_count + '</p>' +
       '<p>' + item.description + '</p>' + 
       '</div>';
-    addModal(item.name, item.description, category, item.html_url, getBlogposts(item.name));
+    var doc;
+    if (item.name in repoToDoc) {
+      doc = repoToDoc[item.name];
+    } else {
+      doc = "";
+    }
+    addModal(item.name, item.description, category, item.html_url, getBlogposts(item.name), doc);
   });
 
   var container = $('#isotope-container');

@@ -1,5 +1,10 @@
-var liBlogposts = 
+var liRepoMetadata = 
 [
+{
+  "repo": "parseq",
+  "posts": [],
+  "doc": "http://linkedin.github.io/parseq/javadoc/latest/"
+},
 {
   "repo": "JTune",
   "posts": 
@@ -226,6 +231,7 @@ var liBlogposts =
       "title": "Open Sourcing Isaac",
       "url": "http://engineering.linkedin.com/objective-c/open-sourcing-isaac"
     }
-  ]
+  ],
+  "doc": "http://linkedin.github.io/Isaac/"
 }
 ];
