@@ -30,7 +30,9 @@ var liRepoCategories =
       "indextank-service",
       "white-elephant",
       "ml-ease",
-      "Cubert"
+      "Cubert",
+      "FeatureFu",
+      "pinot"
       ]
     },
     {
