@@ -65,7 +65,8 @@ var liRepoCategories =
       "sysops-api",
       "atscppapi",
       "ats_pagespeed",
-      "JTune"
+      "JTune",
+      "vagrant-autodns"
       ]
     },
     {
@@ -77,7 +78,11 @@ var liRepoCategories =
       "play-testng-plugin",
       "boomerang",
       "mobster",
-      "insframe"
+      "insframe",
+      "Zopkio",
+      "simoorg",
+      "KIF",
+      "MTBT"
       ]
     }
   ];
