@@ -32,7 +32,8 @@ var liRepoCategories =
       "ml-ease",
       "Cubert",
       "FeatureFu",
-      "pinot"
+      "pinot",
+      "gobblin"
       ]
     },
     {
