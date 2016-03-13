@@ -1,7 +1,5 @@
 new Konami("https://www.linkedin.com");
 
-var isTest = false;
-
 var renderPage = function(data) {
   // repo name to category for repo mapping
   var repoToCategory = {};
@@ -104,7 +102,12 @@ var renderPage = function(data) {
 
   var isotopeData = "";
   var languages = {};
-  var githubData = _.shuffle(data.data);
+  var githubData = null;
+  if (data.meta.status == 403) {
+    githubData = cachedGithubApiResponse;
+    console.log("Using a cached API response.");
+  }
+  githubData = _.shuffle(githubData);
   githubData.forEach(function(item) {
     var language = getLanguage(item.language);
     if (languages[language] == undefined) {
@@ -183,13 +186,8 @@ var renderPage = function(data) {
   });
 }
 
-if (isTest) {
-
-}
-else {
-  $.ajax({
-    dataType: 'json',
-    url:'https://api.github.com/orgs/LinkedIn/repos?page=1&per_page=100&callback=?',
-    success: renderPage
-  }); 
-}
+$.ajax({
+  dataType: 'json',
+  url:'https://api.github.com/orgs/LinkedIn/repos?page=1&per_page=100&callback=?',
+  success: renderPage
+}); 
