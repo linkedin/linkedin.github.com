@@ -106,6 +106,8 @@ var renderPage = function(data) {
   if (data.meta.status == 403) {
     githubData = cachedGithubApiResponse;
     console.log("Using a cached API response.");
+  } else {
+    githubData = data.data;
   }
   githubData = _.shuffle(githubData);
   githubData.forEach(function(item) {
