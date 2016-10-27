@@ -1,3 +1,10 @@
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+    font-family:'Montserrat', sans-serif !important;
+    padding: 0px;
+    margin: 0px;
+}
+
+
 .item { 
   width: 250px; 
   height: 250px;
@@ -19,6 +26,7 @@
 .logo {
   vertical-align: bottom;
   margin-right: 10px;
+    width: 150px;
 }
 
 .open-source-title {
@@ -28,11 +36,12 @@
 }
 
 .hero-unit {
-  padding-bottom: 20px;
-  width: 50%;
-  margin: 0 auto;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    text-align: left;
 }
 
-.hero-unit h1 {
+.hero-unit h2 {
   text-align: center;
 }
+
