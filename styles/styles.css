@@ -47,3 +47,9 @@
   overflow: visible;
   background: #fff url('/images/gears.gif') no-repeat center center;
 }
+
+.likely {
+    position: absolute;
+    bottom: 12px;
+    z-index: 9;
+}
