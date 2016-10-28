@@ -1,6 +1,11 @@
 new Konami("https://www.linkedin.com");
 
 var renderPage = function(data) {
+  // hide preloader
+  $('#preloader').fadeOut(300, function () {
+    $(this).remove();
+  });
+
   // repo name to category for repo mapping
   var repoToCategory = {};
   var categories = {};
