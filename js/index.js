@@ -109,7 +109,10 @@ var renderPage = function(data) {
   } else {
     githubData = data.data;
   }
-  githubData = _.shuffle(githubData);
+  // sort repo on latest activity first
+  githubData.sort(function(a,b){
+    return new Date(b.updated_at) - new Date(a.updated_at);
+  });
   githubData.forEach(function(item) {
     var language = getLanguage(item.language);
     if (languages[language] == undefined) {
