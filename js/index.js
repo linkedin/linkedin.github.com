@@ -41,13 +41,13 @@ var renderPage = function(data) {
       return "";
     }
   }
-  
+
   function getCategory(repo) {
     if (repoToCategory[repo]) {
       return repoToCategory[repo];
     } else {
       return "Other";
-    } 
+    }
   }
 
   function getLanguage(language) {
@@ -70,15 +70,15 @@ var renderPage = function(data) {
       modalBody += "<br/><br/><b>Blog Posts</b><br/>";
       modalBody += blogPosts;
     }
-    var modal = '<div class="modal fade" id="' + modalId + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' + 
-      '<div class="modal-dialog">' + 
-      '<div class="modal-content">' + 
-      '<div class="modal-header">' + 
-      '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + 
-      '<h2 class="modal-title" id="myModalLabel">' + name + '</h2>' + buildCategoryLabel(category) +  
-      '</div>' + 
-      '<div class="modal-body">' + 
-      modalBody + '</div>' + 
+    var modal = '<div class="modal fade" id="' + modalId + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
+      '<div class="modal-dialog">' +
+      '<div class="modal-content">' +
+      '<div class="modal-header">' +
+      '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+      '<h2 class="modal-title" id="myModalLabel">' + name + '</h2>' + buildCategoryLabel(category) +
+      '</div>' +
+      '<div class="modal-body">' +
+      modalBody + '</div>' +
       '<div class="modal-footer">';
     if (doc != "") {
       modal = modal + '<a class="btn btn-primary" href="' + doc + '" target="_blank">Documentation</a>  ';
@@ -116,13 +116,13 @@ var renderPage = function(data) {
       languages[language] = language;
     }
     var category = getCategory(item.name);
-    isotopeData += 
-      '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 border-fade">' + 
-      '<h3 class="name">' + item.name + '</h3>' + buildCategoryLabel(category) + '<br><br>' + 
-      '<p class="size hidden">' + item.size + '</p>' + 
-      '<p class="forks hidden">' + item.forks + '</p>' + 
+    isotopeData +=
+      '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 border-fade">' +
+      '<h3 class="name">' + item.name + '</h3>' + buildCategoryLabel(category) + '<br><br>' +
+      '<p class="size hidden">' + item.size + '</p>' +
+      '<p class="forks hidden">' + item.forks + '</p>' +
       '<p class="watchers hidden">' + item.watchers_count + '</p>' +
-      '<p>' + item.description + '</p>' + 
+      '<p>' + item.description + '</p>' +
       '</div>';
     var doc;
     if (item.name in repoToDoc) {
@@ -135,7 +135,7 @@ var renderPage = function(data) {
 
   var container = $('#isotope-container');
   container.append(isotopeData);
-  
+
   // initialize Isotope
   $("#isotope-container").isotope({
     // options
@@ -164,7 +164,7 @@ var renderPage = function(data) {
     var modalSelector = "#" + modal;
     $(modalSelector).modal();
   });
-  
+
   // Isotope filters
   $(".filter").click(function() {
     var selector = $(this).html().toLowerCase();
@@ -176,7 +176,7 @@ var renderPage = function(data) {
     }
     $("#isotope-container").isotope({ filter: selector });
   });
-  
+
   // Isotope sorting
   $(".sort").click(function(){
     var sortName = $(this).attr("data-option-value");
@@ -184,7 +184,24 @@ var renderPage = function(data) {
     if (sortName == "name") {
       isAscending = true;
     }
-    $('#isotope-container').isotope({ sortBy : sortName, sortAscending: isAscending });     
+    $('#isotope-container').isotope({ sortBy : sortName, sortAscending: isAscending });
+  });
+
+  // Random color to project cards
+  $(".border-fade").each(function(index) {
+    var color = randomColor({
+      luminosity: 'bright',
+      format: 'rgb' // e.g. 'rgb(225,200,20)'
+    });
+    // Set random border color fo each project card
+    $(this).css('box-shadow', `inset 0 0 0 4px ${color},0 0 1px rgba(0,0,0,0)`);
+
+    // Mouse events for project cards
+    $(this).on('mouseover', function(event) {
+      $(this).css('box-shadow', `inset 0 0 0 6px #ddd,0 0 1px rgba(0,0,0,0)`);
+    }).mouseout(function(event) {
+      $(this).css('box-shadow', `inset 0 0 0 4px ${color},0 0 1px rgba(0,0,0,0)`);
+    });
   });
 }
 
@@ -192,4 +209,4 @@ $.ajax({
   dataType: 'json',
   url:'https://api.github.com/orgs/99XT/repos?page=1&per_page=100&callback=?',
   success: renderPage
-}); 
+});
