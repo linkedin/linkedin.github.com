@@ -1,5 +1,5 @@
-.item { 
-  width: 250px; 
+.item {
+  width: 250px;
   height: 250px;
   background-color: #eee;
   border-style: solid;
@@ -35,4 +35,15 @@
 
 .hero-unit h1 {
   text-align: center;
+}
+
+#preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: #fff url('/images/gears.gif') no-repeat center center;
 }
