@@ -131,11 +131,6 @@ var renderPage = function(data) {
       '<p class="forks hidden">' + item.forks + '</p>' +
       '<p class="watchers hidden">' + item.watchers_count + '</p>' +
       '<p>' + item.description + '</p>' +
-      '<div class="likely" data-url="' + item.html_url + '" data-title="' + item.name + '" data-text="' + item.description + '">' +
-      '<div class="twitter">Tweet</div>' +
-      '<div class="facebook">Share</div>' +
-      '<div class="gplus">Plus</div>' +
-      '</div>' +
       '</div>';
     var doc;
     if (item.name in repoToDoc) {
