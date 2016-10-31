@@ -105,6 +105,19 @@ var renderPage = function(data) {
     return '<span class="label label-' + categorMap[category] + '">' + category + '</span>';
   }
 
+  function buildLanguageLabel(language) {
+    var languageMap = {
+      "Ruby": "warning",
+      "CSS": "primary",
+      "JavaScript": "success",
+      "C": "info",
+      "Mobile": "warning",
+      "Other": "danger"
+    }
+    return '<span style="font-size:14px;" class="label label-' + languageMap[language] + '">' + language + '</span>';
+  }
+
+
   var isotopeData = "";
   var languages = {};
   var githubData = null;
@@ -114,7 +127,7 @@ var renderPage = function(data) {
   } else {
     githubData = data.data;
   }
-  
+
   // sort repo on latest activity first - using pushed at
   githubData.sort(function(a,b){
     return new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime();
@@ -127,7 +140,7 @@ var renderPage = function(data) {
     var category = getCategory(item.name);
     isotopeData +=
       '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 border-fade">' +
-      '<h3 class="name">' + item.name + '</h3>' + buildCategoryLabel(category) + '<br><br>' +
+      '<h3 class="name">' + item.name + '</h3>' + buildLanguageLabel(language) + '<br><br>' +
       '<p class="size hidden">' + item.size + '</p>' +
       '<p class="forks hidden">' + item.forks + '</p>' +
       '<p class="watchers hidden">' + item.watchers_count + '</p>' +
