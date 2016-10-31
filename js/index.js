@@ -114,9 +114,10 @@ var renderPage = function(data) {
   } else {
     githubData = data.data;
   }
-  // sort repo on latest activity first
+  
+  // sort repo on latest activity first - using pushed at
   githubData.sort(function(a,b){
-    return new Date(b.updated_at) - new Date(a.updated_at);
+    return new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime();
   });
   githubData.forEach(function(item) {
     var language = getLanguage(item.language);
