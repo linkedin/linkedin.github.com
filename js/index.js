@@ -102,8 +102,21 @@ var renderPage = function(data) {
       "Mobile": "warning",
       "Other": "danger"
     }
-    return '<span class="label label-' + categorMap[category] + '">' + category + '</span>';
+    return '<span class="label project-label-' + categorMap[category] + '">' + category + '</span>';
   }
+
+  function buildLanguageLabel(language) {
+    var languageMap = {
+      "Ruby": "red",
+      "CSS": "green",
+      "JavaScript": "blue",
+      "C": "orange",
+      "Mobile": "yellow",
+      "Other": "purple"
+    }
+    return '<span class="label project-label-' + languageMap[language] + '">' + language + '</span>';
+  }
+
 
   var isotopeData = "";
   var languages = {};
@@ -114,7 +127,7 @@ var renderPage = function(data) {
   } else {
     githubData = data.data;
   }
-  
+
   // sort repo on latest activity first - using pushed at
   githubData.sort(function(a,b){
     return new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime();
@@ -127,11 +140,14 @@ var renderPage = function(data) {
     var category = getCategory(item.name);
     isotopeData +=
       '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 border-fade">' +
-      '<h3 class="name">' + item.name + '</h3>' + buildCategoryLabel(category) + '<br><br>' +
+      '<h3 class="name">' + item.name + '</h3>' +
+      '<button class="btn_git btn-with-count js-toggler-target"> '+'<i class="icon-star"></i>'+ item.stargazers_count +' Stars </button>&nbsp'+
+      '<button class="btn_git btn-with-count js-toggler-target">'+'<i class="icon-fork"></i>'+ item.forks +' Forks </button>'+
       '<p class="size hidden">' + item.size + '</p>' +
       '<p class="forks hidden">' + item.forks + '</p>' +
       '<p class="watchers hidden">' + item.watchers_count + '</p>' +
-      '<p>' + item.description + '</p>' +
+      '<div class="proj-disc">' + item.description + '</div>' +
+       buildLanguageLabel(language) +
       '</div>';
     var doc;
     if (item.name in repoToDoc) {
