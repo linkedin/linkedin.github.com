@@ -1,5 +1,9 @@
-.item {
-  width: 250px;
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+    font-family:'Montserrat', sans-serif !important;
+}
+
+.item { 
+
   height: 250px;
   background-color: #eee;
   border-style: solid;
@@ -19,6 +23,7 @@
 .logo {
   vertical-align: bottom;
   margin-right: 10px;
+    width: 150px;
 }
 
 .open-source-title {
@@ -28,7 +33,9 @@
 }
 
 .hero-unit {
-  padding-bottom: 20px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    text-align: left;
   width: 50%;
   margin: 0 auto;
   padding-top: 30px;
@@ -48,7 +55,7 @@
   }
 }
 
-.hero-unit h1 {
+.hero-unit h2 {
   text-align: center;
 }
 
@@ -64,33 +71,72 @@
 }
 
 .btn_git {
-  position: relative;
-  display: inline-block;
-  padding: 6px 12px;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  color: #333;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-color: #eee;
-  background-image: -webkit-linear-gradient(#fcfcfc, #eee);
-  background-image: linear-gradient(#fcfcfc, #eee);
-  border: 1px solid #d5d5d5;
-  border-radius: 3px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+
+    position: relative;
+    display: inline-block;
+    padding: 4px 6px;
+    font-size: 12px;
+    color: #333;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #eee;
+    background-image: -webkit-linear-gradient(#fcfcfc, #eee);
+    background-image: linear-gradient(#fcfcfc, #eee);
+    border: 1px solid #d5d5d5;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 3px;
+    
 }
+
+.label{
+    position: absolute;
+    bottom: 12px;
+    font-size: 11px;
+    font-weight: 400;
+    padding: 5px 8px;
+    
+}
+
+.proj-disc{
+    font-size: 12px;
+    font-weight: 400;
+    padding: 13px 0 0 5px;
+}
+
+.success{
+    background: red;
+}
+
+.project-label-red{
+    background: #f0263e;
+}
+.project-label-green{
+    background: #2db551;
+}
+.project-label-blue{
+    background: #3fc8f4;
+}
+.project-label-orange{
+    background: #f58031;
+}.project-label-yellow{
+    background: #fbda11;
+}
+.project-label-purple{
+    background: #dabfde;
+}
+
 
 @media only screen and (min-width: 768px) {
   .nav-elements {
     margin-top: 18px !important;
     float: right !important;
   }
+
 }
