@@ -36,6 +36,23 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     padding-bottom: 30px;
     padding-top: 30px;
     text-align: left;
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+@media only screen and (min-width: 768px) {
+  .hero-unit {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .hero-unit .hero-para {
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 17px;
+  }
 }
 
 .hero-unit h2 {
@@ -54,6 +71,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 
 .btn_git {
+
     position: relative;
     display: inline-block;
     padding: 4px 6px;
@@ -111,5 +129,14 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     background: #fbda11;
 }
 .project-label-purple{
-    background: #b88dc2;
+    background: #dabfde;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .nav-elements {
+    margin-top: 18px !important;
+    float: right !important;
+  }
+
 }
