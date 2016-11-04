@@ -236,13 +236,13 @@ var renderPage = function(data) {
 $.getJSON("config.json", function(config) {
     $.ajax({
         dataType: 'json',
-        url: 'https://api.github.com/orgs/' + config.git_org + '/repos?page=1&per_page=100&callback=?',
+        url: 'https://api.github.com/orgs/' + config.git_org_name + '/repos?page=1&per_page=100&callback=?',
         success: renderPage
     });
 
     document.title = config.title;
     $(".href").attr('href', config.base_url);
-    $(".git_url").attr('href', 'http://github.com/' + config.git_org);
+    $(".git_url").attr('href', 'http://github.com/' + config.git_org_name);
     $(".blog_url").attr('href', config.blog_url);
     $(".logo").attr('src', config.logo_url);
     $("#title_main").html("Open Source at " + config.org_name);
