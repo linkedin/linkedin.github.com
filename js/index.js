@@ -233,7 +233,7 @@ var renderPage = function(data) {
     });
 }
 
-$.getJSON(window.location.hostname+"/config.json", function(config) {
+$.getJSON(window.location.origin+"/config.json", function(config) {
     $.ajax({
         dataType: 'json',
         url: 'https://api.github.com/orgs/' + config.git_org_name + '/repos?page=1&per_page=100&callback=?',
