@@ -3,6 +3,7 @@
   "org_name": "99X Technology",
   "git_org_name" : "99XT",
   "base_url": "http://opensource.99xtechnology.com/",
+  "child_url": "http://opensource.99xtechnology.com/pages/",
   "blog_url": "http://blog.99xtechnology.com/",
-  "logo_url": "images/logo-white.png"
+  "logo_url": "http://opensource.99xtechnology.com/images/logo-white.png"
 }
