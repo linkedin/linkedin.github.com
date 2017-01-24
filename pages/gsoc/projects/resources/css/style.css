@@ -105,6 +105,9 @@ span.caret {
 .example-select{
   padding:2em;
 }
+.card-action span{ 
+ display: inline-block!important; 
+}
 .footer-text{
   text-align: center;
   color: lightslategrey;
