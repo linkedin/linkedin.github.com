@@ -32,7 +32,7 @@ projects = [
 			"https://github.com/99xt"
 		],
 		"mentors" : [
-			"ashanF",
+			"AshanFernando",
 			"mjzone"
 		],
 		"initiatives" : ["GSoC"],
@@ -73,7 +73,7 @@ projects = [
 			"https://github.com/99xt"
 		],
 		"mentors" : [
-			"ashanF",
+			"AshanFernando",
 			"rehrumesh"
 		],
 		"initiatives" : ["GSoC"],
