@@ -4,7 +4,7 @@ projects = [
 		"desc" : "Updating soon",
 		"requirements" : [
 			"The proposal has to contain a clear concept.",
-			"The applicant should have one patch accepted to the coala core."
+			"Knowledge in protacter and related JS Testing frameworks."
 		],
 		"difficulty" : "low",
 		"issues" : [
