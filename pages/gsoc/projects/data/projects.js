@@ -33,7 +33,8 @@ projects = [
 		],
 		"mentors" : [
 			"AshanFernando",
-			"mjzone"
+			"mjzone",
+			"asankaf"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["AngularJS", "Serverless"],
@@ -74,7 +75,8 @@ projects = [
 		],
 		"mentors" : [
 			"AshanFernando",
-			"rehrumesh"
+			"rehrumesh",
+			"asankaf"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["github", "PR"],
@@ -115,7 +117,8 @@ projects = [
 		],
 		"mentors" : [
 			"dileepaj",
-			"mjzone"
+			"mjzone",
+			"asankaf"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
