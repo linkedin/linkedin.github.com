@@ -17,7 +17,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["Protacter", "Firebase"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "no_desc.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
@@ -38,7 +38,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["AngularJS", "Serverless"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "no_desc.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
@@ -59,7 +59,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["Hardware", "Serverless"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "no_desc.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
@@ -80,12 +80,12 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["github", "PR"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "no_desc.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
 		"name" : "Extracting User Temporal Profiles from Location Based Social Networks",
-		"desc" : "Updating soon",
+		"desc" : "Location Based Social Networks like Facebook, Twitter, Instagram generates lot of temporal data that explain user’s context.  When you exactly know user temporal profile and if you could find an effective software product that can match business profiles and social user temporal profiles that are in close proximity you can start publishing recommendations for the users who has close proximity behavioral profiles. You need to develop a plugin / lightweight software product that can be easily integrated into existing software product that can provide recommendations based on social user’s temporal data.",
 		"requirements" : [
 			"The proposal has to contain a clear concept.",
 			"The applicant should have one patch accepted to the coala core."
@@ -101,7 +101,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "extracting.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
@@ -122,7 +122,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "log_analysis.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
@@ -142,12 +142,12 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "no_desc.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
 		"name" : "BrainWave analysis library",
-		"desc" : "Updating soon",
+		"desc" : "This is to come up with an application for Emotiv Insight device (https://www.emotiv.com/insight) device to analyze brain waves and detect how much the brain likes a given taste of ice cream.",
 		"requirements" : [
 			"The proposal has to contain a clear concept.",
 			"The applicant should have one patch accepted to the coala core."
@@ -162,12 +162,12 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "brain.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
 		"name" : "Make Ionic CLI to work with package.json instead of a separate configuration file.",
-		"desc" : "Updating soon",
+		"desc" : "The mission is to leave the app configuration and app settings on config.xml and move the rest to package.json enabling code, build, and ship to use package.json file.",
 		"requirements" : [
 			"The proposal has to contain a clear concept.",
 			"The applicant should have one patch accepted to the coala core."
@@ -182,7 +182,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "ionic.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
@@ -202,7 +202,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "no_desc.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
@@ -222,7 +222,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
-		"markdown": "improve_diff_handling.md",
+		"markdown": "paas.md",
 		"collaborating_projects" : ["serverless",]
 	}
 ]
