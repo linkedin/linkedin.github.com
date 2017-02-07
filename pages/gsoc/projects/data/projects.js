@@ -4,7 +4,7 @@ projects = [
 		"desc" : "Updating soon",
 		"requirements" : [
 			"The proposal has to contain a clear concept.",
-			"The applicant should have one patch accepted to the coala core."
+			"Knowledge in protacter and related JS Testing frameworks."
 		],
 		"difficulty" : "low",
 		"issues" : [
@@ -33,7 +33,8 @@ projects = [
 		],
 		"mentors" : [
 			"AshanFernando",
-			"mjzone"
+			"mjzone",
+			"asankaf"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["AngularJS", "Serverless"],
@@ -74,7 +75,8 @@ projects = [
 		],
 		"mentors" : [
 			"AshanFernando",
-			"rehrumesh"
+			"rehrumesh",
+			"asankaf"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["github", "PR"],
@@ -115,7 +117,8 @@ projects = [
 		],
 		"mentors" : [
 			"dileepaj",
-			"mjzone"
+			"mjzone",
+			"asankaf"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
