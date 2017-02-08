@@ -1,3 +1,5 @@
-Almost all mentors are active on [gitter](https://coala.io/chat).
-Just drop by and leave us a message! In addition, most mentors have their
-mail addresses exposed on their GitHub profile.
+Almost all the mentors are active on email, gitter, IRC, weekly hangouts(for students). Please drop by and leave us a message! 
+
+Email : 99xt@googlegroups.com
+
+Forum : https://groups.google.com/forum/#!forum/99xt
