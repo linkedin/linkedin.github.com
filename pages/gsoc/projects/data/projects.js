@@ -122,7 +122,7 @@ projects = [
 	},
 	{
 		"name" : "Automatic Language Detection for LogAnalysis Framework",
-		"desc" : "Updating soon",
+		"desc" : "Language detection plugin for log analysis framework.",
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
