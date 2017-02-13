@@ -37,7 +37,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["AngularJS", "Serverless"],
-		"markdown": "no_desc.md",
+		"markdown": "interns_portal.md",
 		"collaborating_projects" : ["interns-portal",]
 	},
 	{
