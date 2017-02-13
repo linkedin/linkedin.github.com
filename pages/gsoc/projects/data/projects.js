@@ -179,7 +179,7 @@ projects = [
 	},
 	{
 		"name" : "Socket Connection mediator",
-		"desc" : "Socket.io and SignalR simplifies the process of ...",
+		"desc" : "Socket and SignalR simplifies the process of ...",
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
