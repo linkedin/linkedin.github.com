@@ -179,7 +179,7 @@ projects = [
 	},
 	{
 		"name" : "Socket Connection mediator",
-		"desc" : "Updating soon",
+		"desc" : "Socket.io and SignalR simplifies the process of adding real-time communication between the web clients and servers.",
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
