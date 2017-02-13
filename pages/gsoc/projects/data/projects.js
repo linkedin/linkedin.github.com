@@ -57,14 +57,14 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["Hardware", "Serverless"],
-		"markdown": "no_desc.md",
+		"markdown": "remote_hw_sdk.md",
 		"collaborating_projects" : ["hardware-policy",]
 	},
 	{
 		"name" : "Live instance for each PR (which can accommodate any web project)",
 		"desc" : "Updating soon",
 		"requirements" : [
-			"The proposal has to contain a clear concept."
+			"Application to live test PR of web application."
 		],
 		"difficulty" : "medium",
 		"issues" : [
