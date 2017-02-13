@@ -1,12 +1,12 @@
 projects = [
 	{
 		"name" : "Protacter Starter: Full fledge dashboard with Firebase",
-		"desc" : "Yolo",
+		"desc" : "Protractor starting kit for writing end-to-end tests for angular.js applications. ",
 		"requirements" : [
 			"The proposal has to contain a clear concept.",
 			"Knowledge in protacter and related JS Testing frameworks."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt/protractor-starter/issues"
 		],
@@ -18,7 +18,7 @@ projects = [
 		"initiatives" : ["GSoC"],
 		"tags" : ["Protacter", "Firebase"],
 		"markdown": "protractor_starter.md",
-		"collaborating_projects" : ["serverless",]
+		"collaborating_projects" : ["protractor-starter",]
 	},
 	{
 		"name" : "Interns Portal: Adding multi-tenancy",
