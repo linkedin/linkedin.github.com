@@ -77,7 +77,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["github", "PR"],
-		"markdown": "no_desc.md",
+		"markdown": "live_pr.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
