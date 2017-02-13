@@ -22,11 +22,11 @@ projects = [
 	},
 	{
 		"name" : "Interns Portal: Adding multi-tenancy",
-		"desc" : "Updating soon",
+		"desc" : "Adding multi tenency to existing application",
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -46,7 +46,7 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "hard",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -66,7 +66,7 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -86,7 +86,7 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "hard",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -106,7 +106,7 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -126,7 +126,7 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "hard",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -145,7 +145,7 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -164,7 +164,7 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "hard",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -183,7 +183,7 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
