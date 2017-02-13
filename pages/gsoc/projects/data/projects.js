@@ -136,7 +136,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
-		"markdown": "no_desc.md",
+		"markdown": "log_analysis_lt.md",
 		"collaborating_projects" : ["log_analysis",]
 	},
 	{
