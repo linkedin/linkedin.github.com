@@ -1,14 +1,14 @@
 projects = [
 	{
 		"name" : "Protacter Starter: Full fledge dashboard with Firebase",
-		"desc" : "Updating soon",
+		"desc" : "Yolo",
 		"requirements" : [
 			"The proposal has to contain a clear concept.",
 			"Knowledge in protacter and related JS Testing frameworks."
 		],
 		"difficulty" : "low",
 		"issues" : [
-			"https://github.com/99xt"
+			"https://github.com/99xt/protractor-starter/issues"
 		],
 		"mentors" : [
 			"kasunkv",
@@ -17,7 +17,7 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["Protacter", "Firebase"],
-		"markdown": "no_desc.md",
+		"markdown": "protractor_starter.md",
 		"collaborating_projects" : ["serverless",]
 	},
 	{
