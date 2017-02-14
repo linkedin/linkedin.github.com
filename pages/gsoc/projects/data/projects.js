@@ -24,7 +24,9 @@ projects = [
 		"name" : "Interns Portal: Adding multi-tenancy",
 		"desc" : "Adding multi tenency to existing application",
 		"requirements" : [
-			"The proposal has to contain a clear concept."
+			"The proposal has to contain a clear concept.",
+			"Understanding about multi tenency",
+			"Auth principals"
 		],
 		"difficulty" : "medium",
 		"issues" : [
