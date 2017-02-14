@@ -1,5 +1,3 @@
-### Gsoc cordova package.json
-
 Apache Cordova is an opensource mobile development framework that allows to use 
 standard web technologies. However, the standard boilerplate code currently in 
 use have several different configurations to code, build, ship, and run 
