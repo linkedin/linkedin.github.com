@@ -42,9 +42,12 @@ projects = [
 	},
 	{
 		"name" : "Remote Hardware Policy SDK",
-		"desc" : "Updating soon",
+		"desc" : "Creating a secure policy to access hardware over web.",
 		"requirements" : [
-			"The proposal has to contain a clear concept."
+			"The proposal has to contain a clear concept.",
+			"Solid understanging about Certificate Authorities",
+			"Hardware emulation",
+			"Chrome Extensions"
 		],
 		"difficulty" : "hard",
 		"issues" : [
@@ -56,7 +59,7 @@ projects = [
 			"sachithp"
 		],
 		"initiatives" : ["GSoC"],
-		"tags" : ["Hardware", "Serverless"],
+		"tags" : ["Hardware", "Certificate Authority", "Hardware"],
 		"markdown": "remote_hw_sdk.md",
 		"collaborating_projects" : ["hardware-policy",]
 	},
