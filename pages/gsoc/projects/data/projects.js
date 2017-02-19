@@ -66,8 +66,8 @@ projects = [
 		"collaborating_projects" : ["hardware-policy",]
 	},
 	{
-		"name" : "Live instance for each PR (which can accommodate any web project)",
-		"desc" : "Updating soon",
+		"name" : "ProjectPR",
+		"desc" : "A platform which allows developers to test each PR with a live instance",
 		"requirements" : [
 			"Application to live test PR of web application."
 		],
