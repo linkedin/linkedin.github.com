@@ -35,7 +35,7 @@ projects = [
 		"mentors" : [
 			"AshanFernando",
 			"mjzone",
-			"asankaf"
+			"rehrumesh"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["AngularJS", "Serverless"],
@@ -83,7 +83,7 @@ projects = [
 		"initiatives" : ["GSoC"],
 		"tags" : ["github", "PR"],
 		"markdown": "live_pr.md",
-		"collaborating_projects" : ["serverless",]
+		"collaborating_projects" : ["projectpr",]
 	},
 	{
 		"name" : "Extracting User Temporal Profiles from Location Based Social Networks",
@@ -137,7 +137,8 @@ projects = [
 		],
 		"mentors" : [
 			"dileepaj",
-			"mjzone"
+			"mjzone",
+			"asankaf"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
@@ -156,7 +157,8 @@ projects = [
 		],
 		"mentors" : [
 			"dileepaj",
-			"mjzone"
+			"mjzone",
+			"rehrumesh"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
@@ -175,7 +177,8 @@ projects = [
 		],
 		"mentors" : [
 			"kosalanuwan",
-			"mjzone"
+			"mjzone",
+			"charithsoori"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["ionic", "mobile"],
@@ -194,7 +197,8 @@ projects = [
 		],
 		"mentors" : [
 			"charithsoori",
-			"dilumn"
+			"dilumn",
+			"asankaf"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
@@ -214,7 +218,8 @@ projects = [
 		],
 		"mentors" : [
 			"AshanFernando",
-			"dilumn"
+			"dilumn",
+			"rehrumesh"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
