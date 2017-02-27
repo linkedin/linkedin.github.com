@@ -1,14 +1,14 @@
 projects = [
 	{
 		"name" : "Protacter Starter: Full fledge dashboard with Firebase",
-		"desc" : "Updating soon",
+		"desc" : "Protractor starting kit for writing end-to-end tests for angular.js applications. ",
 		"requirements" : [
 			"The proposal has to contain a clear concept.",
 			"Knowledge in protacter and related JS Testing frameworks."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
-			"https://github.com/99xt"
+			"https://github.com/99xt/protractor-starter/issues"
 		],
 		"mentors" : [
 			"kasunkv",
@@ -17,36 +17,41 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["Protacter", "Firebase"],
-		"markdown": "no_desc.md",
-		"collaborating_projects" : ["serverless",]
+		"markdown": "protractor_starter.md",
+		"collaborating_projects" : ["protractor-starter",]
 	},
 	{
 		"name" : "Interns Portal: Adding multi-tenancy",
-		"desc" : "Updating soon",
+		"desc" : "Adding multi tenency to existing application",
 		"requirements" : [
-			"The proposal has to contain a clear concept."
+			"The proposal has to contain a clear concept.",
+			"Understanding about multi tenency",
+			"Auth principals"
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
 		"mentors" : [
 			"AshanFernando",
 			"mjzone",
-			"asankaf"
+			"rehrumesh"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["AngularJS", "Serverless"],
-		"markdown": "no_desc.md",
-		"collaborating_projects" : ["serverless",]
+		"markdown": "interns_portal.md",
+		"collaborating_projects" : ["interns-portal",]
 	},
 	{
 		"name" : "Remote Hardware Policy SDK",
-		"desc" : "Updating soon",
+		"desc" : "Creating a secure policy to access hardware over web.",
 		"requirements" : [
-			"The proposal has to contain a clear concept."
+			"The proposal has to contain a clear concept.",
+			"Solid understanging about Certificate Authorities",
+			"Hardware emulation",
+			"Chrome Extensions"
 		],
-		"difficulty" : "low",
+		"difficulty" : "hard",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -56,17 +61,17 @@ projects = [
 			"sachithp"
 		],
 		"initiatives" : ["GSoC"],
-		"tags" : ["Hardware", "Serverless"],
-		"markdown": "no_desc.md",
-		"collaborating_projects" : ["serverless",]
+		"tags" : ["Hardware", "Certificate Authority", "Hardware"],
+		"markdown": "remote_hw_sdk.md",
+		"collaborating_projects" : ["hardware-policy",]
 	},
 	{
-		"name" : "Live instance for each PR (which can accommodate any web project)",
-		"desc" : "Updating soon",
+		"name" : "ProjectPR",
+		"desc" : "A platform which allows developers to test each PR with a live instance",
 		"requirements" : [
-			"The proposal has to contain a clear concept."
+			"Application to live test PR of web application."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -77,8 +82,8 @@ projects = [
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["github", "PR"],
-		"markdown": "no_desc.md",
-		"collaborating_projects" : ["serverless",]
+		"markdown": "live_pr.md",
+		"collaborating_projects" : ["projectpr",]
 	},
 	{
 		"name" : "Extracting User Temporal Profiles from Location Based Social Networks",
@@ -86,7 +91,7 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "hard",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -96,9 +101,9 @@ projects = [
 			"samudrak"
 		],
 		"initiatives" : ["GSoC"],
-		"tags" : ["data", "social"],
+		"tags" : ["data", "social", "machine learning"],
 		"markdown": "extracting.md",
-		"collaborating_projects" : ["serverless",]
+		"collaborating_projects" : ["scikit-api",]
 	},
 	{
 		"name" : "Web Application for LogAnalysis Framework",
@@ -106,7 +111,7 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
@@ -118,26 +123,27 @@ projects = [
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
 		"markdown": "log_analysis.md",
-		"collaborating_projects" : ["serverless",]
+		"collaborating_projects" : ["log_analysis",]
 	},
 	{
 		"name" : "Automatic Language Detection for LogAnalysis Framework",
-		"desc" : "Updating soon",
+		"desc" : "Language detection plugin for log analysis framework.",
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "hard",
 		"issues" : [
 			"https://github.com/99xt"
 		],
 		"mentors" : [
 			"dileepaj",
-			"mjzone"
+			"mjzone",
+			"asankaf"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
-		"markdown": "no_desc.md",
-		"collaborating_projects" : ["serverless",]
+		"markdown": "log_analysis_lt.md",
+		"collaborating_projects" : ["log_analysis",]
 	},
 	{
 		"name" : "BrainWave analysis library",
@@ -145,74 +151,79 @@ projects = [
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
 		"mentors" : [
 			"dileepaj",
-			"mjzone"
+			"mjzone",
+			"rehrumesh"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
 		"markdown": "brain.md",
-		"collaborating_projects" : ["serverless",]
+		"collaborating_projects" : ["brainwave-sdk",]
 	},
 	{
 		"name" : "Make Ionic CLI to work with package.json instead of a separate configuration file.",
-		"desc" : "The mission is to leave the app configuration and app settings on config.xml and move the rest to package.json enabling code, build, and ship to use package.json file.",
+		"desc" : "The mission is to leave the app configuration and app settings from config.xml",
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "hard",
 		"issues" : [
 			"https://github.com/99xt"
 		],
 		"mentors" : [
 			"kosalanuwan",
-			"mjzone"
+			"mjzone",
+			"charithsoori"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["ionic", "mobile"],
 		"markdown": "ionic.md",
-		"collaborating_projects" : []
+		"collaborating_projects" : ["ionic"]
 	},
 	{
 		"name" : "Socket Connection mediator",
-		"desc" : "Updating soon",
+		"desc" : "Socket and SignalR simplifies the process of ...",
 		"requirements" : [
 			"The proposal has to contain a clear concept."
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
 		"mentors" : [
 			"charithsoori",
-			"dilumn"
+			"dilumn",
+			"asankaf"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
-		"markdown": "no_desc.md",
-		"collaborating_projects" : ["serverless",]
+		"markdown": "socket_mediator.md",
+		"collaborating_projects" : ["socket-mediator",]
 	},
 	{
 		"name" : "PaaS framework implementation  with Actor Model",
-		"desc" : "Actor Model is using most of the time for concurrent processing. Rails or any ruby server application can be deployed on top of that PaaS which can be configured to have multiple node actors & a supervisor on top of the nodes. Mailbox of the each actor will be responsible for communication in between actors. The framework should have a mechanism to create, destroy new nodes based on the requirements. And nodes should be able to communicate between each other. Supervisor node should be notified when other nodes go down. A simple Ruby server should be able to deploy on top of the framework",
+		"desc" : "Actor Model is using most of the time for concurrent processing....",
 		"requirements" : [
-			"The proposal has to contain a clear concept."
+			"The proposal has to contain a clear concept.",
+			"Ruby on Rails knowledge"
 		],
-		"difficulty" : "low",
+		"difficulty" : "medium",
 		"issues" : [
 			"https://github.com/99xt"
 		],
 		"mentors" : [
 			"AshanFernando",
-			"dilumn"
+			"dilumn",
+			"rehrumesh"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["data", "social"],
 		"markdown": "paas.md",
-		"collaborating_projects" : ["serverless",]
+		"collaborating_projects" : ["PIAM",]
 	}
 ]
