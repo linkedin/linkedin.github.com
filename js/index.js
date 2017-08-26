@@ -143,7 +143,6 @@ var renderPage = function(data) {
             languages[language] = language;
         }
         var category = getCategory(item.name);
-        console.log(item);
         isotopeData +=
             '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 border-fade">' +
             '<h3 class="name">' + item.name + '</h3>' +
