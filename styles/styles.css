@@ -131,6 +131,18 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 .project-label-purple{
     background: #dabfde;
 }
+.project-label-brown{
+    background: #a52a2a;
+}
+.project-label-cadetblue{
+    background: #5f9ea0;
+}
+.project-label-cornflowerblue{
+    background: #6495ed;
+}
+.project-label-tomato{
+    background: #ff6347;
+}
 
 
 @media only screen and (min-width: 768px) {

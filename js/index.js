@@ -111,6 +111,12 @@ var renderPage = function(data) {
             "JavaScript": "blue",
             "C": "orange",
             "Mobile": "yellow",
+            "C#": "brown",
+            "TypeScript": "cadetblue",
+            "PHP": "cornflowerblue",
+            "HTML": "green",
+            "XSLT": "brown",
+            "Shell": "tomato",
             "Other": "purple"
         }
         return '<span class="label project-label-' + languageMap[language] + '">' + language + '</span>';
@@ -137,11 +143,13 @@ var renderPage = function(data) {
             languages[language] = language;
         }
         var category = getCategory(item.name);
+        console.log(item);
         isotopeData +=
             '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 border-fade">' +
             '<h3 class="name">' + item.name + '</h3>' +
             '<button class="btn_git btn-with-count js-toggler-target"> ' + '<i class="icon-star"></i>' + item.stargazers_count + ' Stars </button>&nbsp' +
-            '<button class="btn_git btn-with-count js-toggler-target">' + '<i class="icon-fork"></i>' + item.forks + ' Forks </button>' +
+            '<button class="btn_git btn-with-count js-toggler-target">' + '<i class="icon-fork"></i>' + item.forks + ' Forks </button>&nbsp;' +
+            '<button class="btn_git btn-with-count js-toggler-target">' + '<i class="glyphicon-eye-open"></i>' + item.watchers_count + ' Watchers </button>' +
             '<p class="size hidden">' + item.size + '</p>' +
             '<p class="forks hidden">' + item.forks + '</p>' +
             '<p class="watchers hidden">' + item.watchers_count + '</p>' +
