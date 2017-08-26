@@ -111,6 +111,12 @@ var renderPage = function(data) {
             "JavaScript": "blue",
             "C": "orange",
             "Mobile": "yellow",
+            "C#": "brown",
+            "TypeScript": "cadetblue",
+            "PHP": "cornflowerblue",
+            "HTML": "green",
+            "XSLT": "brown",
+            "Shell": "tomato",
             "Other": "purple"
         }
         return '<span class="label project-label-' + languageMap[language] + '">' + language + '</span>';
