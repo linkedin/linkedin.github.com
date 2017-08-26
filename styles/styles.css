@@ -2,14 +2,18 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     font-family:'Montserrat', sans-serif !important;
 }
 
-.item { 
-
-  height: 250px;
+.item {
+  max-width: 100%;
+  min-height: 250px;
   background-color: #eee;
   border-style: solid;
   border-width: 5px;
   border-color: white;
   cursor: pointer;
+}
+
+.item .name {
+  overflow-wrap: break-word;
 }
 
 .main-container {
