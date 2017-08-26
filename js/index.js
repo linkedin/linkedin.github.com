@@ -82,7 +82,7 @@ var renderPage = function(data) {
             '<h2 class="modal-title" id="myModalLabel">' + name + '</h2>' + buildCategoryLabel(category) +
             '</div>' +
             '<div class="modal-body">' +
-            modalBody + '</div>' +
+            (modalBody==null ? "<em>No additional description</em>" : modalBody) + '</div>' +
             '<div class="modal-footer">';
         if (doc != "") {
             modal = modal + '<a class="btn btn-primary" href="' + doc + '" target="_blank">Documentation</a>  ';
@@ -151,7 +151,7 @@ var renderPage = function(data) {
             '<p class="size hidden">' + item.size + '</p>' +
             '<p class="forks hidden">' + item.forks + '</p>' +
             '<p class="watchers hidden">' + item.watchers_count + '</p>' +
-            '<div class="proj-disc">' + item.description + '</div>' +
+            '<div class="proj-disc">' + (item.description==null ? "<em>No additional description</em>" : item.description) + '</div>' +
             buildLanguageLabel(language) +
             '</div>';
         var doc;
