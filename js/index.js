@@ -148,8 +148,7 @@ var renderPage = function(data) {
             '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 border-fade">' +
             '<h3 class="name">' + item.name + '</h3>' +
             '<button class="btn_git btn-with-count js-toggler-target"> ' + '<i class="icon-star"></i>' + item.stargazers_count + ' Stars </button>&nbsp' +
-            '<button class="btn_git btn-with-count js-toggler-target">' + '<i class="icon-fork"></i>' + item.forks + ' Forks </button>&nbsp;' +
-            '<button class="btn_git btn-with-count js-toggler-target">' + '<i class="glyphicon-eye-open"></i>' + item.watchers_count + ' Watchers </button>' +
+            '<button class="btn_git btn-with-count js-toggler-target">' + '<i class="icon-fork"></i>' + item.forks + ' Forks </button>' +
             '<p class="size hidden">' + item.size + '</p>' +
             '<p class="forks hidden">' + item.forks + '</p>' +
             '<p class="watchers hidden">' + item.watchers_count + '</p>' +
