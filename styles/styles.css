@@ -12,6 +12,22 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   cursor: pointer;
 }
 
+
+.item {
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px rgba(0,0,0,0);
+}
+
+.item:hover {
+  box-shadow: inset 0 0 0 4px #666, 0 0 1px rgba(0,0,0,0);
+}
+
 .item .name {
   overflow-wrap: break-word;
 }
@@ -99,19 +115,27 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     
 }
 
-.label{
-    position: absolute;
-    bottom: 12px;
-    font-size: 11px;
-    font-weight: 400;
-    padding: 5px 8px;
-    
+.language-tags {
+  position: absolute;
+  bottom: 0%;
+  padding-bottom: 10px;
+}
+
+.tag {
+  width: initial;
+  min-width: 15px;
+  padding: 5px 8px;
+  max-width: 100%;
+  margin: 2px;
+  border-radius: 3px;
 }
 
 .proj-disc{
-    font-size: 12px;
-    font-weight: 400;
-    padding: 13px 0 0 5px;
+  height: 100px;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 13px 0 0 5px;
 }
 
 .success{

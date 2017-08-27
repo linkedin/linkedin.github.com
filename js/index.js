@@ -118,8 +118,9 @@ var renderPage = function(data) {
             "XSLT": "brown",
             "Shell": "tomato",
             "Other": "purple"
-        }
-        return '<span class="label project-label-' + languageMap[language] + '">' + language + '</span>';
+        };
+
+        return '<span class="col-lg-1 col-md-1 col-sm-1 col-xs-1 tag label project-label-' + languageMap[language] + '">' + language + '</span>';
     }
 
 
@@ -144,15 +145,17 @@ var renderPage = function(data) {
         }
         var category = getCategory(item.name);
         isotopeData +=
-            '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 border-fade">' +
-            '<h3 class="name">' + item.name + '</h3>' +
+            '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 col-md-6 col-sm-12 col-xs-12">' +
+            '<h3 class="col-lg-12 name">' + item.name + '</h3>' +
             '<button class="btn_git btn-with-count js-toggler-target"> ' + '<i class="icon-star"></i>' + item.stargazers_count + ' Stars </button>&nbsp' +
             '<button class="btn_git btn-with-count js-toggler-target">' + '<i class="icon-fork"></i>' + item.forks + ' Forks </button>' +
             '<p class="size hidden">' + item.size + '</p>' +
             '<p class="forks hidden">' + item.forks + '</p>' +
             '<p class="watchers hidden">' + item.watchers_count + '</p>' +
-            '<div class="proj-disc">' + (item.description==null ? "<em>No additional description</em>" : item.description) + '</div>' +
+            '<p class="col-lg-12 proj-disc">' + (item.description==null ? "<em>No additional description</em>" : item.description) + '</p>' +
+            '<div class="col-lg-12 language-tags">' +
             buildLanguageLabel(language) +
+            '</div>' +
             '</div>';
         var doc;
         if (item.name in repoToDoc) {
@@ -166,8 +169,9 @@ var renderPage = function(data) {
     var container = $('#isotope-container');
     container.append(isotopeData);
 
+    //TODO remove in #106
     // initialize Isotope
-    $("#isotope-container").isotope({
+    /*$("#isotope-container").isotope({
         // options
         itemSelector: '.item',
         layoutMode: 'masonry',
@@ -185,7 +189,7 @@ var renderPage = function(data) {
                 return $(elem).find(".name").text();
             }
         }
-    });
+    });*/
 
     // Modals
     $(".item").click(function() {
@@ -311,6 +315,10 @@ function renderOrgEvents(data) {
 }
 
 $.getJSON(window.location.origin+"/config.json", function(config) {
+    var item = $("#isotope-container").html();
+    for (var i =0; i < 15; i++) {
+      //$("#isotope-container").append(item);
+    }
     $.ajax({
         dataType: 'json',
         url: 'https://api.github.com/orgs/' + config.git_org_name + '/repos?page=1&per_page=100&callback=?',
