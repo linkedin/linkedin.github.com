@@ -145,7 +145,7 @@ var renderPage = function(data) {
         }
         var category = getCategory(item.name);
         isotopeData +=
-            '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 col-md-6 col-sm-12 col-xs-12">' +
+            '<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 item-container"><div class="item ' + category.toLowerCase() + " " + language + ' col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
             '<h3 class="col-lg-12 name">' + item.name + '</h3>' +
             '<button class="btn_git btn-with-count js-toggler-target"> ' + '<i class="icon-star"></i>' + item.stargazers_count + ' Stars </button>&nbsp' +
             '<button class="btn_git btn-with-count js-toggler-target">' + '<i class="icon-fork"></i>' + item.forks + ' Forks </button>' +
@@ -156,7 +156,7 @@ var renderPage = function(data) {
             '<div class="col-lg-12 language-tags">' +
             buildLanguageLabel(language) +
             '</div>' +
-            '</div>';
+            '</div></div>';
         var doc;
         if (item.name in repoToDoc) {
             doc = repoToDoc[item.name];
