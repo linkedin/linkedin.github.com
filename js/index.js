@@ -1,5 +1,28 @@
 new Konami("https://www.linkedin.com");
 
+var timeSince = function(date) {
+
+    var seconds = Math.floor((new Date() - date) / 1000);
+    var interval = Math.floor(seconds / 31536000);
+
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) {
+        return date.toLocaleDateString('en-US');
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+        return interval + " hours ago";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+        return interval + " minutes ago";
+    }
+    if (seconds == 0) {
+        return "just now";
+    }
+    return Math.floor(seconds) + " seconds";
+};
+
 var renderPage = function(data) {
     // hide preloader
     $('#preloader').fadeOut(300, function() {
@@ -246,7 +269,7 @@ var renderPage = function(data) {
 function renderOrgEvents(data) {
     data.filter(function (event) {
         var title = "";
-        var timeStamp = "<span class='time-stamp'>" + new Date(event.created_at).toLocaleDateString("en-US") + "</span>";
+        var timeStamp = "<span class='time-stamp'>" + timeSince(new Date(event.created_at)) + "</span>";
         var description = " ";
         var repo = "<a href='https://github.com/" + event.repo.name + "'>" + event.repo.name + "</a>";
         var actor = "<a href='https://github.com/"+ event.actor.login +"'>"+
