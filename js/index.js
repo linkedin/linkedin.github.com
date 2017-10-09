@@ -117,7 +117,7 @@ var renderPage = function(data) {
             "HTML": "green",
             "XSLT": "brown",
             "Shell": "tomato",
-			"Python": "dodgerblue",
+            "Python": "dodgerblue",
             "Other": "purple",
         };
 
