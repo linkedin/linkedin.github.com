@@ -173,6 +173,9 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 .project-label-tomato{
     background: #ff6347;
 }
+.project-label-dodgerblue{
+    background: #1e90ff;
+}
 
 
 @media only screen and (min-width: 768px) {
