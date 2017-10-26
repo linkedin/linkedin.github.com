@@ -89,7 +89,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   width: 100%;
   height: 100%;
   overflow: visible;
-  background: #fff url('/images/gears.gif') no-repeat center center;
+  background: #fff url('../images/gears.gif') no-repeat center center;
 }
 
 .btn_git {
