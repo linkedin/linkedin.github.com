@@ -360,5 +360,6 @@ $.getJSON(window.location.origin+"/config.json", function(config) {
     $(".git_url").attr('href', 'http://github.com/' + config.git_org_name);
     $(".blog_url").attr('href', config.blog_url);
     $(".logo").attr('src', config.logo_url);
+    $(".gsoc").attr('href', config.child_url + 'gsoc');
     $("#title_main").html("Open Source at " + config.org_name);
 });
