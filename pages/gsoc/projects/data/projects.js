@@ -108,7 +108,7 @@ projects = [
 			"dilantha111"
 		],
 		"initiatives" : ["GSoC"],
-		"tags" : ["Electron" "JavaScript", "HTML", "CSS", "NodeJS", "SQLite"],
+		"tags" : ["Electron", "JavaScript", "HTML", "CSS", "NodeJS", "SQLite"],
 		"markdown": "contentful.md",
 		"collaborating_projects" : []
 	}
