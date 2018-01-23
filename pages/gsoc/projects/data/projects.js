@@ -54,7 +54,7 @@ projects = [
 			"buddhics"
 		],
 		"initiatives" : ["GSoC"],
-		"tags" : ["Skype", "Bot", "SkypeBot", "CI", "CD", "API integration", "Bot"],
+		"tags" : ["Skype", "Bot", "SkypeBot", "CI", "CD"],
 		"markdown": "skype-bot.md",
 		"collaborating_projects" : []
 	},
