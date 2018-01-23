@@ -103,8 +103,8 @@ projects = [
 			"https://github.com/99xt"
 		],
 		"mentors" : [
-			"Buddhics",
-			"Lakindu95",
+			"buddhics",
+			"lakindu95",
 			"dilantha111"
 		],
 		"initiatives" : ["GSoC"],
