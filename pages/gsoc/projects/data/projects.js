@@ -1,24 +1,24 @@
 projects = [
 	{
-		"name" : "Protacter Starter: Full fledge dashboard with Firebase",
-		"desc" : "Protractor starting kit for writing end-to-end tests for angular.js applications. ",
+		"name" : "Serverless-React Boilerplate",
+		"desc" : "Migrating Serverless React Boilerplate to Serverless Application Repository",
 		"requirements" : [
 			"The proposal has to contain a clear concept.",
-			"Knowledge in protacter and related JS Testing frameworks."
+			"Knowledge in Serverless framework, AWS Serverless Application Model, AWS Lambda and ReactJS."
 		],
 		"difficulty" : "medium",
 		"issues" : [
-			"https://github.com/99xt/protractor-starter/issues"
+			"https://github.com/99xt/serverless-react-boilerplate/issues"
 		],
 		"mentors" : [
-			"kasunkv",
+			"mjzone",
 			"rehrumesh",
-			"dilumn"
+			"AshanFernando"
 		],
 		"initiatives" : ["GSoC"],
-		"tags" : ["Protacter", "Firebase"],
-		"markdown": "protractor_starter.md",
-		"collaborating_projects" : ["protractor-starter",]
+		"tags" : ["AWS", "Serverless", "ReactJS", "AWS Lambda", "API Gateway"],
+		"markdown": "serverless-react.md",
+		"collaborating_projects" : ["serverless-react",]
 	},
 	{
 		"name" : "Interns Portal: Adding multi-tenancy",
