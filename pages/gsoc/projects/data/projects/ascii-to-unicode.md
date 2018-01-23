@@ -1,6 +1,6 @@
-## Document conversion ASCII fonts to Unicode
+#### Document conversion ASCII fonts to Unicode
 
-### Description
+##### Description
 There are still a lot of documents and contents written in legacy ASCII-like encoded fonts in many parts of the world. The Indian region widely suffers from this. The publishing industry academics and many others often use online text  converters to convert the documents from ASCII encoding to Unicode. These online converters does the simple task of converting the ASCII encoded character sequences to corresponding Unicode characters for that script. But the problem is that;
 
 - Documents formatting is lost during the copy paste process 
@@ -8,7 +8,7 @@ There are still a lot of documents and contents written in legacy ASCII-like enc
 - Batch processing is not possible
 - For each language there are multiple font encodings and mappings
 
-### Soultion
+##### Soultion
 - An open source conversion tool  for OpenDocumentFormat documents such as ott and odp
 > Open document format is widely supported and documented with interoperability. Combination with other document conversion libraries (ie:Pandoc) this tool can support a wide range of documents including Microsoft Office document formats.
 

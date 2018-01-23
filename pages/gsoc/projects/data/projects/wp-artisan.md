@@ -1,6 +1,6 @@
-## A command-line toolkit for WordPress developers
+#### A command-line toolkit for WordPress developers
 
-### Description
+##### Description
 WordPress is a open source content management system (CMS) written in PHP. It’s has rich-community support and a resources library including variety of plugins and themes published by the community. Most of WordPress developers do the custom development, build websites from scratch instead of using templates.
 
 WordPress deployment and server migration kind of a hectic process.

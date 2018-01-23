@@ -50,7 +50,7 @@ projects = [
 			"rajikaimal",
 			"thinkholic",
 			"lakindu95",
-			"Dilantha111",
+			"dilantha111",
 			"buddhics"
 		],
 		"initiatives" : ["GSoC"],
