@@ -111,5 +111,22 @@ projects = [
 		"tags" : ["Electron", "JavaScript", "HTML", "CSS", "NodeJS", "SQLite"],
 		"markdown": "contentful.md",
 		"collaborating_projects" : []
+	},
+	{
+		"name" : "Voice app for the people with down syndrome",
+		"desc" : "Cross platofrom mobile app to help people with down syndrome",
+		"requirements" : [],
+		"difficulty" : "medium",
+		"issues" : [
+			"https://github.com/99xt"
+		],
+		"mentors" : [
+			"thinkholic",
+			"dilantha111"
+		],
+		"initiatives" : ["GSoC"],
+		"tags" : ["React native", "mobile", "SQLite"],
+		"markdown": "down_syndrome.md",
+		"collaborating_projects" : []
 	}
 ]
