@@ -105,7 +105,8 @@ projects = [
 		"mentors" : [
 			"buddhics",
 			"lakindu95",
-			"dilantha111"
+			"dilantha111",
+			"kasunkv"
 		],
 		"initiatives" : ["GSoC"],
 		"tags" : ["Electron", "JavaScript", "HTML", "CSS", "NodeJS", "SQLite"],
