@@ -8,7 +8,7 @@ There are still a lot of documents and contents written in legacy ASCII-like enc
 - Batch processing is not possible
 - For each language there are multiple font encodings and mappings
 
-##### Soultion
+##### Solution
 - An open source conversion tool  for OpenDocumentFormat documents such as ott and odp
 > Open document format is widely supported and documented with interoperability. Combination with other document conversion libraries (ie:Pandoc) this tool can support a wide range of documents including Microsoft Office document formats.
 
