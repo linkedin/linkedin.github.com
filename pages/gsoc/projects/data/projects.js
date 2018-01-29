@@ -40,7 +40,7 @@ projects = [
 	},
 	{
 		"name" : "Skype integration bot",
-		"desc" : "Skype bot for integrate CI/CD pipelines",
+		"desc" : "Skype bot for integrating with CI/CD pipelines",
 		"requirements" : [],
 		"difficulty" : "easy",
 		"issues" : [
