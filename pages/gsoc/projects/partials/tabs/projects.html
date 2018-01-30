@@ -36,8 +36,10 @@
             <span ng-repeat="mentor in project.mentors | limitTo:4"><a ng-href="https://github.com/{{mentor}}" class="mentors-github-id" target="_blank">{{mentor}}</a></span>
           </div>
 
-
-        <!--<div ng-show="project.initiatives.length>0" class="project-overview-element clickable card-action">
+          <div class="project-card-detail" ng-click="lc.showProject(project)">
+            <a class="waves-effect waves-light btn">Click Here</a>
+          </div>          
+            <!--<div ng-show="project.initiatives.length>0" class="project-overview-element clickable card-action">
           <span ng-click="search(initiative)" class="pr-element-detail chip" ng-repeat="initiative in project.initiatives">{{ initiative }}</span><br>
         </div>-->
 
