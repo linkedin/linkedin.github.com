@@ -24,6 +24,11 @@ Steroids is also extensible which its features can be extended using plug-ins. P
 - Ability to come up with  creative, innovative, and unique ideas.
 - Knowledge in TypeScript, JavaScript, and related Design Patterns, AWS Lambda, Docker, Gulp would be helpful.
 
+##### Deliverables
+- Steroids command line tool
+- Implementation of specified missing features in Steroids documenatation.
+- Developments of plugins for NoSQL databases.
+
 ##### Collaborating Projects
 - [Steroids Framework](https://github.com/99xt/steroidslibrary)
 - [Steroids Runtime](https://github.com/99xt/steroidsruntime)
