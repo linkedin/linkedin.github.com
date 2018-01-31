@@ -9,3 +9,5 @@
 ##### Requirements
 - The proposal has to contain a clear concept.
 
+##### Deliverables
+- Electron application which faciliatates all the requirements specified.
