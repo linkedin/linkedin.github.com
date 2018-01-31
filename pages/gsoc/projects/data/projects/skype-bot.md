@@ -7,3 +7,8 @@ With the creation of bots in messaging platforms developers have used the functi
 
 - Creating a bot that allow to integrate into CI / CD pipeline will be a major task for this project.
 - Managing the messages when projects repositories are updated (issue listing, PR updates)
+
+##### Deliverables
+- Express.js API exposing the bot features.
+- Documented test cases.
+- An official GitHub webpage for the bot.
