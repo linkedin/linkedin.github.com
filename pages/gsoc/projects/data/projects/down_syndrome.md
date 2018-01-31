@@ -13,3 +13,6 @@ Individuals with down syndrome sufferers with disabilities in speaking. Most of 
 - The proposal has to contain a clear concept.
 - Mock UIs
 - Other than being technically competent, applicant should be a person who has a clear vision on giving a helping hand to the differently abled people. 
+
+##### Deliverables
+- React native application with the features specified in the proposal, supporting both IOS and Android.
