@@ -12,9 +12,14 @@ There are still a lot of documents and contents written in legacy ASCII-like enc
 - An open source conversion tool  for OpenDocumentFormat documents such as ott and odp
 > Open document format is widely supported and documented with interoperability. Combination with other document conversion libraries (ie:Pandoc) this tool can support a wide range of documents including Microsoft Office document formats.
 
-- A web based tool can be implemented 
-- A XML schema to store mappings for each ASCII like encoding of the 
+- A web based tool should be implemented 
+- A XML schema to store mappings for each ASCII like encodings
 - A library of mappings for each language
 
 The online conversion tools for languages like Hindi, Kannada and other languages are used by many on a day today basis in digital publishing. Many Indian language publishers still use legacy fonts for their print publishing workflows and when they have to publish for web, they painstakingly go through the the process of copying and pasting text between the tools and reformatting. There are piles of documents in government institutions encoded in legacy fonts and this tool will ensure that an open tool is available for wider use and that legacy fonts and encodings are documented and archived.
 
+##### Deliverables
+
+- Single paged web application
+- NPM package for ASCII conversions
+- Node.js REST API
