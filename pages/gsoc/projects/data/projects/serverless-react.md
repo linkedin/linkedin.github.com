@@ -13,6 +13,10 @@ Adding redux for state management at frontend side (optional)
 The proposal has to contain a clear concept.
 Knowledge in Serverless framework, AWS Serverless Application Model, AWS Lambda and ReactJS.
 
+##### Deliverables
+- Extension of the serverless-react-boilerplate repo with the specificied requirements.
+- Documentation for the additional features.
+
 ##### Collaborating Projects
 [Serverless React Boilerplate](https://github.com/99xt/serverless-react-boilerplate)
 
