@@ -13,5 +13,5 @@ WordPress deployment and server migration kind of a hectic process.
 - Backups / Restore
 - Deployment and server migration solution 
 
-
-
+##### Deliverables
+- Funcitonality extensions for the command line tool specified.
