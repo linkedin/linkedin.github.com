@@ -1,13 +1,13 @@
-var liRepoMetadata = 
+var liRepoMetadata =
 [
 {
   "repo": "parseq",
   "posts": [],
-  "doc": "http://linkedin.github.io/parseq/javadoc/latest/"
+  "doc": "https://www.javadoc.io/doc/com.linkedin.parseq/parseq"
 },
 {
   "repo": "JTune",
-  "posts": 
+  "posts":
   [
   {
     "title": "Optimizing Java CMS garbage collections, its difficulties, and using JTune as a solution",
@@ -52,7 +52,7 @@ var liRepoMetadata =
   {
     "url": "http://engineering.linkedin.com/restli/restli-2x-and-protocol-upgrade-story",
     "title": "Rest.li 2.x and a Protocol Upgrade Story"
-  },  
+  },
   {
     "title": "Maximizing Our Publishing Platform Reach with Network Distribution",
     "url": "http://engineering.linkedin.com/publishing-platform/maximizing-our-publishing-platform-reach-network-distribution"
