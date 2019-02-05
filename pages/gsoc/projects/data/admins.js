@@ -1,1 +1,1 @@
-admins = [ "rehrumesh", "rajikaimal", "thinkholic"]
+admins = [ "mjzone", "rajikaimal", "thinkholic"]
