@@ -39,26 +39,6 @@ projects = [
 		"collaborating_projects" : []
 	},
 	{
-		"name" : "Skype integration bot",
-		"desc" : "Skype bot for integrating with CI/CD pipelines",
-		"requirements" : [],
-		"difficulty" : "easy",
-		"issues" : [
-			"https://github.com/99xt"
-		],
-		"mentors" : [
-			"rajikaimal",
-			"thinkholic",
-			"lakindu95",
-			"dilantha111",
-			"buddhics"
-		],
-		"initiatives" : ["GSoC"],
-		"tags" : ["Skype", "Bot", "SkypeBot", "CI", "CD"],
-		"markdown": "skype-bot.md",
-		"collaborating_projects" : []
-	},
-	{
 		"name" : "wp-artisan",
 		"desc" : "A command-line toolkit for WordPress developers",
 		"requirements" : [],
@@ -75,59 +55,5 @@ projects = [
 		"tags" : ["WordPress", "CMS", "CLI", "NodeJs"],
 		"markdown": "wp-artisan.md",
 		"collaborating_projects" : ["wp-artisan",]
-	},
-	{
-		"name" : "Steroids",
-		"desc" : "A Microservice Framework in TypeScript",
-		"requirements" : [],
-		"difficulty" : "hard",
-		"issues" : [
-			"https://github.com/99xt"
-		],
-		"mentors" : [
-			"supuncodes",
-			"uslperera",
-			"rifhanakram"
-		],
-		"initiatives" : ["GSoC"],
-		"tags" : ["Serverless", "TypeScript", "JavaScript",  "Nodejs", "Microservices", "Nanoservices", "Unit Testing", "Dependency Injection", "Mocking", "Docker", "Framework", "AWS", "Lambda"],
-		"markdown": "steroids.md",
-		"collaborating_projects" : ["steroids"]
-	},
-	{
-		"name" : "Contentful CMS Media Manager",
-		"desc" : "Media Manager for Contentful Headless CMS / Cross-platform Desktop Application",
-		"requirements" : [],
-		"difficulty" : "medium",
-		"issues" : [
-			"https://github.com/99xt"
-		],
-		"mentors" : [
-			"buddhics",
-			"lakindu95",
-			"dilantha111",
-			"kasunkv"
-		],
-		"initiatives" : ["GSoC"],
-		"tags" : ["Electron", "JavaScript", "HTML", "CSS", "NodeJS", "SQLite"],
-		"markdown": "contentful.md",
-		"collaborating_projects" : []
-	},
-	{
-		"name" : "Voice app for the people with down syndrome",
-		"desc" : "Cross platofrom mobile app to help people with down syndrome",
-		"requirements" : [],
-		"difficulty" : "medium",
-		"issues" : [
-			"https://github.com/99xt"
-		],
-		"mentors" : [
-			"thinkholic",
-			"dilantha111"
-		],
-		"initiatives" : ["GSoC"],
-		"tags" : ["React native", "mobile", "SQLite"],
-		"markdown": "down_syndrome.md",
-		"collaborating_projects" : []
 	}
 ]
