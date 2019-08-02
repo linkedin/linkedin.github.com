@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Simple Sidebar - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">firstBorn</div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Components</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" href="https://github.com/99xt/first-born">Github</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <p><img src="https://user-images.githubusercontent.com/24349997/55307073-f5018300-5473-11e9-8f34-7d41680783fe.png"
+            alt="first-born Logo" style="max-width:100%;"></a></p>
+        <h2> Getting Started</h2>
+        <p>These instructions will get you a copy of the project up and running on your local machine for development
+          and testing purposes</p>
+        <h3> Prerequisites</h3>
+        <p>This module can only be used in a React Native app.
+          To use it, you will need a React Native app with it's dependencies installed.
+          The following modules need to be added as a dev dependency as well.</p>
+        <ul>
+          <li><code>create-react-class</code></li>
+          <li><code>react-native-vector-icons</code></li>
+        </ul>
+        <h3> Installing</h3>
+        <p>To install first-born run the following command in the terminal;</p>
+        <pre><code>npm install --save @99xt/first-born
+          </code></pre>
+        <p>You will additionally require to install the following modules as well.</p>
+        <pre><code>npm install --save create-react-class react-native-vector-icons
+          </code></pre>
+        <p>Follow <a href="https://github.com/oblador/react-native-vector-icons#installation">this guide</a> to
+          configure <code>react-native-vector-icons</code> for your project.</p>
+        <p>No other steps are required to configure <code>first-born</code> separately for each platform (Android/iOS).</p>
+        <h2> Development Testing</h2>
+        <p>To test the repo, first clone it;</p>
+        <pre><code>git clone https://github.com/99xt/first-born.git
+          </code></pre>
+        <p>Move into the folder;</p>
+        <pre><code>cd first-born
+          </code></pre>
+        <p>Install dependencies;</p>
+        <pre><code>npm install
+          </code></pre>
+        <p>And run the test script;</p>
+        <pre><code>npm run test
+          </code></pre>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>
