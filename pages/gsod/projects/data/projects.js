@@ -40,6 +40,18 @@ projects = [
     collaborating_projects: ["wp-artisan"],
   },
   {
+    name: "walk2win",
+    desc: "Online walking challenge for workplaces",
+    requirements: [],
+    difficulty: "intermediate",
+    issues: ["https://github.com/99xt/walk2win/issues"],
+    mentors: ["shalithasuranga", "Mahesh419"],
+    initiatives: ["GSoD"],
+    tags: ["NodeJs", "Angular", "Docker", "Mongodb", "Google API"],
+    markdown: "walk2win.md",
+    collaborating_projects: [],
+  },
+  {
     name: "firstborn",
     desc: "A component library for React Native",
     requirements: [],

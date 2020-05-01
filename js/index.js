@@ -361,5 +361,6 @@ $.getJSON(window.location.origin+"/config.json", function(config) {
     $(".blog_url").attr('href', config.blog_url);
     $(".logo").attr('src', config.logo_url);
     $(".gsoc").attr('href', config.child_url + 'gsoc');
+    $(".gsod").attr('href', config.child_url + 'gsod');
     $("#title_main").html("Open Source at " + config.org_name);
 });
