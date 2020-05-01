@@ -368,4 +368,5 @@ $.getJSON(window.location.origin+"/config.json", function(config) {
     $("#title_main").html("Open Source at " + config.org_name);
     $(".gsod_rules_url").attr('href', config.gsod_rules_url);
     $(".gsod_requirement_url").attr('href', config.gsod_requirement_url);
+    $(".serverless_dynamodb_url").attr('src', config.serverless_dynamodb_url);
 });

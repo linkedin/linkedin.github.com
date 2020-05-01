@@ -59,4 +59,20 @@ projects = [
     markdown: "first-born.md",
     collaborating_projects: ["firstborn"],
   },
+  {	
+	"name" : "Serverless DynamoDB Local",
+	"desc" : "Serverless Dynamodb Local Plugin - Allows to run dynamodb locally for serverless",
+	"difficulty" : "intermediate",
+	"issues" : [
+		"https://github.com/99xt/serverless-dynamodb-local/issues"
+	],
+	"mentors" : [
+		"Mahesh419",
+		"TRomesh"
+	],
+	"initiatives" : ["GSoC"],
+	"tags" : ["AWS", "Serverless", "AWS DynamoDB"],
+	"markdown": "serverless-dynamodb-local.md",
+	"collaborating_projects" : ["serverless-dynamodb-local",]
+   },
 ];
