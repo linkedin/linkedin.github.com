@@ -2,10 +2,6 @@ projects = [
 	{
 		"name" : "Serverless-React Boilerplate",
 		"desc" : "Migrating Serverless React Boilerplate to Serverless Application Repository",
-		"requirements" : [
-			"The proposal has to contain a clear concept.",
-			"Knowledge in Serverless framework, AWS Serverless Application Model, AWS Lambda and ReactJS."
-		],
 		"difficulty" : "intermediate",
 		"issues" : [
 			"https://github.com/99xt/serverless-react-boilerplate/issues"
