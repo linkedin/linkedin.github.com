@@ -1,1 +1,1 @@
-Following are the <a class="gsod_requirement_url" target="_blank">requirements from Google</a>
+Following are the [requirements from Google](https://developers.google.com/season-of-docs/terms/tech-writer-terms) (https://developers.google.com/season-of-docs/terms/tech-writer-terms)
