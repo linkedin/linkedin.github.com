@@ -2,4 +2,4 @@ Feel free to discuss any clarification with our mentors. Almost all the mentors 
 
 Email : 99xt@googlegroups.com
 
-Forum : <a href="https://groups.google.com/forum/#!forum/99xt" target="_blank">https://groups.google.com/forum/#!forum/99xt</a>
+Forum : <a class="mail_url" target="_blank">https://groups.google.com/forum/#!forum/99xt</a>

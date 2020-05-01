@@ -359,8 +359,13 @@ $.getJSON(window.location.origin+"/config.json", function(config) {
     $(".href").attr('href', config.base_url);
     $(".git_url").attr('href', 'http://github.com/' + config.git_org_name);
     $(".blog_url").attr('href', config.blog_url);
+    $(".mail_url").attr('href', config.mail_url);
+    $(".gitter_url").attr('href', config.gitter_url);
+    $(".google_group_url").attr('href', config.google_group_url);
     $(".logo").attr('src', config.logo_url);
     $(".gsoc").attr('href', config.child_url + 'gsoc');
     $(".gsod").attr('href', config.child_url + 'gsod');
     $("#title_main").html("Open Source at " + config.org_name);
+    $(".gsod_rules_url").attr('href', config.gsod_rules_url);
+    $(".gsod_requirement_url").attr('href', config.gsod_requirement_url);
 });
