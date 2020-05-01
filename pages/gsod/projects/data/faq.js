@@ -1,10 +1,8 @@
 faq = {
 
-"I want to do a GSoD!" : "i_want_to_do_a_gsoc.md",
+"I want to do a GSoD!" : "i_want_to_do_a_gsod.md",
 
-"What are the requirements to be accepted for GSoD?" : "gsoc_requirements.md",
-
-"I have an own project idea! (Mentors and students!)" : "own_project_idea.md",
+"What are the requirements to be accepted for GSoD?" : "gsod_requirements.md",
 
 "How do I work out a great proposal?" : "writing_a_great_proposal.md",
 
