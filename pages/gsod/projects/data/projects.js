@@ -6,7 +6,7 @@ projects = [
     difficulty: "intermediate",
     issues: ["https://github.com/99xt/serverless-react-boilerplate/issues"],
     mentors: ["isuru117", "lakindu95"],
-    initiatives: ["GSoC"],
+    initiatives: ["GSoD"],
     tags: ["AWS", "Serverless", "ReactJS", "AWS Lambda", "API Gateway"],
     markdown: "serverless-react.md",
     collaborating_projects: ["serverless-react"],
@@ -70,7 +70,7 @@ projects = [
 		"Mahesh419",
 		"TRomesh"
 	],
-	"initiatives" : ["GSoC"],
+	"initiatives" : ["GSoD"],
 	"tags" : ["AWS", "Serverless", "AWS DynamoDB"],
 	"markdown": "serverless-dynamodb-local.md",
 	"collaborating_projects" : ["serverless-dynamodb-local",]
