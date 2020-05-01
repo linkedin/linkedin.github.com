@@ -5,9 +5,5 @@
   "base_url": "http://opensource.99xtechnology.com/",
   "child_url": "http://opensource.99xtechnology.com/pages/",
   "blog_url": "https://medium.com/99xtechnology",
-  "logo_url": "http://opensource.99xtechnology.com/images/logo-white.png",
-  "mail_url": "https://groups.google.com/forum/#!forum/99x",
-  "gitter_url": "https://gitter.im/99xt",
-  "google_group_url": "99xt@googlegroups.com",
-  "gsod_rules_url":"https://developers.google.com/season-of-docs/terms/program-rules"
+  "logo_url": "http://opensource.99xtechnology.com/images/logo-white.png"  
 }
