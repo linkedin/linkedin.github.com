@@ -1,0 +1,1 @@
+admins = [ "mjzone", "rajikaimal", "thinkholic"]
