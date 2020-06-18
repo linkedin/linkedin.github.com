@@ -4,7 +4,7 @@
             <div class="title-get-involved" >Welcome!</div>
             <br>
             <div class="description">
-                Open Source Evenets - 2020<br>
+                Open Source Events - 2020<br>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
         <div ng-repeat="event in eventList | filter: searchText" class="card card-main showcase-card">
           <div class="project-card-detail waves-effect">
             <div class="card-title name-bear">{{ event.name }}</div>
-            <div class="card-action"><img ng-src="{{event.image}}"></div>
+            <div class="card-action"><img ng-src="{{event.image}}" width="100px" height="100px"></div>
             <div btf-markdown="event.desc | format_desc" class="card-content markdown"></div>
           </div>  
 
