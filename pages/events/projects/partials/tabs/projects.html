@@ -32,94 +32,35 @@
             <div class="card-title name-bear">{{ project.name }}</div>
             <div btf-markdown="project.desc | format_desc" class="card-content markdown"></div>
           </div>  
-          {{project.date.length}}
+
           <div ng-show="project.dates.length>0" class="card-action">
             <span>
               {{project.dates}}
             </span>
           </div>
 
-          <div ng-show="project.dates.length>0" class="card-action">
+          <div ng-show="project.target.length>0" class="card-action">
             <span> Event for: 
               {{project.target}}
             </span>
           </div>
 
-          <img src="{{project.image}}"> 
+          <img ng-src="{{project.image}}"> 
 
           <div class="card-action" >
-            <a class="waves-effect waves-light btn" ng-href="{{ project.eventurl}}" target="_blank">Go to Event</a>
+            <a class="waves-effect waves-light btn" ng-href="{{project.eventurl}}" target="_blank">Go to Event</a>
           </div>  
+        
+          <div ng-show="project.tags.length>0" class="project-overview-element clickable card-action">
+            <span class="pr-element-detail chip" ng-repeat="tag in project.tags">{{ tag }}</span><br>
+          </div>
 
-          <div class="card-action">
-            <a class="waves-effect waves-light btn">Click Here</a>
-          </div>          
-            <!--<div ng-show="project.initiatives.length>0" class="project-overview-element clickable card-action">
-          <span ng-click="search(initiative)" class="pr-element-detail chip" ng-repeat="initiative in project.initiatives">{{ initiative }}</span><br>
-        </div>-->
-
-         <div ng-show="project.collaborating_projects.length>0" class="project-overview-element clickable card-action">
-          <span ng-click="search(project)" class="pr-element-detail chip" ng-repeat="project in project.collaborating_projects">{{ project }}</span><br>
-        </div>
-
+          
         </div>
       </div>
     </div>
   </section>
 
-  <div id="modal1" class="modal">
-    <div  class="modal-content-bear">
-      <div class="col-md-4 profile">
-        <div class="project-name">
-        {{ currentProject.name }}
-        </div>
-        <div ng-show="currentProject.requirements.length>0" class="project-detail-element  reqs-proj">
-          <div class="small-heading">Requirements</div>
-          <ul class="req-ul">
-          <li btf-markdown="req" class="pr-element-detail milestones markdown-reqs" ng-repeat="req in currentProject.requirements"></li>
-          </ul>
-          <br>
-        </div>
-
-        <!--<div ng-show="currentProject.initiatives.length>0" class="project-detail-element">
-          <div class="small-heading">Initiatives</div>
-          <span class="pr-element-detail chip" ng-repeat="initiative in currentProject.initiatives">{{ initiative }}</span><br>
-        </div>-->
-
-        <div ng-show="currentProject.collaborating_projects.length>0" class="project-detail-element">
-          <div class="small-heading">Collaborating Projects</div>
-          <span class="pr-element-detail chip" ng-repeat="project in currentProject.collaborating_projects">{{ project }}</span><br>
-        </div>
-
-        <div ng-show="currentProject.tags.length>0" class="project-detail-element">
-          <div class="small-heading">Tags</div>
-          <span class="pr-element-detail chip" ng-repeat="tags in currentProject.tags">{{ tags }}</span>
-        </div>
-
-        <div ng-show="currentProject.difficulty" class="project-detail-element">
-          <div class="small-heading">Difficulty</div>
-          <span class="pr-element-detail chip">{{ currentProject.difficulty }}</span>
-        </div>
-
-        <!-- <div ng-show="currentProject.mentors.length>0" class="project-detail-element">
-          <div class="small-heading">Mentors</div>
-          <span class="pr-element-detail chip" ng-repeat="mentor in currentProject.mentors">@{{mentor}}</span>
-        </div> -->
-
-        <div ng-show="currentProject.issues.length>0" class="project-detail-element">
-          <div class="small-heading">Related Issues</div>
-          <span ng-click="redirect(issue)" class="pr-element-detail chip clickable" ng-repeat="issue in currentProject.issues">{{ issue | format_issue }}</span>
-        </div>
-        <br>
-      </div>
-
-      <div class="col-md-8 dashboard">
-        <div btf-markdown ng-include="'data/projects/' + currentProject.markdown" class="project-description markdown">
-        </div>
-      </div>  
-
-      </div>
- </div>
 </section>
 
 <script type="text/javascript">
