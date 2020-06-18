@@ -27,32 +27,31 @@
   <section>
     <div class="container">
       <div class="row showcase">
-        <div ng-repeat="project in projectList | filter: searchText" class="card card-main showcase-card">
+        <div ng-repeat="event in eventList | filter: searchText" class="card card-main showcase-card">
           <div class="project-card-detail waves-effect">
-            <div class="card-title name-bear">{{ project.name }}</div>
-            <div btf-markdown="project.desc | format_desc" class="card-content markdown"></div>
+            <div class="card-title name-bear">{{ event.name }}</div>
+            <div class="card-action"><img ng-src="{{event.image}}"></div>
+            <div btf-markdown="event.desc | format_desc" class="card-content markdown"></div>
           </div>  
 
-          <div ng-show="project.dates.length>0" class="card-action">
+          <div ng-show="event.dates.length>0" class="card-action">
             <span>
-              {{project.dates}}
+              {{event.dates}}
             </span>
           </div>
 
-          <div ng-show="project.target.length>0" class="card-action">
-            <span> Event for: 
-              {{project.target}}
+          <div ng-show="event.target.length>0" class="card-action">
+            <span> <b>For:</b> 
+              {{event.target}}
             </span>
           </div>
-
-          <img ng-src="{{project.image}}"> 
 
           <div class="card-action" >
-            <a class="waves-effect waves-light btn" ng-href="{{project.eventurl}}" target="_blank">Go to Event</a>
+            <a class="waves-effect waves-light btn" ng-href="{{event.eventurl}}" target="_blank">Go to Event</a>
           </div>  
         
-          <div ng-show="project.tags.length>0" class="project-overview-element clickable card-action">
-            <span class="pr-element-detail chip" ng-repeat="tag in project.tags">{{ tag }}</span><br>
+          <div ng-show="event.tags.length>0" class="project-overview-element clickable card-action">
+            <span class="pr-element-detail chip" ng-repeat="tag in event.tags">{{ tag }}</span><br>
           </div>
 
           

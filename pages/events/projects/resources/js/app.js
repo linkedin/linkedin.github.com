@@ -19,12 +19,12 @@
 			templateUrl: tabsDir+'projects.html',
 			controller: function ($scope) {
 				self = this
-				$scope.projectList = projects
-				self.showProject = function (project) {
+				$scope.eventList = events
+				self.showProject = function (events) {
 					$(document).ready(function () {
 						$('#modal1').modal('open');
 					});
-					$scope.currentProject = project
+					$scope.currentProject = events
 				 }
 
 					$scope.search = function (arg) {
