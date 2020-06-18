@@ -1,10 +1,10 @@
 <div class="main-content container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="title-get-involved" >Hello there!</div>
+            <div class="title-get-involved" >Welcome!</div>
             <br>
             <div class="description">
-                GSoD idealist 2020<br>
+                Open Source Evenets - 2020<br>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
 
     <div class="col-md-8 col-md-offset-2">
       <div class="input-field col-md-10">
-        <input ng-model="searchText" placeholder="Search for a project" id="search" type="text" class="validate">
+        <input ng-model="searchText" placeholder="Search for an event" id="search" type="text" class="validate">
       </div>
       <div class="input-field col-md-2">
         <center>
@@ -32,9 +32,15 @@
             <div class="card-title name-bear">{{ project.name }}</div>
             <div btf-markdown="project.desc | format_desc" class="card-content markdown"></div>
           </div>  
-          <div ng-show="project.mentors.length>0" class="card-action">
-            <span ng-repeat="mentor in project.mentors | limitTo:4"><a ng-href="https://github.com/{{mentor}}" class="mentors-github-id" target="_blank">{{mentor}}</a></span>
+          <div ng-show="project.dates.length>0" class="card-action">
+            <span>
+              {{project.dates}}
+            </span>
           </div>
+
+          <div class="card-action" ng-click="lc.showProject(project)">
+            <a class="waves-effect waves-light btn" ng-href="{{ project.eventurl}}" target="_blank">Go to Event</a>
+          </div>  
 
           <div class="card-action" ng-click="lc.showProject(project)">
             <a class="waves-effect waves-light btn">Click Here</a>
