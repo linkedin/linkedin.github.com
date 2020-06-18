@@ -28,21 +28,30 @@
     <div class="container">
       <div class="row showcase">
         <div ng-repeat="project in projectList | filter: searchText" class="card card-main showcase-card">
-          <div class="project-card-detail waves-effect" ng-click="lc.showProject(project)">
+          <div class="project-card-detail waves-effect">
             <div class="card-title name-bear">{{ project.name }}</div>
             <div btf-markdown="project.desc | format_desc" class="card-content markdown"></div>
           </div>  
+          {{project.date.length}}
           <div ng-show="project.dates.length>0" class="card-action">
             <span>
               {{project.dates}}
             </span>
           </div>
 
-          <div class="card-action" ng-click="lc.showProject(project)">
+          <div ng-show="project.dates.length>0" class="card-action">
+            <span> Event for: 
+              {{project.target}}
+            </span>
+          </div>
+
+          <img src="{{project.image}}"> 
+
+          <div class="card-action" >
             <a class="waves-effect waves-light btn" ng-href="{{ project.eventurl}}" target="_blank">Go to Event</a>
           </div>  
 
-          <div class="card-action" ng-click="lc.showProject(project)">
+          <div class="card-action">
             <a class="waves-effect waves-light btn">Click Here</a>
           </div>          
             <!--<div ng-show="project.initiatives.length>0" class="project-overview-element clickable card-action">
