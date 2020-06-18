@@ -86,15 +86,15 @@
           <span class="pr-element-detail chip">{{ currentProject.difficulty }}</span>
         </div>
 
-        <div ng-show="currentProject.mentors.length>0" class="project-detail-element">
+        <!-- <div ng-show="currentProject.mentors.length>0" class="project-detail-element">
           <div class="small-heading">Mentors</div>
           <span class="pr-element-detail chip" ng-repeat="mentor in currentProject.mentors">@{{mentor}}</span>
-        </div>
+        </div> -->
 
-        <!--<div ng-show="currentProject.issues.length>0" class="project-detail-element">
+        <div ng-show="currentProject.issues.length>0" class="project-detail-element">
           <div class="small-heading">Related Issues</div>
           <span ng-click="redirect(issue)" class="pr-element-detail chip clickable" ng-repeat="issue in currentProject.issues">{{ issue | format_issue }}</span>
-        </div>-->
+        </div>
         <br>
       </div>
 
