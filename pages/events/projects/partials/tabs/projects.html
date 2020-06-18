@@ -30,7 +30,7 @@
         <div ng-repeat="event in eventList | filter: searchText" class="card card-main showcase-card">
           <div class="waves-effect">
             <div class="card-title name-bear">{{event.name}}</div>
-            <div class="card-action"><img ng-src="{{event.image}}" width="100%" height="100p%"></div>
+            <div class="card-action"><img ng-src="{{event.image}}" width="100%" height="100%"></div>
             <div btf-markdown="event.desc | format_desc" class="card-content markdown"></div>
           </div>  
 

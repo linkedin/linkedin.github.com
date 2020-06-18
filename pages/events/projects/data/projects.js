@@ -8,5 +8,15 @@ events = [
     image: "/images/events/gsoc.png",
     initiatives: ["events"],
     tags: ["open-source", "google", "Summer of code"]
+  },
+  {
+    name: "Hacktoberfest - 2020",
+    desc: "Hacktoberfest is a month-long celebration of open source software run by DigitalOcean and DEV. Hacktoberfest is open to everyone in our global community.",
+    target: "Anyone",
+    dates: "October",
+    eventurl: "https://hacktoberfest.digitalocean.com/",
+    image: "/images/events/hacktoberfest.jpg",
+    initiatives: ["events"],
+    tags: ["open-source", "digital ocean", "hacktoberfest"]
   }
 ];
