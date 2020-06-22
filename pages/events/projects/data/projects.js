@@ -11,13 +11,13 @@ events = [
   },
   {
     name: "Hacktoberfest - 2020",
-    desc: "Hacktoberfest is a month-long celebration of open source software run by DigitalOcean and DEV. Hacktoberfest is open to everyone in our global community.",
+    desc: "Hacktoberfest is a month-long celebration of open source software run by DigitalOcean and DEV. Hacktoberfest is open to everyone in our global community. It is the easiest way to get into open source!",
     target: "Anyone",
     dates: "Will be announced in October 2020",
     eventurl: "https://hacktoberfest.digitalocean.com/",
     image: "/images/events/hacktoberfest.jpg",
     initiatives: ["events"],
-    tags: ["open-source", "digital-ocean", "hacktoberfest"]
+    tags: ["digital-ocean", "hacktoberfest"]
   },
   {
     name: "OpenStack Summit - 2020",
@@ -37,11 +37,11 @@ events = [
     eventurl: "https://events.linuxfoundation.org/open-source-summit-north-america/register/",
     image: "/images/events/oss.png",
     initiatives: ["events"],
-    tags: ["open-source", "summit", "linux-foundation"]
+    tags: ["summit", "linux-foundation"]
   },
   {
     name: "Google Season of Docs - 2021",
-    desc: "Season of Docs is an annual program organised by Google. Its goal is to bring technical writers and open source organisations together to foster collaboration and improvement of documentation in the Open Source space.",
+    desc: "Season of Docs is an annual program organised by Google. Its goal is to bring technical writers and open source organisations together to foster collaboration and improvement of documentation in the Open Source space. Its goal is to bring technical writers and open source organisations together to foster collaboration and improvement of documentation in the Open Source space.",
     target: "Anyone",
     dates: "Will be annouced in 2021",
     eventurl: "https://developers.google.com/season-of-docs",
