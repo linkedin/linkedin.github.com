@@ -34,11 +34,11 @@
             <div btf-markdown="event.desc | format_desc" class="card-content card-action markdown"></div>
           </div>  
 
-          <div ng-show="event.dates.length > 0" class="card-action">
+          <div ng-show="event.dates.length > 0" class="card-action waves-effect">
             <span><i class="fa fa-calendar" aria-hidden="true"></i> {{event.dates}}</span>
           </div>
 
-          <div ng-show="event.target.length > 0" class="card-action">
+          <div ng-show="event.target.length > 0" class="card-action waves-effect">
             <span><i class="fa fa-user" aria-hidden="true"></i>
              {{event.target}}</span>
           </div>
@@ -47,7 +47,7 @@
             <a class="waves-effect waves-light btn" ng-href="{{event.eventurl}}" target="_blank">Go to Event</a>
           </div>  
         
-          <div ng-show="event.tags.length > 0" class="project-overview-element clickable card-action">
+          <div ng-show="event.tags.length > 0" class="project-overview-element clickable card-action waves-effect">
             <span class="pr-element-detail chip" ng-repeat="tag in event.tags">{{ tag }}</span><br>
           </div>
           
