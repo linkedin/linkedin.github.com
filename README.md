@@ -9,12 +9,12 @@ Just fork the repository and rename it as YOURUSERNAME.github.io
 Heres a look at the config.json
 ```javascript
 {
-  "title": "99XT Open Source", // For page Title
-  "org_name": "99X Technology", // Your organization name (for headers )
+  "title": "99x Open Source", // For page Title
+  "org_name": "99x", // Your organization name (for headers )
   "git_org_name" : "99XT", // GitHub Username
   "base_url": "http://opensource.99xtechnology.com/", // Your domain root
-  "blog_url": "http://blog.99xtechnology.com/",  // Blog URL
-  "logo_url": "images/logo-white.png" // Header Logo image
+  "blog_url": "https://99x.io/blog/",  // Blog URL
+  "logo_url": "images/99x-logo.png" // Header Logo image
 }
 ```
 

@@ -1,9 +1,9 @@
 {
-  "title": "99XT Open Source",
-  "org_name": "99X Technology",
+  "title": "99x Open Source",
+  "org_name": "99x",
   "git_org_name" : "99XT",
   "base_url": "http://opensource.99xtechnology.com/",
   "child_url": "http://opensource.99xtechnology.com/pages/",
-  "blog_url": "https://medium.com/99xtechnology",
-  "logo_url": "http://opensource.99xtechnology.com/images/logo-white.png"  
+  "blog_url": "https://99x.io/blog",
+  "logo_url": "http://opensource.99xtechnology.com/images/99x-logo.png"  
 }
