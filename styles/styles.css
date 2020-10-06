@@ -11,6 +11,8 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   cursor: pointer;
 }
 
+.navlink { color: #482890 !important; }
+.navlink:hover { color: #6954FA !important; }
 
 .item {
   -webkit-transition-duration: .3s;
@@ -45,7 +47,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 .logo {
   vertical-align: bottom;
   margin-right: 10px;
-    width: 150px;
+    width: 75px;
 }
 
 .open-source-title {

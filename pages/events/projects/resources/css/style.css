@@ -153,10 +153,10 @@ footer.page-footer .footer-copyright{
   box-shadow: none !important;
 }
 .btn:hover, .btn-large:hover{
-  background-color: #424242 !important;
+  background-color: #6954FA !important;
 }
 .btn, .btn-large{
-  background-color: black !important;
+  background-color: #482890  !important;
 }
 ::-webkit-input-placeholder {
   font-weight: 200;
@@ -438,7 +438,9 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 }
 .explore{
   text-transform: uppercase;
+  color: #482890 !important;
 }
+
 .tabs .tab{
   text-transform: uppercase;
 }
