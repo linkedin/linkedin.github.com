@@ -438,7 +438,6 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 }
 .explore{
   text-transform: uppercase;
-  color: #482890 !important;
 }
 
 .tabs .tab{
@@ -477,4 +476,8 @@ ul:not(.browser-default) li {
 }
 .clickable{
   cursor: pointer;
+}
+
+.footer-logo-image{
+  width:150px;
 }
