@@ -5,7 +5,7 @@ WordPress is a open source content management system (CMS) written in PHP. It’
 
 WordPress deployment and server migration kind of a hectic process.
 
-[wp-artisan](https://github.com/99xt/wp-artisan) is a command-line toolkit for work on custom WordPress developments in an efficient way. The idea is introducing a cross-platform simplified solution for developers who love to use command-line tools for improve the development workflow. Mainly focused features are;
+[wp-artisan](https://github.com/99x/wp-artisan) is a command-line toolkit for work on custom WordPress developments in an efficient way. The idea is introducing a cross-platform simplified solution for developers who love to use command-line tools for improve the development workflow. Mainly focused features are;
 
 - Installing and setup the development environment (Add Vagrant support)
 - Installing themes, plugins
