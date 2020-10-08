@@ -11,7 +11,7 @@ Heres a look at the config.json
 {
   "title": "99x Open Source", // For page Title
   "org_name": "99x", // Your organization name (for headers )
-  "git_org_name" : "99XT", // GitHub Username
+  "git_org_name" : "99x", // GitHub Username
   "base_url": "http://opensource.99xtechnology.com/", // Your domain root
   "blog_url": "https://99x.io/blog/",  // Blog URL
   "logo_url": "images/99x-logo.png" // Header Logo image

@@ -8,7 +8,7 @@ projects = [
 		],
 		"difficulty" : "medium",
 		"issues" : [
-			"https://github.com/99xt/serverless-react-boilerplate/issues"
+			"https://github.com/99x/serverless-react-boilerplate/issues"
 		],
 		"mentors" : [
 			"mjzone",
@@ -26,7 +26,7 @@ projects = [
 		"requirements" : [],
 		"difficulty" : "medium",
 		"issues" : [
-			"https://github.com/99xt"
+			"https://github.com/99x"
 		],
 		"mentors" : [
 			"thinkholic",
@@ -44,7 +44,7 @@ projects = [
 		"requirements" : [],
 		"difficulty" : "medium",
 		"issues" : [
-			"https://github.com/99xt/wp-artisan/issues"
+			"https://github.com/99x/wp-artisan/issues"
 		],
 		"mentors" : [
 			"thinkholic",
