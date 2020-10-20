@@ -12,7 +12,7 @@ Heres a look at the config.json
   "title": "99x Open Source", // For page Title
   "org_name": "99x", // Your organization name (for headers )
   "git_org_name" : "99x", // GitHub Username
-  "base_url": "http://opensource.99xtechnology.com/", // Your domain root
+  "base_url": "https://opensource.99x.io/", // Your domain root
   "blog_url": "https://99x.io/blog/",  // Blog URL
   "logo_url": "images/opensource-logo-99x.png" // Header Logo image
 }
@@ -29,7 +29,7 @@ Heres a look at the config.json
 
 ## History
 1.We forked initial reposity from linkedin.github.io
-2.Published a code to suit for our organiztion 99XT.github.io/ opensource.99xtechnology.io
+2.Published a code to suit for our organiztion 99x.github.io/ https://opensource.99x.io
 3.We are working with goal making this a super easy boiletplate for everyone to easily create your profile page
 
 ##License

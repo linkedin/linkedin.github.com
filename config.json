@@ -2,8 +2,8 @@
   "title": "99x Open Source",
   "org_name": "99x",
   "git_org_name" : "99x",
-  "base_url": "http://opensource.99xtechnology.com/",
-  "child_url": "http://opensource.99xtechnology.com/pages/",
+  "base_url": "https://opensource.99x.io/",
+  "child_url": "https://opensource.99x.io/pages/",
   "blog_url": "https://99x.io/blog",
-  "logo_url": "http://opensource.99xtechnology.com/images/opensource-logo.png"  
+  "logo_url": "https://opensource.99x.io/images/opensource-logo.png"  
 }
