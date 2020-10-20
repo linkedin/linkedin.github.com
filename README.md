@@ -14,7 +14,7 @@ Heres a look at the config.json
   "git_org_name" : "99x", // GitHub Username
   "base_url": "http://opensource.99xtechnology.com/", // Your domain root
   "blog_url": "https://99x.io/blog/",  // Blog URL
-  "logo_url": "images/99x-logo.png" // Header Logo image
+  "logo_url": "images/opensource-logo-99x.png" // Header Logo image
 }
 ```
 
