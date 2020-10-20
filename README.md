@@ -1,4 +1,4 @@
-# 99xt.github.io
+# 99x.github.io
 One can use this repository to generate their own GitHub page for the profile of user or organization .
 
 ## Installation
@@ -29,7 +29,7 @@ Heres a look at the config.json
 
 ## History
 1.We forked initial reposity from linkedin.github.io
-2.Published a code to suit for our organiztion 99x.github.io/ https://opensource.99x.io
+2.Published a code to suit for our organiztion 99x.github.io/ opensource.99x.io
 3.We are working with goal making this a super easy boiletplate for everyone to easily create your profile page
 
 ##License
