@@ -13,6 +13,7 @@ from datetime import datetime
 
 REQUIRED_KEYS = {
     'description',
+    'fork',
     'forks',
     'html_url',
     'language',
@@ -29,6 +30,9 @@ filtered_repos = list()
 
 for repo in gh_data:
     filtered_repo = dict()
+    # Skip forked repos, as they are not directly owned by LinkedIn
+    if repo.get('fork', False):
+        continue
     for k, v in repo.items():
         if k in REQUIRED_KEYS:
             filtered_repo[k] = v
