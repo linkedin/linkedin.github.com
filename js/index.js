@@ -41,13 +41,13 @@ var renderPage = function(data) {
       return "";
     }
   }
-  
+
   function getCategory(repo) {
     if (repoToCategory[repo]) {
       return repoToCategory[repo];
     } else {
       return "Other";
-    } 
+    }
   }
 
   function getLanguage(language) {
@@ -66,25 +66,25 @@ var renderPage = function(data) {
   function addModal(name, description, category, githubUrl, blogPosts, doc) {
     var modalId = generateModalId(name);
     var modalBody = description;
-    if (blogPosts != "") {
+    if (blogPosts !== "") {
       modalBody += "<br/><br/><b>Blog Posts</b><br/>";
       modalBody += blogPosts;
     }
-    var modal = '<div class="modal fade" id="' + modalId + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' + 
-      '<div class="modal-dialog">' + 
-      '<div class="modal-content">' + 
-      '<div class="modal-header">' + 
-      '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + 
-      '<h2 class="modal-title" id="myModalLabel">' + name + '</h2>' + buildCategoryLabel(category) +  
-      '</div>' + 
-      '<div class="modal-body">' + 
-      modalBody + '</div>' + 
-      '<div class="modal-footer">';
-    if (doc != "") {
+    var modal = '<div class="modal fade" id="' + modalId + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
+        '<div class="modal-dialog">' +
+        '<div class="modal-content">' +
+        '<div class="modal-header">' +
+        '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+        '<h2 class="modal-title" id="myModalLabel">' + name + '</h2>' + buildCategoryLabel(category) +
+        '</div>' +
+        '<div class="modal-body">' +
+        modalBody + '</div>' +
+        '<div class="modal-footer">';
+    if (doc !== "") {
       modal = modal + '<a class="btn btn-primary" href="' + doc + '" target="_blank">Documentation</a>  ';
     }
     modal = modal + '<a class="btn btn-primary" href="' + githubUrl + '" target="_blank">View on GitHub</a>'
-      '</div></div></div></div>';
+    '</div></div></div></div>';
     $("#modals").append(modal);
   }
 
@@ -103,7 +103,7 @@ var renderPage = function(data) {
   var isotopeData = "";
   var languages = {};
   var githubData = null;
-  if (data.meta.status == 403) {
+  if (data.meta.status === 403) {
     githubData = cachedGithubApiResponse;
     console.log("Using a cached API response.");
   } else {
@@ -111,19 +111,23 @@ var renderPage = function(data) {
   }
   githubData = _.shuffle(githubData);
   githubData.forEach(function(item) {
+    // Skip forked repos, as they are not directly owned by LinkedIn
+    if (item.fork === true) {
+      return;
+    }
     var language = getLanguage(item.language);
-    if (languages[language] == undefined) {
+    if (languages[language] === undefined) {
       languages[language] = language;
     }
     var category = getCategory(item.name);
-    isotopeData += 
-      '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 border-fade">' + 
-      '<h3 class="name">' + item.name + '</h3>' + buildCategoryLabel(category) + '<br><br>' + 
-      '<p class="size hidden">' + item.size + '</p>' + 
-      '<p class="forks hidden">' + item.forks + '</p>' + 
-      '<p class="watchers hidden">' + item.watchers_count + '</p>' +
-      '<p>' + item.description + '</p>' + 
-      '</div>';
+    isotopeData +=
+        '<div class="item ' + category.toLowerCase() + " " + language + ' col-lg-4 border-fade">' +
+        '<h3 class="name">' + item.name + '</h3>' + buildCategoryLabel(category) + '<br><br>' +
+        '<p class="size hidden">' + item.size + '</p>' +
+        '<p class="forks hidden">' + item.forks + '</p>' +
+        '<p class="watchers hidden">' + item.watchers_count + '</p>' +
+        '<p>' + item.description + '</p>' +
+        '</div>';
     var doc;
     if (item.name in repoToDoc) {
       doc = repoToDoc[item.name];
@@ -135,7 +139,7 @@ var renderPage = function(data) {
 
   var container = $('#isotope-container');
   container.append(isotopeData);
-  
+
   // initialize Isotope
   $("#isotope-container").isotope({
     // options
@@ -164,11 +168,11 @@ var renderPage = function(data) {
     var modalSelector = "#" + modal;
     $(modalSelector).modal();
   });
-  
+
   // Isotope filters
   $(".filter").click(function() {
     var selector = $(this).html().toLowerCase();
-    if (selector == "all") {
+    if (selector === "all") {
       selector = "*";
     }
     else {
@@ -176,15 +180,15 @@ var renderPage = function(data) {
     }
     $("#isotope-container").isotope({ filter: selector });
   });
-  
+
   // Isotope sorting
   $(".sort").click(function(){
     var sortName = $(this).attr("data-option-value");
     var isAscending = false;
-    if (sortName == "name") {
+    if (sortName === "name") {
       isAscending = true;
     }
-    $('#isotope-container').isotope({ sortBy : sortName, sortAscending: isAscending });     
+    $('#isotope-container').isotope({ sortBy : sortName, sortAscending: isAscending });
   });
 }
 
@@ -192,4 +196,4 @@ $.ajax({
   dataType: 'json',
   url:'https://api.github.com/orgs/LinkedIn/repos?page=1&per_page=100&callback=?',
   success: renderPage
-}); 
+});
