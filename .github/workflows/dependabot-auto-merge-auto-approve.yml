@@ -22,7 +22,7 @@ jobs:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - name: '[Depandabot] Approve PR for PR#${{github.event.pull_request.number}}'
+      - name: '[Dependabot] Approve PR for PR#${{github.event.pull_request.number}}'
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
